@@ -31,8 +31,8 @@
 
   
     <link rel="top" title="buildfarm 0.1 documentation" href="index.html"/>
-        <link rel="next" title="スレーブサーバーの追加・削除" href="slave.html"/>
-        <link rel="prev" title="テストの実装方法" href="implementation.html"/> 
+        <link rel="next" title="スレーブサーバーの構築" href="slave.html"/>
+        <link rel="prev" title="テスト環境の概要" href="overview.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -83,13 +83,13 @@
             
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="overview.html">テスト環境の概要</a></li>
-<li class="toctree-l1"><a class="reference internal" href="implementation.html">テストの実装方法</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">マスタサーバーの構築</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id2">インストール</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="slave.html">スレーブサーバーの追加・削除</a></li>
+<li class="toctree-l1"><a class="reference internal" href="slave.html">スレーブサーバーの構築</a></li>
 <li class="toctree-l1"><a class="reference internal" href="job.html">テストジョブの追加・削除</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html">テストの実装方法</a></li>
 </ul>
 
             
@@ -138,16 +138,26 @@
 <h1>マスタサーバーの構築<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id2">
 <h2>インストール<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>マスターサーバーを構築します。</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">インターネット接続が可能なマシンを用意して下さい。ハイスペックなマシンは必要ありませんが、ハードディスクはサイズの大きなログを長期間保存する場合は多めに用意して下さい。</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">他のアプリケーションがポート番号8080を使用していないか確認して下さい。</p>
+</div>
 <p>githubから以下のリポジトリをクローンします。</p>
 <div class="highlight-bash"><div class="highlight"><pre>$ git clone https://github.com/jenkinshrg/buildfarm.git
 </pre></div>
 </div>
 <p>マスターサーバーをインストールします。</p>
-<p>他のアプリケーションがポート番号8080を使用していないか確認して下さい。</p>
 <div class="highlight-bash"><div class="highlight"><pre>$ <span class="nb">cd</span> buildfarm
 $ ./setup/master.sh
 </pre></div>
 </div>
+<p>ブラウザで以下のURLが正しく表示されることを確認して下さい。</p>
+<p><a class="reference external" href="http://localhost:8080">http://localhost:8080</a></p>
 </div>
 </div>
 
@@ -158,10 +168,10 @@ $ ./setup/master.sh
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="slave.html" class="btn btn-neutral float-right" title="スレーブサーバーの追加・削除" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="slave.html" class="btn btn-neutral float-right" title="スレーブサーバーの構築" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="implementation.html" class="btn btn-neutral" title="テストの実装方法" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="overview.html" class="btn btn-neutral" title="テスト環境の概要" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

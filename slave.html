@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>スレーブサーバーの追加・削除 &mdash; buildfarm 0.1 documentation</title>
+  <title>スレーブサーバーの構築 &mdash; buildfarm 0.1 documentation</title>
   
 
   
@@ -83,10 +83,14 @@
             
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="overview.html">テスト環境の概要</a></li>
-<li class="toctree-l1"><a class="reference internal" href="implementation.html">テストの実装方法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="master.html">マスタサーバーの構築</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">スレーブサーバーの追加・削除</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">スレーブサーバーの構築</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">スレーブサーバーの追加</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">スレーブサーバーの削除</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="job.html">テストジョブの追加・削除</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html">テストの実装方法</a></li>
 </ul>
 
             
@@ -117,7 +121,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>スレーブサーバーの追加・削除</li>
+    <li>スレーブサーバーの構築</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -132,7 +136,39 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>スレーブサーバーの追加・削除<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<h1>スレーブサーバーの構築<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2>スレーブサーバーの追加<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>スレーブサーバーを追加します。</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">インターネット接続が可能なマシンを用意して下さい。マスターサーバーと同じマシンに複数のスレーブサーバーを同居させることも可能です。</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">マスターサーバーが起動していることを確認して下さい。</p>
+</div>
+<p>githubから以下のリポジトリをクローンします。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ git clone https://github.com/jenkinshrg/buildfarm.git
+$ <span class="nb">cd</span> buildfarm
+</pre></div>
+</div>
+<p>マスターサーバーへスレーブサーバーの情報を登録します。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ ./scripts/createnode.sh slave
+</pre></div>
+</div>
+<p>ブラウザでスレーブサーバーが登録されたことを確認して下さい。</p>
+<p><a class="reference external" href="http://localhost:8080">http://localhost:8080</a></p>
+<p>スレーブサーバーを起動します。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ ./setup/slave.sh
+</pre></div>
+</div>
+<p>ブラウザでスレーブサーバーが接続されたことを確認して下さい。</p>
+<p><a class="reference external" href="http://localhost:8080">http://localhost:8080</a></p>
+</div>
+<div class="section" id="id3">
+<h2>スレーブサーバーの削除<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+</div>
 </div>
 
 
