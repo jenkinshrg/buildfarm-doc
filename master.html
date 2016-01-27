@@ -138,12 +138,13 @@
 <h1>マスタサーバーの構築<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id2">
 <h2>インストール<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>githubから以下のリポジトリをクローンします。:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ git clone https://github.com/jenkinshrg/buildfarm.git
+<p>githubから以下のリポジトリをクローンします。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ git clone https://github.com/jenkinshrg/buildfarm.git
 </pre></div>
 </div>
-<p>マスターサーバーをインストールします。:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ cd buildfarm
+<p>マスターサーバーをインストールします。</p>
+<p>他のアプリケーションがポート番号8080を使用していないか確認して下さい。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ <span class="nb">cd</span> buildfarm
 $ ./setup/master.sh
 </pre></div>
 </div>
