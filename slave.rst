@@ -19,7 +19,7 @@
 
 .. code-block:: bash
 
-  # sudo sh -c 'echo "tokunaga ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers'
+  $ sudo sh -c 'echo "tokunaga ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers'
 
 choreonoidを実行する場合はプロプライエタリなドライバをインストールして変更しておきます。
 また自動ログイン、スクリーンセーバー、画面ロックを解除しておきます。
