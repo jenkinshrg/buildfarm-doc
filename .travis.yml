@@ -9,6 +9,8 @@ script: source .travis.sh
 sudo: required
 after_success:
   - set +x
+  - echo $GIT_NAME
+  - echo $GIT_EMAIL
   - export GIT_COMMITTER_NAME=$GIT_NAME
   - export GIT_COMMITTER_EMAIL=$GIT_EMAIL
   - export GIT_AUTHOR_NAME=$GIT_NAME
