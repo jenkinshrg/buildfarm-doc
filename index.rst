@@ -12,10 +12,10 @@ Contents:
    :maxdepth: 2
 
    overview
-   implementation
    master
    slave
    job
+   implementation
 
 Indices and tables
 ==================
