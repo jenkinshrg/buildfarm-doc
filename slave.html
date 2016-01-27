@@ -148,6 +148,17 @@
 <p class="first admonition-title">Warning</p>
 <p class="last">マスターサーバーが起動していることを確認して下さい。</p>
 </div>
+<p>ユーザーがパスワード無しでsudoできるように設定しておきます。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c1"># sudo sh -c &#39;echo &quot;tokunaga ALL=(ALL) NOPASSWD:ALL&quot; &gt;&gt; /etc/sudoers&#39;</span>
+</pre></div>
+</div>
+<p>choreonoidを実行する場合はプロプライエタリなドライバをインストールして変更しておきます。
+また自動ログイン、スクリーンセーバー、画面ロックを解除しておきます。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ sudo add-apt-repository -y ppa:xorg-edgers/ppa
+$ sudo apt-get update
+$ sudo apt-get -y install nvidia-current nvidia-settings
+</pre></div>
+</div>
 <p>githubから以下のリポジトリをクローンします。</p>
 <div class="highlight-bash"><div class="highlight"><pre>$ git clone https://github.com/jenkinshrg/buildfarm.git
 $ <span class="nb">cd</span> buildfarm
