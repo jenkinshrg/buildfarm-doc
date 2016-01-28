@@ -136,24 +136,27 @@
             
   <div class="section" id="id1">
 <h1>マスタサーバーの構築<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id2">
-<h2>インストール<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>マスターサーバーをインストールします。</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">インターネット接続が可能なマシンを用意して下さい。ハイスペックなマシンは必要ありませんが、ハードディスクはサイズの大きなログを長期間保存する場合は多めに用意して下さい。</p>
+<p class="last">インターネット接続が可能なマシンを用意して下さい。ハイスペックなマシンは必要ありませんが、サイズの大きなログを長期間保存する場合は大きめのハードディスクを用意して下さい。</p>
 </div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">他のアプリケーションがポート番号8080を使用していないか確認して下さい。</p>
 </div>
+<div class="section" id="id2">
+<h2>インストール<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>githubから以下のリポジトリをクローンします。</p>
 <div class="highlight-bash"><div class="highlight"><pre>$ git clone https://github.com/jenkinshrg/buildfarm.git
+$ <span class="nb">cd</span> buildfarm
+</pre></div>
+</div>
+<p>依存パッケージをインストールします。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ ./setup/common.sh
 </pre></div>
 </div>
 <p>マスターサーバーをインストールします。</p>
-<div class="highlight-bash"><div class="highlight"><pre>$ <span class="nb">cd</span> buildfarm
-$ ./setup/master.sh
+<div class="highlight-bash"><div class="highlight"><pre>$ ./setup/master.sh
 </pre></div>
 </div>
 <p>ブラウザで以下のURLが正しく表示されることを確認して下さい。</p>

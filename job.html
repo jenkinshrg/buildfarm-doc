@@ -137,6 +137,10 @@
             
   <div class="section" id="id1">
 <h1>ジョブの追加・削除<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">予め実行させたいテストスクリプトを含むリポジトリを用意して下さい。</p>
+</div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">マスターサーバーが起動していることを確認して下さい。</p>
@@ -146,13 +150,13 @@
 $ <span class="nb">cd</span> buildfarm
 </pre></div>
 </div>
+<p>依存パッケージをインストールします。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ ./setup/common.sh
+</pre></div>
+</div>
 <div class="section" id="id2">
 <h2>ジョブの追加<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>ジョブを追加します。</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">予め実行させたいスクリプトを含むリポジトリを用意して下さい。</p>
-</div>
 <p>マスターサーバーへジョブを登録します。</p>
 <div class="highlight-bash"><div class="highlight"><pre>$ ./scripts/createnode.sh slave
 </pre></div>

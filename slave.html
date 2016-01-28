@@ -85,8 +85,9 @@
 <li class="toctree-l1"><a class="reference internal" href="overview.html">概要</a></li>
 <li class="toctree-l1"><a class="reference internal" href="master.html">マスタサーバーの構築</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">スレーブサーバーの構築</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id2">スレーブサーバーの追加</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">スレーブサーバーの削除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">インストール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">スレーブサーバーの追加</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">スレーブサーバーの削除</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="job.html">ジョブの追加・削除</a></li>
@@ -137,24 +138,27 @@
             
   <div class="section" id="id1">
 <h1>スレーブサーバーの構築<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">インターネット接続が可能なマシンを用意して下さい。マシンスペックによっては、マスターサーバーと同じマシンにスレーブサーバーを同居させることも可能です。</p>
+</div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">マスターサーバーが起動していることを確認して下さい。</p>
 </div>
+<div class="section" id="id2">
+<h2>インストール<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>githubから以下のリポジトリをクローンします。</p>
 <div class="highlight-bash"><div class="highlight"><pre>$ git clone https://github.com/jenkinshrg/buildfarm.git
 $ <span class="nb">cd</span> buildfarm
 </pre></div>
 </div>
-<div class="section" id="id2">
-<h2>スレーブサーバーの追加<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>スレーブサーバーを追加します。</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">インターネット接続が可能なマシンを用意して下さい。マシンスペックによっては、マスターサーバーと同じマシンにスレーブサーバーを同居させることも可能です。</p>
+<p>依存パッケージをインストールします。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ ./setup/common.sh
+</pre></div>
 </div>
 <p>ユーザーがパスワード無しでsudoできるように設定しておきます。</p>
-<div class="highlight-bash"><div class="highlight"><pre>$ sudo sh -c <span class="s1">&#39;echo &quot;tokunaga ALL=(ALL) NOPASSWD:ALL&quot; &gt;&gt; /etc/sudoers&#39;</span>
+<div class="highlight-bash"><div class="highlight"><pre>$ sudo sh -c <span class="s1">&#39;echo &quot;jenkins ALL=(ALL) NOPASSWD:ALL&quot; &gt;&gt; /etc/sudoers&#39;</span>
 </pre></div>
 </div>
 <p>choreonoidを実行する場合はプロプライエタリなドライバをインストールして変更しておきます。
@@ -164,6 +168,10 @@ $ sudo apt-get update
 $ sudo apt-get -y install nvidia-current nvidia-settings
 </pre></div>
 </div>
+</div>
+<div class="section" id="id3">
+<h2>スレーブサーバーの追加<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>スレーブサーバーを追加します。</p>
 <p>マスターサーバーへスレーブサーバーを登録します。</p>
 <div class="highlight-bash"><div class="highlight"><pre>$ ./scripts/createnode.sh slave
 </pre></div>
@@ -177,8 +185,8 @@ $ sudo apt-get -y install nvidia-current nvidia-settings
 <p>ブラウザでスレーブサーバーが接続されたことを確認して下さい。</p>
 <p><a class="reference external" href="http://localhost:8080">http://localhost:8080</a></p>
 </div>
-<div class="section" id="id3">
-<h2>スレーブサーバーの削除<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id4">
+<h2>スレーブサーバーの削除<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <p>スレーブサーバーを削除します。</p>
 <p>マスターサーバーからスレーブサーバーを削除します。</p>
 <div class="highlight-bash"><div class="highlight"><pre>$ ./scripts/deletenode.sh slave

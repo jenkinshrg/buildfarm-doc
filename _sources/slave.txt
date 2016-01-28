@@ -2,9 +2,16 @@
 スレーブサーバーの構築
 ======================
 
+.. note::
+
+  インターネット接続が可能なマシンを用意して下さい。マシンスペックによっては、マスターサーバーと同じマシンにスレーブサーバーを同居させることも可能です。
+
 .. warning::
 
   マスターサーバーが起動していることを確認して下さい。
+
+インストール
+============
 
 githubから以下のリポジトリをクローンします。
 
@@ -13,20 +20,17 @@ githubから以下のリポジトリをクローンします。
   $ git clone https://github.com/jenkinshrg/buildfarm.git
   $ cd buildfarm
 
-スレーブサーバーの追加
-======================
+依存パッケージをインストールします。
 
-スレーブサーバーを追加します。
+.. code-block:: bash
 
-.. note::
-
-  インターネット接続が可能なマシンを用意して下さい。マシンスペックによっては、マスターサーバーと同じマシンにスレーブサーバーを同居させることも可能です。
+  $ ./setup/common.sh
 
 ユーザーがパスワード無しでsudoできるように設定しておきます。
 
 .. code-block:: bash
 
-  $ sudo sh -c 'echo "tokunaga ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers'
+  $ sudo sh -c 'echo "jenkins ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers'
 
 choreonoidを実行する場合はプロプライエタリなドライバをインストールして変更しておきます。
 また自動ログイン、スクリーンセーバー、画面ロックを解除しておきます。
@@ -36,6 +40,11 @@ choreonoidを実行する場合はプロプライエタリなドライバをイ�
   $ sudo add-apt-repository -y ppa:xorg-edgers/ppa
   $ sudo apt-get update
   $ sudo apt-get -y install nvidia-current nvidia-settings
+
+スレーブサーバーの追加
+======================
+
+スレーブサーバーを追加します。
 
 マスターサーバーへスレーブサーバーを登録します。
 
