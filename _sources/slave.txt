@@ -2,6 +2,17 @@
 スレーブサーバーの構築
 ======================
 
+.. warning::
+
+  マスターサーバーが起動していることを確認して下さい。
+
+githubから以下のリポジトリをクローンします。
+
+.. code-block:: bash
+
+  $ git clone https://github.com/jenkinshrg/buildfarm.git
+  $ cd buildfarm
+
 スレーブサーバーの追加
 ======================
 
@@ -9,11 +20,7 @@
 
 .. note::
 
-  インターネット接続が可能なマシンを用意して下さい。マスターサーバーと同じマシンに複数のスレーブサーバーを同居させることも可能です。
-
-.. warning::
-
-  マスターサーバーが起動していることを確認して下さい。
+  インターネット接続が可能なマシンを用意して下さい。マシンスペックによっては、マスターサーバーと同じマシンにスレーブサーバーを同居させることも可能です。
 
 ユーザーがパスワード無しでsudoできるように設定しておきます。
 
@@ -30,14 +37,7 @@ choreonoidを実行する場合はプロプライエタリなドライバをイ�
   $ sudo apt-get update
   $ sudo apt-get -y install nvidia-current nvidia-settings
 
-githubから以下のリポジトリをクローンします。
-
-.. code-block:: bash
-
-  $ git clone https://github.com/jenkinshrg/buildfarm.git
-  $ cd buildfarm
-
-マスターサーバーへスレーブサーバーの情報を登録します。
+マスターサーバーへスレーブサーバーを登録します。
 
 .. code-block:: bash
 
@@ -47,7 +47,7 @@ githubから以下のリポジトリをクローンします。
 
 http://localhost:8080
 
-スレーブサーバーを起動します。
+スレーブサーバーを接続します。
 
 .. code-block:: bash
 
@@ -59,3 +59,16 @@ http://localhost:8080
 
 スレーブサーバーの削除
 ======================
+
+スレーブサーバーを削除します。
+
+マスターサーバーからスレーブサーバーを削除します。
+
+.. code-block:: bash
+
+  $ ./scripts/deletenode.sh slave
+
+ブラウザでスレーブサーバーが削除されたことを確認して下さい。
+
+http://localhost:8080
+

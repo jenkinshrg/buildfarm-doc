@@ -137,16 +137,21 @@
             
   <div class="section" id="id1">
 <h1>スレーブサーバーの構築<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">マスターサーバーが起動していることを確認して下さい。</p>
+</div>
+<p>githubから以下のリポジトリをクローンします。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ git clone https://github.com/jenkinshrg/buildfarm.git
+$ <span class="nb">cd</span> buildfarm
+</pre></div>
+</div>
 <div class="section" id="id2">
 <h2>スレーブサーバーの追加<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>スレーブサーバーを追加します。</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">インターネット接続が可能なマシンを用意して下さい。マスターサーバーと同じマシンに複数のスレーブサーバーを同居させることも可能です。</p>
-</div>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">マスターサーバーが起動していることを確認して下さい。</p>
+<p class="last">インターネット接続が可能なマシンを用意して下さい。マシンスペックによっては、マスターサーバーと同じマシンにスレーブサーバーを同居させることも可能です。</p>
 </div>
 <p>ユーザーがパスワード無しでsudoできるように設定しておきます。</p>
 <div class="highlight-bash"><div class="highlight"><pre>$ sudo sh -c <span class="s1">&#39;echo &quot;tokunaga ALL=(ALL) NOPASSWD:ALL&quot; &gt;&gt; /etc/sudoers&#39;</span>
@@ -159,18 +164,13 @@ $ sudo apt-get update
 $ sudo apt-get -y install nvidia-current nvidia-settings
 </pre></div>
 </div>
-<p>githubから以下のリポジトリをクローンします。</p>
-<div class="highlight-bash"><div class="highlight"><pre>$ git clone https://github.com/jenkinshrg/buildfarm.git
-$ <span class="nb">cd</span> buildfarm
-</pre></div>
-</div>
-<p>マスターサーバーへスレーブサーバーの情報を登録します。</p>
+<p>マスターサーバーへスレーブサーバーを登録します。</p>
 <div class="highlight-bash"><div class="highlight"><pre>$ ./scripts/createnode.sh slave
 </pre></div>
 </div>
 <p>ブラウザでスレーブサーバーが登録されたことを確認して下さい。</p>
 <p><a class="reference external" href="http://localhost:8080">http://localhost:8080</a></p>
-<p>スレーブサーバーを起動します。</p>
+<p>スレーブサーバーを接続します。</p>
 <div class="highlight-bash"><div class="highlight"><pre>$ ./setup/slave.sh
 </pre></div>
 </div>
@@ -179,6 +179,13 @@ $ <span class="nb">cd</span> buildfarm
 </div>
 <div class="section" id="id3">
 <h2>スレーブサーバーの削除<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>スレーブサーバーを削除します。</p>
+<p>マスターサーバーからスレーブサーバーを削除します。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ ./scripts/deletenode.sh slave
+</pre></div>
+</div>
+<p>ブラウザでスレーブサーバーが削除されたことを確認して下さい。</p>
+<p><a class="reference external" href="http://localhost:8080">http://localhost:8080</a></p>
 </div>
 </div>
 

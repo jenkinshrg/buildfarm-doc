@@ -137,11 +137,44 @@
             
   <div class="section" id="id1">
 <h1>ジョブの追加・削除<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">マスターサーバーが起動していることを確認して下さい。</p>
+</div>
+<p>githubから以下のリポジトリをクローンします。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ git clone https://github.com/jenkinshrg/buildfarm.git
+$ <span class="nb">cd</span> buildfarm
+</pre></div>
+</div>
 <div class="section" id="id2">
 <h2>ジョブの追加<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>ジョブを追加します。</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">予め実行させたいスクリプトを含むリポジトリを用意して下さい。</p>
+</div>
+<p>マスターサーバーへジョブを登録します。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ ./scripts/createnode.sh slave
+</pre></div>
+</div>
+<p>ブラウザでジョブが登録されたことを確認して下さい。</p>
+<p><a class="reference external" href="http://localhost:8080">http://localhost:8080</a></p>
+<p>ジョブを実行します。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ ./scripts/buildjob.sh <span class="nb">test</span>
+</pre></div>
+</div>
+<p>ブラウザでジョブが実行されたことを確認して下さい。</p>
+<p><a class="reference external" href="http://localhost:8080">http://localhost:8080</a></p>
 </div>
 <div class="section" id="id3">
 <h2>ジョブの削除<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>ジョブを削除します。</p>
+<p>マスターサーバーからジョブを削除します。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ ./scripts/deletejob.sh <span class="nb">test</span>
+</pre></div>
+</div>
+<p>ブラウザでジョブが削除されたことを確認して下さい。</p>
+<p><a class="reference external" href="http://localhost:8080">http://localhost:8080</a></p>
 </div>
 </div>
 
