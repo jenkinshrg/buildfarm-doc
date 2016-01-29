@@ -34,5 +34,5 @@ githubから以下のリポジトリをクローンします。
 
 ブラウザで以下のURLが正しく表示されることを確認して下さい。
 
-http://localhost:8080
+http://jenkinshrg.a01.aist.go.jp
 
