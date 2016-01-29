@@ -54,7 +54,7 @@ choreonoidを実行する場合はプロプライエタリなドライバをイ�
 
 ブラウザでスレーブサーバーが登録されたことを確認して下さい。
 
-http://localhost:8080
+http://jenkinshrg.a01.aist.go.jp
 
 スレーブサーバーを接続します。
 
@@ -64,7 +64,7 @@ http://localhost:8080
 
 ブラウザでスレーブサーバーが接続されたことを確認して下さい。
 
-http://localhost:8080
+http://jenkinshrg.a01.aist.go.jp
 
 スレーブサーバーの削除
 ======================
@@ -79,5 +79,5 @@ http://localhost:8080
 
 ブラウザでスレーブサーバーが削除されたことを確認して下さい。
 
-http://localhost:8080
+http://jenkinshrg.a01.aist.go.jp
 

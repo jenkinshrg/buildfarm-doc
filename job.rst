@@ -46,7 +46,7 @@ githubから以下のリポジトリをクローンします。
 
 ブラウザでジョブが登録されたことを確認して下さい。
 
-http://localhost:8080
+http://jenkinshrg.a01.aist.go.jp
 
 ジョブを実行します。
 
@@ -56,7 +56,7 @@ http://localhost:8080
 
 ブラウザでジョブが実行されたことを確認して下さい。
 
-http://localhost:8080
+http://jenkinshrg.a01.aist.go.jp
 
 ジョブの削除
 ============
@@ -71,5 +71,5 @@ http://localhost:8080
 
 ブラウザでジョブが削除されたことを確認して下さい。
 
-http://localhost:8080
+http://jenkinshrg.a01.aist.go.jp
 
