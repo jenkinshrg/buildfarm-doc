@@ -141,6 +141,15 @@
 <h2>はじめに<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>buildfarmはhrpsys-base, choreonoid, OpenHRPなどのロボット関連ソフトウェアのビルドおよび各種テストの実行を自動化するための継続的インテグレーション（CI）環境です。</p>
 <p>CIサーバーをオンプレミスに構築するためプライベートなリポジトリやオンプレミスに存在するリポジトリを含むテストの実行が可能です。</p>
+<p class="graphviz">
+<img src="_images/graphviz-6b77dc43c1978a6019c0263be0520cd982c1220c.png" alt="digraph {
+   &quot;source(github.com)&quot; -&gt; &quot;test(jenkins)&quot;
+   &quot;source(choreonoid.org)&quot; -&gt; &quot;test(jenkins)&quot;
+   &quot;source(atom)&quot; -&gt; &quot;test(jenkins)&quot;
+   &quot;test(jenkins)&quot; -&gt; &quot;report(github)&quot;
+   &quot;test(jenkins)&quot; -&gt; &quot;report(google)&quot;
+}" />
+</p>
 </div>
 </div>
 
@@ -194,6 +203,7 @@
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 
