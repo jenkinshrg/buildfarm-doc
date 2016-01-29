@@ -18,9 +18,9 @@ CIサーバーをオンプレミスに構築するためプライベートなリ
       build [label="jenkinshrg"];
       report1 [label="github.com"];
       report2 [label="google.com"];
-      source1 -> build [label="download source"];
-      source2 -> build [label="download source"];
-      source3 -> build [label="download source"];
+      source1 -> build [label="pull source"];
+      source2 -> build [label="pull source"];
+      source3 -> build [label="pull source"];
       build -> report1 [label="upload report"];
       build -> report2 [label="upload data"];
    }
