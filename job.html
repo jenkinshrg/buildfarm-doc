@@ -31,7 +31,7 @@
 
   
     <link rel="top" title="buildfarm 0.1 documentation" href="index.html"/>
-        <link rel="prev" title="スレーブサーバーの構築" href="slave.html"/> 
+        <link rel="prev" title="仮想マシン上でのテスト環境の構築" href="vm.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -85,6 +85,7 @@
 <li class="toctree-l1"><a class="reference internal" href="implementation.html">テストの実装方法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="master.html">マスタサーバーの構築</a></li>
 <li class="toctree-l1"><a class="reference internal" href="slave.html">スレーブサーバーの構築</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vm.html">仮想マシン上でのテスト環境の構築</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">ジョブの追加・削除</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id2">ジョブの作成</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id3">ジョブの追加</a></li>
@@ -168,13 +169,13 @@ $ <span class="nb">cd</span> buildfarm
 <h2>ジョブの追加<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>ジョブを追加します。</p>
 <p>マスターサーバーへジョブを登録します。</p>
-<div class="highlight-bash"><div class="highlight"><pre>$ ./scripts/createnode.sh slave
+<div class="highlight-bash"><div class="highlight"><pre>$ ./scripts/createjob.sh drcutil-task-walk https://github.com/jenkinshrg/drcutil.git drcutil jenkins ubuntu-trusty-amd64-desktop periodic http://jenkinshrg.a01.aist.go.jp
 </pre></div>
 </div>
 <p>ブラウザでジョブが登録されたことを確認して下さい。</p>
 <p><a class="reference external" href="http://localhost:8080">http://localhost:8080</a></p>
 <p>ジョブを実行します。</p>
-<div class="highlight-bash"><div class="highlight"><pre>$ ./scripts/buildjob.sh <span class="nb">test</span>
+<div class="highlight-bash"><div class="highlight"><pre>$ ./scripts/buildjob.sh drcutil-task-walk http://jenkinshrg.a01.aist.go.jp
 </pre></div>
 </div>
 <p>ブラウザでジョブが実行されたことを確認して下さい。</p>
@@ -184,7 +185,7 @@ $ <span class="nb">cd</span> buildfarm
 <h2>ジョブの削除<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <p>ジョブを削除します。</p>
 <p>マスターサーバーからジョブを削除します。</p>
-<div class="highlight-bash"><div class="highlight"><pre>$ ./scripts/deletejob.sh <span class="nb">test</span>
+<div class="highlight-bash"><div class="highlight"><pre>$ ./scripts/deletejob.sh drcutil-task-walk http://jenkinshrg.a01.aist.go.jp
 </pre></div>
 </div>
 <p>ブラウザでジョブが削除されたことを確認して下さい。</p>
@@ -200,7 +201,7 @@ $ <span class="nb">cd</span> buildfarm
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href="slave.html" class="btn btn-neutral" title="スレーブサーバーの構築" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="vm.html" class="btn btn-neutral" title="仮想マシン上でのテスト環境の構築" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -50,7 +50,7 @@ choreonoidを実行する場合はプロプライエタリなドライバをイ�
 
 .. code-block:: bash
 
-  $ ./scripts/createnode.sh slave
+  $ ./scripts/createnode.sh ubuntu-trusty-amd64-desktop /home/jenkins http://jenkinshrg.a01.aist.go.jp
 
 ブラウザでスレーブサーバーが登録されたことを確認して下さい。
 
@@ -60,7 +60,7 @@ http://localhost:8080
 
 .. code-block:: bash
 
-  $ ./setup/slave.sh
+  $ ./setup/slave.sh ubuntu-trusty-amd64-desktop http://jenkinshrg.a01.aist.go.jp
 
 ブラウザでスレーブサーバーが接続されたことを確認して下さい。
 
@@ -75,7 +75,7 @@ http://localhost:8080
 
 .. code-block:: bash
 
-  $ ./scripts/deletenode.sh slave
+  $ ./scripts/deletenode.sh ubuntu-trusty-amd64-desktop http://jenkinshrg.a01.aist.go.jp
 
 ブラウザでスレーブサーバーが削除されたことを確認して下さい。
 
