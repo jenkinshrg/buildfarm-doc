@@ -12,9 +12,15 @@ CIサーバーをオンプレミスに構築するためプライベートなリ
 .. graphviz::
 
    digraph {
-      "source(github.com)" -> "test(jenkins)"
-      "source(choreonoid.org)" -> "test(jenkins)"
-      "source(atom)" -> "test(jenkins)"
-      "test(jenkins)" -> "report(github)"
-      "test(jenkins)" -> "report(google)"
+      source1 [label="github.com"];
+      source2 [label="choreonoid.org"];
+      source3 [label="atom"];
+      build [label="jenkinshrg"];
+      report1 [label="github.com"];
+      report2 [label="google.com"];
+      source1 -> build [label="download source"];
+      source2 -> build [label="download source"];
+      source3 -> build [label="download source"];
+      build -> report1 [label="upload report"];
+      build -> report2 [label="upload data"];
    }
