@@ -42,7 +42,7 @@ githubから以下のリポジトリをクローンします。
 
 .. code-block:: bash
 
-  $ ./scripts/createnode.sh slave
+  $ ./scripts/createjob.sh drcutil-task-walk https://github.com/jenkinshrg/drcutil.git drcutil jenkins ubuntu-trusty-amd64-desktop periodic http://jenkinshrg.a01.aist.go.jp
 
 ブラウザでジョブが登録されたことを確認して下さい。
 
@@ -52,7 +52,7 @@ http://localhost:8080
 
 .. code-block:: bash
 
-  $ ./scripts/buildjob.sh test
+  $ ./scripts/buildjob.sh drcutil-task-walk http://jenkinshrg.a01.aist.go.jp
 
 ブラウザでジョブが実行されたことを確認して下さい。
 
@@ -67,7 +67,7 @@ http://localhost:8080
 
 .. code-block:: bash
 
-  $ ./scripts/deletejob.sh test
+  $ ./scripts/deletejob.sh drcutil-task-walk http://jenkinshrg.a01.aist.go.jp
 
 ブラウザでジョブが削除されたことを確認して下さい。
 

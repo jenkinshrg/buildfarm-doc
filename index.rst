@@ -15,6 +15,7 @@ Contents:
    implementation
    master
    slave
+   vm
    job
 
 Indices and tables
