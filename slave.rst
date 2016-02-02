@@ -32,7 +32,7 @@ githubから以下のリポジトリをクローンします。
 
   $ sudo sh -c 'echo "jenkins ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers'
 
-choreonoidを実行する場合はプロプライエタリなドライバをインストールして変更しておきます。
+choreonoidを実行する場合はプロプライエタリなドライバをインストールしてシステム設定にて変更しておきます。
 
 .. code-block:: bash
 
