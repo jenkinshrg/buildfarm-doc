@@ -33,13 +33,16 @@ githubから以下のリポジトリをクローンします。
   $ sudo sh -c 'echo "jenkins ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers'
 
 choreonoidを実行する場合はプロプライエタリなドライバをインストールして変更しておきます。
-また自動ログイン、スクリーンセーバー、画面ロックを解除しておきます。
 
 .. code-block:: bash
 
   $ sudo add-apt-repository -y ppa:xorg-edgers/ppa
   $ sudo apt-get update
   $ sudo apt-get -y install nvidia-current nvidia-settings
+
+.. warning::
+
+  自動ログイン、スクリーンセーバー、画面ロックを解除しておきます。
 
 スレーブサーバーの追加
 ======================

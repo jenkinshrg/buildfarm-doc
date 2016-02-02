@@ -142,7 +142,7 @@
 <p>buildfarmはhrpsys-base, choreonoid, OpenHRPなどのロボット関連ソフトウェアのビルドおよび各種テストの実行を自動化するための継続的インテグレーション（CI）環境です。</p>
 <p>CIサーバーをオンプレミスに構築するためプライベートなリポジトリやオンプレミスに存在するリポジトリを含むテストの実行が可能です。</p>
 <p class="graphviz">
-<img src="_images/graphviz-a6cd136666557b316d07292c01a5943df0fb81eb.png" alt="digraph {
+digraph {
    source1 [label=&quot;github.com&quot;];
    source2 [label=&quot;choreonoid.org&quot;];
    source3 [label=&quot;atom&quot;];
@@ -154,8 +154,7 @@
    source3 -&gt; build [label=&quot;download source&quot;];
    build -&gt; report1 [label=&quot;upload report&quot;];
    build -&gt; report2 [label=&quot;upload data&quot;];
-}" />
-</p>
+}</p>
 </div>
 </div>
 
