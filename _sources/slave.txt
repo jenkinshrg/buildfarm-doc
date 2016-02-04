@@ -6,6 +6,24 @@
 
   インターネット接続が可能なマシンを用意して下さい。マシンスペックによっては、マスターサーバーと同じマシンにスレーブサーバーを同居させることも可能です。
 
+ユーザーがパスワード無しでsudoできるように設定しておきます。
+
+.. code-block:: bash
+
+  $ sudo sh -c 'echo "jenkins ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers'
+
+choreonoidを実行する場合はプロプライエタリなドライバをインストールしてシステム設定にて変更しておきます。
+
+.. code-block:: bash
+
+  $ sudo add-apt-repository -y ppa:xorg-edgers/ppa
+  $ sudo apt-get update
+  $ sudo apt-get -y install nvidia-current nvidia-settings
+
+.. warning::
+
+  自動ログイン、スクリーンセーバー、画面ロックを解除しておきます。
+
 .. warning::
 
   マスターサーバーが起動していることを確認して下さい。
@@ -25,24 +43,6 @@ githubから以下のリポジトリをクローンします。
 .. code-block:: bash
 
   $ ./setup/common.sh
-
-ユーザーがパスワード無しでsudoできるように設定しておきます。
-
-.. code-block:: bash
-
-  $ sudo sh -c 'echo "jenkins ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers'
-
-choreonoidを実行する場合はプロプライエタリなドライバをインストールしてシステム設定にて変更しておきます。
-
-.. code-block:: bash
-
-  $ sudo add-apt-repository -y ppa:xorg-edgers/ppa
-  $ sudo apt-get update
-  $ sudo apt-get -y install nvidia-current nvidia-settings
-
-.. warning::
-
-  自動ログイン、スクリーンセーバー、画面ロックを解除しておきます。
 
 スレーブサーバーの追加
 ======================

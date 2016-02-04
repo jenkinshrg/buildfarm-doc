@@ -143,6 +143,20 @@
 <p class="first admonition-title">Note</p>
 <p class="last">インターネット接続が可能なマシンを用意して下さい。マシンスペックによっては、マスターサーバーと同じマシンにスレーブサーバーを同居させることも可能です。</p>
 </div>
+<p>ユーザーがパスワード無しでsudoできるように設定しておきます。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ sudo sh -c <span class="s1">&#39;echo &quot;jenkins ALL=(ALL) NOPASSWD:ALL&quot; &gt;&gt; /etc/sudoers&#39;</span>
+</pre></div>
+</div>
+<p>choreonoidを実行する場合はプロプライエタリなドライバをインストールしてシステム設定にて変更しておきます。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ sudo add-apt-repository -y ppa:xorg-edgers/ppa
+$ sudo apt-get update
+$ sudo apt-get -y install nvidia-current nvidia-settings
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">自動ログイン、スクリーンセーバー、画面ロックを解除しておきます。</p>
+</div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">マスターサーバーが起動していることを確認して下さい。</p>
@@ -157,20 +171,6 @@ $ <span class="nb">cd</span> buildfarm
 <p>依存パッケージをインストールします。</p>
 <div class="highlight-bash"><div class="highlight"><pre>$ ./setup/common.sh
 </pre></div>
-</div>
-<p>ユーザーがパスワード無しでsudoできるように設定しておきます。</p>
-<div class="highlight-bash"><div class="highlight"><pre>$ sudo sh -c <span class="s1">&#39;echo &quot;jenkins ALL=(ALL) NOPASSWD:ALL&quot; &gt;&gt; /etc/sudoers&#39;</span>
-</pre></div>
-</div>
-<p>choreonoidを実行する場合はプロプライエタリなドライバをインストールしてシステム設定にて変更しておきます。</p>
-<div class="highlight-bash"><div class="highlight"><pre>$ sudo add-apt-repository -y ppa:xorg-edgers/ppa
-$ sudo apt-get update
-$ sudo apt-get -y install nvidia-current nvidia-settings
-</pre></div>
-</div>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">自動ログイン、スクリーンセーバー、画面ロックを解除しておきます。</p>
 </div>
 </div>
 <div class="section" id="id3">
