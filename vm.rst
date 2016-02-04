@@ -13,6 +13,13 @@
 インストール
 ============
 
+gitをインストールします。
+
+.. code-block:: bash
+
+  $ sudo apt-get update
+  $ sudo apt-get install git
+
 githubから以下のリポジトリをクローンします。
 
 .. code-block:: bash
