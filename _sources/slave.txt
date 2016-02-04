@@ -20,6 +20,12 @@ choreonoidを実行する場合はプロプライエタリなドライバをイ�
   $ sudo apt-get update
   $ sudo apt-get -y install nvidia-current nvidia-settings
 
+認証情報一式を以下の場所へ格納しておきます。
+
+.. code-block:: bash
+
+  $ cp -r .jenkinsrg ~/.jenkinshrg
+
 .. warning::
 
   自動ログイン、スクリーンセーバー、画面ロックを解除しておきます。
