@@ -8,8 +8,8 @@
 
 セキュリティー面を考慮して認証情報を設定ファイルやスクリプトに保存しないで下さい。
 
-.netrcの設定
-============
+gitの設定
+=========
 
 http経由でアクセスする場合は.netrcをマスターサーバーの$JENKINS_HOMEとスレーブサーバーの$HOMEへ格納しておきます。
 
@@ -18,13 +18,20 @@ http経由でアクセスする場合は.netrcをマスターサーバーの$JEN
   $ sudo cp $HOME/.netrc /var/lib/jenkins
   $ sudo chown jenkins:jenkins /var/lib/jenkins/.netrc
 
-.sshの設定
-==========
-
 ssh経由でアクセスする場合は.sshをマスターサーバーの$JENKINS_HOMEとスレーブサーバーの$HOMEへ格納しておきます。
 
 .. code-block:: bash
 
   $ sudo cp -r $HOME/.ssh /var/lib/jenkins
   $ sudo chown -R jenkins:jenkins /var/lib/jenkins/.ssh
+
+subversionの設定
+================
+
+subversionの場合は.subversionをマスターサーバーの$JENKINS_HOMEとスレーブサーバーの$HOMEへ格納しておきます。
+
+.. code-block:: bash
+
+  $ sudo cp -r $HOME/.subversion /var/lib/jenkins
+  $ sudo chown -R jenkins:jenkins /var/lib/jenkins/.subversion
 
