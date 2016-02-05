@@ -11,12 +11,10 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-   overview
+   overview/index
    implementation/index
-   master
-   slave
-   vm
-   job
+   install/index
+   tool/index
 
 Indices and tables
 ==================

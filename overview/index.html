@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>静的解析 &mdash; buildfarm 0.1 documentation</title>
+  <title>概要 &mdash; buildfarm 0.1 documentation</title>
   
 
   
@@ -31,9 +31,8 @@
 
   
     <link rel="top" title="buildfarm 0.1 documentation" href="../index.html"/>
-        <link rel="up" title="テストの実装方法" href="index.html"/>
-        <link rel="next" title="テスト環境の構築" href="../install/index.html"/>
-        <link rel="prev" title="総合テスト" href="integration.html"/> 
+        <link rel="next" title="テストの実装方法" href="../implementation/index.html"/>
+        <link rel="prev" title="Welcome to buildfarm’s documentation!" href="../index.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -83,17 +82,11 @@
             
             
                 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">概要</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">テストの実装方法</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="unit.html">単体テスト</a></li>
-<li class="toctree-l2"><a class="reference internal" href="component.html">コンポーネントテスト</a></li>
-<li class="toctree-l2"><a class="reference internal" href="integration.html">総合テスト</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">静的解析</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">目的</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">概要</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">はじめに</a></li>
 </ul>
 </li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../implementation/index.html">テストの実装方法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../install/index.html">テスト環境の構築</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tool/index.html">ジョブの追加・削除</a></li>
 </ul>
@@ -126,13 +119,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-          <li><a href="index.html">テストの実装方法</a> &raquo;</li>
-      
-    <li>静的解析</li>
+    <li>概要</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/implementation/inspection.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/overview/index.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -143,10 +134,26 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>静的解析<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<h1>概要<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id2">
-<h2>目的<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>cppcheckによるソースコードの静的解析を行います。</p>
+<h2>はじめに<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>buildfarmはhrpsys-base, choreonoid, OpenHRPなどのロボット関連ソフトウェアのビルドおよび各種テストの実行を自動化するための継続的インテグレーション（CI）環境です。</p>
+<p>CIサーバーをオンプレミスに構築するためプライベートなリポジトリやオンプレミスに存在するリポジトリを含むテストの実行が可能です。</p>
+<p class="graphviz">
+<img src="../_images/graphviz-a6cd136666557b316d07292c01a5943df0fb81eb.png" alt="digraph {
+   source1 [label=&quot;github.com&quot;];
+   source2 [label=&quot;choreonoid.org&quot;];
+   source3 [label=&quot;atom&quot;];
+   build [label=&quot;jenkinshrg&quot;];
+   report1 [label=&quot;github.com&quot;];
+   report2 [label=&quot;google.com&quot;];
+   source1 -&gt; build [label=&quot;download source&quot;];
+   source2 -&gt; build [label=&quot;download source&quot;];
+   source3 -&gt; build [label=&quot;download source&quot;];
+   build -&gt; report1 [label=&quot;upload report&quot;];
+   build -&gt; report2 [label=&quot;upload data&quot;];
+}" />
+</p>
 </div>
 </div>
 
@@ -157,10 +164,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../install/index.html" class="btn btn-neutral float-right" title="テスト環境の構築" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../implementation/index.html" class="btn btn-neutral float-right" title="テストの実装方法" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="integration.html" class="btn btn-neutral" title="総合テスト" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../index.html" class="btn btn-neutral" title="Welcome to buildfarm’s documentation!" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

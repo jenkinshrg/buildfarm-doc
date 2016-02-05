@@ -1,0 +1,287 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>スレーブサーバーの構築 &mdash; buildfarm 0.1 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="buildfarm 0.1 documentation" href="../index.html"/>
+        <link rel="up" title="テスト環境の構築" href="index.html"/>
+        <link rel="next" title="ジョブの追加・削除" href="../tool/index.html"/>
+        <link rel="prev" title="マスタサーバーの構築" href="master.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> buildfarm
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">概要</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../implementation/index.html">テストの実装方法</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">テスト環境の構築</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="master.html">マスタサーバーの構築</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">スレーブサーバーの構築</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">インストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">スレーブサーバーの追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">スレーブサーバーの削除</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tool/index.html">ジョブの追加・削除</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">buildfarm</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">テスト環境の構築</a> &raquo;</li>
+      
+    <li>スレーブサーバーの構築</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/install/slave.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>スレーブサーバーの構築<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">インターネット接続が可能なマシンを用意して下さい。マシンスペックによっては、マスターサーバーと同じマシンにスレーブサーバーを同居させることも可能です。</p>
+</div>
+<p>ユーザーがパスワード無しでsudoできるように設定しておきます。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ sudo sh -c <span class="s1">&#39;echo &quot;jenkins ALL=(ALL) NOPASSWD:ALL&quot; &gt;&gt; /etc/sudoers&#39;</span>
+</pre></div>
+</div>
+<p>choreonoidを実行する場合はプロプライエタリなドライバをインストールしてシステム設定にて変更しておきます。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ sudo add-apt-repository -y ppa:xorg-edgers/ppa
+$ sudo apt-get update
+$ sudo apt-get -y install nvidia-current nvidia-settings
+</pre></div>
+</div>
+<p>認証情報一式を以下の場所へ格納しておきます。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ cp -r .jenkinsrg ~/.jenkinshrg
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">自動ログイン、スクリーンセーバー、画面ロックを解除しておきます。</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">マスターサーバーが起動していることを確認して下さい。</p>
+</div>
+<div class="section" id="id2">
+<h2>インストール<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>gitをインストールします。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ sudo apt-get update
+$ sudo apt-get install git
+</pre></div>
+</div>
+<p>githubから以下のリポジトリをクローンします。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ git clone https://github.com/jenkinshrg/buildfarm.git
+$ <span class="nb">cd</span> buildfarm
+</pre></div>
+</div>
+<p>依存パッケージをインストールします。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ ./setup/common.sh
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>スレーブサーバーの追加<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>スレーブサーバーを追加します。</p>
+<p>マスターサーバーへスレーブサーバーを登録します。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ ./scripts/createnode.sh ubuntu-trusty-amd64-desktop /home/jenkins http://jenkinshrg.a01.aist.go.jp
+</pre></div>
+</div>
+<p>ブラウザでスレーブサーバーが登録されたことを確認して下さい。</p>
+<p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
+<p>スレーブサーバーを接続します。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ ./setup/slave.sh ubuntu-trusty-amd64-desktop http://jenkinshrg.a01.aist.go.jp
+</pre></div>
+</div>
+<p>ブラウザでスレーブサーバーが接続されたことを確認して下さい。</p>
+<p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
+</div>
+<div class="section" id="id4">
+<h2>スレーブサーバーの削除<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>スレーブサーバーを削除します。</p>
+<p>マスターサーバーからスレーブサーバーを削除します。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ ./scripts/deletenode.sh ubuntu-trusty-amd64-desktop http://jenkinshrg.a01.aist.go.jp
+</pre></div>
+</div>
+<p>ブラウザでスレーブサーバーが削除されたことを確認して下さい。</p>
+<p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../tool/index.html" class="btn btn-neutral float-right" title="ジョブの追加・削除" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="master.html" class="btn btn-neutral" title="マスタサーバーの構築" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Akira Tokunaga.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
