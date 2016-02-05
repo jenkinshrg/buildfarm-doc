@@ -52,8 +52,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'buildfarm'
-copyright = u'2016, Akira Tokunaga'
-author = u'Akira Tokunaga'
+copyright = u'2016, AIST'
+author = u'AIST'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -228,7 +228,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'buildfarm.tex', u'buildfarm Documentation',
-     u'Akira Tokunaga', 'manual'),
+     u'AIST', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
