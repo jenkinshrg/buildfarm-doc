@@ -164,35 +164,35 @@
 </pre></div>
 </div>
 <p>テストプログラムを作成します。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="c1">#include &lt;gtest/gtest.h&gt;</span>
-<span class="c1">#include &quot;Eigen3d.h&quot;</span>
+<div class="highlight-c++"><div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&lt;gtest/gtest.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;Eigen3d.h&quot;</span><span class="cp"></span>
 
-using namespace hrp<span class="p">;</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">hrp</span><span class="p">;</span>
 
-TEST<span class="o">(</span>Eigen3d, omegaFromRot<span class="o">)</span>
-<span class="o">{</span>
-    Matrix33 m<span class="p">;</span>
-    Vector3 v<span class="p">;</span>
+<span class="n">TEST</span><span class="p">(</span><span class="n">Eigen3d</span><span class="p">,</span> <span class="n">omegaFromRot</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Matrix33</span> <span class="n">m</span><span class="p">;</span>
+    <span class="n">Vector3</span> <span class="n">v</span><span class="p">;</span>
 
-    m <span class="s">&lt;&lt; 1.0,   0,   0,</span>
-<span class="s">           0, 1</span>.0,   0,
-           0,   0, 1.0<span class="p">;</span>
-    <span class="nv">v</span> <span class="o">=</span> omegaFromRot<span class="o">(</span>m<span class="o">)</span><span class="p">;</span>
+    <span class="n">m</span> <span class="o">&lt;&lt;</span> <span class="mf">1.0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>
+           <span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>
+           <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">;</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">omegaFromRot</span><span class="p">(</span><span class="n">m</span><span class="p">);</span>
 
-    EXPECT_EQ<span class="o">(</span>v<span class="o">[</span>0<span class="o">]</span>, 0<span class="o">)</span><span class="p">;</span>
-    EXPECT_EQ<span class="o">(</span>v<span class="o">[</span>1<span class="o">]</span>, 0<span class="o">)</span><span class="p">;</span>
-    EXPECT_EQ<span class="o">(</span>v<span class="o">[</span>2<span class="o">]</span>, 0<span class="o">)</span><span class="p">;</span>
-<span class="o">}</span>
+    <span class="n">EXPECT_EQ</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="n">EXPECT_EQ</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="n">EXPECT_EQ</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>CMakeLists.txtに以下の記述を追加します。</p>
-<div class="highlight-bash"><div class="highlight"><pre>enable_testing<span class="o">()</span>
-add_subdirectory<span class="o">(</span>/usr/src/gtest <span class="si">${</span><span class="nv">CMAKE_CURRENT_BINARY_DIR</span><span class="si">}</span>/gtest<span class="o">)</span>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">enable_testing</span><span class="p">()</span>
+<span class="nb">add_subdirectory</span><span class="p">(</span><span class="s">/usr/src/gtest</span> <span class="o">${</span><span class="nv">CMAKE_CURRENT_BINARY_DIR</span><span class="o">}</span><span class="s">/gtest</span><span class="p">)</span>
 
-add_executable<span class="o">(</span>testEigen3d testEigen3d.cpp Eigen3d.cpp<span class="o">)</span>
-target_link_libraries<span class="o">(</span>testEigen3d gtest gtest_main pthread<span class="o">)</span>
-set_target_properties<span class="o">(</span>testEigen3d PROPERTIES COMPILE_FLAGS <span class="s2">&quot;-g -O0 -coverage&quot;</span> LINK_FLAGS <span class="s2">&quot;-g -O0 -coverage&quot;</span><span class="o">)</span>
-add_test<span class="o">(</span>testEigen3d <span class="si">${</span><span class="nv">EXECUTABLE_OUTPUT_PATH</span><span class="si">}</span>/testEigen3d<span class="o">)</span>
+<span class="nb">add_executable</span><span class="p">(</span><span class="s">testEigen3d</span> <span class="s">testEigen3d.cpp</span> <span class="s">Eigen3d.cpp</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">testEigen3d</span> <span class="s">gtest</span> <span class="s">gtest_main</span> <span class="s">pthread</span><span class="p">)</span>
+<span class="nb">set_target_properties</span><span class="p">(</span><span class="s">testEigen3d</span> <span class="s">PROPERTIES</span> <span class="s">COMPILE_FLAGS</span> <span class="s2">&quot;-g -O0 -coverage&quot;</span> <span class="s">LINK_FLAGS</span> <span class="s2">&quot;-g -O0 -coverage&quot;</span><span class="p">)</span>
+<span class="nb">add_test</span><span class="p">(</span><span class="s">testEigen3d</span> <span class="o">${</span><span class="nv">EXECUTABLE_OUTPUT_PATH</span><span class="o">}</span><span class="s">/testEigen3d</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>cmakeでビルドした後にctestでテストプログラムを実行します。</p>
