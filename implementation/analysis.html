@@ -91,6 +91,9 @@
 <li class="toctree-l2"><a class="reference internal" href="integration.html">総合テスト</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">動的解析</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id2">目的</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">手法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">フレームワーク</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">テストプログラムの例</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="inspection.html">静的解析</a></li>
@@ -148,7 +151,22 @@
 <h1>動的解析<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id2">
 <h2>目的<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>valgrindによるプログラムの動的解析を行います。</p>
+<p>プログラム動的解析を行います。</p>
+</div>
+<div class="section" id="id3">
+<h2>手法<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>各種の解析ツールを利用してプログラムを動作させます。</p>
+</div>
+<div class="section" id="id4">
+<h2>フレームワーク<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>OSコマンド、mtrace、valgrind等を利用します。</p>
+</div>
+<div class="section" id="id5">
+<h2>テストプログラムの例<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>テスト対象プログラムをvalgrind経由で実行して出力されたレポートを確認します。</p>
+<div class="highlight-bash"><div class="highlight"><pre>valgrind --verbose --tool<span class="o">=</span>memcheck --leak-check<span class="o">=</span>full --show-reachable<span class="o">=</span>no --undef-value-errors<span class="o">=</span>no --track-origins<span class="o">=</span>no --child-silent-after-fork<span class="o">=</span>no --trace-children<span class="o">=</span>no --gen-suppressions<span class="o">=</span>no --xml<span class="o">=</span>yes --xml-file<span class="o">=</span>valgrind.xml testEigen3d
+</pre></div>
+</div>
 </div>
 </div>
 
