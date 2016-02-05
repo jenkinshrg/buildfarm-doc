@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>動的解析 &mdash; buildfarm 0.1 documentation</title>
+  <title>仮想マシンによるテストサーバーの構築 &mdash; buildfarm 0.1 documentation</title>
   
 
   
@@ -31,9 +31,9 @@
 
   
     <link rel="top" title="buildfarm 0.1 documentation" href="../index.html"/>
-        <link rel="up" title="テストの実装方法" href="index.html"/>
-        <link rel="next" title="静的解析" href="inspection.html"/>
-        <link rel="prev" title="総合テスト" href="integration.html"/> 
+        <link rel="up" title="テストサーバー環境の構築" href="index.html"/>
+        <link rel="next" title="ジョブの追加・削除" href="../job/index.html"/>
+        <link rel="prev" title="リバースプロキシの設定" href="proxy.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -84,18 +84,17 @@
             
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../overview/index.html">概要</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">テストの実装方法</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="unit.html">単体テスト</a></li>
-<li class="toctree-l2"><a class="reference internal" href="component.html">コンポーネントテスト</a></li>
-<li class="toctree-l2"><a class="reference internal" href="integration.html">総合テスト</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">動的解析</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">目的</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../implementation/index.html">テストの実装方法</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">テストサーバー環境の構築</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="master.html">マスタサーバーの構築</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slave.html">スレーブサーバーの構築</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proxy.html">リバースプロキシの設定</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">仮想マシンによるテストサーバーの構築</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">インストール</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="inspection.html">静的解析</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../server/index.html">テストサーバー環境の構築</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../job/index.html">ジョブの追加・削除</a></li>
 </ul>
 
@@ -127,13 +126,13 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-          <li><a href="index.html">テストの実装方法</a> &raquo;</li>
+          <li><a href="index.html">テストサーバー環境の構築</a> &raquo;</li>
       
-    <li>動的解析</li>
+    <li>仮想マシンによるテストサーバーの構築</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/implementation/analysis.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/server/vm.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -144,10 +143,49 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>動的解析<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<h1>仮想マシンによるテストサーバーの構築<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">インターネット接続が可能なマシンを用意して下さい。</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">他のアプリケーションがポート番号8080を使用していないか確認して下さい。</p>
+</div>
 <div class="section" id="id2">
-<h2>目的<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>valgrindによるプログラムの動的解析を行います。</p>
+<h2>インストール<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>gitをインストールします。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ sudo apt-get update
+$ sudo apt-get install git
+</pre></div>
+</div>
+<p>githubから以下のリポジトリをクローンします。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ git clone https://github.com/jenkinshrg/buildfarm.git
+$ <span class="nb">cd</span> buildfarm
+</pre></div>
+</div>
+<p>virtualboxをインストールします。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ ./setup/virtualbox.sh
+</pre></div>
+</div>
+<p>vagrantをインストールします。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ ./setup/vagrant.sh
+</pre></div>
+</div>
+<p>マスターサーバーを起動します。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ vagrant up
+</pre></div>
+</div>
+<p>ブラウザで以下のURLが正しく表示されることを確認して下さい。</p>
+<p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
+<p>スレーブサーバーを起動します。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ vagrant up slave
+$ vagrant up debian-wheezy-i386
+$ vagrant up ubuntu-trusty-amd64
+</pre></div>
+</div>
+<p>ブラウザでスレーブサーバーが接続されたことを確認して下さい。</p>
+<p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
 </div>
 </div>
 
@@ -158,10 +196,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="inspection.html" class="btn btn-neutral float-right" title="静的解析" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../job/index.html" class="btn btn-neutral float-right" title="ジョブの追加・削除" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="integration.html" class="btn btn-neutral" title="総合テスト" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="proxy.html" class="btn btn-neutral" title="リバースプロキシの設定" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

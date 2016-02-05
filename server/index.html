@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>動的解析 &mdash; buildfarm 0.1 documentation</title>
+  <title>テストサーバー環境の構築 &mdash; buildfarm 0.1 documentation</title>
   
 
   
@@ -31,9 +31,8 @@
 
   
     <link rel="top" title="buildfarm 0.1 documentation" href="../index.html"/>
-        <link rel="up" title="テストの実装方法" href="index.html"/>
-        <link rel="next" title="静的解析" href="inspection.html"/>
-        <link rel="prev" title="総合テスト" href="integration.html"/> 
+        <link rel="next" title="マスタサーバーの構築" href="master.html"/>
+        <link rel="prev" title="静的解析" href="../implementation/inspection.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -84,18 +83,14 @@
             
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../overview/index.html">概要</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">テストの実装方法</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="unit.html">単体テスト</a></li>
-<li class="toctree-l2"><a class="reference internal" href="component.html">コンポーネントテスト</a></li>
-<li class="toctree-l2"><a class="reference internal" href="integration.html">総合テスト</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">動的解析</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">目的</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../implementation/index.html">テストの実装方法</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">テストサーバー環境の構築</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="master.html">マスタサーバーの構築</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slave.html">スレーブサーバーの構築</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proxy.html">リバースプロキシの設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html">仮想マシンによるテストサーバーの構築</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="inspection.html">静的解析</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../server/index.html">テストサーバー環境の構築</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../job/index.html">ジョブの追加・削除</a></li>
 </ul>
 
@@ -127,13 +122,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-          <li><a href="index.html">テストの実装方法</a> &raquo;</li>
-      
-    <li>動的解析</li>
+    <li>テストサーバー環境の構築</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/implementation/analysis.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/server/index.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -144,10 +137,29 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>動的解析<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id2">
-<h2>目的<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>valgrindによるプログラムの動的解析を行います。</p>
+<h1>テストサーバー環境の構築<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>Contents:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="master.html">マスタサーバーの構築</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="master.html#id2">インストール</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="slave.html">スレーブサーバーの構築</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="slave.html#id2">インストール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slave.html#id3">スレーブサーバーの追加</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slave.html#id4">スレーブサーバーの削除</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="proxy.html">リバースプロキシの設定</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="proxy.html#id2">インストール</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="vm.html">仮想マシンによるテストサーバーの構築</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="vm.html#id2">インストール</a></li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 
@@ -158,10 +170,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="inspection.html" class="btn btn-neutral float-right" title="静的解析" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="master.html" class="btn btn-neutral float-right" title="マスタサーバーの構築" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="integration.html" class="btn btn-neutral" title="総合テスト" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../implementation/inspection.html" class="btn btn-neutral" title="静的解析" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

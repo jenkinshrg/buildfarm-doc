@@ -13,8 +13,8 @@ Contents:
 
    overview/index
    implementation/index
-   install/index
-   tool/index
+   server/index
+   job/index
 
 Indices and tables
 ==================

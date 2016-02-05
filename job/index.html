@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>概要 &mdash; buildfarm 0.1 documentation</title>
+  <title>ジョブの追加・削除 &mdash; buildfarm 0.1 documentation</title>
   
 
   
@@ -31,8 +31,7 @@
 
   
     <link rel="top" title="buildfarm 0.1 documentation" href="../index.html"/>
-        <link rel="next" title="テストの実装方法" href="../implementation/index.html"/>
-        <link rel="prev" title="Welcome to buildfarm’s documentation!" href="../index.html"/> 
+        <link rel="prev" title="仮想マシンによるテストサーバーの構築" href="../server/vm.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -82,13 +81,15 @@
             
             
                 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">概要</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id2">はじめに</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">概要</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../implementation/index.html">テストの実装方法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../server/index.html">テストサーバー環境の構築</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../job/index.html">ジョブの追加・削除</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">ジョブの追加・削除</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">ジョブの作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">ジョブの追加</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">ジョブの削除</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -119,11 +120,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-    <li>概要</li>
+    <li>ジョブの追加・削除</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/overview/index.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/job/index.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -134,26 +135,64 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>概要<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<h1>ジョブの追加・削除<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">予めテスト対象となるソースコードのリポジトリを用意して下さい。</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">マスターサーバーが起動していることを確認して下さい。</p>
+</div>
+<p>gitをインストールします。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ sudo apt-get update
+$ sudo apt-get install git
+</pre></div>
+</div>
+<p>githubから以下のリポジトリをクローンします。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ git clone https://github.com/jenkinshrg/buildfarm.git
+$ <span class="nb">cd</span> buildfarm
+</pre></div>
+</div>
+<p>依存パッケージをインストールします。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ ./setup/common.sh
+</pre></div>
+</div>
 <div class="section" id="id2">
-<h2>はじめに<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>buildfarmはhrpsys-base, choreonoid, OpenHRPなどのロボット関連ソフトウェアのビルドおよび各種テストの実行を自動化するための継続的インテグレーション（CI）環境です。</p>
-<p>CIサーバーをオンプレミスに構築するためプライベートなリポジトリやオンプレミスに存在するリポジトリを含むテストの実行が可能です。</p>
-<p class="graphviz">
-<img src="../_images/graphviz-a6cd136666557b316d07292c01a5943df0fb81eb.png" alt="digraph {
-   source1 [label=&quot;github.com&quot;];
-   source2 [label=&quot;choreonoid.org&quot;];
-   source3 [label=&quot;atom&quot;];
-   build [label=&quot;jenkinshrg&quot;];
-   report1 [label=&quot;github.com&quot;];
-   report2 [label=&quot;google.com&quot;];
-   source1 -&gt; build [label=&quot;download source&quot;];
-   source2 -&gt; build [label=&quot;download source&quot;];
-   source3 -&gt; build [label=&quot;download source&quot;];
-   build -&gt; report1 [label=&quot;upload report&quot;];
-   build -&gt; report2 [label=&quot;upload data&quot;];
-}" />
-</p>
+<h2>ジョブの作成<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>以下のような手順のテストスクリプトを作成してリポジトリへ登録して下さい。</p>
+<ul class="simple">
+<li>ソースコードの取得</li>
+<li>依存パッケージのインストール</li>
+<li>ビルドの実行</li>
+<li>各種テストの実行</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2>ジョブの追加<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>ジョブを追加します。</p>
+<p>マスターサーバーへジョブを登録します。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ ./scripts/createjob.sh drcutil-task-walk https://github.com/jenkinshrg/drcutil.git drcutil jenkins ubuntu-trusty-amd64-desktop periodic http://jenkinshrg.a01.aist.go.jp
+</pre></div>
+</div>
+<p>ブラウザでジョブが登録されたことを確認して下さい。</p>
+<p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
+<p>ジョブを実行します。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ ./scripts/buildjob.sh drcutil-task-walk http://jenkinshrg.a01.aist.go.jp
+</pre></div>
+</div>
+<p>ブラウザでジョブが実行されたことを確認して下さい。</p>
+<p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
+</div>
+<div class="section" id="id4">
+<h2>ジョブの削除<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>ジョブを削除します。</p>
+<p>マスターサーバーからジョブを削除します。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ ./scripts/deletejob.sh drcutil-task-walk http://jenkinshrg.a01.aist.go.jp
+</pre></div>
+</div>
+<p>ブラウザでジョブが削除されたことを確認して下さい。</p>
+<p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
 </div>
 </div>
 
@@ -164,10 +203,8 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../implementation/index.html" class="btn btn-neutral float-right" title="テストの実装方法" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-      
-        <a href="../index.html" class="btn btn-neutral" title="Welcome to buildfarm’s documentation!" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../server/vm.html" class="btn btn-neutral" title="仮想マシンによるテストサーバーの構築" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
