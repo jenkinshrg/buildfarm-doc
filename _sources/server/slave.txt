@@ -2,6 +2,8 @@
 スレーブサーバーの構築
 ======================
 
+テストジョブを実行するためのスレーブサーバーを用意して下さい。
+
 .. note::
 
   インターネット接続が可能なマシンを用意して下さい。マシンスペックによっては、マスターサーバーと同じマシンにスレーブサーバーを同居させることも可能です。
@@ -19,12 +21,6 @@ choreonoidを実行する場合はプロプライエタリなドライバをイ�
   $ sudo add-apt-repository -y ppa:xorg-edgers/ppa
   $ sudo apt-get update
   $ sudo apt-get -y install nvidia-current nvidia-settings
-
-認証情報一式を以下の場所へ格納しておきます。
-
-.. code-block:: bash
-
-  $ cp -r .jenkinsrg ~/.jenkinshrg
 
 .. warning::
 

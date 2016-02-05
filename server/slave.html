@@ -147,6 +147,7 @@
             
   <div class="section" id="id1">
 <h1>スレーブサーバーの構築<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>テストジョブを実行するためのスレーブサーバーを用意して下さい。</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">インターネット接続が可能なマシンを用意して下さい。マシンスペックによっては、マスターサーバーと同じマシンにスレーブサーバーを同居させることも可能です。</p>
@@ -159,10 +160,6 @@
 <div class="highlight-bash"><div class="highlight"><pre>$ sudo add-apt-repository -y ppa:xorg-edgers/ppa
 $ sudo apt-get update
 $ sudo apt-get -y install nvidia-current nvidia-settings
-</pre></div>
-</div>
-<p>認証情報一式を以下の場所へ格納しておきます。</p>
-<div class="highlight-bash"><div class="highlight"><pre>$ cp -r .jenkinsrg ~/.jenkinshrg
 </pre></div>
 </div>
 <div class="admonition warning">
