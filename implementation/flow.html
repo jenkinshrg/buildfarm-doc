@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>単体テスト &mdash; buildfarm 0.1 documentation</title>
+  <title>テストの流れ &mdash; buildfarm 0.1 documentation</title>
   
 
   
@@ -30,10 +30,7 @@
   
 
   
-    <link rel="top" title="buildfarm 0.1 documentation" href="../index.html"/>
-        <link rel="up" title="テストの実装" href="index.html"/>
-        <link rel="next" title="コンポーネントテスト" href="component.html"/>
-        <link rel="prev" title="ビルド" href="build.html"/> 
+    <link rel="top" title="buildfarm 0.1 documentation" href="../index.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -82,20 +79,9 @@
           
             
             
-                <ul class="current">
+                <ul>
 <li class="toctree-l1"><a class="reference internal" href="../overview/index.html">概要</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">テストの実装</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="build.html">ビルド</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">単体テスト</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">目的</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="component.html">コンポーネントテスト</a></li>
-<li class="toctree-l2"><a class="reference internal" href="integration.html">総合テスト</a></li>
-<li class="toctree-l2"><a class="reference internal" href="analysis.html">動的解析</a></li>
-<li class="toctree-l2"><a class="reference internal" href="inspection.html">静的解析</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">テストの実装</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../server/index.html">テストサーバーの構築</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../job/index.html">ジョブの追加・削除</a></li>
 </ul>
@@ -128,13 +114,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-          <li><a href="index.html">テストの実装</a> &raquo;</li>
-      
-    <li>単体テスト</li>
+    <li>テストの流れ</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/implementation/unit.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/implementation/flow.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -145,26 +129,21 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>単体テスト<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id2">
-<h2>目的<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>共通で利用されるライブラリ（クラスや関数）などの単体テストを行います。</p>
-</div>
+<h1>テストの流れ<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils" />
+<p>以下のような手順のテストスクリプトを作成してリポジトリへ登録して下さい。</p>
+<ul class="simple">
+<li>ソースコードの取得</li>
+<li>依存パッケージのインストール</li>
+<li>ビルドの実行</li>
+<li>各種テストの実行</li>
+</ul>
 </div>
 
 
            </div>
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="component.html" class="btn btn-neutral float-right" title="コンポーネントテスト" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="build.html" class="btn btn-neutral" title="ビルド" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>
