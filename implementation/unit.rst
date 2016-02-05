@@ -25,7 +25,7 @@ gtestをインストールします。
 
 テストプログラムを作成します。
 
-.. code-block:: bash
+.. code-block:: c++
 
   #include <gtest/gtest.h>
   #include "Eigen3d.h"
@@ -49,7 +49,7 @@ gtestをインストールします。
 
 CMakeLists.txtに以下の記述を追加します。
 
-.. code-block:: bash
+.. code-block:: cmake
 
   enable_testing()
   add_subdirectory(/usr/src/gtest ${CMAKE_CURRENT_BINARY_DIR}/gtest)
