@@ -9,6 +9,7 @@ Contents:
 
    master
    slave
+   credential
    proxy
    vm
 
