@@ -158,10 +158,9 @@
 <h1>テストサーバーの管理<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id2">
 <h2>マスターサーバーの構築<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>テストジョブの実行管理、履歴管理のためマスターサーバーが必要となります。</p>
-<p>インターネット接続が可能なマシンを用意して下さい。</p>
-<p>サイズの大きなログを長期間保存する場合は大きめのハードディスクを用意して下さい。</p>
-<p>特にハードウェア、ソフトウェア要件はありません。仮想マシン上に構築することも可能です。</p>
+<p>テストジョブの実行と履歴管理のためにマスターサーバーが必要となります。</p>
+<p>インターネット接続が可能なマシンであれば特にハードウェア、ソフトウェア要件はありませんが、サイズの大きなログを長期間保存する場合は大きめのハードディスクを用意して下さい。</p>
+<p>仮想マシン上に構築することも可能です。</p>
 <p>ネットワーク設定、セキュリティーアップデート、その他必要なソフトウェアのインストールなどは事前に行っておいて下さい。</p>
 <div class="section" id="id3">
 <h3>インストール<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
@@ -169,7 +168,10 @@
 <p class="first admonition-title">Warning</p>
 <p class="last">他のアプリケーションがポート番号8080を使用していないか確認して下さい。</p>
 </div>
-<p>javaをインストールします。</p>
+<p>javaがインストールされていない場合はインストールして下さい。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ sudo apt-get -y install openjdk-7-jdk
+</pre></div>
+</div>
 <p>マスターサーバーをインストールします。(必要なプラグインのインストール、設定のカスタマイズを含みます)</p>
 <div class="highlight-bash"><div class="highlight"><pre>$ git clone https://github.com/jenkinshrg/buildfarm.git
 $ <span class="nb">cd</span> buildfarm
@@ -179,7 +181,7 @@ $ ./setup/master.sh
 </div>
 <div class="section" id="id4">
 <h3>仮想マシン上に構築する場合<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
-<p>virtualbox、vagrantをインストールします。</p>
+<p>virtualbox、vagrantがインストールされていない場合はインストールして下さい。</p>
 <p>マスターサーバーを起動します。</p>
 <div class="highlight-bash"><div class="highlight"><pre>$ git clone https://github.com/jenkinshrg/buildfarm.git
 $ <span class="nb">cd</span> buildfarm
@@ -195,18 +197,23 @@ $ vagrant up
 </div>
 <div class="section" id="id6">
 <h2>スレーブサーバーの構築<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
-<p>テストジョブを実行するためのスレーブサーバーを用意して下さい。</p>
-<p>マスターサーバー上でもテストを実行することは可能ですが、設定データや履歴データのバックアップを考慮してマスターサーバーではテストは実行せず、必ずスレーブサーバーを追加して運用する設定とします。</p>
-<p>インターネット接続が可能なマシンを用意して下さい。マシンスペックによっては、マスターサーバーと同じマシンにスレーブサーバーを同居させることも可能です。</p>
-<p>テストの実行に必要なハードウェア、ソフトウェア要件にあったものを用意して下さい。仮想マシン上に構築することも可能です。</p>
+<p>テストジョブを実行するためにスレーブサーバーが必要となります。</p>
+<p>マスターサーバー上でもテストを実行することは可能ですが、設定データや履歴データのバックアップを考慮してマスターサーバーではテストは実行せず、必ずスレーブサーバーでテストを実行する運用が好ましいです。</p>
+<p>インターネット接続が可能なマシンでテストの実行に必要なハードウェア要件（GPUなど）、ソフトウェア要件（OSなど）にあったものを用意して下さい。</p>
+<p>マシンスペックによっては、マスターサーバーと同じマシンにスレーブサーバーを同居させることも可能です。</p>
+<p>仮想マシン上に構築することも可能です。</p>
 <p>ネットワーク設定、セキュリティーアップデート、その他必要なソフトウェアのインストールなどは事前に行っておいて下さい。</p>
 <div class="section" id="id7">
 <h3>インストール<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>javaがインストールされていない場合はインストールして下さい。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ sudo apt-get -y install openjdk-7-jdk
+</pre></div>
+</div>
 <p>ユーザーがパスワード無しでsudoできるように設定しておきます。</p>
 <div class="highlight-bash"><div class="highlight"><pre>$ sudo sh -c <span class="s1">&#39;echo &quot;jenkinshrg ALL=(ALL) NOPASSWD:ALL&quot; &gt;&gt; /etc/sudoers&#39;</span>
 </pre></div>
 </div>
-<p>choreonoidを実行する場合はプロプライエタリなドライバをインストールしてシステム設定にて変更しておきます。</p>
+<p>プロプライエタリなドライバをインストールしてシステム設定にて変更しておきます。</p>
 <div class="highlight-bash"><div class="highlight"><pre>$ sudo add-apt-repository -y ppa:xorg-edgers/ppa
 $ sudo apt-get update
 $ sudo apt-get -y install nvidia-current nvidia-settings
@@ -214,7 +221,7 @@ $ sudo apt-get -y install nvidia-current nvidia-settings
 </div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">自動ログイン、スクリーンセーバー、画面ロックを解除しておきます。</p>
+<p class="last">自動ログイン、スクリーンセーバー、画面ロックは解除しておきます。</p>
 </div>
 </div>
 <div class="section" id="id8">
@@ -259,7 +266,7 @@ $ ./scripts/deletenode.sh &lt;nodename&gt; &lt;url&gt;
 </div>
 <div class="section" id="id10">
 <h3>仮想マシン上に構築する場合<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
-<p>virtualbox、vagrantをインストールします。</p>
+<p>virtualbox、vagrantがインストールされていない場合はインストールして下さい。</p>
 <p>スレーブサーバーを起動します。</p>
 <div class="highlight-bash"><div class="highlight"><pre>$ git clone https://github.com/jenkinshrg/buildfarm.git
 $ <span class="nb">cd</span> buildfarm
@@ -271,17 +278,25 @@ $ vagrant up ubuntu-trusty-amd64
 </div>
 <div class="section" id="id11">
 <h2>認証情報の設定<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
-<p>テストサーバーでは対話形式のコマンドは実行できないため、テストジョブで認証情報が必要な外部サーバーへアクセスを行う場合は事前に以下の設定が必要となります。</p>
-<p>マスターサーバー、スレーブサーバー全てに対してそれぞれ設定が必要となります。</p>
+<p>テストジョブでは対話形式のコマンドは実行できないため、認証情報が必要な外部サーバーへアクセスを行う場合は事前に以下の設定が必要となります。</p>
+<p>マスターサーバー、スレーブサーバー全てに対してそれぞれ設定を行って下さい。</p>
 <p>セキュリティー面を考慮して認証情報を設定ファイルやスクリプトに保存しないで下さい。</p>
 <div class="section" id="git">
 <h3>gitの設定<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h3>
-<p>http経由でアクセスする場合は.netrcをマスターサーバーの$JENKINS_HOMEとスレーブサーバーの$HOMEへ格納しておきます。</p>
+<p>http経由でアクセスする場合は$HOME/.netrcをマスターサーバーの$JENKINS_HOMEとスレーブサーバーの$HOMEへ格納しておきます。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ sudo cp $HOME/.netrc /home/jenkinshrg
+$ sudo chown jenkins:jenkins /home/jenkinshrg/.netrc
+</pre></div>
+</div>
 <div class="highlight-bash"><div class="highlight"><pre>$ sudo cp $HOME/.netrc /var/lib/jenkins
 $ sudo chown jenkins:jenkins /var/lib/jenkins/.netrc
 </pre></div>
 </div>
-<p>ssh経由でアクセスする場合は.sshをマスターサーバーの$JENKINS_HOMEとスレーブサーバーの$HOMEへ格納しておきます。</p>
+<p>ssh経由でアクセスする場合は$HOME/.sshをマスターサーバーの$JENKINS_HOMEとスレーブサーバーの$HOMEへ格納しておきます。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ sudo cp -r $HOME/.ssh /home/jenkinshrg
+$ sudo chown -R jenkins:jenkins /home/jenkinshrg/.ssh
+</pre></div>
+</div>
 <div class="highlight-bash"><div class="highlight"><pre>$ sudo cp -r $HOME/.ssh /var/lib/jenkins
 $ sudo chown -R jenkins:jenkins /var/lib/jenkins/.ssh
 </pre></div>
@@ -289,7 +304,11 @@ $ sudo chown -R jenkins:jenkins /var/lib/jenkins/.ssh
 </div>
 <div class="section" id="subversion">
 <h3>subversionの設定<a class="headerlink" href="#subversion" title="Permalink to this headline">¶</a></h3>
-<p>subversionの場合は.subversionをマスターサーバーの$JENKINS_HOMEとスレーブサーバーの$HOMEへ格納しておきます。</p>
+<p>subversionの場合は$HOME/.subversionをマスターサーバーの$JENKINS_HOMEとスレーブサーバーの$HOMEへ格納しておきます。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ sudo cp -r $HOME/.subversion /home/jenkinshrg
+$ sudo chown -R jenkins:jenkins /home/jenkinshrg/.subversion
+</pre></div>
+</div>
 <div class="highlight-bash"><div class="highlight"><pre>$ sudo cp -r $HOME/.subversion /var/lib/jenkins
 $ sudo chown -R jenkins:jenkins /var/lib/jenkins/.subversion
 </pre></div>
@@ -298,10 +317,7 @@ $ sudo chown -R jenkins:jenkins /var/lib/jenkins/.subversion
 </div>
 <div class="section" id="id12">
 <h2>リバースプロキシの設定<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">インターネット接続が可能なマシンを用意して下さい。</p>
-</div>
+<p>マスターサーバーへリバースプロキシを設定する場合の例を示します。</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">他のアプリケーションがポート番号80を使用していないか確認して下さい。</p>
