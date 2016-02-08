@@ -35,7 +35,7 @@ webサーバーをインストールします。
           }
   }
   EOL
-  sudo service nginx restart
+  $ sudo service nginx restart
 
 ブラウザで以下のURLが正しく表示されることを確認して下さい。
 
