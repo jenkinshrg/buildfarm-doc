@@ -12,11 +12,15 @@
 
   ネットワーク設定、セキュリティーアップデート、その他必要なソフトウェアのインストールなどは事前に行っておいて下さい。
 
+.. note::
+
+  jenkinshrgでユーザーを作成しておいて下さい。
+
 ユーザーがパスワード無しでsudoできるように設定しておきます。
 
 .. code-block:: bash
 
-  $ sudo sh -c 'echo "jenkins ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers'
+  $ sudo sh -c 'echo "jenkinshrg ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers'
 
 choreonoidを実行する場合はプロプライエタリなドライバをインストールしてシステム設定にて変更しておきます。
 
