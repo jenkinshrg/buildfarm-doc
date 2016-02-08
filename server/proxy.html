@@ -155,13 +155,24 @@
 </div>
 <div class="section" id="id2">
 <h2>インストール<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>githubから以下のリポジトリをクローンします。</p>
-<div class="highlight-bash"><div class="highlight"><pre>$ git clone https://github.com/jenkinshrg/buildfarm.git
-$ <span class="nb">cd</span> buildfarm
+<p>webサーバーをインストールします。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ sudo apt-add-repository -y ppa:nginx/stable
+$ sudo apt-get update
+$ sudo apt-get -y install nginx
 </pre></div>
 </div>
-<p>webサーバーをインストールしてリバースプロキシ設定を行います。</p>
-<div class="highlight-bash"><div class="highlight"><pre>$ ./setup/nginx.sh
+<p>リバースプロキシ設定を行います。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ cat <span class="s">&lt;&lt; \EOL | sudo tee /etc/nginx/sites-available/default</span>
+<span class="s">server {</span>
+<span class="s">        listen 80;</span>
+<span class="s">        server_name localhost;</span>
+<span class="s">        location / {</span>
+<span class="s">                proxy_set_header Host $http_host;</span>
+<span class="s">                proxy_pass http://localhost:8080;</span>
+<span class="s">        }</span>
+<span class="s">}</span>
+<span class="s">EOL</span>
+sudo service nginx restart
 </pre></div>
 </div>
 <p>ブラウザで以下のURLが正しく表示されることを確認して下さい。</p>
