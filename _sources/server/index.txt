@@ -11,5 +11,4 @@ Contents:
    slave
    credential
    proxy
-   vm
 

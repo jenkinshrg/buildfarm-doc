@@ -101,3 +101,36 @@ http://jenkinshrg.a01.aist.go.jp
 
 http://jenkinshrg.a01.aist.go.jp
 
+仮想マシン
+======================
+
+virtualboxをインストールします。
+
+.. code-block:: bash
+
+  $ ./setup/virtualbox.sh
+
+vagrantをインストールします。
+
+.. code-block:: bash
+
+  $ ./setup/vagrant.sh
+
+マスターサーバーを起動します。
+
+.. code-block:: bash
+
+  $ vagrant up
+
+ブラウザで以下のURLが正しく表示されることを確認して下さい。
+
+http://jenkinshrg.a01.aist.go.jp
+
+スレーブサーバーを起動します。
+
+.. code-block:: bash
+
+  $ vagrant up slave
+  $ vagrant up debian-wheezy-i386
+  $ vagrant up ubuntu-trusty-amd64
+

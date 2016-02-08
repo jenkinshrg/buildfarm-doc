@@ -88,12 +88,12 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">テストサーバーの管理</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="">マスターサーバーの構築</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id2">インストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">仮想マシン</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="slave.html">スレーブサーバーの構築</a></li>
 <li class="toctree-l2"><a class="reference internal" href="credential.html">認証情報の設定</a></li>
 <li class="toctree-l2"><a class="reference internal" href="proxy.html">リバースプロキシの設定</a></li>
-<li class="toctree-l2"><a class="reference internal" href="vm.html">仮想マシンによるテストサーバーの構築</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../job/index.html">テストジョブの管理</a></li>
@@ -172,6 +172,21 @@ $ <span class="nb">cd</span> buildfarm
 </div>
 <p>ブラウザで以下のURLが正しく表示されることを確認して下さい。</p>
 <p><a class="reference external" href="http://localhost:8080">http://localhost:8080</a></p>
+</div>
+<div class="section" id="id3">
+<h2>仮想マシン<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>virtualboxをインストールします。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ ./setup/virtualbox.sh
+</pre></div>
+</div>
+<p>vagrantをインストールします。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ ./setup/vagrant.sh
+</pre></div>
+</div>
+<p>マスターサーバーを起動します。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ vagrant up
+</pre></div>
+</div>
 </div>
 </div>
 

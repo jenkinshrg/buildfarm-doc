@@ -38,3 +38,24 @@ githubから以下のリポジトリをクローンします。
 
 http://localhost:8080
 
+仮想マシン
+============
+
+virtualboxをインストールします。
+
+.. code-block:: bash
+
+  $ ./setup/virtualbox.sh
+
+vagrantをインストールします。
+
+.. code-block:: bash
+
+  $ ./setup/vagrant.sh
+
+マスターサーバーを起動します。
+
+.. code-block:: bash
+
+  $ vagrant up
+
