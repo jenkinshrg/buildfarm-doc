@@ -42,8 +42,8 @@ javaをインストールします。
   $ cd buildfarm
   $ ./setup/master.sh
 
-仮想マシン
-----------
+仮想マシン上に構築する場合
+--------------------------
 
 virtualbox、vagrantをインストールします。
 
@@ -150,8 +150,8 @@ http://jenkinshrg.a01.aist.go.jp
 
 http://jenkinshrg.a01.aist.go.jp
 
-仮想マシン
-----------
+仮想マシン上に構築する場合
+--------------------------
 
 virtualbox、vagrantをインストールします。
 
