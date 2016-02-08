@@ -21,7 +21,7 @@
 Google Test(C++)等のユニットテストフレームワークを利用します。
 
 テストプログラムの例
-====================
+--------------------
 
 gtestをインストールします。
 
@@ -92,26 +92,42 @@ Choreonoidによるロボットシミュレーションを行います。
 
 Choreonoidなどのシミュレーターを利用してロボット／環境モデルとタスクシーケンスを作成します。
 
+テストプログラムの例
+--------------------
+
+.. code-block:: bash
+
+  $ choreonoid testbed-terrain.cnoid --start-simulation
+
 動的解析
 ========
 
-プログラム動的解析を行います。
+プログラムの動的解析を行います。
 
-各種の解析ツールを利用してプログラムを動作させます。
-
-OSコマンド、mtrace、valgrind等を利用します。
+valgrind等を利用します。
 
 テストプログラムの例
-====================
+--------------------
 
 テスト対象プログラムをvalgrind経由で実行して出力されたレポートを確認します。
 
 .. code-block:: bash
 
-  valgrind --verbose --tool=memcheck --leak-check=full --show-reachable=no --undef-value-errors=no --track-origins=no --child-silent-after-fork=no --trace-children=no --gen-suppressions=no --xml=yes --xml-file=valgrind.xml testEigen3d
+  $ valgrind --verbose --tool=memcheck --leak-check=full --show-reachable=no --undef-value-errors=no --track-origins=no --child-silent-after-fork=no --trace-children=no --gen-suppressions=no --xml=yes --xml-file=valgrind.xml testEigen3d
 
 静的解析
 ========
 
-cppcheckによるソースコードの静的解析を行います。
+ソースコードの静的解析を行います。
+
+cppcheck等を利用します。
+
+テストプログラムの例
+--------------------
+
+テスト対象ソースコードに対してcppcheckを実行して出力されたレポートを確認します。
+
+.. code-block:: bash
+
+  $ cppcheck --enable=all --inconclusive --xml --xml-version=2 --force src 2> cppcheck.xml
 
