@@ -135,9 +135,10 @@
             
   <div class="section" id="id1">
 <h1>テストジョブの管理<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>テストジョブをテストサーバーで実行させる手順について説明します。</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">予めテスト対象となるソースコードのリポジトリを用意して下さい。</p>
+<p class="last">予め実行したいスクリプトを含むリポジトリをスレーブサーバーからアクセス可能な場所へ配置して下さい。テスト対象となるソースコードや実行ファイルをスクリプト内で取得する場合はリポジトリに含まれている必要はありません。</p>
 </div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
@@ -152,23 +153,17 @@ $ <span class="nb">cd</span> buildfarm
 <h2>ジョブの追加<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>ジョブを追加します。</p>
 <p>マスターサーバーへジョブを登録します。</p>
-<div class="highlight-bash"><div class="highlight"><pre>$ ./scripts/createjob.sh drcutil-task-walk https://github.com/jenkinshrg/drcutil.git drcutil jenkins ubuntu-trusty-amd64-desktop periodic http://jenkinshrg.a01.aist.go.jp
+<div class="highlight-bash"><div class="highlight"><pre>$ ./scripts/createjob.sh &lt;jobname&gt; &lt;repository&gt; &lt;directory&gt; &lt;branch&gt; &lt;node&gt; &lt;triiger&gt; &lt;<span class="k">function</span>&gt; &lt;test&gt; &lt;url&gt;
 </pre></div>
 </div>
 <p>ブラウザでジョブが登録されたことを確認して下さい。</p>
-<p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
-<p>ジョブを実行します。</p>
-<div class="highlight-bash"><div class="highlight"><pre>$ ./scripts/buildjob.sh drcutil-task-walk http://jenkinshrg.a01.aist.go.jp
-</pre></div>
-</div>
-<p>ブラウザでジョブが実行されたことを確認して下さい。</p>
 <p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
 </div>
 <div class="section" id="id3">
 <h2>ジョブの削除<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>ジョブを削除します。</p>
 <p>マスターサーバーからジョブを削除します。</p>
-<div class="highlight-bash"><div class="highlight"><pre>$ ./scripts/deletejob.sh drcutil-task-walk http://jenkinshrg.a01.aist.go.jp
+<div class="highlight-bash"><div class="highlight"><pre>$ ./scripts/deletejob.sh &lt;jobname&gt; &lt;url&gt;
 </pre></div>
 </div>
 <p>ブラウザでジョブが削除されたことを確認して下さい。</p>

@@ -64,7 +64,7 @@ githubから以下のリポジトリをクローンします。
 
 .. code-block:: bash
 
-  $ ./scripts/createnode.sh ubuntu-trusty-amd64-desktop /home/jenkins http://jenkinshrg.a01.aist.go.jp
+  $ ./scripts/createnode.sh <nodename> <workspace> <url>
 
 ブラウザでスレーブサーバーが登録されたことを確認して下さい。
 
@@ -74,7 +74,7 @@ http://jenkinshrg.a01.aist.go.jp
 
 .. code-block:: bash
 
-  $ ./setup/slave.sh ubuntu-trusty-amd64-desktop http://jenkinshrg.a01.aist.go.jp
+  $ ./setup/slave.sh <nodename> <url>
 
 ブラウザでスレーブサーバーが接続されたことを確認して下さい。
 
@@ -89,7 +89,7 @@ http://jenkinshrg.a01.aist.go.jp
 
 .. code-block:: bash
 
-  $ ./scripts/deletenode.sh ubuntu-trusty-amd64-desktop http://jenkinshrg.a01.aist.go.jp
+  $ ./scripts/deletenode.sh <nodename> <url>
 
 ブラウザでスレーブサーバーが削除されたことを確認して下さい。
 
@@ -98,17 +98,7 @@ http://jenkinshrg.a01.aist.go.jp
 仮想マシン
 ======================
 
-virtualboxをインストールします。
-
-.. code-block:: bash
-
-  $ ./setup/virtualbox.sh
-
-vagrantをインストールします。
-
-.. code-block:: bash
-
-  $ ./setup/vagrant.sh
+virtualbox、vagrantをインストールします。
 
 マスターサーバーを起動します。
 

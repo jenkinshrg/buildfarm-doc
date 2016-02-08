@@ -2,9 +2,11 @@
 テストジョブの管理
 ==================
 
+テストジョブをテストサーバーで実行させる手順について説明します。
+
 .. note::
 
-  予めテスト対象となるソースコードのリポジトリを用意して下さい。
+  予め実行したいスクリプトを含むリポジトリをスレーブサーバーからアクセス可能な場所へ配置して下さい。テスト対象となるソースコードや実行ファイルをスクリプト内で取得する場合はリポジトリに含まれている必要はありません。
 
 .. warning::
 
@@ -26,19 +28,9 @@ githubから以下のリポジトリをクローンします。
 
 .. code-block:: bash
 
-  $ ./scripts/createjob.sh drcutil-task-walk https://github.com/jenkinshrg/drcutil.git drcutil jenkins ubuntu-trusty-amd64-desktop periodic http://jenkinshrg.a01.aist.go.jp
+  $ ./scripts/createjob.sh <jobname> <repository> <directory> <branch> <node> <triiger> <function> <test> <url>
 
 ブラウザでジョブが登録されたことを確認して下さい。
-
-http://jenkinshrg.a01.aist.go.jp
-
-ジョブを実行します。
-
-.. code-block:: bash
-
-  $ ./scripts/buildjob.sh drcutil-task-walk http://jenkinshrg.a01.aist.go.jp
-
-ブラウザでジョブが実行されたことを確認して下さい。
 
 http://jenkinshrg.a01.aist.go.jp
 
@@ -51,7 +43,7 @@ http://jenkinshrg.a01.aist.go.jp
 
 .. code-block:: bash
 
-  $ ./scripts/deletejob.sh drcutil-task-walk http://jenkinshrg.a01.aist.go.jp
+  $ ./scripts/deletejob.sh <jobname> <url>
 
 ブラウザでジョブが削除されたことを確認して下さい。
 
