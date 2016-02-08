@@ -84,22 +84,25 @@
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="overview.html">概要</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">テストの実装</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id2">ビルド</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">単体テスト</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id4">テストプログラムの例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">ビルド</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">テストプログラムの例</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id5">コンポーネントテスト</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id6">総合テスト</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id7">テストプログラムの例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">単体テスト</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">テストプログラムの例</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id8">動的解析</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id9">テストプログラムの例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">コンポーネントテスト</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">総合テスト</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id8">テストプログラムの例</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id10">静的解析</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id11">テストプログラムの例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">動的解析</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id10">テストプログラムの例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id11">静的解析</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id12">テストプログラムの例</a></li>
 </ul>
 </li>
 </ul>
@@ -152,20 +155,26 @@
             
   <div class="section" id="id1">
 <h1>テストの実装<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>テストの実装方法について説明します。</p>
 <div class="section" id="id2">
 <h2>ビルド<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>ソースコードが正常にビルドできる状態にあるかを確認します。</p>
-<p>通常のビルド手順(コンパイル、インストール)を実行します。</p>
-<p>必要であれば事前にソースコードの取得、依存パッケージのインストールなどを行います。</p>
-</div>
+<p>必要であれば事前にソースコードの取得、依存パッケージのインストールなどを行い、cmakeなどのビルド手順(コンパイル、インストール)を実行します。</p>
 <div class="section" id="id3">
-<h2>単体テスト<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<p>共通で利用されるライブラリ(クラスや関数)レベルでの正常性を確認します。</p>
-<p>対象となるライブラリをリンクしたテストプログラムを作成してクラス／関数の入出力や分岐などを確認します。</p>
-<p>Google Test(C++)等のユニットテストフレームワークを利用します。</p>
+<h3>テストプログラムの例<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash"><div class="highlight"><pre>$ cmake .
+$ make install
+</pre></div>
+</div>
+</div>
+</div>
 <div class="section" id="id4">
-<h3>テストプログラムの例<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
-<p>gtestをインストールします。</p>
+<h2>単体テスト<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>共通で利用されるライブラリ(クラスや関数)レベルでの機能の正常性を確認します。</p>
+<p>Google Test(C++)等のユニットテストフレームワークを利用し、対象となるライブラリをリンクしたテストプログラムを作成してクラス／関数の入出力や分岐などを確認します。</p>
+<div class="section" id="id5">
+<h3>テストプログラムの例<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>gtestをインストールしておきます。</p>
 <div class="highlight-bash"><div class="highlight"><pre>$ sudo apt-get install libgtest-dev
 </pre></div>
 </div>
@@ -202,50 +211,44 @@
 </pre></div>
 </div>
 <p>cmakeでビルドした後にctestでテストプログラムを実行します。</p>
-<div class="highlight-bash"><div class="highlight"><pre>$ cmake .
-$ ctest --verbose --test-action Test
+<div class="highlight-bash"><div class="highlight"><pre>$ ctest --verbose --test-action Test
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="id5">
-<h2>コンポーネントテスト<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
-<p>共通的に利用されるRTCなどのモジュール化されたコンポーネントの単体／結合テストを行います。</p>
-<p>RTCプロファイルで規定されているインターフェース仕様に従い、インスタンスのアクティビティ／コンテキストの遷移、データポート／サービスポートの入出力、コンフィグレーションの設定などを確認します</p>
-<p>rtshellやRTSystemEditorなどのツールを利用、もしくはpython等でテストプログラムを作成します</p>
-</div>
 <div class="section" id="id6">
-<h2>総合テスト<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
-<p>個別のロボットに特化したロボットソフトウェアの総合テストを行います。</p>
-<p>Choreonoidによるロボットシミュレーションを行います。</p>
-<p>ターゲットとするロボットが持つ目的（災害対応など）や機能（歩行やリーチングなど）をタスクとして定義して確認します。</p>
-<p>Choreonoidなどのシミュレーターを利用してロボット／環境モデルとタスクシーケンスを作成します。</p>
+<h2>コンポーネントテスト<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>共通的に利用されるモジュール化されたコンポーネントの単体／結合テストを行います。</p>
+<p>rtshellやRTSystemEditorなどのツールを利用、もしくはpython等でテストプログラムを作成し、RTCプロファイルで規定されているインターフェース仕様に従い、インスタンスのアクティビティ／コンテキストの遷移、データポート／サービスポートの入出力、コンフィグレーションの設定などを確認します。</p>
+</div>
 <div class="section" id="id7">
-<h3>テストプログラムの例<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<h2>総合テスト<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<p>個別のロボットに特化したロボットソフトウェアの総合テストを行います。</p>
+<p>ターゲットとするロボットが持つ目的（災害対応など）や機能（歩行やリーチングなど）をタスクとして定義し、Choreonoid等によりロボット／環境モデルとタスクシーケンスを作成してシミュレーションを行います。</p>
+<div class="section" id="id8">
+<h3>テストプログラムの例<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-bash"><div class="highlight"><pre>$ choreonoid testbed-terrain.cnoid --start-simulation
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="id8">
-<h2>動的解析<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
-<p>プログラムの動的解析を行います。</p>
-<p>valgrind等を利用します。</p>
 <div class="section" id="id9">
-<h3>テストプログラムの例<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
-<p>テスト対象プログラムをvalgrind経由で実行して出力されたレポートを確認します。</p>
+<h2>動的解析<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<p>実行プログラムの動的解析を行います。</p>
+<p>テスト対象の実行プログラムに対してvalgrind等を実行して出力されたレポートを確認します。</p>
+<div class="section" id="id10">
+<h3>テストプログラムの例<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-bash"><div class="highlight"><pre>$ valgrind --verbose --tool<span class="o">=</span>memcheck --leak-check<span class="o">=</span>full --show-reachable<span class="o">=</span>no --undef-value-errors<span class="o">=</span>no --track-origins<span class="o">=</span>no --child-silent-after-fork<span class="o">=</span>no --trace-children<span class="o">=</span>no --gen-suppressions<span class="o">=</span>no --xml<span class="o">=</span>yes --xml-file<span class="o">=</span>valgrind.xml testEigen3d
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="id10">
-<h2>静的解析<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
-<p>ソースコードの静的解析を行います。</p>
-<p>cppcheck等を利用します。</p>
 <div class="section" id="id11">
-<h3>テストプログラムの例<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
-<p>テスト対象ソースコードに対してcppcheckを実行して出力されたレポートを確認します。</p>
+<h2>静的解析<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<p>ソースコードの静的解析を行います。</p>
+<p>テスト対象ソースコードに対してcppcheck等を実行して出力されたレポートを確認します。</p>
+<div class="section" id="id12">
+<h3>テストプログラムの例<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-bash"><div class="highlight"><pre>$ cppcheck --enable<span class="o">=</span>all --inconclusive --xml --xml-version<span class="o">=</span><span class="m">2</span> --force src 2&gt; cppcheck.xml
 </pre></div>
 </div>
