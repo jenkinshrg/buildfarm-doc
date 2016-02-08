@@ -136,14 +136,14 @@
   <div class="section" id="id1">
 <h1>テストジョブの管理<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <p>テストジョブをテストサーバーで実行させる手順について説明します。</p>
+<div class="section" id="id2">
+<h2>ジョブの追加<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>予め実行したいスクリプトを含むリポジトリをスレーブサーバーからアクセス可能な場所へ配置して下さい。テスト対象となるソースコードや実行ファイルをスクリプト内で取得する場合はリポジトリに含まれている必要はありません。</p>
 <p>テストを実行するために必要な要件を満たすスレーブサーバーを指定して下さい。複数の環境で実行したい場合は複数のジョブを追加して下さい。</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">chroot、docker等でスレーブの環境を意識せずに任意の環境でクリーンビルドを可能とする方法を現在検討中です。</p>
 </div>
-<div class="section" id="id2">
-<h2>ジョブの追加<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">マスターサーバーが起動していることを確認して下さい。</p>
