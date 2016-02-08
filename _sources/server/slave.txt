@@ -55,12 +55,6 @@ githubから以下のリポジトリをクローンします。
   $ git clone https://github.com/jenkinshrg/buildfarm.git
   $ cd buildfarm
 
-依存パッケージをインストールします。
-
-.. code-block:: bash
-
-  $ ./setup/common.sh
-
 スレーブサーバーの追加
 ======================
 
