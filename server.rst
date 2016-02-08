@@ -97,7 +97,7 @@ choreonoidを実行する場合はプロプライエタリなドライバをイ�
   自動ログイン、スクリーンセーバー、画面ロックを解除しておきます。
 
 スレーブサーバーの追加
-======================
+----------------------
 
 .. warning::
 
@@ -130,7 +130,7 @@ http://jenkinshrg.a01.aist.go.jp
 http://jenkinshrg.a01.aist.go.jp
 
 スレーブサーバーの削除
-======================
+----------------------
 
 .. warning::
 
@@ -151,13 +151,9 @@ http://jenkinshrg.a01.aist.go.jp
 http://jenkinshrg.a01.aist.go.jp
 
 仮想マシン
-======================
+----------
 
 virtualbox、vagrantをインストールします。
-
-ブラウザで以下のURLが正しく表示されることを確認して下さい。
-
-http://jenkinshrg.a01.aist.go.jp
 
 スレーブサーバーを起動します。
 
