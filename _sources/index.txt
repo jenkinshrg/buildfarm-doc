@@ -11,10 +11,10 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-   overview/index
-   implementation/index
-   server/index
-   job/index
+   overview
+   implementation
+   server
+   job
 
 Indices and tables
 ==================

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>テストの実装方法 &mdash; buildfarm 0.1 documentation</title>
+  <title>テストの実装 &mdash; buildfarm 0.1 documentation</title>
   
 
   
@@ -31,7 +31,7 @@
 
   
     <link rel="top" title="buildfarm 0.1 documentation" href="index.html"/>
-        <link rel="next" title="マスタサーバーの構築" href="master.html"/>
+        <link rel="next" title="テストサーバーの管理" href="server.html"/>
         <link rel="prev" title="概要" href="overview.html"/> 
 
   
@@ -83,18 +83,19 @@
             
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="overview.html">概要</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">テストの実装方法</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id2">ライブラリテスト</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">コンポーネントテスト</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">総合テスト</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id5">動的解析</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id6">静的解析</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">テストの実装</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">ビルド</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">単体テスト</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">テストプログラムの例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">コンポーネントテスト</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">総合テスト</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">動的解析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">テストプログラムの例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">静的解析</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="master.html">マスタサーバーの構築</a></li>
-<li class="toctree-l1"><a class="reference internal" href="slave.html">スレーブサーバーの構築</a></li>
-<li class="toctree-l1"><a class="reference internal" href="vm.html">仮想マシン上でのテスト環境の構築</a></li>
-<li class="toctree-l1"><a class="reference internal" href="job.html">ジョブの追加・削除</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server.html">テストサーバーの管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="job.html">テストジョブの管理</a></li>
 </ul>
 
             
@@ -125,7 +126,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>テストの実装方法</li>
+    <li>テストの実装</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -140,25 +141,91 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>テストの実装方法<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<h1>テストの実装<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id2">
-<h2>ライブラリテスト<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>共通で利用されるクラスや関数などの単体テストを行います。</p>
+<h2>ビルド<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>ソースコードが正常にビルドできる状態にあるかを確認します。</p>
+<p>通常のビルド手順(コンパイル、インストール)を実行します。</p>
+<p>必要であれば事前にソースコードの取得、依存パッケージのインストールなどを行います。</p>
 </div>
 <div class="section" id="id3">
-<h2>コンポーネントテスト<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<p>RTCなどのモジュール化されたコンポーネントの単体／結合テストを行います。</p>
+<h2>単体テスト<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>共通で利用されるライブラリ(クラスや関数)レベルでの正常性を確認します。</p>
+<p>対象となるライブラリをリンクしたテストプログラムを作成してクラス／関数の入出力や分岐などを確認します。</p>
+<p>Google Test(C++)等のユニットテストフレームワークを利用します。</p>
 </div>
 <div class="section" id="id4">
-<h2>総合テスト<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
-<p>Choreonoidによるロボットシミュレーションなどの総合テストを行います。</p>
+<h2>テストプログラムの例<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>gtestをインストールします。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ sudo apt-get install libgtest-dev
+</pre></div>
+</div>
+<p>テストプログラムを作成します。</p>
+<div class="highlight-c++"><div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&lt;gtest/gtest.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;Eigen3d.h&quot;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">hrp</span><span class="p">;</span>
+
+<span class="n">TEST</span><span class="p">(</span><span class="n">Eigen3d</span><span class="p">,</span> <span class="n">omegaFromRot</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Matrix33</span> <span class="n">m</span><span class="p">;</span>
+    <span class="n">Vector3</span> <span class="n">v</span><span class="p">;</span>
+
+    <span class="n">m</span> <span class="o">&lt;&lt;</span> <span class="mf">1.0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>
+           <span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>
+           <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">;</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">omegaFromRot</span><span class="p">(</span><span class="n">m</span><span class="p">);</span>
+
+    <span class="n">EXPECT_EQ</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="n">EXPECT_EQ</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="n">EXPECT_EQ</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>CMakeLists.txtに以下の記述を追加します。</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">enable_testing</span><span class="p">()</span>
+<span class="nb">add_subdirectory</span><span class="p">(</span><span class="s">/usr/src/gtest</span> <span class="o">${</span><span class="nv">CMAKE_CURRENT_BINARY_DIR</span><span class="o">}</span><span class="s">/gtest</span><span class="p">)</span>
+
+<span class="nb">add_executable</span><span class="p">(</span><span class="s">testEigen3d</span> <span class="s">testEigen3d.cpp</span> <span class="s">Eigen3d.cpp</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">testEigen3d</span> <span class="s">gtest</span> <span class="s">gtest_main</span> <span class="s">pthread</span><span class="p">)</span>
+<span class="nb">set_target_properties</span><span class="p">(</span><span class="s">testEigen3d</span> <span class="s">PROPERTIES</span> <span class="s">COMPILE_FLAGS</span> <span class="s2">&quot;-g -O0 -coverage&quot;</span> <span class="s">LINK_FLAGS</span> <span class="s2">&quot;-g -O0 -coverage&quot;</span><span class="p">)</span>
+<span class="nb">add_test</span><span class="p">(</span><span class="s">testEigen3d</span> <span class="o">${</span><span class="nv">EXECUTABLE_OUTPUT_PATH</span><span class="o">}</span><span class="s">/testEigen3d</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>cmakeでビルドした後にctestでテストプログラムを実行します。</p>
+<div class="highlight-bash"><div class="highlight"><pre>$ cmake .
+$ ctest --verbose --test-action Test
+</pre></div>
+</div>
 </div>
 <div class="section" id="id5">
-<h2>動的解析<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
-<p>valgrindによるプログラムの動的解析を行います。</p>
+<h2>コンポーネントテスト<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>共通的に利用されるRTCなどのモジュール化されたコンポーネントの単体／結合テストを行います。</p>
+<p>RTCプロファイルで規定されているインターフェース仕様に従い、インスタンスのアクティビティ／コンテキストの遷移、データポート／サービスポートの入出力、コンフィグレーションの設定などを確認します</p>
+<p>rtshellやRTSystemEditorなどのツールを利用、もしくはpython等でテストプログラムを作成します</p>
 </div>
 <div class="section" id="id6">
-<h2>静的解析<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<h2>総合テスト<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>個別のロボットに特化したロボットソフトウェアの総合テストを行います。</p>
+<p>Choreonoidによるロボットシミュレーションを行います。</p>
+<p>ターゲットとするロボットが持つ目的（災害対応など）や機能（歩行やリーチングなど）をタスクとして定義して確認します。</p>
+<p>Choreonoidなどのシミュレーターを利用してロボット／環境モデルとタスクシーケンスを作成します。</p>
+</div>
+<div class="section" id="id7">
+<h2>動的解析<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<p>プログラム動的解析を行います。</p>
+<p>各種の解析ツールを利用してプログラムを動作させます。</p>
+<p>OSコマンド、mtrace、valgrind等を利用します。</p>
+</div>
+<div class="section" id="id8">
+<h2>テストプログラムの例<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<p>テスト対象プログラムをvalgrind経由で実行して出力されたレポートを確認します。</p>
+<div class="highlight-bash"><div class="highlight"><pre>valgrind --verbose --tool<span class="o">=</span>memcheck --leak-check<span class="o">=</span>full --show-reachable<span class="o">=</span>no --undef-value-errors<span class="o">=</span>no --track-origins<span class="o">=</span>no --child-silent-after-fork<span class="o">=</span>no --trace-children<span class="o">=</span>no --gen-suppressions<span class="o">=</span>no --xml<span class="o">=</span>yes --xml-file<span class="o">=</span>valgrind.xml testEigen3d
+</pre></div>
+</div>
+</div>
+<div class="section" id="id9">
+<h2>静的解析<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
 <p>cppcheckによるソースコードの静的解析を行います。</p>
 </div>
 </div>
@@ -170,7 +237,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="master.html" class="btn btn-neutral float-right" title="マスタサーバーの構築" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="server.html" class="btn btn-neutral float-right" title="テストサーバーの管理" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="overview.html" class="btn btn-neutral" title="概要" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -182,7 +249,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2016, Akira Tokunaga.
+        &copy; Copyright 2016, AIST.
 
     </p>
   </div>
