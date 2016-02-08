@@ -93,11 +93,11 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#id6">スレーブサーバーの構築</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id7">インストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">スレーブサーバーの追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">スレーブサーバーの削除</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">仮想マシン</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id8">スレーブサーバーの追加</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id9">スレーブサーバーの削除</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id10">仮想マシン</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id11">認証情報の設定</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#git">gitの設定</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#subversion">subversionの設定</a></li>
@@ -222,9 +222,8 @@ $ sudo apt-get -y install nvidia-current nvidia-settings
 <p class="last">自動ログイン、スクリーンセーバー、画面ロックを解除しておきます。</p>
 </div>
 </div>
-</div>
 <div class="section" id="id8">
-<h2>スレーブサーバーの追加<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<h3>スレーブサーバーの追加<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">マスターサーバーが起動していることを確認して下さい。</p>
@@ -248,7 +247,7 @@ $ ./setup/slave.sh &lt;nodename&gt; &lt;url&gt;
 <p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
 </div>
 <div class="section" id="id9">
-<h2>スレーブサーバーの削除<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<h3>スレーブサーバーの削除<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">マスターサーバーが起動していることを確認して下さい。</p>
@@ -264,16 +263,15 @@ $ ./scripts/deletenode.sh &lt;nodename&gt; &lt;url&gt;
 <p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
 </div>
 <div class="section" id="id10">
-<h2>仮想マシン<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<h3>仮想マシン<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
 <p>virtualbox、vagrantをインストールします。</p>
-<p>ブラウザで以下のURLが正しく表示されることを確認して下さい。</p>
-<p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
 <p>スレーブサーバーを起動します。</p>
 <div class="highlight-bash"><div class="highlight"><pre>$ git clone https://github.com/jenkinshrg/buildfarm.git
 $ <span class="nb">cd</span> buildfarm
 $ vagrant up debian-wheezy-i386
 $ vagrant up ubuntu-trusty-amd64
 </pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="id11">
