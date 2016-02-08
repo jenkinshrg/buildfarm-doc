@@ -140,18 +140,18 @@
 <p>buildfarmはhrpsys-base, choreonoid, OpenHRPなどのロボット関連ソフトウェアのビルドおよび各種テストの実行を自動化するための継続的インテグレーション（CI）環境です。</p>
 <p>CIサーバーをオンプレミスに構築するためプライベートなリポジトリやオンプレミスに存在するリポジトリを含むテストの実行が可能です。</p>
 <p class="graphviz">
-<img src="_images/graphviz-5b4006cf70cd7082fc7a78c93e602afc5f672ad3.png" alt="digraph {
-   source1 [label=&quot;github.com&quot;];
-   source2 [label=&quot;choreonoid.org&quot;];
-   source3 [label=&quot;atom&quot;];
+<img src="_images/graphviz-527ce604fb735e522dc8c0cc43506dac41aeac2e.png" alt="digraph {
+   source1 [label=&quot;public repository&quot;];
+   source2 [label=&quot;private repository&quot;];
    build [label=&quot;jenkinshrg&quot;];
-   report1 [label=&quot;github.com&quot;];
-   report2 [label=&quot;google.com&quot;];
+   report1 [label=&quot;mail server&quot;];
+   report2 [label=&quot;cloud storage&quot;];
+   report3 [label=&quot;web page&quot;];
    source1 -&gt; build [label=&quot;checkout source&quot;];
    source2 -&gt; build [label=&quot;checkout source&quot;];
-   source3 -&gt; build [label=&quot;checkout source&quot;];
-   build -&gt; report1 [label=&quot;upload report&quot;];
+   build -&gt; report1 [label=&quot;send messages&quot;];
    build -&gt; report2 [label=&quot;upload logs&quot;];
+   build -&gt; report3 [label=&quot;update reports&quot;];
 }" />
 </p>
 </div>
