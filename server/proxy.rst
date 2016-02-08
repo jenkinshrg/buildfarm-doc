@@ -13,18 +13,29 @@
 インストール
 ============
 
-githubから以下のリポジトリをクローンします。
+webサーバーをインストールします。
 
 .. code-block:: bash
 
-  $ git clone https://github.com/jenkinshrg/buildfarm.git
-  $ cd buildfarm
+  $ sudo apt-add-repository -y ppa:nginx/stable
+  $ sudo apt-get update
+  $ sudo apt-get -y install nginx
 
-webサーバーをインストールしてリバースプロキシ設定を行います。
+リバースプロキシ設定を行います。
 
 .. code-block:: bash
 
-  $ ./setup/nginx.sh
+  $ cat << \EOL | sudo tee /etc/nginx/sites-available/default
+  server {
+          listen 80;
+          server_name localhost;
+          location / {
+                  proxy_set_header Host $http_host;
+                  proxy_pass http://localhost:8080;
+          }
+  }
+  EOL
+  sudo service nginx restart
 
 ブラウザで以下のURLが正しく表示されることを確認して下さい。
 
