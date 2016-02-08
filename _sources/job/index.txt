@@ -10,25 +10,12 @@
 
   マスターサーバーが起動していることを確認して下さい。
 
-gitをインストールします。
-
-.. code-block:: bash
-
-  $ sudo apt-get update
-  $ sudo apt-get install git
-
 githubから以下のリポジトリをクローンします。
 
 .. code-block:: bash
 
   $ git clone https://github.com/jenkinshrg/buildfarm.git
   $ cd buildfarm
-
-依存パッケージをインストールします。
-
-.. code-block:: bash
-
-  $ ./setup/common.sh
 
 ジョブの追加
 ============
