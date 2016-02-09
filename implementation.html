@@ -214,12 +214,14 @@ $ make install
 <div class="highlight-bash"><div class="highlight"><pre>$ ctest --verbose --test-action Test
 </pre></div>
 </div>
+<p>出力されるレポートを確認します。</p>
+<p>コンパイルオプションを指定しておけば、lcov等を利用してカバレッジを分析することも可能です。</p>
 </div>
 </div>
 <div class="section" id="id6">
 <h2>コンポーネントテスト<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
 <p>共通的に利用されるモジュール化されたコンポーネントの単体／結合テストを行います。</p>
-<p>rtshellやRTSystemEditorなどのツールを利用、もしくはpython等でテストプログラムを作成し、RTCプロファイルで規定されているインターフェース仕様に従い、インスタンスのアクティビティ／コンテキストの遷移、データポート／サービスポートの入出力、コンフィグレーションの設定などを確認します。</p>
+<p>rtshellなどのツールを利用、もしくはpython等でテストプログラムを作成し、RTCプロファイルで規定されているインターフェース仕様に従い、インスタンスのアクティビティ／コンテキストの遷移、データポート／サービスポートの入出力、コンフィグレーションの設定などを確認します。</p>
 </div>
 <div class="section" id="id7">
 <h2>総合テスト<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
@@ -230,6 +232,8 @@ $ make install
 <div class="highlight-bash"><div class="highlight"><pre>$ choreonoid testbed-terrain.cnoid --start-simulation
 </pre></div>
 </div>
+<p>GUI操作の自動化が必要な場合はxautomation等を利用します。</p>
+<p>imagemagick recordmydesktop等により実行時の静止画や動画を保存しておきます。</p>
 </div>
 </div>
 <div class="section" id="id9">
