@@ -286,33 +286,37 @@ $ vagrant up ubuntu-trusty-amd64
 <div class="section" id="git">
 <h3>gitの設定<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h3>
 <p>http経由でアクセスする場合は$HOME/.netrcをマスターサーバーの$JENKINS_HOMEとスレーブサーバーの$HOMEへ格納しておきます。</p>
-<div class="highlight-bash"><div class="highlight"><pre>$ sudo cp $HOME/.netrc /home/jenkinshrg
-$ sudo chown jenkins:jenkins /home/jenkinshrg/.netrc
-</pre></div>
-</div>
 <div class="highlight-bash"><div class="highlight"><pre>$ sudo cp $HOME/.netrc /var/lib/jenkins
 $ sudo chown jenkins:jenkins /var/lib/jenkins/.netrc
 </pre></div>
 </div>
-<p>ssh経由でアクセスする場合は$HOME/.sshをマスターサーバーの$JENKINS_HOMEとスレーブサーバーの$HOMEへ格納しておきます。</p>
-<div class="highlight-bash"><div class="highlight"><pre>$ sudo cp -r $HOME/.ssh /home/jenkinshrg
-$ sudo chown -R jenkins:jenkins /home/jenkinshrg/.ssh
+<div class="highlight-bash"><div class="highlight"><pre>$ sudo cp $HOME/.netrc /home/jenkinshrg
+$ sudo chown jenkins:jenkins /home/jenkinshrg/.netrc
 </pre></div>
 </div>
+<p>ssh経由でアクセスする場合は$HOME/.sshをマスターサーバーの$JENKINS_HOMEとスレーブサーバーの$HOMEへ格納しておきます。</p>
 <div class="highlight-bash"><div class="highlight"><pre>$ sudo cp -r $HOME/.ssh /var/lib/jenkins
 $ sudo chown -R jenkins:jenkins /var/lib/jenkins/.ssh
+$ sudo -u jenkins ssh-keygen -N <span class="s2">&quot;&quot;</span> -f /var/lib/jenkins/.ssh/id_rsa
+$ sudo -i -u jenkins ssh-copy-id jenkinshrg@atom.a01.aist.go.jp
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre>$ sudo cp -r $HOME/.ssh /home/jenkinshrg
+$ sudo chown -R jenkins:jenkins /home/jenkinshrg/.ssh
+$ ssh-keygen -N <span class="s2">&quot;&quot;</span> -f <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.ssh/id_rsa
+$ ssh-copy-id jenkinshrg@atom.a01.aist.go.jp
 </pre></div>
 </div>
 </div>
 <div class="section" id="subversion">
 <h3>subversionの設定<a class="headerlink" href="#subversion" title="Permalink to this headline">¶</a></h3>
 <p>subversionの場合は$HOME/.subversionをマスターサーバーの$JENKINS_HOMEとスレーブサーバーの$HOMEへ格納しておきます。</p>
-<div class="highlight-bash"><div class="highlight"><pre>$ sudo cp -r $HOME/.subversion /home/jenkinshrg
-$ sudo chown -R jenkins:jenkins /home/jenkinshrg/.subversion
-</pre></div>
-</div>
 <div class="highlight-bash"><div class="highlight"><pre>$ sudo cp -r $HOME/.subversion /var/lib/jenkins
 $ sudo chown -R jenkins:jenkins /var/lib/jenkins/.subversion
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre>$ sudo cp -r $HOME/.subversion /home/jenkinshrg
+$ sudo chown -R jenkins:jenkins /home/jenkinshrg/.subversion
 </pre></div>
 </div>
 </div>
