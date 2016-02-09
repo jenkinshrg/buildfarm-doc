@@ -184,25 +184,29 @@ http経由でアクセスする場合は$HOME/.netrcをマスターサーバー�
 
 .. code-block:: bash
 
-  $ sudo cp $HOME/.netrc /home/jenkinshrg
-  $ sudo chown jenkins:jenkins /home/jenkinshrg/.netrc
+  $ sudo cp $HOME/.netrc /var/lib/jenkins
+  $ sudo chown jenkins:jenkins /var/lib/jenkins/.netrc
 
 .. code-block:: bash
 
-  $ sudo cp $HOME/.netrc /var/lib/jenkins
-  $ sudo chown jenkins:jenkins /var/lib/jenkins/.netrc
+  $ sudo cp $HOME/.netrc /home/jenkinshrg
+  $ sudo chown jenkins:jenkins /home/jenkinshrg/.netrc
 
 ssh経由でアクセスする場合は$HOME/.sshをマスターサーバーの$JENKINS_HOMEとスレーブサーバーの$HOMEへ格納しておきます。
 
 .. code-block:: bash
 
-  $ sudo cp -r $HOME/.ssh /home/jenkinshrg
-  $ sudo chown -R jenkins:jenkins /home/jenkinshrg/.ssh
+  $ sudo cp -r $HOME/.ssh /var/lib/jenkins
+  $ sudo chown -R jenkins:jenkins /var/lib/jenkins/.ssh
+  $ sudo -u jenkins ssh-keygen -N "" -f /var/lib/jenkins/.ssh/id_rsa
+  $ sudo -i -u jenkins ssh-copy-id jenkinshrg@atom.a01.aist.go.jp
 
 .. code-block:: bash
 
-  $ sudo cp -r $HOME/.ssh /var/lib/jenkins
-  $ sudo chown -R jenkins:jenkins /var/lib/jenkins/.ssh
+  $ sudo cp -r $HOME/.ssh /home/jenkinshrg
+  $ sudo chown -R jenkins:jenkins /home/jenkinshrg/.ssh
+  $ ssh-keygen -N "" -f ${HOME}/.ssh/id_rsa
+  $ ssh-copy-id jenkinshrg@atom.a01.aist.go.jp
 
 subversionの設定
 ----------------
@@ -211,13 +215,13 @@ subversionの場合は$HOME/.subversionをマスターサーバーの$JENKINS_HO
 
 .. code-block:: bash
 
-  $ sudo cp -r $HOME/.subversion /home/jenkinshrg
-  $ sudo chown -R jenkins:jenkins /home/jenkinshrg/.subversion
+  $ sudo cp -r $HOME/.subversion /var/lib/jenkins
+  $ sudo chown -R jenkins:jenkins /var/lib/jenkins/.subversion
 
 .. code-block:: bash
 
-  $ sudo cp -r $HOME/.subversion /var/lib/jenkins
-  $ sudo chown -R jenkins:jenkins /var/lib/jenkins/.subversion
+  $ sudo cp -r $HOME/.subversion /home/jenkinshrg
+  $ sudo chown -R jenkins:jenkins /home/jenkinshrg/.subversion
 
 リバースプロキシの設定
 ======================
