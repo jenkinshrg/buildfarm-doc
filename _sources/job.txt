@@ -11,7 +11,7 @@
   :header: ジョブ名, スクリプト, パラメータ, ノード
   :widths: 5, 5, 5, 5
 
-  drcutil, -, -, 150.29.145.15
+  drcutil, none, none, 150.29.145.15
   drcutil-build-32, .jenkins.sh, build, 150.29.145.15
   drcutil-build-64, .jenkins.sh, build, 150.29.145.15
   drcutil-inspection, .jenkins.sh, inspection, 150.29.145.15
@@ -20,7 +20,7 @@
   drcutil-task-terrain, .jenkins.sh, task terrain, 150.29.145.15
   drcutil-task-valve, .jenkins.sh, task valve, 150.29.145.15
   drcutil-task-wall, .jenkins.sh, task wall, 150.29.145.15
-  report, -, -, 150.29.145.15
+  report, none, none, 150.29.145.15
 
 ジョブの追加
 ============
