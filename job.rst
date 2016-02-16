@@ -22,6 +22,23 @@
   drcutil-task-wall, .jenkins.sh, task wall, 150.29.145.15
   report, none, none, 150.29.145.15
 
+ジョブパラメータ
+================
+
+.. csv-table::
+  :header: パラメータ名, 説明, 例
+  :widths: 5, 5, 5
+
+  jobname, ジョブ名, drcutil-task-valve
+  repository, リポジトリ, https://github.com/jenkinshrg/drcutil.git
+  directory, ディレクトリ, drcutil
+  branch, ブランチ, jenkins
+  node, 実行ノード, 150.29.145.15
+  triiger, 実行トリガ, periodic
+  func, テスト種別, task
+  test, 対象テスト, valve
+  url, マスターサーバーURL, http://jenkinshrg.a01.aist.go.jp
+
 ジョブの追加
 ============
 
