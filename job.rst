@@ -22,23 +22,6 @@
   drcutil-task-wall, タスクシーケンス（壁開け）
   report, レポートアップロード
 
-ジョブパラメータ
-================
-
-.. csv-table::
-  :header: パラメータ名, 説明, 例
-  :widths: 5, 5, 5
-
-  jobname, ジョブ名, drcutil-task-valve
-  repository, リポジトリ, https://github.com/jenkinshrg/drcutil.git
-  directory, ディレクトリ, drcutil
-  branch, ブランチ, jenkins
-  node, 実行ノード, slave
-  triiger, 実行トリガ, periodic
-  func, テスト種別, task
-  test, 対象テスト, valve
-  url, マスターサーバーURL, http://jenkinshrg.a01.aist.go.jp
-
 ジョブの追加
 ============
 
@@ -55,6 +38,20 @@
   マスターサーバーが起動していることを確認して下さい。
 
 ジョブを追加します。
+
+.. csv-table::
+  :header: パラメータ名, 説明, 例
+  :widths: 5, 5, 5
+
+  jobname, ジョブ名, drcutil-task-valve
+  repository, リポジトリ, https://github.com/jenkinshrg/drcutil.git
+  directory, ディレクトリ, drcutil
+  branch, ブランチ, jenkins
+  node, 実行ノード, slave
+  triiger, 実行トリガ, periodic
+  func, テスト種別, task
+  test, 対象テスト, valve
+  url, マスターサーバーURL, http://jenkinshrg.a01.aist.go.jp
 
 マスターサーバーへジョブを登録します。
 
