@@ -85,8 +85,9 @@
 <li class="toctree-l1"><a class="reference internal" href="implementation.html">テストの実装</a></li>
 <li class="toctree-l1"><a class="reference internal" href="server.html">テストサーバーの管理</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">テストジョブの管理</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id2">ジョブの追加</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">ジョブの削除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">ジョブ一覧</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">ジョブの追加</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">ジョブの削除</a></li>
 </ul>
 </li>
 </ul>
@@ -137,7 +138,41 @@
 <h1>テストジョブの管理<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <p>テストジョブをテストサーバーで実行させる手順について説明します。</p>
 <div class="section" id="id2">
-<h2>ジョブの追加<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>ジョブ一覧<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">A</th>
+<th class="head">B</th>
+<th class="head">A and B</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>False</td>
+<td>False</td>
+<td>False</td>
+</tr>
+<tr class="row-odd"><td>True</td>
+<td>False</td>
+<td>False</td>
+</tr>
+<tr class="row-even"><td>False</td>
+<td>True</td>
+<td>False</td>
+</tr>
+<tr class="row-odd"><td>True</td>
+<td>True</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id3">
+<h2>ジョブの追加<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>予め実行したいスクリプトを含むリポジトリをスレーブサーバーからアクセス可能な場所へ配置して下さい。テスト対象となるソースコードや実行ファイルをスクリプト内で取得する場合はリポジトリに含まれている必要はありません。</p>
 <p>テストを実行するために必要な要件を満たすスレーブサーバーを指定して下さい。複数の環境で実行したい場合は複数のジョブを追加して下さい。</p>
 <div class="admonition warning">
@@ -150,7 +185,7 @@
 </div>
 <p>ジョブを追加します。</p>
 <p>マスターサーバーへジョブを登録します。</p>
-<div class="highlight-bash"><div class="highlight"><pre>$ git clone https://github.com/jenkinshrg/buildfarm.git
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
 $ <span class="nb">cd</span> buildfarm
 $ ./scripts/createjob.sh &lt;jobname&gt; &lt;repository&gt; &lt;directory&gt; &lt;branch&gt; &lt;node&gt; &lt;triiger&gt; &lt;func&gt; &lt;test&gt; &lt;url&gt;
 </pre></div>
@@ -158,15 +193,15 @@ $ ./scripts/createjob.sh &lt;jobname&gt; &lt;repository&gt; &lt;directory&gt; &l
 <p>ブラウザでジョブが登録されたことを確認して下さい。</p>
 <p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
 </div>
-<div class="section" id="id3">
-<h2>ジョブの削除<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id4">
+<h2>ジョブの削除<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">マスターサーバーが起動していることを確認して下さい。</p>
 </div>
 <p>ジョブを削除します。</p>
 <p>マスターサーバーからジョブを削除します。</p>
-<div class="highlight-bash"><div class="highlight"><pre>$ git clone https://github.com/jenkinshrg/buildfarm.git
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
 $ <span class="nb">cd</span> buildfarm
 $ ./scripts/deletejob.sh &lt;jobname&gt; &lt;url&gt;
 </pre></div>
