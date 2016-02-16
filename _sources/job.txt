@@ -33,7 +33,7 @@
   repository, リポジトリ, https://github.com/jenkinshrg/drcutil.git
   directory, ディレクトリ, drcutil
   branch, ブランチ, jenkins
-  node, 実行ノード, 150.29.145.15
+  node, 実行ノード, slave
   triiger, 実行トリガ, periodic
   func, テスト種別, task
   test, 対象テスト, valve
