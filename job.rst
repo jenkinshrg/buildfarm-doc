@@ -9,7 +9,7 @@
 
 .. csv-table::
   :header: ジョブ名, スクリプト, パラメータ, ノード
-  :widths: 5, 5, 5
+  :widths: 5, 5, 5, 5
 
   drcutil, -, -, 150.29.145.15
   drcutil-build-32, .jenkins.sh, build, 150.29.145.15
