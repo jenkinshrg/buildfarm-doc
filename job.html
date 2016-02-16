@@ -86,8 +86,9 @@
 <li class="toctree-l1"><a class="reference internal" href="server.html">テストサーバーの管理</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">テストジョブの管理</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id2">ジョブ一覧</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">ジョブの追加</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">ジョブの削除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">ジョブパラメータ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">ジョブの追加</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">ジョブの削除</a></li>
 </ul>
 </li>
 </ul>
@@ -208,7 +209,61 @@
 </table>
 </div>
 <div class="section" id="id3">
-<h2>ジョブの追加<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2>ジョブパラメータ<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">パラメータ名</th>
+<th class="head">説明</th>
+<th class="head">例</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>jobname</td>
+<td>ジョブ名</td>
+<td>drcutil-task-valve</td>
+</tr>
+<tr class="row-odd"><td>repository</td>
+<td>リポジトリ</td>
+<td><a class="reference external" href="https://github.com/jenkinshrg/drcutil.git">https://github.com/jenkinshrg/drcutil.git</a></td>
+</tr>
+<tr class="row-even"><td>directory</td>
+<td>ディレクトリ</td>
+<td>drcutil</td>
+</tr>
+<tr class="row-odd"><td>branch</td>
+<td>ブランチ</td>
+<td>jenkins</td>
+</tr>
+<tr class="row-even"><td>node</td>
+<td>実行ノード</td>
+<td>150.29.145.15</td>
+</tr>
+<tr class="row-odd"><td>triiger</td>
+<td>実行トリガ</td>
+<td>periodic</td>
+</tr>
+<tr class="row-even"><td>func</td>
+<td>テスト種別</td>
+<td>task</td>
+</tr>
+<tr class="row-odd"><td>test</td>
+<td>対象テスト</td>
+<td>valve</td>
+</tr>
+<tr class="row-even"><td>url</td>
+<td>マスターサーバーURL</td>
+<td><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id4">
+<h2>ジョブの追加<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <p>予め実行したいスクリプトを含むリポジトリをスレーブサーバーからアクセス可能な場所へ配置して下さい。テスト対象となるソースコードや実行ファイルをスクリプト内で取得する場合はリポジトリに含まれている必要はありません。</p>
 <p>テストを実行するために必要な要件を満たすスレーブサーバーを指定して下さい。複数の環境で実行したい場合は複数のジョブを追加して下さい。</p>
 <div class="admonition warning">
@@ -229,8 +284,8 @@ $ ./scripts/createjob.sh &lt;jobname&gt; &lt;repository&gt; &lt;directory&gt; &l
 <p>ブラウザでジョブが登録されたことを確認して下さい。</p>
 <p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
 </div>
-<div class="section" id="id4">
-<h2>ジョブの削除<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h2>ジョブの削除<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">マスターサーバーが起動していることを確認して下さい。</p>
