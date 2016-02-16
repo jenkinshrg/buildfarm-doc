@@ -4,6 +4,18 @@
 
 テストジョブをテストサーバーで実行させる手順について説明します。
 
+ジョブ一覧
+==========
+
+.. csv-table::
+  :header: A, B, A and B
+  :widths: 5, 5, 5
+
+  False, False, False
+  True, False, False
+  False, True, False
+  True, True, True
+
 ジョブの追加
 ============
 
