@@ -144,55 +144,6 @@ http://jenkinshrg.a01.aist.go.jp
 
 http://jenkinshrg.a01.aist.go.jp
 
-仮想マシンによるテストサーバーの構築（オプション）
-=================================================
-
-マスターサーバー、スレーブサーバーは仮想マシン上に構築することも可能です。
-
-virtualbox、vagrantがインストールされていない場合はインストールして下さい。
-
-マスターサーバーを仮想マシン上に構築する場合
---------------------------------------------
-
-スクリプトをcloneしておきます。
-
-.. code-block:: bash
-
-  $ git clone https://github.com/jenkinshrg/buildfarm.git
-  $ cd buildfarm
-
-マスターサーバーを起動します。
-
-.. code-block:: bash
-
-  $ vagrant up
-
-スレーブサーバーを仮想マシン上に構築する場合
---------------------------------------------
-
-スクリプトをcloneしておきます。
-
-.. code-block:: bash
-
-  $ git clone https://github.com/jenkinshrg/buildfarm.git
-  $ cd buildfarm
-
-Vagrantfileにスレーブの記述を追加します。（以下はUbuntu16.04LTSを追加する場合）
-
-.. code-block:: ruby
-
-  config.vm.define "ubuntu-xenial-amd64", autostart: false do |server|
-    server.vm.box = "boxcutter/ubuntu1604"
-    server.vm.provision "shell", path: "scripts/createnode.sh", args: "ubuntu-xenial-amd64 /home/vagrant http://jenkinshrg.a01.aist.go.jp", privileged: false
-    server.vm.provision "shell", path: "setup/slave.sh", args: "ubuntu-xenial-amd64 http://jenkinshrg.a01.aist.go.jp", privileged: false
-  end
-
-スレーブサーバーを起動します。
-
-.. code-block:: bash
-
-  $ vagrant up ubuntu-xenial-amd64
-
 認証情報の設定
 ==============
 
@@ -301,3 +252,52 @@ http://jenkinshrg.a01.aist.go.jp
 サーバーの設置場所を変更するなどでMACアドレス、IPアドレスが変更になっても問題ありません。
 
 マスターサーバーのDNSホスト名、固定IPアドレスが正しく疎通できるようMACアドレスを再設定して下さい。
+
+仮想マシンによるテストサーバーの構築（オプション）
+=================================================
+
+マスターサーバー、スレーブサーバーは仮想マシン上に構築することも可能です。
+
+virtualbox、vagrantがインストールされていない場合はインストールして下さい。
+
+マスターサーバーを仮想マシン上に構築する場合
+--------------------------------------------
+
+スクリプトをcloneしておきます。
+
+.. code-block:: bash
+
+  $ git clone https://github.com/jenkinshrg/buildfarm.git
+  $ cd buildfarm
+
+マスターサーバーを起動します。
+
+.. code-block:: bash
+
+  $ vagrant up
+
+スレーブサーバーを仮想マシン上に構築する場合
+--------------------------------------------
+
+スクリプトをcloneしておきます。
+
+.. code-block:: bash
+
+  $ git clone https://github.com/jenkinshrg/buildfarm.git
+  $ cd buildfarm
+
+Vagrantfileにスレーブの記述を追加します。（以下はUbuntu16.04LTSを追加する場合）
+
+.. code-block:: ruby
+
+  config.vm.define "ubuntu-xenial-amd64", autostart: false do |server|
+    server.vm.box = "boxcutter/ubuntu1604"
+    server.vm.provision "shell", path: "scripts/createnode.sh", args: "ubuntu-xenial-amd64 /home/vagrant http://jenkinshrg.a01.aist.go.jp", privileged: false
+    server.vm.provision "shell", path: "setup/slave.sh", args: "ubuntu-xenial-amd64 http://jenkinshrg.a01.aist.go.jp", privileged: false
+  end
+
+スレーブサーバーを起動します。
+
+.. code-block:: bash
+
+  $ vagrant up ubuntu-xenial-amd64
