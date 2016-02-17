@@ -86,8 +86,12 @@
 <li class="toctree-l1"><a class="reference internal" href="server.html">テストサーバーの管理</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">テストジョブの管理</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id2">ジョブ一覧</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">ジョブの追加</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">ジョブの削除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">ジョブの追加</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">タスクシーケンス追加時</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#os">OSバージョン追加時</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">ジョブの削除</a></li>
 </ul>
 </li>
 </ul>
@@ -259,9 +263,15 @@ $ <span class="nb">cd</span> buildfarm
 </table>
 <p>ブラウザでジョブが登録されたことを確認して下さい。</p>
 <p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
-</div>
 <div class="section" id="id4">
-<h2>ジョブの削除<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<h3>タスクシーケンス追加時<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="os">
+<h3>OSバージョン追加時<a class="headerlink" href="#os" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>ジョブの削除<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <p>スクリプトをcloneしておきます。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
 $ <span class="nb">cd</span> buildfarm
