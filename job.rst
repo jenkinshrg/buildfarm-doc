@@ -62,7 +62,7 @@
 
   $ git clone https://github.com/jenkinshrg/buildfarm.git
   $ cd buildfarm
-  $ ./scripts/createjob.sh <jobname> <repository> <directory> <branch> <node> <triiger> <func> <test> <url>
+  $ ./scripts/createjob.sh <jobname> <repository> <directory> <branch> <node> <os> <distro> <arch> <triiger> <func> <test> <url>
 
 ブラウザでジョブが登録されたことを確認して下さい。
 
