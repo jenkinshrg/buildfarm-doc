@@ -137,6 +137,8 @@
   <div class="section" id="id1">
 <h1>テストジョブの管理<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <p>テストジョブをテストサーバーで実行させる手順について説明します。</p>
+<p>予め実行したいスクリプトを含むリポジトリをスレーブサーバーからアクセス可能な場所へ配置して下さい。テスト対象となるソースコードや実行ファイルをスクリプト内で取得する場合はリポジトリに含まれている必要はありません。</p>
+<p>テストを実行するために必要な要件を満たすスレーブサーバーを指定して下さい。複数の環境で実行したい場合は複数のジョブを追加して下さい。</p>
 <div class="section" id="id2">
 <h2>ジョブ一覧<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <table border="1" class="docutils">
@@ -157,13 +159,7 @@
 <td>ビルド（32ビット環境）</td>
 </tr>
 <tr class="row-even"><td>drcutil-build-64</td>
-<td>ビルド（64ビット環境）</td>
-</tr>
-<tr class="row-odd"><td>drcutil-inspection</td>
-<td>静的解析</td>
-</tr>
-<tr class="row-even"><td>drcutil-test</td>
-<td>単体テスト</td>
+<td>ビルド（64ビット環境）、単体テスト、静的解析</td>
 </tr>
 <tr class="row-odd"><td>drcutil-task-balancebeam</td>
 <td>タスクシーケンス（平均台歩行）</td>
@@ -185,17 +181,16 @@
 </div>
 <div class="section" id="id3">
 <h2>ジョブの追加<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<p>予め実行したいスクリプトを含むリポジトリをスレーブサーバーからアクセス可能な場所へ配置して下さい。テスト対象となるソースコードや実行ファイルをスクリプト内で取得する場合はリポジトリに含まれている必要はありません。</p>
-<p>テストを実行するために必要な要件を満たすスレーブサーバーを指定して下さい。複数の環境で実行したい場合は複数のジョブを追加して下さい。</p>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">chroot、docker等でスレーブの環境を意識せずに任意の環境でクリーンビルドを可能とする方法を現在検討中です。</p>
-</div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">マスターサーバーが起動していることを確認して下さい。</p>
 </div>
-<p>ジョブを追加します。</p>
+<p>マスターサーバーへジョブを登録します。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
+$ <span class="nb">cd</span> buildfarm
+$ ./scripts/createjob.sh &lt;jobname&gt; &lt;repository&gt; &lt;directory&gt; &lt;branch&gt; &lt;node&gt; &lt;os&gt; &lt;distro&gt; &lt;arch&gt; &lt;triiger&gt; &lt;func&gt; &lt;test&gt; &lt;url&gt;
+</pre></div>
+</div>
 <table border="1" class="docutils">
 <colgroup>
 <col width="33%" />
@@ -259,12 +254,6 @@
 </tr>
 </tbody>
 </table>
-<p>マスターサーバーへジョブを登録します。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
-$ <span class="nb">cd</span> buildfarm
-$ ./scripts/createjob.sh &lt;jobname&gt; &lt;repository&gt; &lt;directory&gt; &lt;branch&gt; &lt;node&gt; &lt;os&gt; &lt;distro&gt; &lt;arch&gt; &lt;triiger&gt; &lt;func&gt; &lt;test&gt; &lt;url&gt;
-</pre></div>
-</div>
 <p>ブラウザでジョブが登録されたことを確認して下さい。</p>
 <p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
 </div>
@@ -274,7 +263,6 @@ $ ./scripts/createjob.sh &lt;jobname&gt; &lt;repository&gt; &lt;directory&gt; &l
 <p class="first admonition-title">Warning</p>
 <p class="last">マスターサーバーが起動していることを確認して下さい。</p>
 </div>
-<p>ジョブを削除します。</p>
 <p>マスターサーバーからジョブを削除します。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
 $ <span class="nb">cd</span> buildfarm
