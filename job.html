@@ -182,12 +182,18 @@
 </div>
 <div class="section" id="id3">
 <h2>ジョブの追加<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<p>マスターサーバーへジョブを登録します。</p>
+<p>スクリプトをcloneしておきます。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
 $ <span class="nb">cd</span> buildfarm
-$ ./scripts/createjob.sh &lt;jobname&gt; &lt;repository&gt; &lt;directory&gt; &lt;branch&gt; &lt;node&gt; &lt;os&gt; &lt;distro&gt; &lt;arch&gt; &lt;triiger&gt; &lt;func&gt; &lt;test&gt; &lt;url&gt;
 </pre></div>
 </div>
+<p>マスターサーバーへジョブを登録します。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/createjob.sh &lt;jobname&gt; &lt;repository&gt; &lt;directory&gt; &lt;branch&gt; &lt;node&gt; &lt;os&gt; &lt;distro&gt; &lt;arch&gt; &lt;triiger&gt; &lt;func&gt; &lt;test&gt; &lt;url&gt;
+</pre></div>
+</div>
+<ul class="simple">
+<li>パラメータの説明</li>
+</ul>
 <table border="1" class="docutils">
 <colgroup>
 <col width="33%" />
@@ -256,10 +262,13 @@ $ ./scripts/createjob.sh &lt;jobname&gt; &lt;repository&gt; &lt;directory&gt; &l
 </div>
 <div class="section" id="id4">
 <h2>ジョブの削除<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
-<p>マスターサーバーからジョブを削除します。</p>
+<p>スクリプトをcloneしておきます。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
 $ <span class="nb">cd</span> buildfarm
-$ ./scripts/deletejob.sh &lt;jobname&gt; &lt;url&gt;
+</pre></div>
+</div>
+<p>マスターサーバーからジョブを削除します。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/deletejob.sh &lt;jobname&gt; &lt;url&gt;
 </pre></div>
 </div>
 <p>ブラウザでジョブが削除されたことを確認して下さい。</p>

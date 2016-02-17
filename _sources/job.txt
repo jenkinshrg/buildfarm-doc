@@ -29,13 +29,20 @@
 ジョブの追加
 ============
 
-マスターサーバーへジョブを登録します。
+スクリプトをcloneしておきます。
 
 .. code-block:: bash
 
   $ git clone https://github.com/jenkinshrg/buildfarm.git
   $ cd buildfarm
+
+マスターサーバーへジョブを登録します。
+
+.. code-block:: bash
+
   $ ./scripts/createjob.sh <jobname> <repository> <directory> <branch> <node> <os> <distro> <arch> <triiger> <func> <test> <url>
+
+* パラメータの説明
 
 .. csv-table::
   :header: パラメータ名, 説明, 例
@@ -61,12 +68,17 @@ http://jenkinshrg.a01.aist.go.jp
 ジョブの削除
 ============
 
-マスターサーバーからジョブを削除します。
+スクリプトをcloneしておきます。
 
 .. code-block:: bash
 
   $ git clone https://github.com/jenkinshrg/buildfarm.git
   $ cd buildfarm
+
+マスターサーバーからジョブを削除します。
+
+.. code-block:: bash
+
   $ ./scripts/deletejob.sh <jobname> <url>
 
 ブラウザでジョブが削除されたことを確認して下さい。
