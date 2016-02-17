@@ -48,6 +48,9 @@
   directory, ディレクトリ, drcutil
   branch, ブランチ, jenkins
   node, 実行ノード, slave
+  os, OS種別, ubuntu
+  distro, ディストリビューション, trusty
+  arch, アーキテクチャ, amd64
   triiger, 実行トリガ, periodic
   func, テスト種別, task
   test, 対象テスト, valve
