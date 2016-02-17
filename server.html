@@ -87,24 +87,27 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="">テストサーバーの管理</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id2">マスターサーバーの構築</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id3">インストール</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">仮想マシン上に構築する場合</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id5">動作確認</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">動作確認</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id6">スレーブサーバーの構築</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id7">インストール</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id8">スレーブサーバーの追加</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id9">スレーブサーバーの削除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">スレーブサーバーの構築</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id6">インストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">スレーブサーバーの追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">スレーブサーバーの削除</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">仮想マシンによるテストサーバーの構築</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id10">仮想マシン上に構築する場合</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">仮想マシン上に構築する場合</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id11">認証情報の設定</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id12">認証情報の設定</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#git">gitの設定</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#subversion">subversionの設定</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id12">リバースプロキシの設定</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id13">インストール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id13">リバースプロキシの設定</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id14">インストール</a></li>
 </ul>
 </li>
 </ul>
@@ -181,23 +184,13 @@ $ ./setup/master.sh
 </div>
 </div>
 <div class="section" id="id4">
-<h3>仮想マシン上に構築する場合<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
-<p>virtualbox、vagrantがインストールされていない場合はインストールして下さい。</p>
-<p>マスターサーバーを起動します。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
-$ <span class="nb">cd</span> buildfarm
-$ vagrant up
-</pre></div>
-</div>
-</div>
-<div class="section" id="id5">
-<h3>動作確認<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<h3>動作確認<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p>ブラウザで正しく表示されることを確認して下さい。</p>
 <p><a class="reference external" href="http://localhost:8080">http://localhost:8080</a></p>
 </div>
 </div>
-<div class="section" id="id6">
-<h2>スレーブサーバーの構築<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h2>スレーブサーバーの構築<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <p>テストジョブを実行するためにスレーブサーバーが必要となります。</p>
 <p>マスターサーバー上でもテストを実行することは可能ですが、設定データや履歴データのバックアップを考慮してマスターサーバーではテストは実行せず、必ずスレーブサーバーでテストを実行する運用が好ましいです。</p>
 <p>インターネット接続が可能なマシンでテストの実行に必要なハードウェア要件（GPUなど）、ソフトウェア要件（OSなど）にあったものを用意して下さい。</p>
@@ -205,8 +198,8 @@ $ vagrant up
 <p>仮想マシン上に構築することも可能です。</p>
 <p>ビルド等のハードウェアアクセスを伴わないテストの場合は汎用のスレーブサーバーでchrootやdocker等を利用したコンテナ上での実行も可能です。</p>
 <p>ネットワーク設定、セキュリティーアップデート、その他必要なソフトウェアのインストールなどは事前に行っておいて下さい。</p>
-<div class="section" id="id7">
-<h3>インストール<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id6">
+<h3>インストール<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <p>javaがインストールされていない場合はインストールして下さい。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo apt-get -y install openjdk-7-jdk
 </pre></div>
@@ -226,8 +219,8 @@ $ sudo apt-get -y install nvidia-current nvidia-settings
 <p class="last">自動ログイン、スクリーンセーバー、画面ロックは解除しておきます。</p>
 </div>
 </div>
-<div class="section" id="id8">
-<h3>スレーブサーバーの追加<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id7">
+<h3>スレーブサーバーの追加<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">マスターサーバーが起動していることを確認して下さい。</p>
@@ -250,8 +243,8 @@ $ ./setup/slave.sh &lt;nodename&gt; &lt;url&gt;
 <p>ブラウザでスレーブサーバーが接続されたことを確認して下さい。</p>
 <p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
 </div>
-<div class="section" id="id9">
-<h3>スレーブサーバーの削除<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id8">
+<h3>スレーブサーバーの削除<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">マスターサーバーが起動していることを確認して下さい。</p>
@@ -266,8 +259,21 @@ $ ./scripts/deletenode.sh &lt;nodename&gt; &lt;url&gt;
 <p>ブラウザでスレーブサーバーが削除されたことを確認して下さい。</p>
 <p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
 </div>
+</div>
+<div class="section" id="id9">
+<h2>仮想マシンによるテストサーバーの構築<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id10">
 <h3>仮想マシン上に構築する場合<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<p>virtualbox、vagrantがインストールされていない場合はインストールして下さい。</p>
+<p>マスターサーバーを起動します。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
+$ <span class="nb">cd</span> buildfarm
+$ vagrant up
+</pre></div>
+</div>
+</div>
+<div class="section" id="id11">
+<h3>仮想マシン上に構築する場合<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
 <p>virtualbox、vagrantがインストールされていない場合はインストールして下さい。</p>
 <p>スレーブサーバーを起動します。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
@@ -278,8 +284,8 @@ $ vagrant up ubuntu-trusty-amd64
 </div>
 </div>
 </div>
-<div class="section" id="id11">
-<h2>認証情報の設定<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id12">
+<h2>認証情報の設定<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
 <p>テストジョブでは対話形式のコマンドは実行できないため、認証情報が必要な外部サーバーへアクセスを行う場合は事前に以下の設定が必要となります。</p>
 <p>マスターサーバー、スレーブサーバー全てに対してそれぞれ設定を行って下さい。</p>
 <p>セキュリティー面を考慮して認証情報を設定ファイルやスクリプトに保存しないで下さい。</p>
@@ -321,15 +327,15 @@ $ sudo chown -R jenkins:jenkins /home/jenkinshrg/.subversion
 </div>
 </div>
 </div>
-<div class="section" id="id12">
-<h2>リバースプロキシの設定<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id13">
+<h2>リバースプロキシの設定<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
 <p>マスターサーバーへリバースプロキシを設定する場合の例を示します。</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">他のアプリケーションがポート番号80を使用していないか確認して下さい。</p>
 </div>
-<div class="section" id="id13">
-<h3>インストール<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id14">
+<h3>インストール<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
 <p>webサーバーをインストールします。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo apt-add-repository -y ppa:nginx/stable
 $ sudo apt-get update
