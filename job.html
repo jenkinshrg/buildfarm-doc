@@ -182,10 +182,6 @@
 </div>
 <div class="section" id="id3">
 <h2>ジョブの追加<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">マスターサーバーが起動していることを確認して下さい。</p>
-</div>
 <p>マスターサーバーへジョブを登録します。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
 $ <span class="nb">cd</span> buildfarm
@@ -260,10 +256,6 @@ $ ./scripts/createjob.sh &lt;jobname&gt; &lt;repository&gt; &lt;directory&gt; &l
 </div>
 <div class="section" id="id4">
 <h2>ジョブの削除<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">マスターサーバーが起動していることを確認して下さい。</p>
-</div>
 <p>マスターサーバーからジョブを削除します。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
 $ <span class="nb">cd</span> buildfarm
@@ -272,6 +264,10 @@ $ ./scripts/deletejob.sh &lt;jobname&gt; &lt;url&gt;
 </div>
 <p>ブラウザでジョブが削除されたことを確認して下さい。</p>
 <p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">スクリプト実行時はマスターサーバーが起動していることを予め確認して下さい。</p>
+</div>
 </div>
 </div>
 
