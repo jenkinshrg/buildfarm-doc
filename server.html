@@ -285,8 +285,16 @@ $ <span class="nb">cd</span> buildfarm
 $ <span class="nb">cd</span> buildfarm
 </pre></div>
 </div>
+<p>Vagrantfileにスレーブの記述を追加します。（以下はUbuntu16.04LTSを追加する場合）</p>
+<div class="highlight-ruby"><div class="highlight"><pre><span></span><span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">define</span> <span class="s2">&quot;ubuntu-xenial-amd64&quot;</span><span class="p">,</span> <span class="ss">autostart</span><span class="p">:</span> <span class="kp">false</span> <span class="k">do</span> <span class="o">|</span><span class="n">server</span><span class="o">|</span>
+  <span class="n">server</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">&quot;boxcutter/ubuntu1604&quot;</span>
+  <span class="n">server</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provision</span> <span class="s2">&quot;shell&quot;</span><span class="p">,</span> <span class="ss">path</span><span class="p">:</span> <span class="s2">&quot;scripts/createnode.sh&quot;</span><span class="p">,</span> <span class="ss">args</span><span class="p">:</span> <span class="s2">&quot;ubuntu-xenial-amd64 /home/vagrant http://jenkinshrg.a01.aist.go.jp&quot;</span><span class="p">,</span> <span class="ss">privileged</span><span class="p">:</span> <span class="kp">false</span>
+  <span class="n">server</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provision</span> <span class="s2">&quot;shell&quot;</span><span class="p">,</span> <span class="ss">path</span><span class="p">:</span> <span class="s2">&quot;setup/slave.sh&quot;</span><span class="p">,</span> <span class="ss">args</span><span class="p">:</span> <span class="s2">&quot;ubuntu-xenial-amd64 http://jenkinshrg.a01.aist.go.jp&quot;</span><span class="p">,</span> <span class="ss">privileged</span><span class="p">:</span> <span class="kp">false</span>
+<span class="k">end</span>
+</pre></div>
+</div>
 <p>スレーブサーバーを起動します。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ vagrant up &lt;slave&gt;
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ vagrant up ubuntu-xenial-amd64
 </pre></div>
 </div>
 </div>
