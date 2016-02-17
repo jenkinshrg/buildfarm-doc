@@ -4,6 +4,10 @@
 
 テストジョブをテストサーバーで実行させる手順について説明します。
 
+予め実行したいスクリプトを含むリポジトリをスレーブサーバーからアクセス可能な場所へ配置して下さい。テスト対象となるソースコードや実行ファイルをスクリプト内で取得する場合はリポジトリに含まれている必要はありません。
+
+テストを実行するために必要な要件を満たすスレーブサーバーを指定して下さい。複数の環境で実行したい場合は複数のジョブを追加して下さい。
+
 ジョブ一覧
 ==========
 
@@ -13,9 +17,7 @@
 
   drcutil, リポジトリ変更監視
   drcutil-build-32, ビルド（32ビット環境）
-  drcutil-build-64, ビルド（64ビット環境）
-  drcutil-inspection, 静的解析
-  drcutil-test, 単体テスト
+  drcutil-build-64, ビルド（64ビット環境）、単体テスト、静的解析
   drcutil-task-balancebeam, タスクシーケンス（平均台歩行）
   drcutil-task-terrain, タスクシーケンス（不整地歩行）
   drcutil-task-valve, タスクシーケンス（バルブ回し）
@@ -25,19 +27,17 @@
 ジョブの追加
 ============
 
-予め実行したいスクリプトを含むリポジトリをスレーブサーバーからアクセス可能な場所へ配置して下さい。テスト対象となるソースコードや実行ファイルをスクリプト内で取得する場合はリポジトリに含まれている必要はありません。
-
-テストを実行するために必要な要件を満たすスレーブサーバーを指定して下さい。複数の環境で実行したい場合は複数のジョブを追加して下さい。
-
-.. warning::
-
-  chroot、docker等でスレーブの環境を意識せずに任意の環境でクリーンビルドを可能とする方法を現在検討中です。
-
 .. warning::
 
   マスターサーバーが起動していることを確認して下さい。
 
-ジョブを追加します。
+マスターサーバーへジョブを登録します。
+
+.. code-block:: bash
+
+  $ git clone https://github.com/jenkinshrg/buildfarm.git
+  $ cd buildfarm
+  $ ./scripts/createjob.sh <jobname> <repository> <directory> <branch> <node> <os> <distro> <arch> <triiger> <func> <test> <url>
 
 .. csv-table::
   :header: パラメータ名, 説明, 例
@@ -56,14 +56,6 @@
   test, 対象テスト, valve
   url, マスターサーバーURL, http://jenkinshrg.a01.aist.go.jp
 
-マスターサーバーへジョブを登録します。
-
-.. code-block:: bash
-
-  $ git clone https://github.com/jenkinshrg/buildfarm.git
-  $ cd buildfarm
-  $ ./scripts/createjob.sh <jobname> <repository> <directory> <branch> <node> <os> <distro> <arch> <triiger> <func> <test> <url>
-
 ブラウザでジョブが登録されたことを確認して下さい。
 
 http://jenkinshrg.a01.aist.go.jp
@@ -74,8 +66,6 @@ http://jenkinshrg.a01.aist.go.jp
 .. warning::
 
   マスターサーバーが起動していることを確認して下さい。
-
-ジョブを削除します。
 
 マスターサーバーからジョブを削除します。
 
@@ -88,4 +78,3 @@ http://jenkinshrg.a01.aist.go.jp
 ブラウザでジョブが削除されたことを確認して下さい。
 
 http://jenkinshrg.a01.aist.go.jp
-
