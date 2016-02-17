@@ -88,9 +88,10 @@
 <li class="toctree-l2"><a class="reference internal" href="#id3">ジョブの追加</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id4">タスクシーケンス追加時</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#os">OSバージョン追加時</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">スレーブ追加時</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id5">ジョブの削除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">ジョブの削除</a></li>
 </ul>
 </li>
 </ul>
@@ -264,13 +265,28 @@ $ <span class="nb">cd</span> buildfarm
 <p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
 <div class="section" id="id4">
 <h3>タスクシーケンス追加時<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>実行するタスクシーケンスを追加したい場合はtestに任意のタスクを指定してジョブを追加して下さい。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/createjob.sh &lt;jobname&gt; &lt;repository&gt; &lt;directory&gt; &lt;branch&gt; &lt;node&gt; &lt;os&gt; &lt;distro&gt; &lt;arch&gt; &lt;triiger&gt; &lt;func&gt; &lt;test&gt; &lt;url&gt;
+</pre></div>
+</div>
 </div>
 <div class="section" id="os">
 <h3>OSバージョン追加時<a class="headerlink" href="#os" title="Permalink to this headline">¶</a></h3>
+<p>実行するOSバージョンを追加したい場合はos、distro、archに任意のバージョンを指定してジョブを追加して下さい。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/createjob.sh &lt;jobname&gt; &lt;repository&gt; &lt;directory&gt; &lt;branch&gt; &lt;node&gt; &lt;os&gt; &lt;distro&gt; &lt;arch&gt; &lt;triiger&gt; &lt;func&gt; &lt;test&gt; &lt;url&gt;
+</pre></div>
 </div>
 </div>
 <div class="section" id="id5">
-<h2>ジョブの削除<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<h3>スレーブ追加時<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>実行するスレーブサーバーを追加したい場合はノード名を指定してジョブを追加して下さい。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/createjob.sh &lt;jobname&gt; &lt;repository&gt; &lt;directory&gt; &lt;branch&gt; &lt;node&gt; &lt;os&gt; &lt;distro&gt; &lt;arch&gt; &lt;triiger&gt; &lt;func&gt; &lt;test&gt; &lt;url&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>ジョブの削除<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
 <p>スクリプトをcloneしておきます。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
 $ <span class="nb">cd</span> buildfarm
