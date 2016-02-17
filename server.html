@@ -96,9 +96,9 @@
 <li class="toctree-l3"><a class="reference internal" href="#id8">スレーブサーバーの削除</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id9">仮想マシンによるテストサーバーの構築</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id10">仮想マシン上に構築する場合</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id11">仮想マシン上に構築する場合</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">仮想マシンによるテストサーバーの構築（オプション）</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id10">マスターサーバーを仮想マシン上に構築する場合</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">スレーブサーバーを仮想マシン上に構築する場合</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#id12">認証情報の設定</a><ul>
@@ -164,7 +164,6 @@
 <h2>マスターサーバーの構築<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>テストジョブの実行と履歴管理のためにマスターサーバーが必要となります。</p>
 <p>インターネット接続が可能なマシンであれば特にハードウェア、ソフトウェア要件はありませんが、サイズの大きなログを長期間保存する場合は大きめのハードディスクを用意して下さい。</p>
-<p>仮想マシン上に構築することも可能です。</p>
 <p>ネットワーク設定、セキュリティーアップデート、その他必要なソフトウェアのインストールなどは事前に行っておいて下さい。</p>
 <div class="section" id="id3">
 <h3>インストール<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
@@ -261,10 +260,11 @@ $ ./scripts/deletenode.sh &lt;nodename&gt; &lt;url&gt;
 </div>
 </div>
 <div class="section" id="id9">
-<h2>仮想マシンによるテストサーバーの構築<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id10">
-<h3>仮想マシン上に構築する場合<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<h2>仮想マシンによるテストサーバーの構築（オプション）<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<p>マスターサーバー、スレーブサーバーは仮想マシン上に構築することも可能です。</p>
 <p>virtualbox、vagrantがインストールされていない場合はインストールして下さい。</p>
+<div class="section" id="id10">
+<h3>マスターサーバーを仮想マシン上に構築する場合<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
 <p>マスターサーバーを起動します。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
 $ <span class="nb">cd</span> buildfarm
@@ -273,8 +273,7 @@ $ vagrant up
 </div>
 </div>
 <div class="section" id="id11">
-<h3>仮想マシン上に構築する場合<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
-<p>virtualbox、vagrantがインストールされていない場合はインストールして下さい。</p>
+<h3>スレーブサーバーを仮想マシン上に構築する場合<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
 <p>スレーブサーバーを起動します。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
 $ <span class="nb">cd</span> buildfarm
