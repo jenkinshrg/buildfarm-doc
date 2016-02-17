@@ -68,8 +68,29 @@ http://jenkinshrg.a01.aist.go.jp
 タスクシーケンス追加時
 ----------------------
 
+実行するタスクシーケンスを追加したい場合はtestに任意のタスクを指定してジョブを追加して下さい。
+
+.. code-block:: bash
+
+  $ ./scripts/createjob.sh <jobname> <repository> <directory> <branch> <node> <os> <distro> <arch> <triiger> <func> <test> <url>
+
 OSバージョン追加時
 ------------------
+
+実行するOSバージョンを追加したい場合はos、distro、archに任意のバージョンを指定してジョブを追加して下さい。
+
+.. code-block:: bash
+
+  $ ./scripts/createjob.sh <jobname> <repository> <directory> <branch> <node> <os> <distro> <arch> <triiger> <func> <test> <url>
+
+スレーブ追加時
+------------------
+
+実行するスレーブサーバーを追加したい場合はノード名を指定してジョブを追加して下さい。
+
+.. code-block:: bash
+
+  $ ./scripts/createjob.sh <jobname> <repository> <directory> <branch> <node> <os> <distro> <arch> <triiger> <func> <test> <url>
 
 ジョブの削除
 ============
