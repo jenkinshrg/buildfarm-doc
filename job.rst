@@ -14,17 +14,17 @@
 ==========
 
 .. csv-table::
-  :header: ジョブ名, 説明
-  :widths: 5, 5
+  :header: ジョブ名, 説明, 備考
+  :widths: 5, 5, 5
 
-  drcutil, リポジトリ変更監視
-  drcutil-build-32, ビルド（32ビット環境）
-  drcutil-build-64, ビルド（64ビット環境）、単体テスト、静的解析
-  drcutil-task-balancebeam, タスクシーケンス（平均台歩行）
-  drcutil-task-terrain, タスクシーケンス（不整地歩行）
-  drcutil-task-valve, タスクシーケンス（バルブ回し）
-  drcutil-task-wall, タスクシーケンス（壁開け）
-  report, レポートアップロード
+  drcutil, リポジトリ変更監視,
+  drcutil-build-32, ビルド（32ビット環境）, dockerコンテナで実行
+  drcutil-build-64, ビルド（64ビット環境）、単体テスト、静的解析, dockerコンテナで実行
+  drcutil-task-balancebeam, タスクシーケンス（平均台歩行）, GUI有り環境で実行
+  drcutil-task-terrain, タスクシーケンス（不整地歩行）, GUI有り環境で実行
+  drcutil-task-valve, タスクシーケンス（バルブ回し）, GUI有り環境で実行
+  drcutil-task-wall, タスクシーケンス（壁開け）, GUI有り環境で実行
+  report, レポートアップロード,
 
 ジョブの追加
 ============
