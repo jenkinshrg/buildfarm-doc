@@ -60,6 +60,47 @@
 
 http://localhost:8080
 
+リバースプロキシの設定
+----------------------
+
+.. warning::
+
+  マスターサーバーはスレーブサーバーやWebアクセスする場合にDNS名や固定IPアドレスでアクセスできるように設定して下さい。
+
+マスターサーバーへリバースプロキシを設定する場合の例を示します。
+
+webサーバーをインストールします。
+
+.. warning::
+
+  他のアプリケーションがポート番号80を使用していないか確認して下さい。
+
+.. code-block:: bash
+
+  $ sudo apt-add-repository -y ppa:nginx/stable
+  $ sudo apt-get update
+  $ sudo apt-get -y install nginx
+
+リバースプロキシ設定を行います。
+
+.. code-block:: bash
+
+  $ cat << \EOL | sudo tee /etc/nginx/sites-available/default
+  server {
+          listen 80;
+          server_name localhost;
+          location / {
+                  proxy_set_header Host $http_host;
+                  proxy_pass http://localhost:8080;
+          }
+  }
+  EOL
+  $ sudo service nginx restart
+
+ブラウザで以下のURLが正しく表示されることを確認して下さい。
+
+http://jenkinshrg.a01.aist.go.jp
+
 スレーブサーバーの構築
 ======================
 
@@ -231,46 +272,6 @@ subversionの場合は$HOME/.subversionをマスターサーバーの$JENKINS_HO
   $ sudo service jenkins stop
   $ sudo tar zxvf jenkins.tar.gz -C /var/lib
   $ sudo service jenkins start
-
-リバースプロキシの設定（オプション）
-===================================
-
-マスターサーバーへリバースプロキシを設定する場合の例を示します。
-
-.. warning::
-
-  他のアプリケーションがポート番号80を使用していないか確認して下さい。
-
-インストール
-------------
-
-webサーバーをインストールします。
-
-.. code-block:: bash
-
-  $ sudo apt-add-repository -y ppa:nginx/stable
-  $ sudo apt-get update
-  $ sudo apt-get -y install nginx
-
-リバースプロキシ設定を行います。
-
-.. code-block:: bash
-
-  $ cat << \EOL | sudo tee /etc/nginx/sites-available/default
-  server {
-          listen 80;
-          server_name localhost;
-          location / {
-                  proxy_set_header Host $http_host;
-                  proxy_pass http://localhost:8080;
-          }
-  }
-  EOL
-  $ sudo service nginx restart
-
-ブラウザで以下のURLが正しく表示されることを確認して下さい。
-
-http://jenkinshrg.a01.aist.go.jp
 
 仮想マシンによるテストサーバーの構築（オプション）
 =================================================
