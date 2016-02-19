@@ -85,7 +85,10 @@
 <li class="toctree-l1"><a class="reference internal" href="overview.html">概要</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">テストサーバーの管理</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id2">サーバー構成</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">事前準備</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">事前準備</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#os">OSインストール</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#id4">マスターサーバーの構築</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id5">インストール</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id6">リバースプロキシの設定</a></li>
@@ -172,7 +175,7 @@
 <col width="20%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head">ノード名</th>
+<tr class="row-odd"><th class="head">ホスト名</th>
 <th class="head">用途</th>
 <th class="head">DNS名</th>
 <th class="head">IPアドレス</th>
@@ -202,8 +205,15 @@
 <p>スレーブサーバーはテストの実行に必要なハードウェア要件（GPUなど）、ソフトウェア要件（OSやミドルウェアなど）にあったものを用意して下さい。</p>
 <p>ビルド等のハードウェアに依存しないテストの場合はchrootやdocker等を利用したコンテナ上での実行が可能です。</p>
 <p>マスターサーバーと同じマシンにスレーブサーバーを同居させることも可能です。</p>
-<p>ネットワーク設定、セキュリティーアップデート、その他必要なソフトウェアのインストールなどは事前に行っておいて下さい。</p>
-<p>プロプライエタリなドライバをインストールしてシステム設定にて変更しておきます。</p>
+<div class="section" id="os">
+<h3>OSインストール<a class="headerlink" href="#os" title="Permalink to this headline">¶</a></h3>
+<p>ホスト名、ユーザー名は任意です。</p>
+<p>設置場所の環境に合わせてネットワーク設定を行って下さい。</p>
+<p>セキュリティーアップデート、その他必要なソフトウェアのインストールなどを行って下さい。</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">プロプライエタリなドライバをインストールしてシステム設定にて変更しておきます。</p>
+</div>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo add-apt-repository -y ppa:xorg-edgers/ppa
 $ sudo apt-get update
 $ sudo apt-get -y install nvidia-current nvidia-settings
@@ -212,6 +222,7 @@ $ sudo apt-get -y install nvidia-current nvidia-settings
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">自動ログイン、スクリーンセーバー、画面ロックは解除しておきます。</p>
+</div>
 </div>
 </div>
 <div class="section" id="id4">
