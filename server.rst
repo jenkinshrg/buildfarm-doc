@@ -93,6 +93,10 @@ GPUなどプロプライエタリなドライバが必要な場合はインス�
 
   $ ./setup/master.sh
 
+.. note::
+
+  jenkinsパッケージのインストールを行うとjenkinsユーザー、jenkinsグループが作成されます。
+  
 ブラウザで正しく表示されることを確認して下さい。
 
 http://localhost:8080
