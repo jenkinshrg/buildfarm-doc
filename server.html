@@ -87,30 +87,27 @@
 <li class="toctree-l2"><a class="reference internal" href="#id2">事前準備</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id3">マスターサーバーの構築</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id4">インストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">リバースプロキシの設定</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id5">スレーブサーバーの構築</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id6">インストール</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id7">スレーブサーバーの追加</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id8">スレーブサーバーの削除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">スレーブサーバーの構築</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">インストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">スレーブサーバーの追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">スレーブサーバーの削除</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id9">認証情報の設定</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id10">認証情報の設定</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#git">gitの設定</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#subversion">subversionの設定</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id10">シャットダウン</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id11">サーバー移設</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id12">バックアップ</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id13">リストア</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id14">リバースプロキシの設定（オプション）</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id15">インストール</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id16">仮想マシンによるテストサーバーの構築（オプション）</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id17">マスターサーバーを仮想マシン上に構築する場合</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id18">スレーブサーバーを仮想マシン上に構築する場合</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id11">シャットダウン</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id12">サーバー移設</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id13">バックアップ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id14">リストア</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id15">仮想マシンによるテストサーバーの構築（オプション）</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id16">マスターサーバーを仮想マシン上に構築する場合</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id17">スレーブサーバーを仮想マシン上に構築する場合</a></li>
 </ul>
 </li>
 </ul>
@@ -203,13 +200,47 @@ $ <span class="nb">cd</span> buildfarm
 <p>ブラウザで正しく表示されることを確認して下さい。</p>
 <p><a class="reference external" href="http://localhost:8080">http://localhost:8080</a></p>
 </div>
-</div>
 <div class="section" id="id5">
-<h2>スレーブサーバーの構築<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<h3>リバースプロキシの設定<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">マスターサーバーはスレーブサーバーやWebアクセスする場合にDNS名や固定IPアドレスでアクセスできるように設定して下さい。</p>
+</div>
+<p>マスターサーバーへリバースプロキシを設定する場合の例を示します。</p>
+<p>webサーバーをインストールします。</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">他のアプリケーションがポート番号80を使用していないか確認して下さい。</p>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo apt-add-repository -y ppa:nginx/stable
+$ sudo apt-get update
+$ sudo apt-get -y install nginx
+</pre></div>
+</div>
+<p>リバースプロキシ設定を行います。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cat <span class="s">&lt;&lt; \EOL | sudo tee /etc/nginx/sites-available/default</span>
+<span class="s">server {</span>
+<span class="s">        listen 80;</span>
+<span class="s">        server_name localhost;</span>
+<span class="s">        location / {</span>
+<span class="s">                proxy_set_header Host $http_host;</span>
+<span class="s">                proxy_pass http://localhost:8080;</span>
+<span class="s">        }</span>
+<span class="s">}</span>
+<span class="s">EOL</span>
+$ sudo service nginx restart
+</pre></div>
+</div>
+<p>ブラウザで以下のURLが正しく表示されることを確認して下さい。</p>
+<p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>スレーブサーバーの構築<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
 <p>テストジョブを実行するためにスレーブサーバーが必要となります。</p>
 <p>マスターサーバー上でもテストを実行することは可能ですが、設定データや履歴データのバックアップを考慮してマスターサーバーではテストは実行せず、必ずスレーブサーバーでテストを実行する運用が好ましいです。</p>
-<div class="section" id="id6">
-<h3>インストール<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id7">
+<h3>インストール<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <p>スクリプトをcloneしておきます。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
 $ <span class="nb">cd</span> buildfarm
@@ -220,8 +251,8 @@ $ <span class="nb">cd</span> buildfarm
 </pre></div>
 </div>
 </div>
-<div class="section" id="id7">
-<h3>スレーブサーバーの追加<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id8">
+<h3>スレーブサーバーの追加<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">マスターサーバーが起動していることを確認して下さい。</p>
@@ -243,8 +274,8 @@ $ <span class="nb">cd</span> buildfarm
 <p>ブラウザでスレーブサーバーが接続されたことを確認して下さい。</p>
 <p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
 </div>
-<div class="section" id="id8">
-<h3>スレーブサーバーの削除<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id9">
+<h3>スレーブサーバーの削除<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">マスターサーバーが起動していることを確認して下さい。</p>
@@ -263,8 +294,8 @@ $ <span class="nb">cd</span> buildfarm
 <p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
 </div>
 </div>
-<div class="section" id="id9">
-<h2>認証情報の設定<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id10">
+<h2>認証情報の設定<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
 <p>テストジョブでは対話形式のコマンドは実行できないため、認証情報が必要な外部サーバーへアクセスを行う場合は事前に以下の設定が必要となります。</p>
 <p>マスターサーバー、スレーブサーバー全てに対してそれぞれ設定を行って下さい。</p>
 <p>セキュリティー面を考慮して認証情報を設定ファイルやスクリプトに保存しないで下さい。</p>
@@ -306,18 +337,18 @@ $ sudo chown -R jenkins:jenkins /home/jenkinshrg/.subversion
 </div>
 </div>
 </div>
-<div class="section" id="id10">
-<h2>シャットダウン<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id11">
+<h2>シャットダウン<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
 <p>停電時などサーバーを停止させる場合は通常のシャットダウン手順で問題ありません。</p>
 <p>再起動時も自動的にサービスが再開されます。</p>
 </div>
-<div class="section" id="id11">
-<h2>サーバー移設<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id12">
+<h2>サーバー移設<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
 <p>サーバーの設置場所を変更するなどでMACアドレス、IPアドレスが変更になっても問題ありません。</p>
 <p>マスターサーバーのDNSホスト名、固定IPアドレスが正しく疎通できるようMACアドレスを再設定して下さい。</p>
 </div>
-<div class="section" id="id12">
-<h2>バックアップ<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id13">
+<h2>バックアップ<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
 <p>テストジョブが実行されていないのを確認して以下の手順を実行して下さい。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo service jenkins stop
 $ sudo tar zcvf jenkins.tar.gz -C /var/lib jenkins
@@ -325,8 +356,8 @@ $ sudo service jenkins start
 </pre></div>
 </div>
 </div>
-<div class="section" id="id13">
-<h2>リストア<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id14">
+<h2>リストア<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
 <p>マスターサーバーのインストールを行ったあと以下の手順を実行して下さい。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo service jenkins stop
 $ sudo tar zxvf jenkins.tar.gz -C /var/lib
@@ -334,45 +365,12 @@ $ sudo service jenkins start
 </pre></div>
 </div>
 </div>
-<div class="section" id="id14">
-<h2>リバースプロキシの設定（オプション）<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
-<p>マスターサーバーへリバースプロキシを設定する場合の例を示します。</p>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">他のアプリケーションがポート番号80を使用していないか確認して下さい。</p>
-</div>
 <div class="section" id="id15">
-<h3>インストール<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
-<p>webサーバーをインストールします。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo apt-add-repository -y ppa:nginx/stable
-$ sudo apt-get update
-$ sudo apt-get -y install nginx
-</pre></div>
-</div>
-<p>リバースプロキシ設定を行います。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cat <span class="s">&lt;&lt; \EOL | sudo tee /etc/nginx/sites-available/default</span>
-<span class="s">server {</span>
-<span class="s">        listen 80;</span>
-<span class="s">        server_name localhost;</span>
-<span class="s">        location / {</span>
-<span class="s">                proxy_set_header Host $http_host;</span>
-<span class="s">                proxy_pass http://localhost:8080;</span>
-<span class="s">        }</span>
-<span class="s">}</span>
-<span class="s">EOL</span>
-$ sudo service nginx restart
-</pre></div>
-</div>
-<p>ブラウザで以下のURLが正しく表示されることを確認して下さい。</p>
-<p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
-</div>
-</div>
-<div class="section" id="id16">
-<h2>仮想マシンによるテストサーバーの構築（オプション）<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
+<h2>仮想マシンによるテストサーバーの構築（オプション）<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
 <p>マスターサーバー、スレーブサーバーは仮想マシン上に構築することも可能です。</p>
 <p>virtualbox、vagrantがインストールされていない場合はインストールして下さい。</p>
-<div class="section" id="id17">
-<h3>マスターサーバーを仮想マシン上に構築する場合<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id16">
+<h3>マスターサーバーを仮想マシン上に構築する場合<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
 <p>スクリプトをcloneしておきます。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
 $ <span class="nb">cd</span> buildfarm
@@ -383,8 +381,8 @@ $ <span class="nb">cd</span> buildfarm
 </pre></div>
 </div>
 </div>
-<div class="section" id="id18">
-<h3>スレーブサーバーを仮想マシン上に構築する場合<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id17">
+<h3>スレーブサーバーを仮想マシン上に構築する場合<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
 <p>スクリプトをcloneしておきます。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
 $ <span class="nb">cd</span> buildfarm
