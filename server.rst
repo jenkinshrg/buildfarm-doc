@@ -196,8 +196,44 @@ subversionの場合は$HOME/.subversionをマスターサーバーの$JENKINS_HO
   $ sudo cp -r $HOME/.subversion /home/jenkinshrg
   $ sudo chown -R jenkins:jenkins /home/jenkinshrg/.subversion
 
-リバースプロキシの設定
-======================
+シャットダウン
+==============
+
+停電時などサーバーを停止させる場合は通常のシャットダウン手順で問題ありません。
+
+再起動時も自動的にサービスが再開されます。
+
+サーバー移設
+============
+
+サーバーの設置場所を変更するなどでMACアドレス、IPアドレスが変更になっても問題ありません。
+
+マスターサーバーのDNSホスト名、固定IPアドレスが正しく疎通できるようMACアドレスを再設定して下さい。
+
+バックアップ
+============
+
+テストジョブが実行されていないのを確認して以下の手順を実行して下さい。
+
+.. code-block:: bash
+
+  $ sudo service jenkins stop
+  $ sudo tar zcvf jenkins.tar.gz -C /var/lib jenkins
+  $ sudo service jenkins start
+
+リストア
+========
+
+マスターサーバーのインストールを行ったあと以下の手順を実行して下さい。
+
+.. code-block:: bash
+
+  $ sudo service jenkins stop
+  $ sudo tar zxvf jenkins.tar.gz -C /var/lib
+  $ sudo service jenkins start
+
+リバースプロキシの設定（オプション）
+===================================
 
 マスターサーバーへリバースプロキシを設定する場合の例を示します。
 
@@ -235,42 +271,6 @@ webサーバーをインストールします。
 ブラウザで以下のURLが正しく表示されることを確認して下さい。
 
 http://jenkinshrg.a01.aist.go.jp
-
-シャットダウン
-==============
-
-停電時などサーバーを停止させる場合は通常のシャットダウン手順で問題ありません。
-
-再起動時も自動的にサービスが再開されます。
-
-サーバー移設
-============
-
-サーバーの設置場所を変更するなどでMACアドレス、IPアドレスが変更になっても問題ありません。
-
-マスターサーバーのDNSホスト名、固定IPアドレスが正しく疎通できるようMACアドレスを再設定して下さい。
-
-バックアップ
-============
-
-テストジョブが実行されていないのを確認して以下の手順を実行して下さい。
-
-.. code-block:: bash
-
-  $ sudo service jenkins stop
-  $ sudo tar zcvf jenkins.tar.gz -C /var/lib jenkins
-  $ sudo service jenkins start
-
-リストア
-========
-
-マスターサーバーのインストールを行ったあと以下の手順を実行して下さい。
-
-.. code-block:: bash
-
-  $ sudo service jenkins stop
-  $ sudo tar zxvf jenkins.tar.gz -C /var/lib
-  $ sudo service jenkins start
 
 仮想マシンによるテストサーバーの構築（オプション）
 =================================================
