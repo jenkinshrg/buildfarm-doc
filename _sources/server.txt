@@ -165,12 +165,6 @@ http://jenkinshrg.a01.aist.go.jp
 
   $ ./scripts/createnode.sh <nodename> <workspace> <url>
 
-スレーブサーバーを接続します。
-
-.. code-block:: bash
-
-  $ ./setup/slave.sh <nodename> <url>
-
 ブラウザでスレーブサーバーが接続されたことを確認して下さい。
 
 http://jenkinshrg.a01.aist.go.jp
