@@ -305,7 +305,7 @@ subversionの場合は$HOME/.subversionをマスターサーバーの$JENKINS_HO
 仮想マシンによるテストサーバーの構築（オプション）
 =================================================
 
-テストサーバーは仮想マシン上に構築することも可能です。
+テストサーバーの開発用などで仮想マシン上に環境を構築することも可能です。（テスト内容によっては正常動作しない場合があります）
 
 インストール
 ------------
@@ -327,8 +327,8 @@ vagrantがインストールされていない場合はインストールして�
   $ sudo dpkg -i vagrant_1.8.1_x86_64.deb
   $ rm vagrant_1.8.1_x86_64.deb
 
-マスターサーバーの起動
-----------------------
+サーバーの起動
+--------------
 
 スクリプトをcloneしておきます。
 
@@ -337,27 +337,11 @@ vagrantがインストールされていない場合はインストールして�
   $ git clone https://github.com/jenkinshrg/buildfarm.git
   $ cd buildfarm
 
-マスターサーバーを起動します。
+サーバーを起動します。（マスターサーバー、スレーブサーバーが起動されます）
 
 .. code-block:: bash
 
-  $ vagrant up master
-
-スレーブサーバーの起動
-----------------------
-
-スクリプトをcloneしておきます。
-
-.. code-block:: bash
-
-  $ git clone https://github.com/jenkinshrg/buildfarm.git
-  $ cd buildfarm
-
-スレーブサーバーを起動します。
-
-.. code-block:: bash
-
-  $ vagrant up slave
+  $ vagrant up
 
 スレーブサーバーの追加
 ----------------------
