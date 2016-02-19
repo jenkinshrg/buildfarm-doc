@@ -111,8 +111,10 @@
 <li class="toctree-l2"><a class="reference internal" href="#id15">バックアップ</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id16">リストア</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id17">仮想マシンによるテストサーバーの構築（オプション）</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id18">マスターサーバーを仮想マシン上に構築する場合</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id19">スレーブサーバーを仮想マシン上に構築する場合</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id18">インストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id19">マスターサーバーの起動</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id20">スレーブサーバーの起動</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">スレーブサーバーの追加</a></li>
 </ul>
 </li>
 </ul>
@@ -421,21 +423,36 @@ $ sudo service jenkins start
 <div class="section" id="id17">
 <h2>仮想マシンによるテストサーバーの構築（オプション）<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h2>
 <p>マスターサーバー、スレーブサーバーは仮想マシン上に構築することも可能です。</p>
-<p>virtualbox、vagrantがインストールされていない場合はインストールして下さい。</p>
 <div class="section" id="id18">
-<h3>マスターサーバーを仮想マシン上に構築する場合<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<h3>インストール<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<p>virtualbox、vagrantがインストールされていない場合はインストールして下さい。</p>
+</div>
+<div class="section" id="id19">
+<h3>マスターサーバーの起動<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
 <p>スクリプトをcloneしておきます。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
 $ <span class="nb">cd</span> buildfarm
 </pre></div>
 </div>
 <p>マスターサーバーを起動します。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ vagrant up
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ vagrant up master
 </pre></div>
 </div>
 </div>
-<div class="section" id="id19">
-<h3>スレーブサーバーを仮想マシン上に構築する場合<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id20">
+<h3>スレーブサーバーの起動<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<p>スクリプトをcloneしておきます。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
+$ <span class="nb">cd</span> buildfarm
+</pre></div>
+</div>
+<p>スレーブサーバーを起動します。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ vagrant up slave
+</pre></div>
+</div>
+</div>
+<div class="section" id="id21">
+<h3>スレーブサーバーの追加<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
 <p>スクリプトをcloneしておきます。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
 $ <span class="nb">cd</span> buildfarm
