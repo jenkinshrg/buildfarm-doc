@@ -20,12 +20,12 @@
   :widths: 5, 5, 5
 
   drcutil, リポジトリ変更監視,
-  drcutil-build-32, ビルド（32ビット環境）, dockerコンテナで実行
-  drcutil-build-64, ビルド（64ビット環境）、単体テスト、静的解析, dockerコンテナで実行
-  drcutil-task-balancebeam, タスクシーケンス（平均台歩行）, GUI有り環境で実行
-  drcutil-task-terrain, タスクシーケンス（不整地歩行）, GUI有り環境で実行
-  drcutil-task-valve, タスクシーケンス（バルブ回し）, GUI有り環境で実行
-  drcutil-task-wall, タスクシーケンス（壁開け）, GUI有り環境で実行
+  drcutil-build-32, ビルド（32ビット環境）, dockerコンテナ上で実行
+  drcutil-build-64, ビルド（64ビット環境）、単体テスト、静的解析, dockerコンテナ上で実行
+  drcutil-task-balancebeam, タスクシーケンス（平均台歩行）, デスクトップ環境で実行
+  drcutil-task-terrain, タスクシーケンス（不整地歩行）, デスクトップ環境で実行
+  drcutil-task-valve, タスクシーケンス（バルブ回し）, デスクトップ環境で実行
+  drcutil-task-wall, タスクシーケンス（壁開け）, デスクトップ環境で実行
   report, レポートアップロード,
 
 ジョブの追加
@@ -47,21 +47,20 @@
 * パラメータの説明
 
 .. csv-table::
-  :header: パラメータ名, 説明, 例
-  :widths: 5, 5, 5
+  :header: パラメータ名, 説明, 例（デフォルト値）, 備考
 
-  jobname, ジョブ名, drcutil-task-valve
-  repository, リポジトリ, https://github.com/jenkinshrg/drcutil.git
-  directory, ディレクトリ, drcutil
-  branch, ブランチ, jenkins
-  node, 実行ノード, slave
-  os, OS種別, ubuntu
-  distro, ディストリビューション, trusty
-  arch, アーキテクチャ, amd64
-  triiger, 実行トリガ, periodic
-  func, テスト種別, task
-  test, 対象テスト, valve
-  url, マスターサーバーURL, http://jenkinshrg.a01.aist.go.jp
+  jobname, ジョブ名, debug,
+  repository, リポジトリ, https://github.com/jenkinshrg/drcutil.git,
+  directory, ディレクトリ, drcutil,
+  branch, ブランチ, jenkins,
+  node, 実行ノード, slave,
+  os, OS種別(ubuntu/debian), ubuntu,
+  distro, ディストリビューション(trusty/wheezy), trusty, debootstrapで指定可能なもの
+  arch, アーキテクチャ(amd64/i386), amd64, debootstrapで指定可能なもの
+  triiger, 実行トリガ(none/scm/upstream/periodic), none,
+  func, テスト種別(all/build/task), all,
+  test, 対象テスト(all/balancebeam/terrain/valve/wall), all,
+  url, マスターサーバーURL, http://jenkinshrg.a01.aist.go.jp,
 
 ブラウザでジョブが登録されたことを確認して下さい。
 

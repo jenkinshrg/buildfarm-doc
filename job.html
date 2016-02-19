@@ -166,27 +166,27 @@
 </tr>
 <tr class="row-odd"><td>drcutil-build-32</td>
 <td>ビルド（32ビット環境）</td>
-<td>dockerコンテナで実行</td>
+<td>dockerコンテナ上で実行</td>
 </tr>
 <tr class="row-even"><td>drcutil-build-64</td>
 <td>ビルド（64ビット環境）、単体テスト、静的解析</td>
-<td>dockerコンテナで実行</td>
+<td>dockerコンテナ上で実行</td>
 </tr>
 <tr class="row-odd"><td>drcutil-task-balancebeam</td>
 <td>タスクシーケンス（平均台歩行）</td>
-<td>GUI有り環境で実行</td>
+<td>デスクトップ環境で実行</td>
 </tr>
 <tr class="row-even"><td>drcutil-task-terrain</td>
 <td>タスクシーケンス（不整地歩行）</td>
-<td>GUI有り環境で実行</td>
+<td>デスクトップ環境で実行</td>
 </tr>
 <tr class="row-odd"><td>drcutil-task-valve</td>
 <td>タスクシーケンス（バルブ回し）</td>
-<td>GUI有り環境で実行</td>
+<td>デスクトップ環境で実行</td>
 </tr>
 <tr class="row-even"><td>drcutil-task-wall</td>
 <td>タスクシーケンス（壁開け）</td>
-<td>GUI有り環境で実行</td>
+<td>デスクトップ環境で実行</td>
 </tr>
 <tr class="row-odd"><td>report</td>
 <td>レポートアップロード</td>
@@ -211,64 +211,78 @@ $ <span class="nb">cd</span> buildfarm
 </ul>
 <table border="1" class="docutils">
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">パラメータ名</th>
 <th class="head">説明</th>
-<th class="head">例</th>
+<th class="head">例（デフォルト値）</th>
+<th class="head">備考</th>
 </tr>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>jobname</td>
 <td>ジョブ名</td>
-<td>drcutil-task-valve</td>
+<td>debug</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-odd"><td>repository</td>
 <td>リポジトリ</td>
 <td><a class="reference external" href="https://github.com/jenkinshrg/drcutil.git">https://github.com/jenkinshrg/drcutil.git</a></td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-even"><td>directory</td>
 <td>ディレクトリ</td>
 <td>drcutil</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-odd"><td>branch</td>
 <td>ブランチ</td>
 <td>jenkins</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-even"><td>node</td>
 <td>実行ノード</td>
 <td>slave</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-odd"><td>os</td>
-<td>OS種別</td>
+<td>OS種別(ubuntu/debian)</td>
 <td>ubuntu</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-even"><td>distro</td>
-<td>ディストリビューション</td>
+<td>ディストリビューション(trusty/wheezy)</td>
 <td>trusty</td>
+<td>debootstrapで指定可能なもの</td>
 </tr>
 <tr class="row-odd"><td>arch</td>
-<td>アーキテクチャ</td>
+<td>アーキテクチャ(amd64/i386)</td>
 <td>amd64</td>
+<td>debootstrapで指定可能なもの</td>
 </tr>
 <tr class="row-even"><td>triiger</td>
-<td>実行トリガ</td>
-<td>periodic</td>
+<td>実行トリガ(none/scm/upstream/periodic)</td>
+<td>none</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-odd"><td>func</td>
-<td>テスト種別</td>
-<td>task</td>
+<td>テスト種別(all/build/task)</td>
+<td>all</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-even"><td>test</td>
-<td>対象テスト</td>
-<td>valve</td>
+<td>対象テスト(all/balancebeam/terrain/valve/wall)</td>
+<td>all</td>
+<td>&nbsp;</td>
 </tr>
 <tr class="row-odd"><td>url</td>
 <td>マスターサーバーURL</td>
 <td><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></td>
+<td>&nbsp;</td>
 </tr>
 </tbody>
 </table>
