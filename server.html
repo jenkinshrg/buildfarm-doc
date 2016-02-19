@@ -451,11 +451,6 @@ $ <span class="nb">cd</span> buildfarm
 </div>
 <div class="section" id="id19">
 <h3>スレーブサーバーの追加<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
-<p>スクリプトをcloneしておきます。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
-$ <span class="nb">cd</span> buildfarm
-</pre></div>
-</div>
 <p>Vagrantfileにスレーブの記述を追加します。（以下はUbuntu16.04LTSを追加する場合）</p>
 <div class="highlight-ruby"><div class="highlight"><pre><span></span><span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">define</span> <span class="s2">&quot;ubuntu-xenial-amd64&quot;</span><span class="p">,</span> <span class="ss">autostart</span><span class="p">:</span> <span class="kp">false</span> <span class="k">do</span> <span class="o">|</span><span class="n">server</span><span class="o">|</span>
   <span class="n">server</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">&quot;ubuntu/xenial64&quot;</span>
