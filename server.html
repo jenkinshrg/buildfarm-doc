@@ -168,6 +168,7 @@
 <div class="section" id="id2">
 <h2>サーバー構成<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>現在のサーバー構成は以下の通りです。</p>
+<p>マスターサーバー上でもテストを実行することは可能ですが、設定データや履歴データのバックアップを考慮してマスターサーバーではテストは実行せず、必ずスレーブサーバーでテストを実行する運用が好ましいです。</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="20%" />
@@ -186,19 +187,23 @@
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>master</td>
-<td>マスターサーバー（実行、履歴管理）</td>
+<td>テスト実行管理</td>
 <td>jenkinshrg.a01.aist.go.jp</td>
 <td>固定</td>
 <td>ラック中段、eth2</td>
 </tr>
 <tr class="row-odd"><td>slave</td>
-<td>スレーブサーバー（テスト実行）</td>
+<td>テスト実行環境</td>
 <td>dhcp</td>
 <td>dhcp</td>
 <td>ラック下段、eth2</td>
 </tr>
 </tbody>
 </table>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">マスターサーバーとスレーブサーバーを同じマシンに同居させることも可能ですが、テスト実行による悪影響が発生する場合があるため別マシンにすることを推奨します。</p>
+</div>
 </div>
 <div class="section" id="id3">
 <h2>事前準備<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
@@ -207,10 +212,6 @@
 <p>インターネット接続が可能なマシンを設置して下さい。</p>
 <p>マスターサーバーは特にハードウェア要件はありませんが、サイズの大きなログを長期間保存する場合は大きめのハードディスクを用意して下さい。</p>
 <p>スレーブサーバーはテストの実行に必要なハードウェア要件（GPUなど）にあったものを用意して下さい。</p>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">マスターサーバーとスレーブサーバーを同じマシンに同居させることも可能ですが、テスト実行による悪影響が発生する場合があるため別マシンにすることを推奨します。</p>
-</div>
 </div>
 <div class="section" id="os">
 <h3>OSインストール<a class="headerlink" href="#os" title="Permalink to this headline">¶</a></h3>
