@@ -216,6 +216,14 @@ http://jenkinshrg.a01.aist.go.jp
 
   $ ./scripts/deletenode.sh <nodename> <url>
 
+* パラメータの説明
+
+.. csv-table::
+  :header: パラメータ名, 説明, 例（デフォルト値）, 備考
+
+  nodename, ノード名, slave,
+  url, マスターサーバーURL, http://jenkinshrg.a01.aist.go.jp,
+
 ブラウザでスレーブサーバーが削除されたことを確認して下さい。
 
 http://jenkinshrg.a01.aist.go.jp
