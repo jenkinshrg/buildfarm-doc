@@ -10,8 +10,8 @@
   :header: ホスト名, 用途, DNS名, IPアドレス, 備考
   :widths: 5, 5, 5, 5, 5
 
-  master, テスト実行管理, 固定, 固定, ラック中段、core i5、mem 16GB、eth2使用、外付けUSB-HDD(5TB)追加
-  slave, テスト実行環境, dhcp, dhcp, ラック下段、core i5、mem 16GB、eth2使用
+  master, テスト実行管理, 固定, 固定, ラック中段、core i5、mem 15GB、eth2使用、HDD 150GB、外付けUSB-HDD(5TB)追加
+  slave, テスト実行環境, dhcp, dhcp, ラック下段、core i5、mem 15GB、eth2使用、HDD 150GB
 
 .. warning::
 
