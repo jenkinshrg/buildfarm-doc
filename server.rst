@@ -7,6 +7,12 @@
 サーバー構成
 ============
 
+.. csv-table::
+  :header: サーバー, 用途, 備考
+  :widths: 5, 5, 5
+
+  master, マスターサーバー（実行、履歴管理）, jenkinshrg.a01.aist.go.jp, 150.29.145.15, ラック中段のeth2
+  slave, スレーブサーバー（テスト実行）, dhcp, dhcp, ラック下段のeth2
 
 事前準備
 ========
