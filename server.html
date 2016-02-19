@@ -206,25 +206,27 @@
 <p>インターネット接続が可能なマシンを設置して下さい。</p>
 <p>マスターサーバーは特にハードウェア要件はありませんが、サイズの大きなログを長期間保存する場合は大きめのハードディスクを用意して下さい。</p>
 <p>スレーブサーバーはテストの実行に必要なハードウェア要件（GPUなど）にあったものを用意して下さい。</p>
-<p>マスターサーバーとスレーブサーバーを同じマシンに同居させることも可能ですが、テスト実行による悪影響が発生する場合があるため別マシンにすることを推奨します。</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">マスターサーバーとスレーブサーバーを同じマシンに同居させることも可能ですが、テスト実行による悪影響が発生する場合があるため別マシンにすることを推奨します。</p>
+</div>
 </div>
 <div class="section" id="os">
 <h3>OSインストール<a class="headerlink" href="#os" title="Permalink to this headline">¶</a></h3>
-<p>OSはテストの実行に必要なソフトウェア要件にあったものを用意して下さい。（Ubuntu 14.04 LTSで動作確認済みです）</p>
+<p>OSはテストの実行に必要なソフトウェア要件にあったものを用意して下さい。（Ubuntu 14.04 LTS Desktopで動作確認済みです）</p>
 <p>ハードウェアに依存しないテストの場合はvirtualbox等の仮想マシンを利用して1つのスレーブサーバーで異なるOS環境でのテスト実行が可能です。（テスト内容によっては正常動作しない場合があります）</p>
 <p>カーネルに依存しないテストの場合はdocker等のlinuxコンテナを利用して1つのスレーブサーバーで異なるOS環境でのテスト実行が可能です。（テスト内容によっては正常動作しない場合があります）</p>
-<p>ホスト名、ユーザー名は任意で設定して下さい。</p>
-<p>設置場所の環境に合わせてネットワーク設定を行って下さい。</p>
-<p>セキュリティーアップデート、その他必要なソフトウェアがあればインストールを行って下さい。</p>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">GPUなどプロプライエタリなドライバが必要な場合はインストールしてシステム設定にて変更しておきます。</p>
-</div>
+<p>ホスト名は任意で設定して下さい。（以降、master、slaveを設定したものとして説明します）</p>
+<p>ユーザー名は任意で設定して下さい。（以降、jenkinshrgを設定したものとして説明します）</p>
+<p>設置場所の環境に合わせてネットワーク設定を行って下さい。（以降、マスターサーバーは固定IPアドレスでDNSでjenkinshrg.a01.aist.go.jpを設定されているものとして説明します）</p>
+<p>GPUなどプロプライエタリなドライバが必要な場合はインストールしてシステム設定にて変更しておきます。</p>
+<p>以下にNVIDIAドライバのインストール例を示します。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo add-apt-repository -y ppa:xorg-edgers/ppa
 $ sudo apt-get update
 $ sudo apt-get -y install nvidia-current nvidia-settings
 </pre></div>
 </div>
+<p>セキュリティーアップデート、その他必要なソフトウェアがあればインストールを行って下さい。</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">システム設定にて自動ログイン、スクリーンセーバー、画面ロックは解除しておきます。</p>
