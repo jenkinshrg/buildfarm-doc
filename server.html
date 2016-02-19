@@ -111,9 +111,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#id15">リストア</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id16">仮想マシンによるテストサーバーの構築（オプション）</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id17">インストール</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id18">マスターサーバーの起動</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id19">スレーブサーバーの起動</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id20">スレーブサーバーの追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id18">サーバーの起動</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id19">スレーブサーバーの追加</a></li>
 </ul>
 </li>
 </ul>
@@ -421,7 +420,7 @@ $ sudo service jenkins start
 </div>
 <div class="section" id="id16">
 <h2>仮想マシンによるテストサーバーの構築（オプション）<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
-<p>テストサーバーは仮想マシン上に構築することも可能です。</p>
+<p>テストサーバーの開発用などで仮想マシン上に環境を構築することも可能です。（テスト内容によっては正常動作しない場合があります）</p>
 <div class="section" id="id17">
 <h3>インストール<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
 <p>virtualboxがインストールされていない場合はインストールして下さい。</p>
@@ -439,31 +438,19 @@ $ rm vagrant_1.8.1_x86_64.deb
 </div>
 </div>
 <div class="section" id="id18">
-<h3>マスターサーバーの起動<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<h3>サーバーの起動<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
 <p>スクリプトをcloneしておきます。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
 $ <span class="nb">cd</span> buildfarm
 </pre></div>
 </div>
-<p>マスターサーバーを起動します。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ vagrant up master
+<p>サーバーを起動します。（マスターサーバー、スレーブサーバーが起動されます）</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ vagrant up
 </pre></div>
 </div>
 </div>
 <div class="section" id="id19">
-<h3>スレーブサーバーの起動<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
-<p>スクリプトをcloneしておきます。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
-$ <span class="nb">cd</span> buildfarm
-</pre></div>
-</div>
-<p>スレーブサーバーを起動します。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ vagrant up slave
-</pre></div>
-</div>
-</div>
-<div class="section" id="id20">
-<h3>スレーブサーバーの追加<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<h3>スレーブサーバーの追加<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
 <p>スクリプトをcloneしておきます。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
 $ <span class="nb">cd</span> buildfarm
