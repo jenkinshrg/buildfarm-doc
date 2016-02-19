@@ -425,7 +425,19 @@ $ sudo service jenkins start
 <p>マスターサーバー、スレーブサーバーは仮想マシン上に構築することも可能です。</p>
 <div class="section" id="id18">
 <h3>インストール<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
-<p>virtualbox、vagrantがインストールされていない場合はインストールして下さい。</p>
+<p>virtualboxがインストールされていない場合はインストールして下さい。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo sh -c <span class="s2">&quot;echo &#39;deb http://download.virtualbox.org/virtualbox/debian &#39;</span><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2">&#39; contrib&#39; &gt; /etc/apt/sources.list.d/virtualbox.list&quot;</span>
+$ wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- <span class="p">|</span> sudo apt-key add -
+$ sudo apt-get update
+$ sudo apt-get -y install virtualbox-5.0
+</pre></div>
+</div>
+<p>vagrantがインストールされていない場合はインストールして下さい。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ wget -q https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1_x86_64.deb
+$ sudo dpkg -i vagrant_1.8.1_x86_64.deb
+$ rm vagrant_1.8.1_x86_64.deb
+</pre></div>
+</div>
 </div>
 <div class="section" id="id19">
 <h3>マスターサーバーの起動<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>

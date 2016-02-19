@@ -311,7 +311,22 @@ subversionの場合は$HOME/.subversionをマスターサーバーの$JENKINS_HO
 インストール
 ------------
 
-virtualbox、vagrantがインストールされていない場合はインストールして下さい。
+virtualboxがインストールされていない場合はインストールして下さい。
+
+.. code-block:: bash
+
+  $ sudo sh -c "echo 'deb http://download.virtualbox.org/virtualbox/debian '$(lsb_release -cs)' contrib' > /etc/apt/sources.list.d/virtualbox.list"
+  $ wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
+  $ sudo apt-get update
+  $ sudo apt-get -y install virtualbox-5.0
+
+vagrantがインストールされていない場合はインストールして下さい。
+
+.. code-block:: bash
+
+  $ wget -q https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1_x86_64.deb
+  $ sudo dpkg -i vagrant_1.8.1_x86_64.deb
+  $ rm vagrant_1.8.1_x86_64.deb
 
 マスターサーバーの起動
 ----------------------
