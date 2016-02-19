@@ -187,11 +187,7 @@ $ sudo apt-get -y install nvidia-current nvidia-settings
 <h3>インストール<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">他のアプリケーションがポート番号8080を使用していないか確認して下さい。</p>
-</div>
-<p>javaがインストールされていない場合はインストールして下さい。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo apt-get -y install openjdk-7-jdk
-</pre></div>
+<p class="last">他のアプリケーションがポート番号8080と9000を使用していないか確認して下さい。</p>
 </div>
 <p>スクリプトをcloneしておきます。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
@@ -212,12 +208,13 @@ $ <span class="nb">cd</span> buildfarm
 <p>マスターサーバー上でもテストを実行することは可能ですが、設定データや履歴データのバックアップを考慮してマスターサーバーではテストは実行せず、必ずスレーブサーバーでテストを実行する運用が好ましいです。</p>
 <div class="section" id="id6">
 <h3>インストール<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
-<p>javaがインストールされていない場合はインストールして下さい。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo apt-get -y install openjdk-7-jdk
+<p>スクリプトをcloneしておきます。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
+$ <span class="nb">cd</span> buildfarm
 </pre></div>
 </div>
-<p>ユーザーがパスワード無しでsudoできるように設定しておきます。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo sh -c <span class="s1">&#39;echo &quot;jenkinshrg ALL=(ALL) NOPASSWD:ALL&quot; &gt;&gt; /etc/sudoers&#39;</span>
+<p>スレーブサーバーをインストールします。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./setup/slave.sh
 </pre></div>
 </div>
 </div>

@@ -41,13 +41,7 @@
 
 .. warning::
 
-  他のアプリケーションがポート番号8080を使用していないか確認して下さい。
-
-javaがインストールされていない場合はインストールして下さい。
-
-.. code-block:: bash
-
-  $ sudo apt-get -y install openjdk-7-jdk
+  他のアプリケーションがポート番号8080と9000を使用していないか確認して下さい。
 
 スクリプトをcloneしておきます。
 
@@ -76,17 +70,18 @@ http://localhost:8080
 インストール
 ------------
 
-javaがインストールされていない場合はインストールして下さい。
+スクリプトをcloneしておきます。
 
 .. code-block:: bash
 
-  $ sudo apt-get -y install openjdk-7-jdk
-
-ユーザーがパスワード無しでsudoできるように設定しておきます。
+  $ git clone https://github.com/jenkinshrg/buildfarm.git
+  $ cd buildfarm
+  
+スレーブサーバーをインストールします。
 
 .. code-block:: bash
 
-  $ sudo sh -c 'echo "jenkinshrg ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers'
+  $ ./setup/slave.sh
 
 スレーブサーバーの追加
 ----------------------
