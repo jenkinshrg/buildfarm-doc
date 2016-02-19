@@ -109,6 +109,14 @@ OSバージョン追加時
 
   $ ./scripts/deletejob.sh <jobname> <url>
 
+* パラメータの説明
+
+.. csv-table::
+  :header: パラメータ名, 説明, 例（デフォルト値）, 備考
+
+  jobname, ジョブ名, debug,
+  url, マスターサーバーURL, http://jenkinshrg.a01.aist.go.jp,
+
 ブラウザでジョブが削除されたことを確認して下さい。
 
 http://jenkinshrg.a01.aist.go.jp
