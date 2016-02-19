@@ -8,7 +8,7 @@
 ============
 
 .. csv-table::
-  :header: サーバー, 用途, 備考
+  :header: サーバー, 用途, DNS名, IPアドレス, 備考
   :widths: 5, 5, 5
 
   master, マスターサーバー（実行、履歴管理）, jenkinshrg.a01.aist.go.jp, 150.29.145.15, ラック中段のeth2
