@@ -160,20 +160,29 @@
             
   <div class="section" id="id1">
 <h1>テストサーバーの管理<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p>テストサーバーを構築、管理するための手順について説明します。</p>
-<p>テストジョブの実行と履歴管理のためにマスターサーバーが必要となります。</p>
-<p>テストジョブを実行するためにスレーブサーバーが必要となります。</p>
-<p>マスターサーバー上でもテストを実行することは可能ですが、設定データや履歴データのバックアップを考慮してマスターサーバーではテストは実行せず、必ずスレーブサーバーでテストを実行する運用が好ましいです。</p>
+<p>テストサーバーを構築、運用するための手順について説明します。</p>
 <div class="section" id="id2">
 <h2>事前準備<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>インターネット接続が可能なマシンであれば特にハードウェア、ソフトウェア要件はありませんが、サイズの大きなログを長期間保存する場合は大きめのハードディスクを用意して下さい。</p>
-<p>インターネット接続が可能なマシンでテストの実行に必要なハードウェア要件（GPUなど）、ソフトウェア要件（OSなど）にあったものを用意して下さい。</p>
-<p>ビルド等のハードウェアアクセスを伴わないテストの場合は汎用のスレーブサーバーでchrootやdocker等を利用したコンテナ上での実行も可能です。</p>
-<p>マシンスペックによっては、マスターサーバーと同じマシンにスレーブサーバーを同居させることも可能です。</p>
+<p>インターネット接続が可能なマシンを用意して下さい。</p>
+<p>マスターサーバーは特にハードウェア要件はありませんが、サイズの大きなログを長期間保存する場合は大きめのハードディスクを用意して下さい。</p>
+<p>スレーブサーバーはテストの実行に必要なハードウェア要件（GPUなど）、ソフトウェア要件（OSやミドルウェアなど）にあったものを用意して下さい。</p>
+<p>ビルド等のハードウェアに依存しないテストの場合はchrootやdocker等を利用したコンテナ上での実行が可能です。</p>
+<p>マスターサーバーと同じマシンにスレーブサーバーを同居させることも可能です。</p>
 <p>ネットワーク設定、セキュリティーアップデート、その他必要なソフトウェアのインストールなどは事前に行っておいて下さい。</p>
+<p>プロプライエタリなドライバをインストールしてシステム設定にて変更しておきます。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo add-apt-repository -y ppa:xorg-edgers/ppa
+$ sudo apt-get update
+$ sudo apt-get -y install nvidia-current nvidia-settings
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">自動ログイン、スクリーンセーバー、画面ロックは解除しておきます。</p>
+</div>
 </div>
 <div class="section" id="id3">
 <h2>マスターサーバーの構築<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>テストジョブの実行と履歴管理のためにマスターサーバーが必要となります。</p>
 <div class="section" id="id4">
 <h3>インストール<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <div class="admonition warning">
@@ -199,6 +208,8 @@ $ <span class="nb">cd</span> buildfarm
 </div>
 <div class="section" id="id5">
 <h2>スレーブサーバーの構築<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>テストジョブを実行するためにスレーブサーバーが必要となります。</p>
+<p>マスターサーバー上でもテストを実行することは可能ですが、設定データや履歴データのバックアップを考慮してマスターサーバーではテストは実行せず、必ずスレーブサーバーでテストを実行する運用が好ましいです。</p>
 <div class="section" id="id6">
 <h3>インストール<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <p>javaがインストールされていない場合はインストールして下さい。</p>
@@ -208,16 +219,6 @@ $ <span class="nb">cd</span> buildfarm
 <p>ユーザーがパスワード無しでsudoできるように設定しておきます。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo sh -c <span class="s1">&#39;echo &quot;jenkinshrg ALL=(ALL) NOPASSWD:ALL&quot; &gt;&gt; /etc/sudoers&#39;</span>
 </pre></div>
-</div>
-<p>プロプライエタリなドライバをインストールしてシステム設定にて変更しておきます。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo add-apt-repository -y ppa:xorg-edgers/ppa
-$ sudo apt-get update
-$ sudo apt-get -y install nvidia-current nvidia-settings
-</pre></div>
-</div>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">自動ログイン、スクリーンセーバー、画面ロックは解除しておきます。</p>
 </div>
 </div>
 <div class="section" id="id7">
