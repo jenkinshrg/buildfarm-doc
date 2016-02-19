@@ -54,9 +54,9 @@
   directory, ディレクトリ, drcutil,
   branch, ブランチ, jenkins,
   node, 実行ノード, slave,
-  os, OS種別(ubuntu/debian), ubuntu,
-  distro, ディストリビューション(trusty/wheezy), trusty, debootstrapで指定可能なもの
-  arch, アーキテクチャ(amd64/i386), amd64, debootstrapで指定可能なもの
+  os, OS種別(none/ubuntu/debian), none, noneの場合はスレーブサーバーの実環境で実行
+  distro, ディストリビューション(trusty/wheezy), trusty, osがnone以外の場合に指定、debootstrapで指定可能なもの
+  arch, アーキテクチャ(amd64/i386), amd64, osがnone以外の場合に指定、debootstrapで指定可能なもの
   triiger, 実行トリガ(none/scm/upstream/periodic), none,
   func, テスト種別(all/build/task), all,
   test, 対象テスト(all/balancebeam/terrain/valve/wall), all,

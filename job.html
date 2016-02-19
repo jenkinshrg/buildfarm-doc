@@ -250,19 +250,19 @@ $ <span class="nb">cd</span> buildfarm
 <td>&nbsp;</td>
 </tr>
 <tr class="row-odd"><td>os</td>
-<td>OS種別(ubuntu/debian)</td>
-<td>ubuntu</td>
-<td>&nbsp;</td>
+<td>OS種別(none/ubuntu/debian)</td>
+<td>none</td>
+<td>noneの場合はスレーブサーバーの実環境で実行</td>
 </tr>
 <tr class="row-even"><td>distro</td>
 <td>ディストリビューション(trusty/wheezy)</td>
 <td>trusty</td>
-<td>debootstrapで指定可能なもの</td>
+<td>osがnone以外の場合に指定、debootstrapで指定可能なもの</td>
 </tr>
 <tr class="row-odd"><td>arch</td>
 <td>アーキテクチャ(amd64/i386)</td>
 <td>amd64</td>
-<td>debootstrapで指定可能なもの</td>
+<td>osがnone以外の場合に指定、debootstrapで指定可能なもの</td>
 </tr>
 <tr class="row-even"><td>triiger</td>
 <td>実行トリガ(none/scm/upstream/periodic)</td>
