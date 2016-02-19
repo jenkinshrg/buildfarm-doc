@@ -100,14 +100,14 @@
 <li class="toctree-l3"><a class="reference internal" href="#subversion">subversionの設定</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id10">リバースプロキシの設定</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id11">インストール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id10">シャットダウン</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id11">サーバー移設</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id12">バックアップ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id13">リストア</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id14">リバースプロキシの設定（オプション）</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id15">インストール</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id12">シャットダウン</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id13">サーバー移設</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id14">バックアップ</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id15">リストア</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id16">仮想マシンによるテストサーバーの構築（オプション）</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id17">マスターサーバーを仮想マシン上に構築する場合</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id18">スレーブサーバーを仮想マシン上に構築する場合</a></li>
@@ -307,14 +307,42 @@ $ sudo chown -R jenkins:jenkins /home/jenkinshrg/.subversion
 </div>
 </div>
 <div class="section" id="id10">
-<h2>リバースプロキシの設定<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<h2>シャットダウン<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<p>停電時などサーバーを停止させる場合は通常のシャットダウン手順で問題ありません。</p>
+<p>再起動時も自動的にサービスが再開されます。</p>
+</div>
+<div class="section" id="id11">
+<h2>サーバー移設<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<p>サーバーの設置場所を変更するなどでMACアドレス、IPアドレスが変更になっても問題ありません。</p>
+<p>マスターサーバーのDNSホスト名、固定IPアドレスが正しく疎通できるようMACアドレスを再設定して下さい。</p>
+</div>
+<div class="section" id="id12">
+<h2>バックアップ<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<p>テストジョブが実行されていないのを確認して以下の手順を実行して下さい。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo service jenkins stop
+$ sudo tar zcvf jenkins.tar.gz -C /var/lib jenkins
+$ sudo service jenkins start
+</pre></div>
+</div>
+</div>
+<div class="section" id="id13">
+<h2>リストア<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<p>マスターサーバーのインストールを行ったあと以下の手順を実行して下さい。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo service jenkins stop
+$ sudo tar zxvf jenkins.tar.gz -C /var/lib
+$ sudo service jenkins start
+</pre></div>
+</div>
+</div>
+<div class="section" id="id14">
+<h2>リバースプロキシの設定（オプション）<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
 <p>マスターサーバーへリバースプロキシを設定する場合の例を示します。</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">他のアプリケーションがポート番号80を使用していないか確認して下さい。</p>
 </div>
-<div class="section" id="id11">
-<h3>インストール<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id15">
+<h3>インストール<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
 <p>webサーバーをインストールします。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo apt-add-repository -y ppa:nginx/stable
 $ sudo apt-get update
@@ -337,34 +365,6 @@ $ sudo service nginx restart
 </div>
 <p>ブラウザで以下のURLが正しく表示されることを確認して下さい。</p>
 <p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
-</div>
-</div>
-<div class="section" id="id12">
-<h2>シャットダウン<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
-<p>停電時などサーバーを停止させる場合は通常のシャットダウン手順で問題ありません。</p>
-<p>再起動時も自動的にサービスが再開されます。</p>
-</div>
-<div class="section" id="id13">
-<h2>サーバー移設<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
-<p>サーバーの設置場所を変更するなどでMACアドレス、IPアドレスが変更になっても問題ありません。</p>
-<p>マスターサーバーのDNSホスト名、固定IPアドレスが正しく疎通できるようMACアドレスを再設定して下さい。</p>
-</div>
-<div class="section" id="id14">
-<h2>バックアップ<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
-<p>テストジョブが実行されていないのを確認して以下の手順を実行して下さい。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo service jenkins stop
-$ sudo tar zcvf jenkins.tar.gz -C /var/lib jenkins
-$ sudo service jenkins start
-</pre></div>
-</div>
-</div>
-<div class="section" id="id15">
-<h2>リストア<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
-<p>マスターサーバーのインストールを行ったあと以下の手順を実行して下さい。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo service jenkins stop
-$ sudo tar zxvf jenkins.tar.gz -C /var/lib
-$ sudo service jenkins start
-</pre></div>
 </div>
 </div>
 <div class="section" id="id16">
