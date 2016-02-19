@@ -15,7 +15,7 @@
   :header: ホスト名, 用途, DNS名, IPアドレス, 備考
   :widths: 5, 5, 5, 5, 5
 
-  master, テスト実行管理, jenkinshrg.a01.aist.go.jp, 固定, ラック中段、eth2
+  master, テスト実行管理, 固定, 固定, ラック中段、eth2
   slave, テスト実行環境, dhcp, dhcp, ラック下段、eth2
 
 .. warning::
