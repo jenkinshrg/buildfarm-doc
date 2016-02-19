@@ -161,7 +161,15 @@ http://jenkinshrg.a01.aist.go.jp
 
 .. code-block:: bash
 
-  $ ./setup/slave.sh
+  $ ./setup/slave.sh <nodename> <url>
+
+* パラメータの説明
+
+.. csv-table::
+  :header: パラメータ名, 説明, 例（デフォルト値）, 備考
+
+  nodename, ノード名, slave,
+  url, マスターサーバーURL, http://jenkinshrg.a01.aist.go.jp,
 
 スレーブサーバーの追加
 ----------------------
