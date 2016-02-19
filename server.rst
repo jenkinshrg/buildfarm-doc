@@ -250,6 +250,28 @@ http://jenkinshrg.a01.aist.go.jp
 
 マスターサーバーのDNSホスト名、固定IPアドレスが正しく疎通できるようMACアドレスを再設定して下さい。
 
+バックアップ
+============
+
+テストジョブが実行されていないのを確認して以下の手順を実行して下さい。
+
+.. code-block:: bash
+
+  $ sudo service jenkins stop
+  $ sudo tar zcvf jenkins.tar.gz -C /var/lib jenkins
+  $ sudo service jenkins start
+
+リストア
+========
+
+マスターサーバーのインストールを行ったあと以下の手順を実行して下さい。
+
+.. code-block:: bash
+
+  $ sudo service jenkins stop
+  $ sudo tar zxvf jenkins.tar.gz -C /var/lib
+  $ sudo service jenkins start
+
 仮想マシンによるテストサーバーの構築（オプション）
 =================================================
 
