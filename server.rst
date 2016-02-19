@@ -375,7 +375,7 @@ Vagrantfileにスレーブの記述を追加します。（以下はUbuntu16.04L
 .. code-block:: ruby
 
   config.vm.define "ubuntu-xenial-amd64", autostart: false do |server|
-    server.vm.box = "boxcutter/ubuntu1604"
+    server.vm.box = "ubuntu/xenial64"
     server.vm.provision "shell", path: "setup/slave.sh", args: "ubuntu-xenial-amd64 http://jenkinshrg.a01.aist.go.jp", privileged: false
     server.vm.provision "shell", path: "scripts/createnode.sh", args: "ubuntu-xenial-amd64 /home/vagrant http://jenkinshrg.a01.aist.go.jp", privileged: false
   end
