@@ -203,7 +203,7 @@ $ <span class="nb">cd</span> buildfarm
 </pre></div>
 </div>
 <p>マスターサーバーへジョブを登録します。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/createjob.sh &lt;jobname&gt; &lt;repository&gt; &lt;directory&gt; &lt;branch&gt; &lt;node&gt; &lt;os&gt; &lt;distro&gt; &lt;arch&gt; &lt;triiger&gt; &lt;func&gt; &lt;test&gt; &lt;url&gt;
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/createjob.sh &lt;jobname&gt; &lt;node&gt; &lt;os&gt; &lt;distro&gt; &lt;arch&gt; &lt;triiger&gt; &lt;script&gt; <span class="o">[</span>&lt;script_args&gt;<span class="o">]</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -229,59 +229,39 @@ $ <span class="nb">cd</span> buildfarm
 <td>debug</td>
 <td>&nbsp;</td>
 </tr>
-<tr class="row-odd"><td>repository</td>
-<td>リポジトリ</td>
-<td><a class="reference external" href="https://github.com/jenkinshrg/drcutil.git">https://github.com/jenkinshrg/drcutil.git</a></td>
-<td>&nbsp;</td>
-</tr>
-<tr class="row-even"><td>directory</td>
-<td>ディレクトリ</td>
-<td>drcutil</td>
-<td>&nbsp;</td>
-</tr>
-<tr class="row-odd"><td>branch</td>
-<td>ブランチ</td>
-<td>jenkins</td>
-<td>&nbsp;</td>
-</tr>
-<tr class="row-even"><td>node</td>
+<tr class="row-odd"><td>node</td>
 <td>実行ノード</td>
 <td>slave</td>
 <td>&nbsp;</td>
 </tr>
-<tr class="row-odd"><td>os</td>
+<tr class="row-even"><td>os</td>
 <td>OS種別(none/ubuntu/debian)</td>
 <td>none</td>
-<td>noneの場合はスレーブサーバーの実環境で実行</td>
+<td>noneの場合はスレーブサーバーの実環境で実行、none以外の場合はdockerコンテナ上で実行</td>
 </tr>
-<tr class="row-even"><td>distro</td>
+<tr class="row-odd"><td>distro</td>
 <td>ディストリビューション(trusty/wheezy)</td>
 <td>trusty</td>
 <td>osがnone以外の場合に指定、debootstrapで指定可能なもの</td>
 </tr>
-<tr class="row-odd"><td>arch</td>
+<tr class="row-even"><td>arch</td>
 <td>アーキテクチャ(amd64/i386)</td>
 <td>amd64</td>
 <td>osがnone以外の場合に指定、debootstrapで指定可能なもの</td>
 </tr>
-<tr class="row-even"><td>triiger</td>
+<tr class="row-odd"><td>triiger</td>
 <td>実行トリガ(none/scm/upstream/periodic)</td>
 <td>none</td>
 <td>&nbsp;</td>
 </tr>
-<tr class="row-odd"><td>func</td>
-<td>テスト種別(all/build/task)</td>
-<td>all</td>
+<tr class="row-even"><td>script</td>
+<td>実行スクリプト</td>
+<td>&nbsp;</td>
 <td>&nbsp;</td>
 </tr>
-<tr class="row-even"><td>test</td>
-<td>対象テスト(all/balancebeam/terrain/valve/wall)</td>
-<td>all</td>
+<tr class="row-odd"><td>script_args</td>
+<td>スクリプト引数</td>
 <td>&nbsp;</td>
-</tr>
-<tr class="row-odd"><td>url</td>
-<td>マスターサーバーURL</td>
-<td><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></td>
 <td>&nbsp;</td>
 </tr>
 </tbody>
@@ -291,21 +271,21 @@ $ <span class="nb">cd</span> buildfarm
 <div class="section" id="id4">
 <h3>タスクシーケンス追加時<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p>実行するタスクシーケンスを追加したい場合はtestに任意のタスクを指定してジョブを追加して下さい。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/createjob.sh &lt;jobname&gt; &lt;repository&gt; &lt;directory&gt; &lt;branch&gt; &lt;node&gt; &lt;os&gt; &lt;distro&gt; &lt;arch&gt; &lt;triiger&gt; &lt;func&gt; &lt;test&gt; &lt;url&gt;
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/createjob.sh &lt;jobname&gt; &lt;node&gt; &lt;os&gt; &lt;distro&gt; &lt;arch&gt; &lt;triiger&gt; &lt;script&gt; <span class="o">[</span>&lt;script_args&gt;<span class="o">]</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="os">
 <h3>OSバージョン追加時<a class="headerlink" href="#os" title="Permalink to this headline">¶</a></h3>
 <p>実行するOSバージョンを追加したい場合はos、distro、archに任意のバージョンを指定してジョブを追加して下さい。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/createjob.sh &lt;jobname&gt; &lt;repository&gt; &lt;directory&gt; &lt;branch&gt; &lt;node&gt; &lt;os&gt; &lt;distro&gt; &lt;arch&gt; &lt;triiger&gt; &lt;func&gt; &lt;test&gt; &lt;url&gt;
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/createjob.sh &lt;jobname&gt; &lt;node&gt; &lt;os&gt; &lt;distro&gt; &lt;arch&gt; &lt;triiger&gt; &lt;script&gt; <span class="o">[</span>&lt;script_args&gt;<span class="o">]</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id5">
 <h3>スレーブ追加時<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <p>実行するスレーブサーバーを追加したい場合はノード名を指定してジョブを追加して下さい。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/createjob.sh &lt;jobname&gt; &lt;repository&gt; &lt;directory&gt; &lt;branch&gt; &lt;node&gt; &lt;os&gt; &lt;distro&gt; &lt;arch&gt; &lt;triiger&gt; &lt;func&gt; &lt;test&gt; &lt;url&gt;
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/createjob.sh &lt;jobname&gt; &lt;node&gt; &lt;os&gt; &lt;distro&gt; &lt;arch&gt; &lt;triiger&gt; &lt;script&gt; <span class="o">[</span>&lt;script_args&gt;<span class="o">]</span>
 </pre></div>
 </div>
 </div>
@@ -318,7 +298,7 @@ $ <span class="nb">cd</span> buildfarm
 </pre></div>
 </div>
 <p>マスターサーバーからジョブを削除します。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/deletejob.sh &lt;jobname&gt; &lt;url&gt;
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/deletejob.sh &lt;jobname&gt;
 </pre></div>
 </div>
 <ul class="simple">
@@ -342,11 +322,6 @@ $ <span class="nb">cd</span> buildfarm
 <tr class="row-even"><td>jobname</td>
 <td>ジョブ名</td>
 <td>debug</td>
-<td>&nbsp;</td>
-</tr>
-<tr class="row-odd"><td>url</td>
-<td>マスターサーバーURL</td>
-<td><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></td>
 <td>&nbsp;</td>
 </tr>
 </tbody>
