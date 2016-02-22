@@ -42,7 +42,7 @@
 
 .. code-block:: bash
 
-  $ ./scripts/createjob.sh <jobname> <repository> <directory> <branch> <node> <os> <distro> <arch> <triiger> <func> <test> <url>
+  $ ./scripts/createjob.sh <jobname> <node> <os> <distro> <arch> <triiger> <script> [<script_args>]
 
 * パラメータの説明
 
@@ -50,17 +50,13 @@
   :header: パラメータ名, 説明, 例（デフォルト値）, 備考
 
   jobname, ジョブ名, debug,
-  repository, リポジトリ, https://github.com/jenkinshrg/drcutil.git,
-  directory, ディレクトリ, drcutil,
-  branch, ブランチ, jenkins,
   node, 実行ノード, slave,
-  os, OS種別(none/ubuntu/debian), none, noneの場合はスレーブサーバーの実環境で実行
+  os, OS種別(none/ubuntu/debian), none, noneの場合はスレーブサーバーの実環境で実行、none以外の場合はdockerコンテナ上で実行
   distro, ディストリビューション(trusty/wheezy), trusty, osがnone以外の場合に指定、debootstrapで指定可能なもの
   arch, アーキテクチャ(amd64/i386), amd64, osがnone以外の場合に指定、debootstrapで指定可能なもの
   triiger, 実行トリガ(none/scm/upstream/periodic), none,
-  func, テスト種別(all/build/task), all,
-  test, 対象テスト(all/balancebeam/terrain/valve/wall), all,
-  url, マスターサーバーURL, http://jenkinshrg.a01.aist.go.jp,
+  script, 実行スクリプト, ,
+  script_args, スクリプト引数, ,
 
 ブラウザでジョブが登録されたことを確認して下さい。
 
@@ -73,7 +69,7 @@ http://jenkinshrg.a01.aist.go.jp
 
 .. code-block:: bash
 
-  $ ./scripts/createjob.sh <jobname> <repository> <directory> <branch> <node> <os> <distro> <arch> <triiger> <func> <test> <url>
+  $ ./scripts/createjob.sh <jobname> <node> <os> <distro> <arch> <triiger> <script> [<script_args>]
 
 OSバージョン追加時
 ------------------
@@ -82,7 +78,7 @@ OSバージョン追加時
 
 .. code-block:: bash
 
-  $ ./scripts/createjob.sh <jobname> <repository> <directory> <branch> <node> <os> <distro> <arch> <triiger> <func> <test> <url>
+  $ ./scripts/createjob.sh <jobname> <node> <os> <distro> <arch> <triiger> <script> [<script_args>]
 
 スレーブ追加時
 ------------------
@@ -91,7 +87,7 @@ OSバージョン追加時
 
 .. code-block:: bash
 
-  $ ./scripts/createjob.sh <jobname> <repository> <directory> <branch> <node> <os> <distro> <arch> <triiger> <func> <test> <url>
+  $ ./scripts/createjob.sh <jobname> <node> <os> <distro> <arch> <triiger> <script> [<script_args>]
 
 ジョブの削除
 ============
@@ -107,7 +103,7 @@ OSバージョン追加時
 
 .. code-block:: bash
 
-  $ ./scripts/deletejob.sh <jobname> <url>
+  $ ./scripts/deletejob.sh <jobname>
 
 * パラメータの説明
 
@@ -115,7 +111,6 @@ OSバージョン追加時
   :header: パラメータ名, 説明, 例（デフォルト値）, 備考
 
   jobname, ジョブ名, debug,
-  url, マスターサーバーURL, http://jenkinshrg.a01.aist.go.jp,
 
 ブラウザでジョブが削除されたことを確認して下さい。
 
