@@ -231,57 +231,69 @@ http://jenkinshrg.a01.aist.go.jp
 認証情報の設定
 ==============
 
-テストジョブでは対話形式のコマンドは実行できないため、認証情報が必要な外部サーバーへアクセスを行う場合は事前に以下の設定が必要となります。
+テストジョブでは対話形式のコマンドは実行できないため、認証情報が必要な外部サーバーへアクセスを行う場合は事前に以下の設定が必要となります。（セキュリティー面を考慮して認証情報を設定ファイルやスクリプトに保存しないで下さい）
 
 マスターサーバー、スレーブサーバー全てに対してそれぞれ設定を行って下さい。
 
-セキュリティー面を考慮して認証情報を設定ファイルやスクリプトに保存しないで下さい。
+gitの設定(http経由）
+--------------------
 
-gitの設定
----------
+http経由でアクセスする場合は$HOME/.netrcを作成します。
 
-http経由でアクセスする場合は$HOME/.netrcをマスターサーバーの$JENKINS_HOMEとスレーブサーバーの$HOMEへ格納しておきます。
+.. code-block:: bash
+
+  $ cat << EOL | tee $HOME/.netrc
+  machine github.com
+  login <username>
+  password <password>
+  
+  machine choreonoid.org
+  login <username>
+  password <password>
+  EOL
+
+スレーブサーバーの$HOME/.netrcをマスターサーバーの$JENKINS_HOME（/var/lib/jenkins）へコピーします。
 
 .. code-block:: bash
 
   $ sudo cp $HOME/.netrc /var/lib/jenkins
   $ sudo chown jenkins:jenkins /var/lib/jenkins/.netrc
 
+gitの設定(ssh経由）
+-------------------
+
+ssh経由でアクセスする場合は$HOME/.ssh/configを作成します。
+
 .. code-block:: bash
 
-  $ sudo cp $HOME/.netrc /home/jenkinshrg
-  $ sudo chown jenkins:jenkins /home/jenkinshrg/.netrc
+  $ cat << EOL | tee $HOME/.ssh/config
+  Host atom.a01.aist.go.jp
+  HostName atom.a01.aist.go.jp
+  User <username>
+  IdentityFile ~/.ssh/id_rsa
+  StrictHostKeyChecking no
+  EOL
 
-ssh経由でアクセスする場合は$HOME/.sshをマスターサーバーの$JENKINS_HOMEとスレーブサーバーの$HOMEへ格納しておきます。
+公開鍵を作成して登録します。
+
+.. code-block:: bash
+
+  $ ssh-keygen -N "" -f ${HOME}/.ssh/id_rsa
+  $ ssh-copy-id <username>@atom.a01.aist.go.jp
+
+スレーブサーバーの$HOME/.sshをマスターサーバーの$JENKINS_HOME（/var/lib/jenkins）へコピーします。
 
 .. code-block:: bash
 
   $ sudo cp -r $HOME/.ssh /var/lib/jenkins
   $ sudo chown -R jenkins:jenkins /var/lib/jenkins/.ssh
+
+公開鍵を作成して登録します。
+
+.. code-block:: bash
+
   $ sudo -u jenkins ssh-keygen -N "" -f /var/lib/jenkins/.ssh/id_rsa
-  $ sudo -i -u jenkins ssh-copy-id jenkinshrg@atom.a01.aist.go.jp
-
-.. code-block:: bash
-
-  $ sudo cp -r $HOME/.ssh /home/jenkinshrg
-  $ sudo chown -R jenkins:jenkins /home/jenkinshrg/.ssh
-  $ ssh-keygen -N "" -f ${HOME}/.ssh/id_rsa
-  $ ssh-copy-id jenkinshrg@atom.a01.aist.go.jp
-
-subversionの設定
-----------------
-
-subversionの場合は$HOME/.subversionをマスターサーバーの$JENKINS_HOMEとスレーブサーバーの$HOMEへ格納しておきます。
-
-.. code-block:: bash
-
-  $ sudo cp -r $HOME/.subversion /var/lib/jenkins
-  $ sudo chown -R jenkins:jenkins /var/lib/jenkins/.subversion
-
-.. code-block:: bash
-
-  $ sudo cp -r $HOME/.subversion /home/jenkinshrg
-  $ sudo chown -R jenkins:jenkins /home/jenkinshrg/.subversion
+  $ sudo -i -u jenkins ssh-copy-id <username>@atom.a01.aist.go.jp
 
 メンテナンス
 ============
