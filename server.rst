@@ -291,7 +291,7 @@ subversionの場合は$HOME/.subversionをマスターサーバーの$JENKINS_HO
   $ sudo cp -r $HOME/.subversion /home/jenkinshrg
   $ sudo chown -R jenkins:jenkins /home/jenkinshrg/.subversion
 
-運用時の手順
+メンテナンス
 ============
 
 アップデート
