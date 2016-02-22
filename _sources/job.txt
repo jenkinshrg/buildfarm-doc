@@ -32,7 +32,7 @@ http://jenkinshrg.a01.aist.go.jp
 テストスクリプトの作成
 ----------------------
 
-以下のURLへ実行したいスクリプトを配置して下さい。
+以下のURLへ実行したいスクリプトを作成して配置して下さい。
 
 https://github.com/jenkinshrg/drcutil/tree/jenkins
 
@@ -66,7 +66,7 @@ https://github.com/jenkinshrg/drcutil/tree/jenkins
   script, 実行スクリプト, ,
   script_args, スクリプト引数, ,
 
-ブラウザでジョブが登録されたことを確認して下さい。
+以下のURLへブラウザで接続してジョブが登録されたことを確認して下さい。
 
 http://jenkinshrg.a01.aist.go.jp
 
@@ -120,6 +120,6 @@ OSバージョン追加時
 
   jobname, ジョブ名, debug,
 
-ブラウザでジョブが削除されたことを確認して下さい。
+以下のURLへブラウザで接続してジョブが削除されたことを確認して下さい。
 
 http://jenkinshrg.a01.aist.go.jp
