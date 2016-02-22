@@ -161,7 +161,7 @@ http://jenkinshrg.a01.aist.go.jp
 
 .. code-block:: bash
 
-  $ ./setup/slave.sh <nodename> <url>
+  $ ./setup/slave.sh <nodename>
 
 * パラメータの説明
 
@@ -169,7 +169,6 @@ http://jenkinshrg.a01.aist.go.jp
   :header: パラメータ名, 説明, 例（デフォルト値）, 備考
 
   nodename, ノード名, slave,
-  url, マスターサーバーURL, http://jenkinshrg.a01.aist.go.jp,
 
 スレーブサーバーの追加
 ----------------------
@@ -191,7 +190,7 @@ http://jenkinshrg.a01.aist.go.jp
 
 .. code-block:: bash
 
-  $ ./scripts/createnode.sh <nodename> <workspace> <url>
+  $ ./scripts/createnode.sh <nodename>
 
 * パラメータの説明
 
@@ -199,7 +198,6 @@ http://jenkinshrg.a01.aist.go.jp
   :header: パラメータ名, 説明, 例（デフォルト値）, 備考
 
   nodename, ノード名, slave,
-  workspace, ワークスペース, $HOME,
 
 ブラウザでスレーブサーバーが接続されたことを確認して下さい。
 
