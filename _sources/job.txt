@@ -58,7 +58,7 @@ https://github.com/jenkinshrg/drcutil/tree/jenkins
   :header: パラメータ名, 説明, 備考
 
   jobname, ジョブ名,
-  template, ジョブ設定テンプレート(none/scm/upstream/periodic), none:drcutil-upload用、scm:drcutil用、upstream:drcutil-build-*用、periodic:drcutil-task-*用
+  template, ジョブ設定テンプレート(none/scm/upstream/periodic),　none:drcutil-upload用、scm:drcutil用、upstream:drcutil-build-*用、periodic:drcutil-task-*用
   node, 実行ノード,
   os, OS種別(none/ubuntu/debian), noneの場合はスレーブサーバーの実環境で実行、none以外の場合はdockerコンテナ上で実行
   distro, ディストリビューション(trusty/wheezy), osがnone以外の場合に指定、debootstrapで指定可能なもの
