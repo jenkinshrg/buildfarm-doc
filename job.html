@@ -91,11 +91,10 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#id5">ジョブの追加</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id10">タスクシーケンス追加時</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#os">OSバージョン追加時</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id11">スレーブ追加時</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#os">ビルドOSバージョン追加時</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id12">ジョブの削除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id11">ジョブの削除</a></li>
 </ul>
 </li>
 </ul>
@@ -165,27 +164,27 @@
 </tr>
 <tr class="row-odd"><td>drcutil-build-32</td>
 <td>ビルド（32ビット環境）</td>
-<td>dockerコンテナ上で実行</td>
+<td>dockerコンテナ上のOSで実行</td>
 </tr>
 <tr class="row-even"><td>drcutil-build-64</td>
 <td>ビルド（64ビット環境）、単体テスト、静的解析</td>
-<td>dockerコンテナ上で実行</td>
+<td>dockerコンテナ上のOSで実行</td>
 </tr>
 <tr class="row-odd"><td>drcutil-task-balancebeam</td>
 <td>タスクシーケンス（平均台歩行）</td>
-<td>デスクトップ環境で実行、並列実行不可</td>
+<td>デスクトップ環境で実行</td>
 </tr>
 <tr class="row-even"><td>drcutil-task-terrain</td>
 <td>タスクシーケンス（不整地歩行）</td>
-<td>デスクトップ環境で実行、並列実行不可</td>
+<td>デスクトップ環境で実行</td>
 </tr>
 <tr class="row-odd"><td>drcutil-task-valve</td>
 <td>タスクシーケンス（バルブ回し）</td>
-<td>デスクトップ環境で実行、並列実行不可</td>
+<td>デスクトップ環境で実行</td>
 </tr>
 <tr class="row-even"><td>drcutil-task-wall</td>
 <td>タスクシーケンス（壁開け）</td>
-<td>デスクトップ環境で実行、並列実行不可</td>
+<td>デスクトップ環境で実行</td>
 </tr>
 <tr class="row-odd"><td>drcutil-upload</td>
 <td>レポートアップロード</td>
@@ -214,7 +213,7 @@ $ <span class="nb">cd</span> buildfarm
 </pre></div>
 </div>
 <p>マスターサーバーへジョブを登録します。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/createjob.sh &lt;jobname&gt; &lt;node&gt; &lt;os&gt; &lt;distro&gt; &lt;arch&gt; &lt;triiger&gt; &lt;script&gt; <span class="o">[</span>&lt;script_args&gt;<span class="o">]</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/createjob.sh &lt;jobname&gt; &lt;template&gt; &lt;nodename&gt; &lt;os&gt; &lt;distro&gt; &lt;arch&gt; &lt;script&gt; <span class="o">[</span>&lt;script_args&gt;<span class="o">]</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -242,12 +241,12 @@ $ <span class="nb">cd</span> buildfarm
 <td>none:drcutil-upload用、scm:drcutil用、upstream:drcutil-build-<a href="#id6"><span class="problematic" id="id7">*</span></a>用、periodic:drcutil-task-<a href="#id8"><span class="problematic" id="id9">*</span></a>用</td>
 </tr>
 <tr class="row-even"><td>node</td>
-<td>実行ノード</td>
+<td>実行ノード名</td>
 <td>&nbsp;</td>
 </tr>
 <tr class="row-odd"><td>os</td>
-<td>OS種別(none/ubuntu/debian)</td>
-<td>noneの場合はスレーブサーバーの実OS環境で実行、none以外の場合はdockerコンテナ上のOS環境で実行</td>
+<td>実行OS(none/ubuntu/debian)</td>
+<td>noneの場合はスレーブサーバーの実OSで実行、none以外の場合はdockerコンテナ上のOSで実行</td>
 </tr>
 <tr class="row-even"><td>distro</td>
 <td>ディストリビューション(trusty/wheezy)</td>
@@ -272,27 +271,20 @@ $ <span class="nb">cd</span> buildfarm
 <div class="section" id="id10">
 <h3>タスクシーケンス追加時<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
 <p>実行するタスクシーケンスを追加したい場合はtestに任意のタスクを指定してジョブを追加して下さい。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/createjob.sh &lt;jobname&gt; &lt;node&gt; &lt;os&gt; &lt;distro&gt; &lt;arch&gt; &lt;triiger&gt; &lt;script&gt; <span class="o">[</span>&lt;script_args&gt;<span class="o">]</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/createjob.sh &lt;jobname&gt; periodic &lt;nodename&gt; none none none .jenkins.sh task &lt;taskname&gt;
 </pre></div>
 </div>
 </div>
 <div class="section" id="os">
-<h3>OSバージョン追加時<a class="headerlink" href="#os" title="Permalink to this headline">¶</a></h3>
-<p>実行するOSバージョンを追加したい場合はos、distro、archに任意のバージョンを指定してジョブを追加して下さい。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/createjob.sh &lt;jobname&gt; &lt;node&gt; &lt;os&gt; &lt;distro&gt; &lt;arch&gt; &lt;triiger&gt; &lt;script&gt; <span class="o">[</span>&lt;script_args&gt;<span class="o">]</span>
+<h3>ビルドOSバージョン追加時<a class="headerlink" href="#os" title="Permalink to this headline">¶</a></h3>
+<p>ビルドを実行するOSバージョンを追加したい場合はos、distro、archに任意のバージョンを指定してジョブを追加して下さい。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/createjob.sh &lt;jobname&gt; upstream &lt;nodename&gt; ubuntu xenial amd64 .jenkins.sh build
 </pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="id11">
-<h3>スレーブ追加時<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
-<p>実行するスレーブサーバーを追加したい場合はノード名を指定してジョブを追加して下さい。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/createjob.sh &lt;jobname&gt; &lt;node&gt; &lt;os&gt; &lt;distro&gt; &lt;arch&gt; &lt;triiger&gt; &lt;script&gt; <span class="o">[</span>&lt;script_args&gt;<span class="o">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="id12">
-<h2>ジョブの削除<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<h2>ジョブの削除<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
 <p>スクリプトをcloneしておきます。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
 $ <span class="nb">cd</span> buildfarm

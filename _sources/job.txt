@@ -11,12 +11,12 @@
   :widths: 5, 5, 5
 
   drcutil, リポジトリ変更監視,
-  drcutil-build-32, ビルド（32ビット環境）, dockerコンテナ上で実行
-  drcutil-build-64, ビルド（64ビット環境）、単体テスト、静的解析, dockerコンテナ上で実行
-  drcutil-task-balancebeam, タスクシーケンス（平均台歩行）, デスクトップ環境で実行、並列実行不可
-  drcutil-task-terrain, タスクシーケンス（不整地歩行）, デスクトップ環境で実行、並列実行不可
-  drcutil-task-valve, タスクシーケンス（バルブ回し）, デスクトップ環境で実行、並列実行不可
-  drcutil-task-wall, タスクシーケンス（壁開け）, デスクトップ環境で実行、並列実行不可
+  drcutil-build-32, ビルド（32ビット環境）, dockerコンテナ上のOSで実行
+  drcutil-build-64, ビルド（64ビット環境）、単体テスト、静的解析, dockerコンテナ上のOSで実行
+  drcutil-task-balancebeam, タスクシーケンス（平均台歩行）, デスクトップ環境で実行
+  drcutil-task-terrain, タスクシーケンス（不整地歩行）, デスクトップ環境で実行
+  drcutil-task-valve, タスクシーケンス（バルブ回し）, デスクトップ環境で実行
+  drcutil-task-wall, タスクシーケンス（壁開け）, デスクトップ環境で実行
   drcutil-upload, レポートアップロード,
 
 事前準備
@@ -50,7 +50,7 @@ https://github.com/jenkinshrg/drcutil/tree/jenkins
 
 .. code-block:: bash
 
-  $ ./scripts/createjob.sh <jobname> <node> <os> <distro> <arch> <triiger> <script> [<script_args>]
+  $ ./scripts/createjob.sh <jobname> <template> <nodename> <os> <distro> <arch> <script> [<script_args>]
 
 * パラメータの説明
 
@@ -59,8 +59,8 @@ https://github.com/jenkinshrg/drcutil/tree/jenkins
 
   jobname, ジョブ名,
   template, ジョブ設定テンプレート(none/scm/upstream/periodic), none:drcutil-upload用、scm:drcutil用、upstream:drcutil-build-*用、periodic:drcutil-task-*用
-  node, 実行ノード,
-  os, OS種別(none/ubuntu/debian), noneの場合はスレーブサーバーの実OS環境で実行、none以外の場合はdockerコンテナ上のOS環境で実行
+  node, 実行ノード名,
+  os, 実行OS(none/ubuntu/debian), noneの場合はスレーブサーバーの実OSで実行、none以外の場合はdockerコンテナ上のOSで実行
   distro, ディストリビューション(trusty/wheezy), osがnone以外の場合に有効、debootstrapで指定可能なもの
   arch, アーキテクチャ(amd64/i386), osがnone以外の場合に有効、debootstrapで指定可能なもの
   script, 実行スクリプト,
@@ -77,26 +77,17 @@ http://jenkinshrg.a01.aist.go.jp
 
 .. code-block:: bash
 
-  $ ./scripts/createjob.sh <jobname> <node> <os> <distro> <arch> <triiger> <script> [<script_args>]
+  $ ./scripts/createjob.sh <jobname> periodic <nodename> none none none .jenkins.sh task <taskname>
 
-OSバージョン追加時
-------------------
+ビルドOSバージョン追加時
+------------------------
 
-実行するOSバージョンを追加したい場合はos、distro、archに任意のバージョンを指定してジョブを追加して下さい。
-
-.. code-block:: bash
-
-  $ ./scripts/createjob.sh <jobname> <node> <os> <distro> <arch> <triiger> <script> [<script_args>]
-
-スレーブ追加時
-------------------
-
-実行するスレーブサーバーを追加したい場合はノード名を指定してジョブを追加して下さい。
+ビルドを実行するOSバージョンを追加したい場合はos、distro、archに任意のバージョンを指定してジョブを追加して下さい。
 
 .. code-block:: bash
 
-  $ ./scripts/createjob.sh <jobname> <node> <os> <distro> <arch> <triiger> <script> [<script_args>]
-
+  $ ./scripts/createjob.sh <jobname> upstream <nodename> ubuntu xenial amd64 .jenkins.sh build
+  
 ジョブの削除
 ============
 
