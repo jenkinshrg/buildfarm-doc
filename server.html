@@ -101,8 +101,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#id11">認証情報の設定</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#git">gitの設定</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#subversion">subversionの設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#git-http">gitの設定(http経由）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#git-ssh">gitの設定(ssh経由）</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#id12">メンテナンス</a><ul>
@@ -414,43 +414,53 @@ $ <span class="nb">cd</span> buildfarm
 </div>
 <div class="section" id="id11">
 <h2>認証情報の設定<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
-<p>テストジョブでは対話形式のコマンドは実行できないため、認証情報が必要な外部サーバーへアクセスを行う場合は事前に以下の設定が必要となります。</p>
+<p>テストジョブでは対話形式のコマンドは実行できないため、認証情報が必要な外部サーバーへアクセスを行う場合は事前に以下の設定が必要となります。（セキュリティー面を考慮して認証情報を設定ファイルやスクリプトに保存しないで下さい）</p>
 <p>マスターサーバー、スレーブサーバー全てに対してそれぞれ設定を行って下さい。</p>
-<p>セキュリティー面を考慮して認証情報を設定ファイルやスクリプトに保存しないで下さい。</p>
-<div class="section" id="git">
-<h3>gitの設定<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h3>
-<p>http経由でアクセスする場合は$HOME/.netrcをマスターサーバーの$JENKINS_HOMEとスレーブサーバーの$HOMEへ格納しておきます。</p>
+<div class="section" id="git-http">
+<h3>gitの設定(http経由）<a class="headerlink" href="#git-http" title="Permalink to this headline">¶</a></h3>
+<p>http経由でアクセスする場合は$HOME/.netrcを作成します。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cat <span class="s">&lt;&lt; EOL | tee $HOME/.netrc</span>
+<span class="s">machine github.com</span>
+<span class="s">login &lt;username&gt;</span>
+<span class="s">password &lt;password&gt;</span>
+
+<span class="s">machine choreonoid.org</span>
+<span class="s">login &lt;username&gt;</span>
+<span class="s">password &lt;password&gt;</span>
+<span class="s">EOL</span>
+</pre></div>
+</div>
+<p>スレーブサーバーの$HOME/.netrcをマスターサーバーの$JENKINS_HOME（/var/lib/jenkins）へコピーします。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo cp $HOME/.netrc /var/lib/jenkins
 $ sudo chown jenkins:jenkins /var/lib/jenkins/.netrc
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo cp $HOME/.netrc /home/jenkinshrg
-$ sudo chown jenkins:jenkins /home/jenkinshrg/.netrc
+</div>
+<div class="section" id="git-ssh">
+<h3>gitの設定(ssh経由）<a class="headerlink" href="#git-ssh" title="Permalink to this headline">¶</a></h3>
+<p>ssh経由でアクセスする場合は$HOME/.ssh/configを作成します。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cat <span class="s">&lt;&lt; EOL | tee $HOME/.ssh/config</span>
+<span class="s">Host atom.a01.aist.go.jp</span>
+<span class="s">HostName atom.a01.aist.go.jp</span>
+<span class="s">User &lt;username&gt;</span>
+<span class="s">IdentityFile ~/.ssh/id_rsa</span>
+<span class="s">StrictHostKeyChecking no</span>
+<span class="s">EOL</span>
 </pre></div>
 </div>
-<p>ssh経由でアクセスする場合は$HOME/.sshをマスターサーバーの$JENKINS_HOMEとスレーブサーバーの$HOMEへ格納しておきます。</p>
+<p>公開鍵を作成して登録します。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ssh-keygen -N <span class="s2">&quot;&quot;</span> -f <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.ssh/id_rsa
+$ ssh-copy-id &lt;username&gt;@atom.a01.aist.go.jp
+</pre></div>
+</div>
+<p>スレーブサーバーの$HOME/.sshをマスターサーバーの$JENKINS_HOME（/var/lib/jenkins）へコピーします。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo cp -r $HOME/.ssh /var/lib/jenkins
 $ sudo chown -R jenkins:jenkins /var/lib/jenkins/.ssh
-$ sudo -u jenkins ssh-keygen -N <span class="s2">&quot;&quot;</span> -f /var/lib/jenkins/.ssh/id_rsa
-$ sudo -i -u jenkins ssh-copy-id jenkinshrg@atom.a01.aist.go.jp
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo cp -r $HOME/.ssh /home/jenkinshrg
-$ sudo chown -R jenkins:jenkins /home/jenkinshrg/.ssh
-$ ssh-keygen -N <span class="s2">&quot;&quot;</span> -f <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.ssh/id_rsa
-$ ssh-copy-id jenkinshrg@atom.a01.aist.go.jp
-</pre></div>
-</div>
-</div>
-<div class="section" id="subversion">
-<h3>subversionの設定<a class="headerlink" href="#subversion" title="Permalink to this headline">¶</a></h3>
-<p>subversionの場合は$HOME/.subversionをマスターサーバーの$JENKINS_HOMEとスレーブサーバーの$HOMEへ格納しておきます。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo cp -r $HOME/.subversion /var/lib/jenkins
-$ sudo chown -R jenkins:jenkins /var/lib/jenkins/.subversion
-</pre></div>
-</div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo cp -r $HOME/.subversion /home/jenkinshrg
-$ sudo chown -R jenkins:jenkins /home/jenkinshrg/.subversion
+<p>公開鍵を作成して登録します。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo -u jenkins ssh-keygen -N <span class="s2">&quot;&quot;</span> -f /var/lib/jenkins/.ssh/id_rsa
+$ sudo -i -u jenkins ssh-copy-id &lt;username&gt;@atom.a01.aist.go.jp
 </pre></div>
 </div>
 </div>
