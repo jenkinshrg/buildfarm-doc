@@ -34,7 +34,7 @@ http://jenkinshrg.a01.aist.go.jp
 
 以下のURLへ実行したいスクリプトを配置して下さい。
 
-https://github.com/jenkinshrg/drcutil.git
+https://github.com/jenkinshrg/drcutil/tree/jenkins
 
 ジョブの追加
 ============
