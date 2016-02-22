@@ -166,9 +166,9 @@ http://jenkinshrg.a01.aist.go.jp
 * パラメータの説明
 
 .. csv-table::
-  :header: パラメータ名, 説明, 例（デフォルト値）, 備考
+  :header: パラメータ名, 説明, 備考
 
-  nodename, ノード名, slave,
+  nodename, ノード名,
 
 スレーブサーバーの追加
 ----------------------
@@ -191,9 +191,9 @@ http://jenkinshrg.a01.aist.go.jp
 * パラメータの説明
 
 .. csv-table::
-  :header: パラメータ名, 説明, 例（デフォルト値）, 備考
+  :header: パラメータ名, 説明, 備考
 
-  nodename, ノード名, slave,
+  nodename, ノード名,
 
 以下のURLへブラウザで接続してスレーブサーバーが接続されたことを確認して下さい。
 
@@ -220,9 +220,9 @@ http://jenkinshrg.a01.aist.go.jp
 * パラメータの説明
 
 .. csv-table::
-  :header: パラメータ名, 説明, 例（デフォルト値）, 備考
+  :header: パラメータ名, 説明, 備考
 
-  nodename, ノード名, slave,
+  nodename, ノード名,
 
 以下のURLへブラウザで接続してスレーブサーバーが削除されたことを確認して下さい。
 
