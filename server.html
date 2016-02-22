@@ -477,18 +477,10 @@ $ sudo chown -R jenkins:jenkins /home/jenkinshrg/.subversion
 <div class="section" id="id13">
 <h3>アップデート<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
 <p>パッケージのアップデートはテストジョブが実行されていないのを確認してから以下の手順を実行して下さい。（テストジョブ実行中にアップデートを行うと状態がおかしくなる可能性があります）</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo service jenkins stop
-$ sudo apt-get update
-$ sudo apt-get upgrade
-$ sudo apt-get dist-upgrade
-$ sudo service jenkins start
-</pre></div>
-</div>
 </div>
 <div class="section" id="id14">
 <h3>シャットダウン<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
-<p>サーバーをリブート、電源断させる場合は通常のシャットダウン手順で問題ありません。（テストジョブ実行中にアップデートを行うと状態がおかしくなる可能性があります）</p>
-<p>再起動時も自動的にサービスが再開されます。</p>
+<p>サーバーをリブートや電源断させる場合でも再起動時に自動的にサービスが再開されますので通常のシャットダウン手順で問題ありません。（テストジョブ実行中にアップデートを行うと状態がおかしくなる可能性があります）</p>
 </div>
 <div class="section" id="id15">
 <h3>サーバー移設<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
