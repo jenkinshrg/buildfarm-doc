@@ -55,16 +55,16 @@ https://github.com/jenkinshrg/drcutil/tree/jenkins
 * パラメータの説明
 
 .. csv-table::
-  :header: パラメータ名, 説明, 例（デフォルト値）, 備考
+  :header: パラメータ名, 説明, 備考
 
-  jobname, ジョブ名, debug,
-  node, 実行ノード, slave,
-  os, OS種別(none/ubuntu/debian), none, noneの場合はスレーブサーバーの実環境で実行、none以外の場合はdockerコンテナ上で実行
-  distro, ディストリビューション(trusty/wheezy), trusty, osがnone以外の場合に指定、debootstrapで指定可能なもの
-  arch, アーキテクチャ(amd64/i386), amd64, osがnone以外の場合に指定、debootstrapで指定可能なもの
-  triiger, 実行トリガ(none/scm/upstream/periodic), none,
-  script, 実行スクリプト, ,
-  script_args, スクリプト引数, ,
+  jobname, ジョブ名,
+  template, ジョブ設定テンプレート(none/scm/upstream/periodic), none:drcutil-upload用、scm:drcutil用、upstream:drcutil-build-*用、periodic:drcutil-task-*用
+  node, 実行ノード,
+  os, OS種別(none/ubuntu/debian), noneの場合はスレーブサーバーの実環境で実行、none以外の場合はdockerコンテナ上で実行
+  distro, ディストリビューション(trusty/wheezy), osがnone以外の場合に指定、debootstrapで指定可能なもの
+  arch, アーキテクチャ(amd64/i386), osがnone以外の場合に指定、debootstrapで指定可能なもの
+  script, 実行スクリプト,
+  script_args, スクリプト引数,
 
 以下のURLへブラウザで接続してジョブが登録されたことを確認して下さい。
 
@@ -116,9 +116,9 @@ OSバージョン追加時
 * パラメータの説明
 
 .. csv-table::
-  :header: パラメータ名, 説明, 例（デフォルト値）, 備考
+  :header: パラメータ名, 説明, 備考
 
-  jobname, ジョブ名, debug,
+  jobname, ジョブ名,
 
 以下のURLへブラウザで接続してジョブが削除されたことを確認して下さい。
 
