@@ -304,6 +304,11 @@ Github Pagesの設定
 
 レポートをGithub Pagesへアップロードするために以下の設定を行って下さい。
 
+.. code-block:: bash
+
+  $ git config --global user.email "jenkinshrg@gmail.com"
+  $ git config --global user.name "jenkinshrg"
+
 Google Driveの設定
 ------------------
 
