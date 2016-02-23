@@ -94,6 +94,10 @@ https://github.com/jenkinshrg/drcutil/tree/jenkins
 
 実行するタスクシーケンスを追加したい場合は以下のように指定してジョブを追加して下さい。
 
+.. warning::
+
+  現状はタスク成功判定にdrcutil/.jenkins/getRobotPos.py（ロボット状態取得）、drcutil/.jenkins/getRobotPos.py（ターゲット状態取得）を行ったあと、drcutil/.jenkins/<taskname>-getRobotPos.py（ロボット状態判定）、drcutil/.jenkins/<taskname>-getRobotPos.py（ターゲット状態判定）を実行しているため事前にスクリプトの登録が必要です。
+
 .. code-block:: bash
 
   $ ./scripts/createjob.sh <jobname> periodic <nodename> none none none .jenkins.sh task <robotname> <taskname> <autox> <autoy> <okx> <oky> <wait> [<targetname>] [<targetport>]
