@@ -325,11 +325,11 @@ $ <span class="nb">cd</span> buildfarm
 </div>
 <div class="section" id="id6">
 <h3>タスクシーケンス追加時<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
-<p>実行するタスクシーケンスを追加したい場合は以下のように指定してジョブを追加して下さい。</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">現状はタスク成功判定にdrcutil/.jenkins/getRobotPos.py（ロボット状態取得）、drcutil/.jenkins/getRobotPos.py（ターゲット状態取得）を行ったあと、drcutil/.jenkins/&lt;taskname&gt;-getRobotPos.py（ロボット状態判定）、drcutil/.jenkins/&lt;taskname&gt;-getRobotPos.py（ターゲット状態判定）を実行しているため事前にスクリプトの登録が必要です。</p>
 </div>
+<p>実行するタスクシーケンスを追加したい場合は以下のように指定してジョブを追加して下さい。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/createjob.sh &lt;jobname&gt; periodic &lt;nodename&gt; none none none .jenkins.sh task &lt;robotname&gt; &lt;taskname&gt; &lt;autox&gt; &lt;autoy&gt; &lt;okx&gt; &lt;oky&gt; &lt;wait&gt; <span class="o">[</span>&lt;targetname&gt;<span class="o">]</span> <span class="o">[</span>&lt;targetport&gt;<span class="o">]</span>
 </pre></div>
 </div>
