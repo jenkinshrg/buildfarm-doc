@@ -266,7 +266,14 @@ http経由でアクセスする場合は$HOME/.netrcを作成します。
 gitの設定(ssh経由）
 -------------------
 
-ssh経由でアクセスする場合は$HOME/.ssh/configを作成します。
+ssh経由でアクセスする場合は公開鍵を作成して登録します。
+
+.. code-block:: bash
+
+  $ ssh-keygen -N "" -f ${HOME}/.ssh/id_rsa
+  $ ssh-copy-id <username>@atom.a01.aist.go.jp
+
+$HOME/.ssh/configを作成します。
 
 .. code-block:: bash
 
@@ -277,13 +284,6 @@ ssh経由でアクセスする場合は$HOME/.ssh/configを作成します。
   IdentityFile ~/.ssh/id_rsa
   StrictHostKeyChecking no
   EOL
-
-公開鍵を作成して登録します。
-
-.. code-block:: bash
-
-  $ ssh-keygen -N "" -f ${HOME}/.ssh/id_rsa
-  $ ssh-copy-id <username>@atom.a01.aist.go.jp
 
 スレーブサーバーの$HOME/.sshをマスターサーバーの$JENKINS_HOME（/var/lib/jenkins）へコピーします。
 

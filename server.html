@@ -442,7 +442,12 @@ $ sudo chown jenkins:jenkins /var/lib/jenkins/.netrc
 </div>
 <div class="section" id="git-ssh">
 <h3>gitの設定(ssh経由）<a class="headerlink" href="#git-ssh" title="Permalink to this headline">¶</a></h3>
-<p>ssh経由でアクセスする場合は$HOME/.ssh/configを作成します。</p>
+<p>ssh経由でアクセスする場合は公開鍵を作成して登録します。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ssh-keygen -N <span class="s2">&quot;&quot;</span> -f <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.ssh/id_rsa
+$ ssh-copy-id &lt;username&gt;@atom.a01.aist.go.jp
+</pre></div>
+</div>
+<p>$HOME/.ssh/configを作成します。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ cat <span class="s">&lt;&lt; EOL | tee $HOME/.ssh/config</span>
 <span class="s">Host atom.a01.aist.go.jp</span>
 <span class="s">HostName atom.a01.aist.go.jp</span>
@@ -450,11 +455,6 @@ $ sudo chown jenkins:jenkins /var/lib/jenkins/.netrc
 <span class="s">IdentityFile ~/.ssh/id_rsa</span>
 <span class="s">StrictHostKeyChecking no</span>
 <span class="s">EOL</span>
-</pre></div>
-</div>
-<p>公開鍵を作成して登録します。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ssh-keygen -N <span class="s2">&quot;&quot;</span> -f <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.ssh/id_rsa
-$ ssh-copy-id &lt;username&gt;@atom.a01.aist.go.jp
 </pre></div>
 </div>
 <p>スレーブサーバーの$HOME/.sshをマスターサーバーの$JENKINS_HOME（/var/lib/jenkins）へコピーします。</p>
