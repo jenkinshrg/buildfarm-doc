@@ -225,6 +225,10 @@
 <p>ホスト名は任意で設定して下さい。（以降、master、slaveを設定したものとして説明します）</p>
 <p>ユーザー名は任意で設定して下さい。（以降、jenkinshrgを設定したものとして説明します）</p>
 <p>設置場所の環境に合わせてネットワーク設定を行って下さい。（以降、マスターサーバーは固定IPアドレスでDNSでjenkinshrg.a01.aist.go.jpを設定され、スレーブサーバーはdhcpで設定されているものとして説明します）</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">マスターサーバーはDNS名や固定IPアドレスでアクセスできるように設定する必要があります。</p>
+</div>
 <p>タイムゾーン、ミラーサーバーは適切なものを設定して下さい。（以降、Asia/Tokyo、ftp.jaist.ac.jpを設定したものとして説明します）</p>
 <p>NVIDIAのグラフィックボードなどプロプライエタリなドライバでないと正しく動作しない場合はドライバをインストールしてシステム設定にて変更しておきます。</p>
 <p>以下にNVIDIAドライバのインストール例を示します。</p>
@@ -267,11 +271,7 @@ $ <span class="nb">cd</span> buildfarm
 </div>
 <div class="section" id="id6">
 <h3>リバースプロキシの設定<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">マスターサーバーはスレーブサーバーやブラウザからDNS名や固定IPアドレスでアクセスできるように設定して下さい。</p>
-</div>
-<p>マスターサーバーへリバースプロキシを設定する場合の例を示します。</p>
+<p>マスターサーバーへTCPポート80でアクセスできるように設定します。（nginxでリバースプロキシを設定する場合の例を示します）</p>
 <p>webサーバーをインストールします。</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
