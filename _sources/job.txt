@@ -11,12 +11,12 @@
   :widths: 5, 5, 5
 
   drcutil, リポジトリ変更監視,
-  drcutil-build-32, ビルド（32ビット環境）, dockerコンテナ上のOSで実行
-  drcutil-build-64, ビルド（64ビット環境）、単体テスト、静的解析, dockerコンテナ上のOSで実行
-  drcutil-task-balancebeam, タスクシーケンス（平均台歩行）, デスクトップ環境で実行
-  drcutil-task-terrain, タスクシーケンス（不整地歩行）, デスクトップ環境で実行
-  drcutil-task-valve, タスクシーケンス（バルブ回し）, デスクトップ環境で実行
-  drcutil-task-wall, タスクシーケンス（壁開け）, デスクトップ環境で実行
+  drcutil-build-32, ビルド（32ビット環境）, dockerコンテナ環境で実行
+  drcutil-build-64, ビルド（64ビット環境）、単体テスト、静的解析, dockerコンテナ環境で実行
+  drcutil-task-balancebeam, タスクシーケンス（平均台歩行）, 実環境で実行
+  drcutil-task-terrain, タスクシーケンス（不整地歩行）, 実環境で実行
+  drcutil-task-valve, タスクシーケンス（バルブ回し）, 実環境で実行
+  drcutil-task-wall, タスクシーケンス（壁開け）, 実環境で実行
   drcutil-upload, レポートアップロード,
 
 事前準備
@@ -58,17 +58,13 @@ https://github.com/jenkinshrg/drcutil/tree/jenkins
   :header: パラメータ名, 説明, 備考
 
   jobname, ジョブ名, 任意
-  template, ジョブ設定テンプレート(none/scm/upstream/periodic), none:レポートアップロード用（drcutil-upload専用）、scm:リポジトリ監視用（drcutil専用）、upstream:リポジトリ変更時起動用（dockerコンテナ環境専用）、periodic:定期起動用（実環境専用）
-  node, 実行ノード名, 任意
+  template, ジョブ設定テンプレート(none/scm/upstream/periodic), none:レポートアップロード用（drcutil-uploadジョブ専用）、scm:リポジトリ監視用（drcutilジョブ専用）、upstream:リポジトリ変更時ビルド確認用（dockerコンテナ環境で実行）、periodic:タスクシーケンス定期確認用（実環境で実行）
+  node, 実行ノード名, 稼働中のスレーブを指定
   os, 実行OS(none/ubuntu/debian), noneの場合はスレーブサーバーの実OSで実行、none以外の場合はdockerコンテナ上のOSで実行
-  distro, ディストリビューション(trusty/wheezy), osがnone以外の場合に有効、debootstrapで指定可能なもの
-  arch, アーキテクチャ(amd64/i386), osがnone以外の場合に有効、debootstrapで指定可能なもの
-  script, 実行スクリプト,  任意（.jenkins.sh:ビルド／タスクシーケンステスト用、.report.sh:レポートアップロード用）
-  script_args, スクリプト引数,  任意（下記を参照）
-
-以下のURLへブラウザで接続してジョブが登録されたことを確認して下さい。
-
-http://jenkinshrg.a01.aist.go.jp
+  distro, ディストリビューション, osがnone以外の場合に有効、debootstrapで指定可能なものから選択
+  arch, アーキテクチャ, osがnone以外の場合に有効、debootstrapで指定可能なものから選択
+  script, 実行スクリプト,  任意（現状は.jenkins.sh:ビルド／タスクシーケンステスト用、.report.sh:レポートアップロード用を格納）
+  script_args, スクリプト引数,  任意（.jenkins.shスクリプトを実行する場合は下記を参照）
 
 ビルドOSバージョン追加時
 ------------------------
@@ -86,10 +82,10 @@ http://jenkinshrg.a01.aist.go.jp
 
   jobname, ジョブ名, 任意
   template, ジョブ設定テンプレート(none/scm/upstream/periodic), upstreamを指定
-  node, 実行ノード名, 任意
-  os, 実行OS(none/ubuntu/debian), 実行
-  distro, ディストリビューション(trusty/wheezy), 
-  arch, アーキテクチャ(amd64/i386), 
+  node, 実行ノード名, 稼働中のスレーブを指定
+  os, 実行OS(none/ubuntu/debian), debianもしくはubuntuを指定
+  distro, ディストリビューション, debootstrapで指定可能なものから選択
+  arch, アーキテクチャ, debootstrapで指定可能なものから選択
   script, 実行スクリプト, .jenkins.shを指定
   testname, テスト内容(build/task), buildを指定
 
@@ -100,7 +96,7 @@ http://jenkinshrg.a01.aist.go.jp
 
 .. code-block:: bash
 
-  $ ./scripts/createjob.sh <jobname> periodic <nodename> none none none .jenkins.sh task <robotname> <taskname> <autox> <autoy> <okx> <oky> <wait> <targetname> <targetport>
+  $ ./scripts/createjob.sh <jobname> periodic <nodename> none none none .jenkins.sh task <robotname> <taskname> <autox> <autoy> <okx> <oky> <wait> [<targetname>] [<targetport>]
 
 * パラメータの説明
 
@@ -109,21 +105,25 @@ http://jenkinshrg.a01.aist.go.jp
 
   jobname, ジョブ名, 任意
   template, ジョブ設定テンプレート(none/scm/upstream/periodic), periodicを指定
-  node, 実行ノード名, 任意
+  node, 実行ノード名, 稼働中のスレーブを指定
   os, 実行OS(none/ubuntu/debian), noneを指定
-  distro, ディストリビューション(trusty/wheezy), noneを指定
-  arch, アーキテクチャ(amd64/i386), noneを指定
+  distro, ディストリビューション, noneを指定
+  arch, アーキテクチャ, noneを指定
   script, 実行スクリプト, .jenkins.shを指定
   testname, テスト内容(build/task), taskを指定
-  robotname, ロボット名, 任意
-  taskname, ロボット名, 任意
-  autox, ロボット名, 任意
-  autoy, ロボット名, 任意
-  okx, ロボット名, 任意
-  oky, ロボット名, 任意
-  wait, ロボット名, 任意
-  targetname, ロボット名, 任意
-  targetport, ロボット名, 任意
+  robotname, ロボット名, share/hrpsys/samples配下のディレクトリ名を指定
+  taskname, タスク名, share/hrpsys/samples/<robotname>配下のcnoidファイルを拡張子なしで指定
+  autox, 「自動」ボタンX座標, タスクパネルの「自動」ボタンの画面上のX座標を指定 
+  autoy, 「自動」ボタンY座標, タスクパネルの「自動」ボタンの画面上のY座標を指定
+  okx, 「OK」ボタンX座標, タスクパネルの「OK」ボタンの画面上のX座標を指定
+  oky, 「OK」ボタンY座標, タスクパネルの「OK」ボタンの画面上のY座標を指定
+  wait, 終了待ち時間（秒）, 任意
+  targetname, 成功確認用ターゲット名, valveタスクのバルブ回転確認で使用(valve_leftを指定)
+  targetport, 成功確認用ターゲットポート名,  valveタスクのバルブ回転確認で使用(qを指定)
+
+以下のURLへブラウザで接続してジョブが登録されたことを確認して下さい。
+
+http://jenkinshrg.a01.aist.go.jp
 
 ジョブの削除
 ============

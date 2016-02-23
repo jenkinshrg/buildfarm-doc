@@ -164,27 +164,27 @@
 </tr>
 <tr class="row-odd"><td>drcutil-build-32</td>
 <td>ビルド（32ビット環境）</td>
-<td>dockerコンテナ上のOSで実行</td>
+<td>dockerコンテナ環境で実行</td>
 </tr>
 <tr class="row-even"><td>drcutil-build-64</td>
 <td>ビルド（64ビット環境）、単体テスト、静的解析</td>
-<td>dockerコンテナ上のOSで実行</td>
+<td>dockerコンテナ環境で実行</td>
 </tr>
 <tr class="row-odd"><td>drcutil-task-balancebeam</td>
 <td>タスクシーケンス（平均台歩行）</td>
-<td>デスクトップ環境で実行</td>
+<td>実環境で実行</td>
 </tr>
 <tr class="row-even"><td>drcutil-task-terrain</td>
 <td>タスクシーケンス（不整地歩行）</td>
-<td>デスクトップ環境で実行</td>
+<td>実環境で実行</td>
 </tr>
 <tr class="row-odd"><td>drcutil-task-valve</td>
 <td>タスクシーケンス（バルブ回し）</td>
-<td>デスクトップ環境で実行</td>
+<td>実環境で実行</td>
 </tr>
 <tr class="row-even"><td>drcutil-task-wall</td>
 <td>タスクシーケンス（壁開け）</td>
-<td>デスクトップ環境で実行</td>
+<td>実環境で実行</td>
 </tr>
 <tr class="row-odd"><td>drcutil-upload</td>
 <td>レポートアップロード</td>
@@ -238,36 +238,34 @@ $ <span class="nb">cd</span> buildfarm
 </tr>
 <tr class="row-odd"><td>template</td>
 <td>ジョブ設定テンプレート(none/scm/upstream/periodic)</td>
-<td>none:レポートアップロード用（drcutil-upload専用）、scm:リポジトリ監視用（drcutil専用）、upstream:リポジトリ変更時起動用（dockerコンテナ環境専用）、periodic:定期起動用（実環境専用）</td>
+<td>none:レポートアップロード用（drcutil-uploadジョブ専用）、scm:リポジトリ監視用（drcutilジョブ専用）、upstream:リポジトリ変更時ビルド確認用（dockerコンテナ環境で実行）、periodic:タスクシーケンス定期確認用（実環境で実行）</td>
 </tr>
 <tr class="row-even"><td>node</td>
 <td>実行ノード名</td>
-<td>任意</td>
+<td>稼働中のスレーブを指定</td>
 </tr>
 <tr class="row-odd"><td>os</td>
 <td>実行OS(none/ubuntu/debian)</td>
 <td>noneの場合はスレーブサーバーの実OSで実行、none以外の場合はdockerコンテナ上のOSで実行</td>
 </tr>
 <tr class="row-even"><td>distro</td>
-<td>ディストリビューション(trusty/wheezy)</td>
-<td>osがnone以外の場合に有効、debootstrapで指定可能なもの</td>
+<td>ディストリビューション</td>
+<td>osがnone以外の場合に有効、debootstrapで指定可能なものから選択</td>
 </tr>
 <tr class="row-odd"><td>arch</td>
-<td>アーキテクチャ(amd64/i386)</td>
-<td>osがnone以外の場合に有効、debootstrapで指定可能なもの</td>
+<td>アーキテクチャ</td>
+<td>osがnone以外の場合に有効、debootstrapで指定可能なものから選択</td>
 </tr>
 <tr class="row-even"><td>script</td>
 <td>実行スクリプト</td>
-<td>任意（.jenkins.sh:ビルド／タスクシーケンステスト用、.report.sh:レポートアップロード用）</td>
+<td>任意（現状は.jenkins.sh:ビルド／タスクシーケンステスト用、.report.sh:レポートアップロード用を格納）</td>
 </tr>
 <tr class="row-odd"><td>script_args</td>
 <td>スクリプト引数</td>
-<td>任意（下記を参照）</td>
+<td>任意（.jenkins.shスクリプトを実行する場合は下記を参照）</td>
 </tr>
 </tbody>
 </table>
-<p>以下のURLへブラウザで接続してジョブが登録されたことを確認して下さい。</p>
-<p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
 <div class="section" id="os">
 <h3>ビルドOSバージョン追加時<a class="headerlink" href="#os" title="Permalink to this headline">¶</a></h3>
 <p>ビルドを実行するOSバージョンを追加したい場合は以下のように指定してジョブを追加して下さい。</p>
@@ -300,19 +298,19 @@ $ <span class="nb">cd</span> buildfarm
 </tr>
 <tr class="row-even"><td>node</td>
 <td>実行ノード名</td>
-<td>任意</td>
+<td>稼働中のスレーブを指定</td>
 </tr>
 <tr class="row-odd"><td>os</td>
 <td>実行OS(none/ubuntu/debian)</td>
-<td>実行</td>
+<td>debianもしくはubuntuを指定</td>
 </tr>
 <tr class="row-even"><td>distro</td>
-<td>ディストリビューション(trusty/wheezy)</td>
-<td>&nbsp;</td>
+<td>ディストリビューション</td>
+<td>debootstrapで指定可能なものから選択</td>
 </tr>
 <tr class="row-odd"><td>arch</td>
-<td>アーキテクチャ(amd64/i386)</td>
-<td>&nbsp;</td>
+<td>アーキテクチャ</td>
+<td>debootstrapで指定可能なものから選択</td>
 </tr>
 <tr class="row-even"><td>script</td>
 <td>実行スクリプト</td>
@@ -328,7 +326,7 @@ $ <span class="nb">cd</span> buildfarm
 <div class="section" id="id6">
 <h3>タスクシーケンス追加時<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <p>実行するタスクシーケンスを追加したい場合は以下のように指定してジョブを追加して下さい。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/createjob.sh &lt;jobname&gt; periodic &lt;nodename&gt; none none none .jenkins.sh task &lt;robotname&gt; &lt;taskname&gt; &lt;autox&gt; &lt;autoy&gt; &lt;okx&gt; &lt;oky&gt; &lt;wait&gt; &lt;targetname&gt; &lt;targetport&gt;
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/createjob.sh &lt;jobname&gt; periodic &lt;nodename&gt; none none none .jenkins.sh task &lt;robotname&gt; &lt;taskname&gt; &lt;autox&gt; &lt;autoy&gt; &lt;okx&gt; &lt;oky&gt; &lt;wait&gt; <span class="o">[</span>&lt;targetname&gt;<span class="o">]</span> <span class="o">[</span>&lt;targetport&gt;<span class="o">]</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -357,18 +355,18 @@ $ <span class="nb">cd</span> buildfarm
 </tr>
 <tr class="row-even"><td>node</td>
 <td>実行ノード名</td>
-<td>任意</td>
+<td>稼働中のスレーブを指定</td>
 </tr>
 <tr class="row-odd"><td>os</td>
 <td>実行OS(none/ubuntu/debian)</td>
 <td>noneを指定</td>
 </tr>
 <tr class="row-even"><td>distro</td>
-<td>ディストリビューション(trusty/wheezy)</td>
+<td>ディストリビューション</td>
 <td>noneを指定</td>
 </tr>
 <tr class="row-odd"><td>arch</td>
-<td>アーキテクチャ(amd64/i386)</td>
+<td>アーキテクチャ</td>
 <td>noneを指定</td>
 </tr>
 <tr class="row-even"><td>script</td>
@@ -381,42 +379,44 @@ $ <span class="nb">cd</span> buildfarm
 </tr>
 <tr class="row-even"><td>robotname</td>
 <td>ロボット名</td>
-<td>任意</td>
+<td>share/hrpsys/samples配下のディレクトリ名を指定</td>
 </tr>
 <tr class="row-odd"><td>taskname</td>
-<td>ロボット名</td>
-<td>任意</td>
+<td>タスク名</td>
+<td>share/hrpsys/samples/&lt;robotname&gt;配下のcnoidファイルを拡張子なしで指定</td>
 </tr>
 <tr class="row-even"><td>autox</td>
-<td>ロボット名</td>
-<td>任意</td>
+<td>「自動」ボタンX座標</td>
+<td>タスクパネルの「自動」ボタンの画面上のX座標を指定</td>
 </tr>
 <tr class="row-odd"><td>autoy</td>
-<td>ロボット名</td>
-<td>任意</td>
+<td>「自動」ボタンY座標</td>
+<td>タスクパネルの「自動」ボタンの画面上のY座標を指定</td>
 </tr>
 <tr class="row-even"><td>okx</td>
-<td>ロボット名</td>
-<td>任意</td>
+<td>「OK」ボタンX座標</td>
+<td>タスクパネルの「OK」ボタンの画面上のX座標を指定</td>
 </tr>
 <tr class="row-odd"><td>oky</td>
-<td>ロボット名</td>
-<td>任意</td>
+<td>「OK」ボタンY座標</td>
+<td>タスクパネルの「OK」ボタンの画面上のY座標を指定</td>
 </tr>
 <tr class="row-even"><td>wait</td>
-<td>ロボット名</td>
+<td>終了待ち時間（秒）</td>
 <td>任意</td>
 </tr>
 <tr class="row-odd"><td>targetname</td>
-<td>ロボット名</td>
-<td>任意</td>
+<td>成功確認用ターゲット名</td>
+<td>valveタスクのバルブ回転確認で使用(valve_leftを指定)</td>
 </tr>
 <tr class="row-even"><td>targetport</td>
-<td>ロボット名</td>
-<td>任意</td>
+<td>成功確認用ターゲットポート名</td>
+<td>valveタスクのバルブ回転確認で使用(qを指定)</td>
 </tr>
 </tbody>
 </table>
+<p>以下のURLへブラウザで接続してジョブが登録されたことを確認して下さい。</p>
+<p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
 </div>
 </div>
 <div class="section" id="id7">
