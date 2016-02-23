@@ -299,6 +299,16 @@ $HOME/.ssh/configを作成します。
   $ sudo -u jenkins ssh-keygen -N "" -f /var/lib/jenkins/.ssh/id_rsa
   $ sudo -i -u jenkins ssh-copy-id <username>@atom.a01.aist.go.jp
 
+Github Pagesの設定
+------------------
+
+レポートをGithub Pagesへアップロードするために以下の設定を行って下さい。
+
+.. code-block:: bash
+
+  $ git config --global user.email "jenkinshrg@gmail.com"
+  $ git config --global user.name "jenkinshrg"
+
 Google Driveの設定
 ------------------
 
