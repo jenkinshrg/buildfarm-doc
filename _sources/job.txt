@@ -121,9 +121,9 @@ https://github.com/jenkinshrg/drcutil/tree/jenkins
   autoy, 「自動」ボタンY座標, タスクパネルの「自動」ボタンの画面上のY座標を指定
   okx, 「OK」ボタンX座標, タスクパネルの「OK」ボタンの画面上のX座標を指定
   oky, 「OK」ボタンY座標, タスクパネルの「OK」ボタンの画面上のY座標を指定
-  wait, 終了待ち時間（秒）, 任意
-  targetname, 成功確認用ターゲット名, valveタスクのバルブ回転確認で使用(valve_leftを指定)
-  targetport, 成功確認用ターゲットポート名,  valveタスクのバルブ回転確認で使用(qを指定)
+  wait, 終了待ち時間（秒）, タスクシーケンスが終了する予測時間を指定
+  targetname, 成功確認用ターゲット名, 省略可、現状はvalveタスクのバルブ回転確認で使用(valve_leftを指定)
+  targetport, 成功確認用ターゲットポート名, 省略可、現状はvalveタスクのバルブ回転確認で使用(qを指定)
 
 以下のURLへブラウザで接続してジョブが登録されたことを確認して下さい。
 
