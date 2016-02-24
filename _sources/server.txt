@@ -262,6 +262,25 @@ http://jenkinshrg.a01.aist.go.jp
 
 マスターサーバー、スレーブサーバー全てに対してそれぞれ設定を行って下さい。
 
+gitの設定(共通）
+---------------
+
+gitのユーザー設定をします。
+
+.. code-block:: bash
+
+  $ git config --global user.email "jenkinshrg@gmail.com"
+  $ git config --global user.name "jenkinshrg"
+  $ git config --global credential.helper store
+  $ git config --global http.sslVerify false
+
+マスターサーバーの場合は$HOME/.gitconfigを$JENKINS_HOME（/var/lib/jenkins）へコピーします。
+
+.. code-block:: bash
+
+  $ sudo cp $HOME/.gitconfig /var/lib/jenkins
+  $ sudo chown jenkins:jenkins /var/lib/jenkins/.gitconfig
+
 gitの設定(http経由）
 --------------------
 
