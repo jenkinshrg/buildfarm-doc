@@ -231,10 +231,35 @@
 <p>OSはテストの実行に必要なソフトウェア要件にあったものを用意して下さい。（Ubuntu 14.04 LTS Desktopで動作確認済みです）</p>
 <p>ハードウェアに依存しないテストの場合はvirtualbox等の仮想マシンを利用して1つのスレーブサーバーで異なるOS環境でのテスト実行が可能です。（テスト内容によっては正常動作しない場合があります）</p>
 <p>カーネルに依存しないテストの場合はdocker等のlinuxコンテナを利用して1つのスレーブサーバーで異なるOS環境でのテスト実行が可能です。（テスト内容によっては正常動作しない場合があります）</p>
-<p>ホスト名は任意で設定して下さい。（以降、master、slaveを設定したものとして説明します）</p>
-<p>ユーザー名は任意で設定して下さい。（以降、jenkinshrgを設定したものとして説明します）</p>
-<p>設置場所の環境に合わせてネットワーク設定を行って下さい。（以降、マスターサーバーは固定IPアドレスでDNSでjenkinshrg.a01.aist.go.jpを設定され、スレーブサーバーはdhcpで設定されているものとして説明します）</p>
-<p>タイムゾーン、ミラーサーバーは適切なものを設定して下さい。（以降、Asia/Tokyo、ftp.jaist.ac.jpを設定したものとして説明します）</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">設定項目</th>
+<th class="head">設定内容</th>
+<th class="head">備考</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>タイムゾーン</td>
+<td>任意</td>
+<td>Asia/Tokyoを設定</td>
+</tr>
+<tr class="row-odd"><td>ホスト名</td>
+<td>任意</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>ユーザー名</td>
+<td>任意</td>
+<td>jenkinshrgを設定</td>
+</tr>
+</tbody>
+</table>
+<p>ネットワークは設置場所の環境に合わせて適切に設定して下さい。</p>
+<p>ミラーサーバーは設置場所の環境に合わせて適切に設定して下さい。</p>
 <p>NVIDIAのグラフィックボードなどプロプライエタリなドライバでないと正しく動作しない場合はドライバをインストールしてシステム設定にて変更しておきます。（以下にNVIDIAドライバのインストール例を示します）</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo add-apt-repository -y ppa:xorg-edgers/ppa
 $ sudo apt-get update
@@ -244,7 +269,7 @@ $ sudo apt-get -y install nvidia-current nvidia-settings
 <p>セキュリティーアップデート、その他必要なソフトウェアがあればインストールを行って下さい。</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">マスターサーバーはjenkinshrg.a01.aist.go.jpでアクセスできるようにDNSを設定する必要があります。</p>
+<p class="last">マスターサーバーは固定IPアドレスでjenkinshrg.a01.aist.go.jpでアクセスできるようにDNSに登録されている必要があります。</p>
 </div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
