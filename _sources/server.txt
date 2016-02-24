@@ -301,7 +301,42 @@ $HOME/.ssh/configを作成します。
 Google Driveの設定
 ------------------
 
-ログをGoogle Drriveへアップロードするために以下の設定を行って下さい。
+ログをGoogle Driveへアップロードするために以下の設定を行って下さい。
+
+GoogleへjenkinshrgでログインしてDrive APIのclient_idとclient_secretを確認します。
+
+https://console.developers.google.com/apis/credentials/oauthclient/72243280516-cosk9tsmaf8lgb850l914mtd2bsk5hm5.apps.googleusercontent.com?project=api-project-72243280516
+
+$HOME/.jenkinshrg/env.shを作成します。
+
+.. code-block:: bash
+
+  $ mkdir -p $HOME/.jenkinshrg
+  $ cat << EOL | tee $HOME/.jenkinshrg/env.sh
+  export CLIENT_ID=<client_id>
+  export CLIENT_SECRET=<client_secret>
+  EOL
+
+スクリプトをcloneしておきます。
+
+.. code-block:: bash
+
+  $ git clone https://github.com/jenkinshrg/drcutil.git
+  $ cd drcutil/.jenkins
+
+適当なファイルを転送することで初回の認証を行います。
+
+.. code-block:: bash
+
+  $ python remoteBackup.py remoteBackup.py text/plain remoteBackup.py
+
+認証コードの入力が促されます。
+
+  $ Enter verification code:
+
+ブラウザが自動起動されますので「アクセスを許可」すると認証コードが表示されますので入力するとファイル転送が行われ、$HOME/.jenkinshrg/jsonCredential.txtに認証情報が保存されます。
+
+以降は認証なしでファイル転送が可能となります。
 
 メンテナンス
 ============

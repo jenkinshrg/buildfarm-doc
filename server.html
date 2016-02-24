@@ -477,7 +477,31 @@ $ sudo -i -u jenkins ssh-copy-id &lt;username&gt;@atom.a01.aist.go.jp
 </div>
 <div class="section" id="google-drive">
 <h3>Google Driveの設定<a class="headerlink" href="#google-drive" title="Permalink to this headline">¶</a></h3>
-<p>ログをGoogle Drriveへアップロードするために以下の設定を行って下さい。</p>
+<p>ログをGoogle Driveへアップロードするために以下の設定を行って下さい。</p>
+<p>GoogleへjenkinshrgでログインしてDrive APIのclient_idとclient_secretを確認します。</p>
+<p><a class="reference external" href="https://console.developers.google.com/apis/credentials/oauthclient/72243280516-cosk9tsmaf8lgb850l914mtd2bsk5hm5.apps.googleusercontent.com?project=api-project-72243280516">https://console.developers.google.com/apis/credentials/oauthclient/72243280516-cosk9tsmaf8lgb850l914mtd2bsk5hm5.apps.googleusercontent.com?project=api-project-72243280516</a></p>
+<p>$HOME/.jenkinshrg/env.shを作成します。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mkdir -p $HOME/.jenkinshrg
+$ cat <span class="s">&lt;&lt; EOL | tee $HOME/.jenkinshrg/env.sh</span>
+<span class="s">export CLIENT_ID=&lt;client_id&gt;</span>
+<span class="s">export CLIENT_SECRET=&lt;client_secret&gt;</span>
+<span class="s">EOL</span>
+</pre></div>
+</div>
+<p>スクリプトをcloneしておきます。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/drcutil.git
+$ <span class="nb">cd</span> drcutil/.jenkins
+</pre></div>
+</div>
+<p>適当なファイルを転送することで初回の認証を行います。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ python remoteBackup.py remoteBackup.py text/plain remoteBackup.py
+</pre></div>
+</div>
+<p>認証コードの入力が促されます。</p>
+<blockquote>
+<div>$ Enter verification code:</div></blockquote>
+<p>ブラウザが自動起動されますので「アクセスを許可」すると認証コードが表示されますので入力するとファイル転送が行われ、$HOME/.jenkinshrg/jsonCredential.txtに認証情報が保存されます。</p>
+<p>以降は認証なしでファイル転送が可能となります。</p>
 </div>
 </div>
 <div class="section" id="id12">
