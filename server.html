@@ -87,37 +87,38 @@
 <li class="toctree-l2"><a class="reference internal" href="#id2">事前準備</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id3">マシンの設置</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#os">OSインストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">共通インストール</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">マスターサーバーの構築</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id5">インストール</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id6">リバースプロキシの設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">マスターサーバーの構築</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id6">インストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">リバースプロキシの設定</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id7">スレーブサーバーの構築</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id8">スレーブサーバーの追加</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id9">インストール</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id10">スレーブサーバーの削除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">スレーブサーバーの構築</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id9">スレーブサーバーの追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">インストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">スレーブサーバーの削除</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id11">認証情報の設定</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id12">認証情報の設定</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#git-http">gitの設定(http経由）</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#git-ssh">gitの設定(ssh経由）</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#google-drive">Google Driveの設定</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id12">メンテナンス</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id13">アップデート</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id14">シャットダウン</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id15">サーバー移設</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id16">サーバー交換</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id17">バックアップとリストア</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id13">メンテナンス</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id14">アップデート</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id15">シャットダウン</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id16">サーバー移設</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id17">サーバー交換</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id18">バックアップとリストア</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id18">仮想マシンによるマスターサーバー、スレーブサーバーの構築（オプション）</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id19">インストール</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id20">サーバーの起動</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id21">スレーブサーバーの追加</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id19">仮想マシンによるマスターサーバー、スレーブサーバーの構築（オプション）</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id20">インストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">サーバーの起動</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id22">スレーブサーバーの追加</a></li>
 </ul>
 </li>
 </ul>
@@ -250,12 +251,24 @@ $ sudo apt-get -y install nvidia-current nvidia-settings
 <p class="last">「システム設定」の「ユーザーアカウント」にてログインユーザーを自動ログインに設定、「画面の明るさとロック」にてスクリーンセーバー、画面ロックは解除しておきます。</p>
 </div>
 </div>
-</div>
 <div class="section" id="id4">
-<h2>マスターサーバーの構築<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
-<p>マスターサーバーのインストール手順を説明します。</p>
+<h3>共通インストール<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>スクリプトをcloneしておきます。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
+$ <span class="nb">cd</span> buildfarm
+</pre></div>
+</div>
+<p>マスターサーバーとスレーブサーバーで共通で必要なパッケージをインストールします。(設定のカスタマイズを含みます)</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./setup/common.sh
+</pre></div>
+</div>
+</div>
+</div>
 <div class="section" id="id5">
-<h3>インストール<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<h2>マスターサーバーの構築<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>マスターサーバーのインストール手順を説明します。</p>
+<div class="section" id="id6">
+<h3>インストール<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">他のアプリケーションがポート番号8080と9000を使用していないか確認して下さい。</p>
@@ -276,8 +289,8 @@ $ <span class="nb">cd</span> buildfarm
 <p>以下のURLへブラウザで接続して正しく表示されることを確認して下さい。</p>
 <p><a class="reference external" href="http://localhost:8080">http://localhost:8080</a></p>
 </div>
-<div class="section" id="id6">
-<h3>リバースプロキシの設定<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id7">
+<h3>リバースプロキシの設定<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <p>マスターサーバーへTCPポート80でアクセスできるように設定します。（以下にnginxでリバースプロキシを設定する場合の例を示します）</p>
 <p>webサーバーをインストールします。</p>
 <div class="admonition warning">
@@ -307,11 +320,11 @@ $ sudo service nginx restart
 <p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
 </div>
 </div>
-<div class="section" id="id7">
-<h2>スレーブサーバーの構築<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
-<p>スレーブサーバーのインストール手順を説明します。</p>
 <div class="section" id="id8">
-<h3>スレーブサーバーの追加<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<h2>スレーブサーバーの構築<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<p>スレーブサーバーのインストール手順を説明します。</p>
+<div class="section" id="id9">
+<h3>スレーブサーバーの追加<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 <p>スレーブサーバーを追加します。</p>
 <p>スクリプトをcloneしておきます。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
@@ -347,11 +360,15 @@ $ <span class="nb">cd</span> buildfarm
 <p>以下のURLへブラウザで接続してスレーブサーバーが追加されたことを確認して下さい。</p>
 <p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
 </div>
-<div class="section" id="id9">
-<h3>インストール<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id10">
+<h3>インストール<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
 <p>スクリプトをcloneしておきます。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
 $ <span class="nb">cd</span> buildfarm
+</pre></div>
+</div>
+<p>dockerをインストールします。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./setup/docker.sh
 </pre></div>
 </div>
 <p>スレーブサーバーをインストールします。</p>
@@ -387,8 +404,8 @@ $ <span class="nb">cd</span> buildfarm
 <p>以下のURLへブラウザで接続してスレーブサーバーが接続されたことを確認して下さい。</p>
 <p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
 </div>
-<div class="section" id="id10">
-<h3>スレーブサーバーの削除<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id11">
+<h3>スレーブサーバーの削除<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
 <p>スレーブサーバーを削除します。</p>
 <p>スクリプトをcloneしておきます。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
@@ -425,8 +442,8 @@ $ <span class="nb">cd</span> buildfarm
 <p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
 </div>
 </div>
-<div class="section" id="id11">
-<h2>認証情報の設定<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id12">
+<h2>認証情報の設定<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
 <p>テストジョブでは対話形式のコマンドは実行できないため、認証情報が必要な外部サーバーへアクセスを行う場合は事前に以下の設定が必要となります。（セキュリティー面を考慮して認証情報を設定ファイルやスクリプトに保存しないで下さい）</p>
 <p>マスターサーバー、スレーブサーバー全てに対してそれぞれ設定を行って下さい。</p>
 <div class="section" id="git-http">
@@ -507,26 +524,26 @@ $ python remoteBackup.py remoteBackup.py text/plain remoteBackup.py
 <p>以降は認証なしでファイル転送が可能となります。</p>
 </div>
 </div>
-<div class="section" id="id12">
-<h2>メンテナンス<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id13">
-<h3>アップデート<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<h2>メンテナンス<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id14">
+<h3>アップデート<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
 <p>unattended-upgradesにて自動アップデート、リブートを実施します。（cron.daily経由で6:25に起動され最大1800秒遅延して実行されます）</p>
 </div>
-<div class="section" id="id14">
-<h3>シャットダウン<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id15">
+<h3>シャットダウン<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
 <p>テストジョブが実行されていないのを確認してから通常のシャットダウン手順を実行して下さい。（再起動時に自動的にサービスが再開されます）</p>
 </div>
-<div class="section" id="id15">
-<h3>サーバー移設<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id16">
+<h3>サーバー移設<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
 <p>サーバーの設置場所の変更などでMACアドレスやIPアドレスが変更になっても問題ありません。</p>
 </div>
-<div class="section" id="id16">
-<h3>サーバー交換<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id17">
+<h3>サーバー交換<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
 <p>故障などでハードウェア交換を行う場合は再度インストール手順を実施して下さい。（マスターサーバーのバックアップデータがある場合はリストア手順を実施して下さい）</p>
 </div>
-<div class="section" id="id17">
-<h3>バックアップとリストア<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id18">
+<h3>バックアップとリストア<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
 <p>テストサーバーの設定と履歴データはマスターサーバーにあります。（スレーブサーバーのデータは消えてしまっても問題ありません）</p>
 <p>バックアップは以下の手順を実行して下さい。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo service jenkins stop
@@ -542,11 +559,11 @@ $ sudo service jenkins start
 </div>
 </div>
 </div>
-<div class="section" id="id18">
-<h2>仮想マシンによるマスターサーバー、スレーブサーバーの構築（オプション）<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h2>
-<p>ローカル環境での確認用などで仮想マシン上にマスターサーバー、スレーブサーバーを構築することも可能です。（テスト内容によっては正常動作しない場合があります）</p>
 <div class="section" id="id19">
-<h3>インストール<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
+<h2>仮想マシンによるマスターサーバー、スレーブサーバーの構築（オプション）<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h2>
+<p>ローカル環境での確認用などで仮想マシン上にマスターサーバー、スレーブサーバーを構築することも可能です。（テスト内容によっては正常動作しない場合があります）</p>
+<div class="section" id="id20">
+<h3>インストール<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
 <p>virtualboxがインストールされていない場合はインストールして下さい。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo sh -c <span class="s2">&quot;echo &#39;deb http://download.virtualbox.org/virtualbox/debian &#39;</span><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2">&#39; contrib&#39; &gt; /etc/apt/sources.list.d/virtualbox.list&quot;</span>
 $ wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- <span class="p">|</span> sudo apt-key add -
@@ -561,8 +578,8 @@ $ rm vagrant_1.8.1_x86_64.deb
 </pre></div>
 </div>
 </div>
-<div class="section" id="id20">
-<h3>サーバーの起動<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id21">
+<h3>サーバーの起動<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
 <p>スクリプトをcloneしておきます。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
 $ <span class="nb">cd</span> buildfarm
@@ -577,8 +594,8 @@ $ <span class="nb">cd</span> buildfarm
 </pre></div>
 </div>
 </div>
-<div class="section" id="id21">
-<h3>スレーブサーバーの追加<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id22">
+<h3>スレーブサーバーの追加<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
 <p>Vagrantfileにスレーブの記述を追加します。（以下はUbuntu16.04LTS環境でubuntu-xenial-amd64というノード名でhttp://jenkinshrg.a01.aist.go.jpへ接続する場合の例）</p>
 <div class="highlight-ruby"><div class="highlight"><pre><span></span><span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">define</span> <span class="s2">&quot;ubuntu-xenial-amd64&quot;</span><span class="p">,</span> <span class="ss">autostart</span><span class="p">:</span> <span class="kp">false</span> <span class="k">do</span> <span class="o">|</span><span class="n">server</span><span class="o">|</span>
   <span class="n">server</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">&quot;ubuntu/xenial64&quot;</span>
