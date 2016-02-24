@@ -96,7 +96,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#id8">スレーブサーバーの構築</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id9">スレーブサーバーの追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">スレーブサーバーの登録</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id10">インストール</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id11">スレーブサーバーの削除</a></li>
 </ul>
@@ -261,7 +261,7 @@ $ <span class="nb">cd</span> buildfarm
 </div>
 <div class="section" id="id5">
 <h2>マスターサーバーの構築<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
-<p>マスターサーバーのインストール手順を説明します。</p>
+<p>マスターサーバーで以下の手順を実施して下さい。</p>
 <div class="section" id="id6">
 <h3>インストール<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <div class="admonition warning">
@@ -317,10 +317,10 @@ $ sudo service nginx restart
 </div>
 <div class="section" id="id8">
 <h2>スレーブサーバーの構築<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
-<p>スレーブサーバーのインストール手順を説明します。</p>
+<p>スレーブサーバーで以下の手順を実施して下さい。</p>
 <div class="section" id="id9">
-<h3>スレーブサーバーの追加<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
-<p>スレーブサーバーを追加します。</p>
+<h3>スレーブサーバーの登録<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<p>スレーブサーバーの情報をマスターサーバーへ登録します。</p>
 <p>スクリプトをcloneしておきます。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
 $ <span class="nb">cd</span> buildfarm
@@ -390,14 +390,14 @@ $ <span class="nb">cd</span> buildfarm
 </table>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">通常スレーブサーバーの起動はシステムのサービス（デーモン）としてinit.dスクリプトなどで自動起動させますが、デスクトップアプリケーションを実行可能とするためにユーザーのログイン時に自動起動されるランチャーを$HOME/.config/autostartへ登録する形で実現しています。</p>
+<p class="last">通常スレーブサーバーの起動はシステムのサービス（デーモン）としてinit.dスクリプトなどで自動起動させますが、デスクトップアプリケーションを実行可能とするためにユーザーのデスクトップログイン時に自動起動されるランチャーを$HOME/.config/autostartへ登録する形で実現しています。通常のサービスで良い場合はslave.shを実行して下さい。</p>
 </div>
 <p>以下のURLへブラウザで接続してスレーブサーバーが接続されたことを確認して下さい。</p>
 <p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
 </div>
 <div class="section" id="id11">
 <h3>スレーブサーバーの削除<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
-<p>スレーブサーバーを削除します。</p>
+<p>スレーブサーバーの情報をマスターサーバーから削除します。</p>
 <p>スクリプトをcloneしておきます。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
 $ <span class="nb">cd</span> buildfarm
