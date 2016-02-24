@@ -12,7 +12,7 @@
 
   drcutil, リポジトリ変更監視, 毎時実行
   drcutil-build-32, ビルド（32ビット環境）, drcutilが終了時実行、dockerコンテナ環境で実行
-  drcutil-build-64, ビルド（64ビット環境）単体テスト、静的解析, drcutilが終了時実行、dockerコンテナ環境で実行
+  drcutil-build-64, ビルド（64ビット環境）、単体テスト、静的解析, drcutilが終了時実行、dockerコンテナ環境で実行
   drcutil-task-balancebeam, タスクシーケンス（平均台歩行）, 毎時実行、実環境で実行
   drcutil-task-terrain, タスクシーケンス（不整地歩行）, 毎時実行、実環境で実行
   drcutil-task-valve, タスクシーケンス（バルブ回し）, 毎時実行、実環境で実行
