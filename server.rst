@@ -377,13 +377,13 @@ vagrantがインストールされていない場合はインストールして�
   $ git clone https://github.com/jenkinshrg/buildfarm.git
   $ cd buildfarm
 
-マスターサーバーを起動します。（Ubuntu14.04LTS環境）
+マスターサーバーを起動します。（Ubuntu14.04LTS環境でmasterというノード名でvirtualboxのプライベートネットワークで接続）
 
 .. code-block:: bash
 
   $ vagrant up master
 
-スレーブサーバーを起動します。（Ubuntu14.04LTS環境）
+スレーブサーバーを起動します。（Ubuntu14.04LTS環境でslaveというノード名でvirtualboxのプライベートネットワークで接続）
 
 .. code-block:: bash
 
@@ -392,7 +392,7 @@ vagrantがインストールされていない場合はインストールして�
 スレーブサーバーの追加
 ----------------------
 
-Vagrantfileにスレーブの記述を追加します。（以下はUbuntu16.04LTS環境のスレーブサーバーをubuntu-xenial-amd64というノード名でhttp://jenkinshrg.a01.aist.go.jpへ接続する場合の例）
+Vagrantfileにスレーブの記述を追加します。（以下はUbuntu16.04LTS環境でubuntu-xenial-amd64というノード名でhttp://jenkinshrg.a01.aist.go.jpへ接続する場合の例）
 
 .. code-block:: ruby
 
