@@ -146,6 +146,35 @@ http://jenkinshrg.a01.aist.go.jp
 
 スレーブサーバーのインストール手順を説明します。
 
+スレーブサーバーの追加
+----------------------
+
+スレーブサーバーを追加します。
+
+スクリプトをcloneしておきます。
+
+.. code-block:: bash
+
+  $ git clone https://github.com/jenkinshrg/buildfarm.git
+  $ cd buildfarm
+
+マスターサーバーへスレーブサーバーを登録します。
+
+.. code-block:: bash
+
+  $ ./scripts/createnode.sh <nodename>
+
+* パラメータの説明
+
+.. csv-table::
+  :header: パラメータ名, 説明, 備考
+
+  nodename, ノード名,
+
+以下のURLへブラウザで接続してスレーブサーバーが追加されたことを確認して下さい。
+
+http://jenkinshrg.a01.aist.go.jp
+
 インストール
 ------------
 
@@ -172,31 +201,6 @@ http://jenkinshrg.a01.aist.go.jp
 .. warning::
 
   通常スレーブサーバーの起動はシステムのサービス（デーモン）としてinit.dスクリプトなどで自動起動させますが、デスクトップアプリケーションを実行可能とするためにユーザーのログイン時に自動起動されるランチャーを$HOME/.config/autostartへ登録する形で実現しています。
-
-スレーブサーバーの追加
-----------------------
-
-スレーブサーバーを追加します。
-
-スクリプトをcloneしておきます。
-
-.. code-block:: bash
-
-  $ git clone https://github.com/jenkinshrg/buildfarm.git
-  $ cd buildfarm
-
-マスターサーバーへスレーブサーバーを登録します。
-
-.. code-block:: bash
-
-  $ ./scripts/createnode.sh <nodename>
-
-* パラメータの説明
-
-.. csv-table::
-  :header: パラメータ名, 説明, 備考
-
-  nodename, ノード名,
 
 以下のURLへブラウザで接続してスレーブサーバーが接続されたことを確認して下さい。
 
