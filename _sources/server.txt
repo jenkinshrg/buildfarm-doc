@@ -329,13 +329,6 @@ $HOME/.ssh/configを作成します。
   $ sudo cp -r $HOME/.ssh /var/lib/jenkins
   $ sudo chown -R jenkins:jenkins /var/lib/jenkins/.ssh
 
-公開鍵を作成して登録します。
-
-.. code-block:: bash
-
-  $ sudo -u jenkins ssh-keygen -N "" -f /var/lib/jenkins/.ssh/id_rsa
-  $ sudo -i -u jenkins ssh-copy-id <username>@atom.a01.aist.go.jp
-
 Google Driveの設定
 ------------------
 

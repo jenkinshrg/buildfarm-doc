@@ -499,11 +499,6 @@ $ ssh-copy-id &lt;username&gt;@atom.a01.aist.go.jp
 $ sudo chown -R jenkins:jenkins /var/lib/jenkins/.ssh
 </pre></div>
 </div>
-<p>公開鍵を作成して登録します。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo -u jenkins ssh-keygen -N <span class="s2">&quot;&quot;</span> -f /var/lib/jenkins/.ssh/id_rsa
-$ sudo -i -u jenkins ssh-copy-id &lt;username&gt;@atom.a01.aist.go.jp
-</pre></div>
-</div>
 </div>
 <div class="section" id="google-drive">
 <h3>Google Driveの設定<a class="headerlink" href="#google-drive" title="Permalink to this headline">¶</a></h3>
