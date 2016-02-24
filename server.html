@@ -228,9 +228,10 @@
 </div>
 <div class="section" id="os">
 <h3>OSインストール<a class="headerlink" href="#os" title="Permalink to this headline">¶</a></h3>
-<p>OSはテストの実行に必要なソフトウェア要件にあったものを用意して下さい。（Ubuntu 14.04 LTS Desktopで動作確認済みです）</p>
-<p>ハードウェアに依存しないテストの場合はvirtualbox等の仮想マシンを利用して1つのスレーブサーバーで異なるOS環境でのテスト実行が可能です。（テスト内容によっては正常動作しない場合があります）</p>
-<p>カーネルに依存しないテストの場合はdocker等のlinuxコンテナを利用して1つのスレーブサーバーで異なるOS環境でのテスト実行が可能です。（テスト内容によっては正常動作しない場合があります）</p>
+<p>OSはテストの実行に必要なソフトウェア要件にあったものを用意して下さい。</p>
+<p>ハードウェアに依存しないテストの場合はvirtualbox等の仮想マシンを利用してスレーブサーバーを追加すれば異なるOS環境でのテスト実行が可能です。（テスト内容によっては正常動作しない場合があります）</p>
+<p>カーネルに依存しないテストの場合はdocker等のlinuxコンテナを利用してスレーブサーバーを追加せずに異なるOS環境でのテスト実行が可能です。（テスト内容によっては正常動作しない場合があります）</p>
+<p>インストーラーの設定は以下の通りです。</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="33%" />
@@ -267,6 +268,10 @@ $ sudo apt-get -y install nvidia-current nvidia-settings
 </pre></div>
 </div>
 <p>セキュリティーアップデート、その他必要なソフトウェアがあればインストールを行って下さい。</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Ubuntu 14.04 LTS Desktopで動作確認済みですが、バージョンを上げる場合は別途動作確認が必要です。</p>
+</div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">マスターサーバーは固定IPアドレスでjenkinshrg.a01.aist.go.jpでアクセスできるようにDNSに登録されている必要があります。</p>
