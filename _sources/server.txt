@@ -254,7 +254,7 @@ http経由でアクセスする場合は$HOME/.netrcを作成します。
   password <password>
   EOL
 
-スレーブサーバーの$HOME/.netrcをマスターサーバーの$JENKINS_HOME（/var/lib/jenkins）へコピーします。
+マスターサーバーの場合は$HOME/.netrcを$JENKINS_HOME（/var/lib/jenkins）へコピーします。
 
 .. code-block:: bash
 
@@ -283,7 +283,7 @@ $HOME/.ssh/configを作成します。
   StrictHostKeyChecking no
   EOL
 
-スレーブサーバーの$HOME/.sshをマスターサーバーの$JENKINS_HOME（/var/lib/jenkins）へコピーします。
+マスターサーバーの場合は$HOME/.sshを$JENKINS_HOME（/var/lib/jenkins）へコピーします。
 
 .. code-block:: bash
 

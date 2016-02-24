@@ -434,7 +434,7 @@ $ <span class="nb">cd</span> buildfarm
 <span class="s">EOL</span>
 </pre></div>
 </div>
-<p>スレーブサーバーの$HOME/.netrcをマスターサーバーの$JENKINS_HOME（/var/lib/jenkins）へコピーします。</p>
+<p>マスターサーバーの場合は$HOME/.netrcを$JENKINS_HOME（/var/lib/jenkins）へコピーします。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo cp $HOME/.netrc /var/lib/jenkins
 $ sudo chown jenkins:jenkins /var/lib/jenkins/.netrc
 </pre></div>
@@ -457,7 +457,7 @@ $ ssh-copy-id &lt;username&gt;@atom.a01.aist.go.jp
 <span class="s">EOL</span>
 </pre></div>
 </div>
-<p>スレーブサーバーの$HOME/.sshをマスターサーバーの$JENKINS_HOME（/var/lib/jenkins）へコピーします。</p>
+<p>マスターサーバーの場合は$HOME/.sshを$JENKINS_HOME（/var/lib/jenkins）へコピーします。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo cp -r $HOME/.ssh /var/lib/jenkins
 $ sudo chown -R jenkins:jenkins /var/lib/jenkins/.ssh
 </pre></div>
