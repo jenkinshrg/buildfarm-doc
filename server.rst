@@ -71,6 +71,22 @@ NVIDIAのグラフィックボードなどプロプライエタリなドライ�
 
   「システム設定」の「ユーザーアカウント」にてログインユーザーを自動ログインに設定、「画面の明るさとロック」にてスクリーンセーバー、画面ロックは解除しておきます。
 
+共通インストール
+----------------
+
+スクリプトをcloneしておきます。
+
+.. code-block:: bash
+
+  $ git clone https://github.com/jenkinshrg/buildfarm.git
+  $ cd buildfarm
+  
+マスターサーバーとスレーブサーバーで共通で必要なパッケージをインストールします。(設定のカスタマイズを含みます)
+
+.. code-block:: bash
+
+  $ ./setup/common.sh
+
 マスターサーバーの構築
 ======================
 
@@ -185,6 +201,12 @@ http://jenkinshrg.a01.aist.go.jp
   $ git clone https://github.com/jenkinshrg/buildfarm.git
   $ cd buildfarm
   
+dockerをインストールします。
+
+.. code-block:: bash
+
+  $ ./setup/docker.sh
+
 スレーブサーバーをインストールします。
 
 .. code-block:: bash
