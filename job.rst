@@ -73,6 +73,10 @@ https://github.com/jenkinshrg/drcutil/tree/jenkins
 ビルドOSバージョン追加時
 ------------------------
 
+.. note::
+
+  ビルドはdockerコンテナ上で実行しますので任意のスレーブサーバーを選択可能です。
+
 ビルドを実行するOSバージョンを追加したい場合は以下のように指定してジョブを追加して下さい。
 
 .. code-block:: bash
@@ -95,6 +99,10 @@ https://github.com/jenkinshrg/drcutil/tree/jenkins
 
 タスクシーケンス追加時
 ----------------------
+
+.. note::
+
+  タスクシーケンスの実行は仮想マシンやdockerコンテナでは実行できず、並列実行もできませんので要件にあったスレーブサーバーを選択して下さい。
 
 .. warning::
 
