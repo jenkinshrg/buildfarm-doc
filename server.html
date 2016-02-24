@@ -503,8 +503,9 @@ $ sudo chown -R jenkins:jenkins /var/lib/jenkins/.ssh
 <div class="section" id="google-drive">
 <h3>Google Driveの設定<a class="headerlink" href="#google-drive" title="Permalink to this headline">¶</a></h3>
 <p>ログをGoogle Driveへアップロードするために以下の設定を行って下さい。</p>
-<p>GoogleへjenkinshrgでログインしてDrive APIのclient_idとclient_secretを確認します。</p>
-<p><a class="reference external" href="https://console.developers.google.com/apis/credentials/oauthclient/72243280516-cosk9tsmaf8lgb850l914mtd2bsk5hm5.apps.googleusercontent.com?project=api-project-72243280516">https://console.developers.google.com/apis/credentials/oauthclient/72243280516-cosk9tsmaf8lgb850l914mtd2bsk5hm5.apps.googleusercontent.com?project=api-project-72243280516</a></p>
+<p>Googleへjenkinshrgでログインします。</p>
+<p><a class="reference external" href="https://console.developers.google.com">https://console.developers.google.com</a></p>
+<p>API Managerの認証情報でDrive APIのclient_idとclient_secretを作成します。</p>
 <p>$HOME/.jenkinshrg/env.shを作成します。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ mkdir -p $HOME/.jenkinshrg
 $ cat <span class="s">&lt;&lt; EOL | tee $HOME/.jenkinshrg/env.sh</span>
