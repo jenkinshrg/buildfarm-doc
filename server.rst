@@ -9,9 +9,9 @@
 .. csv-table::
   :header: ノード名, 用途, ジョブ同時実行数, 備考
 
-  master, テスト実行管理, 0, ラック中段、core i5、mem 15GB、HDD 150GB+5TB、eth2
-  slave1, テスト実行環境（並列実行可能ジョブ用）, 3, ラック上段、core i5、mem 15GB、HDD 150GB、eth2
-  slave2, テスト実行環境（並列実行不可ジョブ用）, 1, ラック下段、core i5、mem 15GB、HDD 150GB、eth2
+  master, テスト実行管理, 0, ラック中段、core i5、mem 15GB、HDD 150GB+5TB、eth2（固定IP)
+  slave1, テスト実行環境（並列実行可能ジョブ用）, 3, ラック上段、core i5、mem 15GB、HDD 150GB、eth2（dhcp）
+  slave2, テスト実行環境（並列実行不可ジョブ用）, 1, ラック下段、core i5、mem 15GB、HDD 150GB、eth2（dhcp）
 
 .. note::
 
