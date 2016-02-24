@@ -334,9 +334,11 @@ Google Driveの設定
 
 ログをGoogle Driveへアップロードするために以下の設定を行って下さい。
 
-GoogleへjenkinshrgでログインしてDrive APIのclient_idとclient_secretを確認します。
+Googleへjenkinshrgでログインします。
 
-https://console.developers.google.com/apis/credentials/oauthclient/72243280516-cosk9tsmaf8lgb850l914mtd2bsk5hm5.apps.googleusercontent.com?project=api-project-72243280516
+https://console.developers.google.com
+
+API Managerの認証情報でDrive APIのclient_idとclient_secretを作成します。
 
 $HOME/.jenkinshrg/env.shを作成します。
 
