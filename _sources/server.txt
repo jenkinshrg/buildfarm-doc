@@ -333,7 +333,7 @@ Google Driveの設定
 
 ログをGoogle Driveへアップロードするために以下の設定を行って下さい。
 
-Googleへjenkinshrgでログインします。
+Google Developers Consoleへjenkinshrgでログインします。
 
 https://console.developers.google.com
 
