@@ -7,12 +7,12 @@
 現在運用中のサーバー構成は以下の通りです。
 
 .. csv-table::
-  :header: ノード名, 用途, DNS名, IPアドレス, 備考
+  :header: ノード名, 用途, 備考
   :widths: 5, 5, 5, 5, 5
 
-  master, テスト実行管理, 固定, 固定, ラック中段、core i5、mem 15GB、HDD 150GB+5TB、eth2
-  slave1, テスト実行環境（並列実行可能ジョブ用）, dhcp, dhcp, ラック上段、core i5、mem 15GB、HDD 150GB、eth2
-  slave2, テスト実行環境（並列実行不可ジョブ用）, dhcp, dhcp, ラック下段、core i5、mem 15GB、HDD 150GB、eth2
+  master, テスト実行管理, , ラック中段、core i5、mem 15GB、HDD 150GB+5TB、eth2
+  slave1, テスト実行環境（並列実行可能ジョブ用）, ラック上段、core i5、mem 15GB、HDD 150GB、eth2
+  slave2, テスト実行環境（並列実行不可ジョブ用）, ラック下段、core i5、mem 15GB、HDD 150GB、eth2
 
 .. note::
 

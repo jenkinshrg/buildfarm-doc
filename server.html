@@ -173,43 +173,6 @@
 <h1>テストサーバーの管理<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <p>テストサーバーを構築、運用するための手順について説明します。</p>
 <p>現在運用中のサーバー構成は以下の通りです。</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="20%" />
-<col width="20%" />
-<col width="20%" />
-<col width="20%" />
-<col width="20%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">ノード名</th>
-<th class="head">用途</th>
-<th class="head">DNS名</th>
-<th class="head">IPアドレス</th>
-<th class="head">備考</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>master</td>
-<td>テスト実行管理</td>
-<td>固定</td>
-<td>固定</td>
-<td>ラック中段、core i5、mem 15GB、HDD 150GB+5TB、eth2</td>
-</tr>
-<tr class="row-odd"><td>slave1</td>
-<td>テスト実行環境（並列実行可能ジョブ用）</td>
-<td>dhcp</td>
-<td>dhcp</td>
-<td>ラック上段、core i5、mem 15GB、HDD 150GB、eth2</td>
-</tr>
-<tr class="row-even"><td>slave2</td>
-<td>テスト実行環境（並列実行不可ジョブ用）</td>
-<td>dhcp</td>
-<td>dhcp</td>
-<td>ラック下段、core i5、mem 15GB、HDD 150GB、eth2</td>
-</tr>
-</tbody>
-</table>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">マスターサーバーとスレーブサーバーを同じマシンに同居させることも可能ですが、テスト実行へ悪影響が発生する可能性があるため別マシンにすることを推奨します。</p>
