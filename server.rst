@@ -205,12 +205,6 @@ http://jenkinshrg.a01.aist.go.jp
   $ git clone https://github.com/jenkinshrg/buildfarm.git
   $ cd buildfarm
   
-dockerをインストールします。
-
-.. code-block:: bash
-
-  $ ./setup/docker.sh
-
 スレーブサーバーをインストールします。
 
 .. code-block:: bash
