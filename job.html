@@ -272,6 +272,10 @@ $ <span class="nb">cd</span> buildfarm
 </table>
 <div class="section" id="os">
 <h3>ビルドOSバージョン追加時<a class="headerlink" href="#os" title="Permalink to this headline">¶</a></h3>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">ビルドはdockerコンテナ上で実行しますので任意のスレーブサーバーを選択可能です。</p>
+</div>
 <p>ビルドを実行するOSバージョンを追加したい場合は以下のように指定してジョブを追加して下さい。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/createjob.sh &lt;jobname&gt; upstream &lt;nodename&gt; ubuntu xenial amd64 .jenkins.sh build
 </pre></div>
@@ -329,6 +333,10 @@ $ <span class="nb">cd</span> buildfarm
 </div>
 <div class="section" id="id6">
 <h3>タスクシーケンス追加時<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">タスクシーケンスの実行は仮想マシンやdockerコンテナでは実行できず、並列実行もできませんので要件にあったスレーブサーバーを選択して下さい。</p>
+</div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">現状はタスク成功判定にdrcutil/.jenkins/getRobotPos.py（ロボット状態取得）、drcutil/.jenkins/getRobotPos.py（ターゲット状態取得）を行ったあと、drcutil/.jenkins/&lt;taskname&gt;-getRobotPos.py（ロボット状態判定）、drcutil/.jenkins/&lt;taskname&gt;-getRobotPos.py（ターゲット状態判定）を実行しているため事前にスクリプトの登録が必要です。</p>
