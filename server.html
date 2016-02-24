@@ -493,8 +493,9 @@ $ cat <span class="s">&lt;&lt; EOL | tee $HOME/.jenkinshrg/env.sh</span>
 $ <span class="nb">cd</span> drcutil/.jenkins
 </pre></div>
 </div>
-<p>適当なファイルを転送することで初回の認証を行います。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ python remoteBackup.py remoteBackup.py text/plain remoteBackup.py
+<p>$HOME/.jenkinshrg/env.shを読み込んで適当なファイルを転送することで初回の認証を行います。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">source</span> $HOME/.jenkinshrg/env.sh
+$ python remoteBackup.py remoteBackup.py text/plain remoteBackup.py
 </pre></div>
 </div>
 <p>認証コードの入力が促されます。</p>
