@@ -341,10 +341,10 @@ Google Driveの設定
   $ sudo tar zxvf jenkins.tar.gz -C /var/lib
   $ sudo service jenkins start
 
-仮想マシンによるテストサーバーの構築（オプション）
-=================================================
+仮想マシンによるマスターサーバー、スレーブサーバーの構築（オプション）
+=====================================================================
 
-テストサーバーの開発用などで仮想マシン上に環境を構築することも可能です。（テスト内容によっては正常動作しない場合があります）
+ローカル環境での確認用などで仮想マシン上にマスターサーバー、スレーブサーバーを構築することも可能です。（テスト内容によっては正常動作しない場合があります）
 
 インストール
 ------------
@@ -376,16 +376,22 @@ vagrantがインストールされていない場合はインストールして�
   $ git clone https://github.com/jenkinshrg/buildfarm.git
   $ cd buildfarm
 
-サーバーを起動します。（マスターサーバー、スレーブサーバーが起動されます）
+マスターサーバーを起動します。（Ubuntu14.04LTS環境）
 
 .. code-block:: bash
 
-  $ vagrant up
+  $ vagrant up master
+
+スレーブサーバーを起動します。（Ubuntu14.04LTS環境）
+
+.. code-block:: bash
+
+  $ vagrant up slave
 
 スレーブサーバーの追加
 ----------------------
 
-Vagrantfileにスレーブの記述を追加します。（以下はUbuntu16.04LTSを追加する場合）
+Vagrantfileにスレーブの記述を追加します。（以下はUbuntu16.04LTS環境のスレーブサーバーをubuntu-xenial-amd64というノード名でhttp://jenkinshrg.a01.aist.go.jpへ接続する場合の例）
 
 .. code-block:: ruby
 
