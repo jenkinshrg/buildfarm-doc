@@ -448,21 +448,16 @@ $ <span class="nb">cd</span> buildfarm
 <p>マスターサーバー、スレーブサーバー全てに対してそれぞれ設定を行って下さい。</p>
 <div class="section" id="git-http">
 <h3>gitの設定(http経由）<a class="headerlink" href="#git-http" title="Permalink to this headline">¶</a></h3>
-<p>http経由でアクセスする場合は$HOME/.netrcを作成します。</p>
+<p>http経由でアクセスする場合は$HOME/.git-credentialsを作成します。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ cat <span class="s">&lt;&lt; EOL | tee $HOME/.netrc</span>
-<span class="s">machine github.com</span>
-<span class="s">login &lt;username&gt;</span>
-<span class="s">password &lt;password&gt;</span>
-
-<span class="s">machine choreonoid.org</span>
-<span class="s">login &lt;username&gt;</span>
-<span class="s">password &lt;password&gt;</span>
+<span class="s">https://&lt;username&gt;:&lt;password&gt;@choreonoid.org</span>
+<span class="s">https://&lt;username&gt;:&lt;password&gt;@github.com</span>
 <span class="s">EOL</span>
 </pre></div>
 </div>
-<p>マスターサーバーの場合は$HOME/.netrcを$JENKINS_HOME（/var/lib/jenkins）へコピーします。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo cp $HOME/.netrc /var/lib/jenkins
-$ sudo chown jenkins:jenkins /var/lib/jenkins/.netrc
+<p>マスターサーバーの場合は$HOME/.git-credentialsを$JENKINS_HOME（/var/lib/jenkins）へコピーします。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo cp $HOME/.git-credentials /var/lib/jenkins
+$ sudo chown jenkins:jenkins /var/lib/jenkins/.git-credentials
 </pre></div>
 </div>
 </div>

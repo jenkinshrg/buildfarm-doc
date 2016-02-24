@@ -265,26 +265,21 @@ http://jenkinshrg.a01.aist.go.jp
 gitの設定(http経由）
 --------------------
 
-http経由でアクセスする場合は$HOME/.netrcを作成します。
+http経由でアクセスする場合は$HOME/.git-credentialsを作成します。
 
 .. code-block:: bash
 
   $ cat << EOL | tee $HOME/.netrc
-  machine github.com
-  login <username>
-  password <password>
-  
-  machine choreonoid.org
-  login <username>
-  password <password>
+  https://<username>:<password>@choreonoid.org
+  https://<username>:<password>@github.com
   EOL
 
-マスターサーバーの場合は$HOME/.netrcを$JENKINS_HOME（/var/lib/jenkins）へコピーします。
+マスターサーバーの場合は$HOME/.git-credentialsを$JENKINS_HOME（/var/lib/jenkins）へコピーします。
 
 .. code-block:: bash
 
-  $ sudo cp $HOME/.netrc /var/lib/jenkins
-  $ sudo chown jenkins:jenkins /var/lib/jenkins/.netrc
+  $ sudo cp $HOME/.git-credentials /var/lib/jenkins
+  $ sudo chown jenkins:jenkins /var/lib/jenkins/.git-credentials
 
 gitの設定(ssh経由）
 -------------------
