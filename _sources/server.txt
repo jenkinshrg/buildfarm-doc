@@ -419,7 +419,7 @@ unattended-upgradesにて自動アップデート、リブートを実施しま�
 仮想マシンによるマスターサーバー、スレーブサーバーの構築（オプション）
 =====================================================================
 
-ローカル環境での確認用などで仮想マシン上にマスターサーバー、スレーブサーバーを構築することも可能です。（テスト内容によっては正常動作しない場合があります）
+仮想マシン上にマスターサーバー、スレーブサーバーを構築することも可能です。（テスト内容によっては正常動作しない場合があります）
 
 インストール
 ------------
@@ -441,8 +441,10 @@ vagrantがインストールされていない場合はインストールして�
   $ sudo dpkg -i vagrant_1.8.1_x86_64.deb
   $ rm vagrant_1.8.1_x86_64.deb
 
-サーバーの起動
---------------
+ローカル環境での起動
+--------------------
+
+一時的な確認用などでローカル環境でテストサーバーを起動したいは以下の手順で起動します。
 
 スクリプトをcloneしておきます。
 
@@ -463,8 +465,10 @@ vagrantがインストールされていない場合はインストールして�
 
   $ vagrant up slave
 
-スレーブサーバーの追加
-----------------------
+リモート環境へのスレーブサーバーの追加
+--------------------------------------
+
+一時的な確認用などでリモート環境へスレーブサーバーを追加したいは以下の手順で起動します。
 
 Vagrantfileにスレーブの記述を追加します。（以下はUbuntu16.04LTS環境でubuntu-xenial-amd64というノード名でhttp://jenkinshrg.a01.aist.go.jpへ接続する場合の例）
 
@@ -472,8 +476,8 @@ Vagrantfileにスレーブの記述を追加します。（以下はUbuntu16.04L
 
   config.vm.define "ubuntu-xenial-amd64", autostart: false do |server|
     server.vm.box = "ubuntu/xenial64"
-    server.vm.provision "shell", path: "setup/slave.sh", args: "ubuntu-xenial-amd64 http://jenkinshrg.a01.aist.go.jp", privileged: false
     server.vm.provision "shell", path: "scripts/createnode.sh", args: "ubuntu-xenial-amd64 /home/vagrant http://jenkinshrg.a01.aist.go.jp", privileged: false
+    server.vm.provision "shell", path: "setup/slave.sh", args: "ubuntu-xenial-amd64 http://jenkinshrg.a01.aist.go.jp", privileged: false
   end
 
 スレーブサーバーを起動します。
