@@ -110,13 +110,14 @@
 <li class="toctree-l3"><a class="reference internal" href="#id13">アップデート</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id14">シャットダウン</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id15">サーバー移設</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id16">バックアップとリストア</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id16">サーバー交換</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id17">バックアップとリストア</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id17">仮想マシンによるマスターサーバー、スレーブサーバーの構築（オプション）</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id18">インストール</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id19">サーバーの起動</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id20">スレーブサーバーの追加</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id18">仮想マシンによるマスターサーバー、スレーブサーバーの構築（オプション）</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id19">インストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id20">サーバーの起動</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">スレーブサーバーの追加</a></li>
 </ul>
 </li>
 </ul>
@@ -491,10 +492,14 @@ $ sudo -i -u jenkins ssh-copy-id &lt;username&gt;@atom.a01.aist.go.jp
 </div>
 <div class="section" id="id15">
 <h3>サーバー移設<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
-<p>サーバーの設置場所の変更、ハードウェア交換などでMACアドレス、IPアドレスが変更になっても問題ありません。</p>
+<p>サーバーの設置場所の変更などでMACアドレスやIPアドレスが変更になっても問題ありません。</p>
 </div>
 <div class="section" id="id16">
-<h3>バックアップとリストア<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<h3>サーバー交換<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<p>故障などでハードウェア交換を行う場合は再度インストール手順を実施して下さい。（マスターサーバーのバックアップデータがある場合はリストア手順を実施して下さい）</p>
+</div>
+<div class="section" id="id17">
+<h3>バックアップとリストア<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
 <p>テストサーバーの設定と履歴データはマスターサーバーにあります。（スレーブサーバーのデータは消えてしまっても問題ありません）</p>
 <p>バックアップは以下の手順を実行して下さい。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo service jenkins stop
@@ -510,11 +515,11 @@ $ sudo service jenkins start
 </div>
 </div>
 </div>
-<div class="section" id="id17">
-<h2>仮想マシンによるマスターサーバー、スレーブサーバーの構築（オプション）<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h2>
-<p>ローカル環境での確認用などで仮想マシン上にマスターサーバー、スレーブサーバーを構築することも可能です。（テスト内容によっては正常動作しない場合があります）</p>
 <div class="section" id="id18">
-<h3>インストール<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<h2>仮想マシンによるマスターサーバー、スレーブサーバーの構築（オプション）<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h2>
+<p>ローカル環境での確認用などで仮想マシン上にマスターサーバー、スレーブサーバーを構築することも可能です。（テスト内容によっては正常動作しない場合があります）</p>
+<div class="section" id="id19">
+<h3>インストール<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
 <p>virtualboxがインストールされていない場合はインストールして下さい。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo sh -c <span class="s2">&quot;echo &#39;deb http://download.virtualbox.org/virtualbox/debian &#39;</span><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2">&#39; contrib&#39; &gt; /etc/apt/sources.list.d/virtualbox.list&quot;</span>
 $ wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- <span class="p">|</span> sudo apt-key add -
@@ -529,8 +534,8 @@ $ rm vagrant_1.8.1_x86_64.deb
 </pre></div>
 </div>
 </div>
-<div class="section" id="id19">
-<h3>サーバーの起動<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id20">
+<h3>サーバーの起動<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
 <p>スクリプトをcloneしておきます。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
 $ <span class="nb">cd</span> buildfarm
@@ -545,8 +550,8 @@ $ <span class="nb">cd</span> buildfarm
 </pre></div>
 </div>
 </div>
-<div class="section" id="id20">
-<h3>スレーブサーバーの追加<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id21">
+<h3>スレーブサーバーの追加<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
 <p>Vagrantfileにスレーブの記述を追加します。（以下はUbuntu16.04LTS環境でubuntu-xenial-amd64というノード名でhttp://jenkinshrg.a01.aist.go.jpへ接続する場合の例）</p>
 <div class="highlight-ruby"><div class="highlight"><pre><span></span><span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">define</span> <span class="s2">&quot;ubuntu-xenial-amd64&quot;</span><span class="p">,</span> <span class="ss">autostart</span><span class="p">:</span> <span class="kp">false</span> <span class="k">do</span> <span class="o">|</span><span class="n">server</span><span class="o">|</span>
   <span class="n">server</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">&quot;ubuntu/xenial64&quot;</span>
