@@ -217,6 +217,14 @@
 <p class="first admonition-title">Note</p>
 <p class="last">テスト内容によっては並列実行させるとリソースの競合や負荷の問題が発生する場合があるため、並列実行可能なスレーブサーバーと並列実行が不可能なスレーブサーバーに分けて運用しています。（スレーブサーバーのジョブ同時実行数で設定）</p>
 </div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">ハードウェアに依存しないテストの場合はvirtualbox等の仮想マシンを利用してスレーブサーバーを追加すれば異なるOS環境でのテスト実行が可能です。（テスト内容によっては正常動作しない場合があります）</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">カーネルに依存しないテストの場合はdocker等のlinuxコンテナを利用してスレーブサーバーを追加せずに異なるOS環境でのテスト実行が可能です。（テスト内容によっては正常動作しない場合があります）</p>
+</div>
 <div class="section" id="id2">
 <h2>事前準備<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>マスターサーバーとスレーブサーバー共通で実施するインストール手順を説明します。</p>
@@ -277,14 +285,6 @@ $ sudo apt-get -y install nvidia-current nvidia-settings
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">本手順はUbuntu 14.04 LTS Desktopで動作確認しています。</p>
-</div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">ハードウェアに依存しないテストの場合はvirtualbox等の仮想マシンを利用してスレーブサーバーを追加すれば異なるOS環境でのテスト実行が可能です。（テスト内容によっては正常動作しない場合があります）</p>
-</div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">カーネルに依存しないテストの場合はdocker等のlinuxコンテナを利用してスレーブサーバーを追加せずに異なるOS環境でのテスト実行が可能です。（テスト内容によっては正常動作しない場合があります）</p>
 </div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
