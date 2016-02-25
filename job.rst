@@ -8,7 +8,6 @@
 
 .. csv-table::
   :header: ジョブ名, 内容, 実行ノード, 備考
-  :widths: 5, 5, 5
 
   drcutil, リポジトリ変更監視, slave1, 毎時レポジトリ変更時に実行
   drcutil-build-32, ビルド（32ビット環境）, slave1, drcutilが終了時に実行、dockerコンテナ環境で実行
