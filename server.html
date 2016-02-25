@@ -207,15 +207,15 @@
 </table>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">マスターサーバーとスレーブサーバーを同じマシンに同居させることも可能ですが、テスト実行へ悪影響が発生する可能性があるため別マシンにすることを推奨します。</p>
+<p class="last">マスターサーバーとスレーブサーバーを同じマシンに同居させて1台で運用することも可能ですが、テスト実行へ悪影響が発生する可能性があるため別マシンにすることを推奨します。</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">マスターサーバー上でもテストを実行することは可能ですが、設定データや履歴データのバックアップ等を考慮してマスターサーバーではテストを実行させない運用としています。（マスターサーバーのジョブ同時実行数を0に設定）</p>
+<p class="last">マスターサーバー上でもテストを実行することは可能ですが、設定データや履歴データのバックアップ時に不要なワークスペースが含まれてしまうためマスターサーバーではテストを実行させない運用としています。（マスターサーバーのジョブ同時実行数を0に設定）</p>
 </div>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">テスト内容によっては並列実行させるとリソースの競合や負荷の問題が発生する場合があるため、並列実行可能なスレーブサーバーと並列実行が不可能なスレーブサーバーを用意しています。（スレーブサーバーのジョブ同時実行数で設定）</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">テスト内容によっては並列実行させるとリソースの競合や負荷の問題が発生する場合があるため、並列実行可能なスレーブサーバーと並列実行が不可能なスレーブサーバーに分けて運用しています。（スレーブサーバーのジョブ同時実行数で設定）</p>
 </div>
 <div class="section" id="id2">
 <h2>事前準備<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
