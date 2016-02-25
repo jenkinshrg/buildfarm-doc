@@ -529,7 +529,7 @@ $ sudo chown jenkins:jenkins /var/lib/jenkins/.gitconfig
 <div class="section" id="git-http">
 <h3>gitの設定(http経由）<a class="headerlink" href="#git-http" title="Permalink to this headline">¶</a></h3>
 <p>http経由でアクセスする場合は$HOME/.git-credentialsを作成します。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cat <span class="s">&lt;&lt; EOL | tee $HOME/.netrc</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cat <span class="s">&lt;&lt; EOL | tee $HOME/.git-credentials</span>
 <span class="s">https://&lt;username&gt;:&lt;password&gt;@choreonoid.org</span>
 <span class="s">https://&lt;username&gt;:&lt;password&gt;@github.com</span>
 <span class="s">EOL</span>
@@ -567,9 +567,8 @@ $ sudo chown -R jenkins:jenkins /var/lib/jenkins/.ssh
 <div class="section" id="google-drive">
 <h3>Google Driveの設定<a class="headerlink" href="#google-drive" title="Permalink to this headline">¶</a></h3>
 <p>ログをGoogle Driveへアップロードするために以下の設定を行って下さい。</p>
-<p>Google Developers Consoleへjenkinshrgでログインします。</p>
+<p>Google Drive APIのclient_idとclient_secretをまだ作成していない場合は、Google Developers Consoleへjenkinshrgでログインして「API Manager」の「認証情報」で作成しておきます。</p>
 <p><a class="reference external" href="https://console.developers.google.com">https://console.developers.google.com</a></p>
-<p>API Managerの認証情報でDrive APIのclient_idとclient_secretを作成します。</p>
 <p>$HOME/.jenkinshrg/env.shを作成します。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ mkdir -p $HOME/.jenkinshrg
 $ cat <span class="s">&lt;&lt; EOL | tee $HOME/.jenkinshrg/env.sh</span>
