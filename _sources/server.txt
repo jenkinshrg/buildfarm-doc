@@ -445,6 +445,15 @@ vagrantがインストールされていない場合はインストールして�
 
   $ vagrant up master
 
+マスターサーバーへスレーブサーバーを登録します。
+
+.. code-block:: bash
+
+  $ export JENKINS_URL=http://localhost:8080
+  $ export REMOTE_FS=/home/vagrant
+  $ ./scripts/createnode.sh slave1 4
+  $ ./scripts/createnode.sh slave2 1
+
 スレーブサーバーを起動します。（Ubuntu14.04LTS環境でslave1、slave2というノード名でvirtualboxのプライベートネットワークで接続）
 
 .. code-block:: bash
@@ -465,6 +474,12 @@ Vagrantfileにスレーブの記述を追加します。（以下はUbuntu16.04L
     server.vm.provision "shell", path: "scripts/createnode.sh", args: "ubuntu-xenial-amd64 /home/vagrant http://jenkinshrg.a01.aist.go.jp", privileged: false
     server.vm.provision "shell", path: "setup/slave.sh", args: "ubuntu-xenial-amd64 http://jenkinshrg.a01.aist.go.jp", privileged: false
   end
+
+マスターサーバーへスレーブサーバーを登録します。
+
+.. code-block:: bash
+
+  $ ./scripts/createnode.sh ubuntu-xenial-amd64 1
 
 スレーブサーバーを起動します。
 
