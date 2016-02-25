@@ -132,13 +132,6 @@ gitのユーザー設定をします。
   $ git config --global credential.helper store
   $ git config --global http.sslVerify false
 
-マスターサーバーの場合は$HOME/.gitconfigを$JENKINS_HOME（/var/lib/jenkins）へコピーします。
-
-.. code-block:: bash
-
-  $ sudo cp $HOME/.gitconfig /var/lib/jenkins
-  $ sudo chown jenkins:jenkins /var/lib/jenkins/.gitconfig
-
 gitの設定(http経由）
 --------------------
 
@@ -150,13 +143,6 @@ http経由でアクセスする場合は$HOME/.git-credentialsを作成します
   https://<username>:<password>@choreonoid.org
   https://<username>:<password>@github.com
   EOL
-
-マスターサーバーの場合は$HOME/.git-credentialsを$JENKINS_HOME（/var/lib/jenkins）へコピーします。
-
-.. code-block:: bash
-
-  $ sudo cp $HOME/.git-credentials /var/lib/jenkins
-  $ sudo chown jenkins:jenkins /var/lib/jenkins/.git-credentials
 
 gitの設定(ssh経由）
 -------------------
@@ -179,13 +165,6 @@ $HOME/.ssh/configを作成します。
   IdentityFile ~/.ssh/id_rsa
   StrictHostKeyChecking no
   EOL
-
-マスターサーバーの場合は$HOME/.sshを$JENKINS_HOME（/var/lib/jenkins）へコピーします。
-
-.. code-block:: bash
-
-  $ sudo cp -r $HOME/.ssh /var/lib/jenkins
-  $ sudo chown -R jenkins:jenkins /var/lib/jenkins/.ssh
 
 Google Driveの設定
 ------------------
