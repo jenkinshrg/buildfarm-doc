@@ -99,10 +99,8 @@ NVIDIAのグラフィックボードなどプロプライエタリなドライ�
 
   スレーブサーバーはchoreonoidによるGUIテスト自動化の妨げとなるため「システム設定」の「ユーザーアカウント」にてログインユーザーを自動ログインに設定、「画面の明るさとロック」にて画面オフしない、ロックしない、パスワードなしに設定しておく必要があります。
 
-共通パッケージのインストール
-----------------------------
-
-マスターサーバーとスレーブサーバーで共通で必要なパッケージをインストールして下さい。(設定のカスタマイズを含みます)
+ツールスクリプトの用意
+----------------------
 
 gitをインストールします。
 
@@ -110,13 +108,18 @@ gitをインストールします。
 
   $ sudo apt-get install git
 
-スクリプトをcloneしておきます。
+サーバーの構築を行うツールスクリプトをcloneしておきます。
 
 .. code-block:: bash
 
   $ git clone https://github.com/jenkinshrg/buildfarm.git
   $ cd buildfarm
   
+共通パッケージのインストール
+----------------------------
+
+マスターサーバーとスレーブサーバーで共通で必要なパッケージをインストールして下さい。(設定のカスタマイズを含みます)
+
 .. code-block:: bash
 
   $ ./setup/common.sh
@@ -227,13 +230,6 @@ JENKINSのインストール
 
 JENKINSをインストールして下さい。
 
-スクリプトをcloneしておきます。
-
-.. code-block:: bash
-
-  $ git clone https://github.com/jenkinshrg/buildfarm.git
-  $ cd buildfarm
-  
 マスターサーバーをインストールします。(必要なプラグインのインストール、設定のカスタマイズを含みます)
 
 .. code-block:: bash
@@ -299,13 +295,6 @@ http://jenkinshrg.a01.aist.go.jp
 
 スレーブサーバーの情報をマスターサーバーへ登録します。
 
-スクリプトをcloneしておきます。
-
-.. code-block:: bash
-
-  $ git clone https://github.com/jenkinshrg/buildfarm.git
-  $ cd buildfarm
-
 マスターサーバーへスレーブサーバーを登録します。
 
 .. code-block:: bash
@@ -329,13 +318,6 @@ JNLPスレーブの起動
 
 JENKINSのスレーブサービスを起動して下さい。（自動起動の設定を含みます）
 
-スクリプトをcloneしておきます。
-
-.. code-block:: bash
-
-  $ git clone https://github.com/jenkinshrg/buildfarm.git
-  $ cd buildfarm
-  
 スレーブサーバーをインストールします。
 
 .. code-block:: bash
@@ -361,13 +343,6 @@ http://jenkinshrg.a01.aist.go.jp
 ----------------------
 
 不要になったスレーブサーバーの情報をマスターサーバーから削除します。
-
-スクリプトをcloneしておきます。
-
-.. code-block:: bash
-
-  $ git clone https://github.com/jenkinshrg/buildfarm.git
-  $ cd buildfarm
 
 マスターサーバーからスレーブサーバーを削除します。
 
