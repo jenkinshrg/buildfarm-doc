@@ -331,7 +331,7 @@ http経由でアクセスする場合は$HOME/.git-credentialsを作成します
 
 .. code-block:: bash
 
-  $ cat << EOL | tee $HOME/.netrc
+  $ cat << EOL | tee $HOME/.git-credentials
   https://<username>:<password>@choreonoid.org
   https://<username>:<password>@github.com
   EOL
@@ -377,11 +377,9 @@ Google Driveの設定
 
 ログをGoogle Driveへアップロードするために以下の設定を行って下さい。
 
-Google Developers Consoleへjenkinshrgでログインします。
+Google Drive APIのclient_idとclient_secretをまだ作成していない場合は、Google Developers Consoleへjenkinshrgでログインして「API Manager」の「認証情報」で作成しておきます。
 
 https://console.developers.google.com
-
-API Managerの認証情報でDrive APIのclient_idとclient_secretを作成します。
 
 $HOME/.jenkinshrg/env.shを作成します。
 
