@@ -10,12 +10,12 @@
   :header: ジョブ名, 内容, 実行トリガ, 実行ノード, 備考
 
   drcutil, リポジトリ変更監視, 毎時レポジトリ変更時, slave1, 
-  drcutil-build-32, ビルド（32ビット環境）, drcutilが終了時に実行, slave1, dockerコンテナ環境で実行
-  drcutil-build-64, ビルド（64ビット環境）、単体テスト、静的解析, drcutilが終了時に実行, slave1, dockerコンテナ環境で実行
-  drcutil-task-balancebeam, タスクシーケンス（平均台歩行）, 毎時実行, slave2, 実環境で実行
-  drcutil-task-terrain, タスクシーケンス（不整地歩行）, 毎時実行, slave2, 実環境で実行
-  drcutil-task-valve, タスクシーケンス（バルブ回し）, 毎時実行, slave2, 実環境で実行
-  drcutil-task-wall, タスクシーケンス（壁開け）, 毎時実行, slave2, 実環境で実行
+  drcutil-build-32, ビルド（32ビット環境）, drcutilが終了時に実行, slave1, dockerコンテナ環境でクリーンビルドを実行
+  drcutil-build-64, ビルド（64ビット環境）、単体テスト、静的解析, drcutilが終了時に実行, slave1, dockerコンテナ環境でクリーンビルドを実行
+  drcutil-task-balancebeam, タスクシーケンス（平均台歩行）, 毎時実行, slave2, 実環境でGUIテストを実行
+  drcutil-task-terrain, タスクシーケンス（不整地歩行）, 毎時実行, slave2, 実環境でGUIテストを実行
+  drcutil-task-valve, タスクシーケンス（バルブ回し）, 毎時実行, slave2, 実環境でGUIテストを実行
+  drcutil-task-wall, タスクシーケンス（壁開け）, 毎時実行, slave2, 実環境でGUIテストを実行
   drcutil-upload, レポートアップロード, drcutil以外が終了時に実行, slave1, 
 
 .. note::
