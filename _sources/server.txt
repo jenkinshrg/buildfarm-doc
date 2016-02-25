@@ -113,6 +113,121 @@ gitをインストールします。
 
 その他必要なソフトウェアがあればインストールを行って下さい。
 
+認証情報の設定
+==============
+
+テストジョブでは対話形式のコマンドは実行できないため、認証情報が必要な外部サーバーへアクセスを行う場合は事前に以下の設定が必要となります。（セキュリティー面を考慮して認証情報を設定ファイルやスクリプトに保存しないで下さい）
+
+マスターサーバー、スレーブサーバー全てに対してそれぞれ設定を行って下さい。
+
+gitの設定(共通）
+---------------
+
+gitのユーザー設定をします。
+
+.. code-block:: bash
+
+  $ git config --global user.email "jenkinshrg@gmail.com"
+  $ git config --global user.name "jenkinshrg"
+  $ git config --global credential.helper store
+  $ git config --global http.sslVerify false
+
+マスターサーバーの場合は$HOME/.gitconfigを$JENKINS_HOME（/var/lib/jenkins）へコピーします。
+
+.. code-block:: bash
+
+  $ sudo cp $HOME/.gitconfig /var/lib/jenkins
+  $ sudo chown jenkins:jenkins /var/lib/jenkins/.gitconfig
+
+gitの設定(http経由）
+--------------------
+
+http経由でアクセスする場合は$HOME/.git-credentialsを作成します。
+
+.. code-block:: bash
+
+  $ cat << EOL | tee $HOME/.git-credentials
+  https://<username>:<password>@choreonoid.org
+  https://<username>:<password>@github.com
+  EOL
+
+マスターサーバーの場合は$HOME/.git-credentialsを$JENKINS_HOME（/var/lib/jenkins）へコピーします。
+
+.. code-block:: bash
+
+  $ sudo cp $HOME/.git-credentials /var/lib/jenkins
+  $ sudo chown jenkins:jenkins /var/lib/jenkins/.git-credentials
+
+gitの設定(ssh経由）
+-------------------
+
+ssh経由でアクセスする場合は公開鍵を作成して登録します。
+
+.. code-block:: bash
+
+  $ ssh-keygen -N "" -f ${HOME}/.ssh/id_rsa
+  $ ssh-copy-id <username>@atom.a01.aist.go.jp
+
+$HOME/.ssh/configを作成します。
+
+.. code-block:: bash
+
+  $ cat << EOL | tee $HOME/.ssh/config
+  Host atom.a01.aist.go.jp
+  HostName atom.a01.aist.go.jp
+  User <username>
+  IdentityFile ~/.ssh/id_rsa
+  StrictHostKeyChecking no
+  EOL
+
+マスターサーバーの場合は$HOME/.sshを$JENKINS_HOME（/var/lib/jenkins）へコピーします。
+
+.. code-block:: bash
+
+  $ sudo cp -r $HOME/.ssh /var/lib/jenkins
+  $ sudo chown -R jenkins:jenkins /var/lib/jenkins/.ssh
+
+Google Driveの設定
+------------------
+
+ログをGoogle Driveへアップロードするために以下の設定を行って下さい。
+
+Google Drive APIのclient_idとclient_secretをまだ作成していない場合は、Google Developers Consoleへjenkinshrgでログインして「API Manager」の「認証情報」で作成しておきます。
+
+https://console.developers.google.com
+
+$HOME/.jenkinshrg/env.shを作成します。
+
+.. code-block:: bash
+
+  $ mkdir -p $HOME/.jenkinshrg
+  $ cat << EOL | tee $HOME/.jenkinshrg/env.sh
+  export CLIENT_ID=<client_id>
+  export CLIENT_SECRET=<client_secret>
+  EOL
+
+スクリプトをcloneしておきます。
+
+.. code-block:: bash
+
+  $ git clone https://github.com/jenkinshrg/drcutil.git
+  $ cd drcutil/.jenkins
+
+$HOME/.jenkinshrg/env.shを読み込んで適当なファイルを転送することで初回の認証を行います。
+
+.. code-block:: bash
+
+  $ source $HOME/.jenkinshrg/env.sh
+  $ python remoteBackup.py remoteBackup.py text/plain remoteBackup.py
+
+認証コードの入力が促されます。
+
+  $ Enter verification code:
+
+ブラウザが自動起動されますので「アクセスを許可」すると認証コードが表示されますので入力するとファイル転送が行われ、$HOME/.jenkinshrg/jsonCredential.txtに認証情報が保存されます。
+
+以降は認証なしでファイル転送が可能となります。
+
 マスターサーバーの構築
 ======================
 
@@ -281,121 +396,6 @@ http://jenkinshrg.a01.aist.go.jp
 以下のURLへブラウザで接続してスレーブサーバーが削除されたことを確認して下さい。
 
 http://jenkinshrg.a01.aist.go.jp
-
-認証情報の設定
-==============
-
-テストジョブでは対話形式のコマンドは実行できないため、認証情報が必要な外部サーバーへアクセスを行う場合は事前に以下の設定が必要となります。（セキュリティー面を考慮して認証情報を設定ファイルやスクリプトに保存しないで下さい）
-
-マスターサーバー、スレーブサーバー全てに対してそれぞれ設定を行って下さい。
-
-gitの設定(共通）
----------------
-
-gitのユーザー設定をします。
-
-.. code-block:: bash
-
-  $ git config --global user.email "jenkinshrg@gmail.com"
-  $ git config --global user.name "jenkinshrg"
-  $ git config --global credential.helper store
-  $ git config --global http.sslVerify false
-
-マスターサーバーの場合は$HOME/.gitconfigを$JENKINS_HOME（/var/lib/jenkins）へコピーします。
-
-.. code-block:: bash
-
-  $ sudo cp $HOME/.gitconfig /var/lib/jenkins
-  $ sudo chown jenkins:jenkins /var/lib/jenkins/.gitconfig
-
-gitの設定(http経由）
---------------------
-
-http経由でアクセスする場合は$HOME/.git-credentialsを作成します。
-
-.. code-block:: bash
-
-  $ cat << EOL | tee $HOME/.git-credentials
-  https://<username>:<password>@choreonoid.org
-  https://<username>:<password>@github.com
-  EOL
-
-マスターサーバーの場合は$HOME/.git-credentialsを$JENKINS_HOME（/var/lib/jenkins）へコピーします。
-
-.. code-block:: bash
-
-  $ sudo cp $HOME/.git-credentials /var/lib/jenkins
-  $ sudo chown jenkins:jenkins /var/lib/jenkins/.git-credentials
-
-gitの設定(ssh経由）
--------------------
-
-ssh経由でアクセスする場合は公開鍵を作成して登録します。
-
-.. code-block:: bash
-
-  $ ssh-keygen -N "" -f ${HOME}/.ssh/id_rsa
-  $ ssh-copy-id <username>@atom.a01.aist.go.jp
-
-$HOME/.ssh/configを作成します。
-
-.. code-block:: bash
-
-  $ cat << EOL | tee $HOME/.ssh/config
-  Host atom.a01.aist.go.jp
-  HostName atom.a01.aist.go.jp
-  User <username>
-  IdentityFile ~/.ssh/id_rsa
-  StrictHostKeyChecking no
-  EOL
-
-マスターサーバーの場合は$HOME/.sshを$JENKINS_HOME（/var/lib/jenkins）へコピーします。
-
-.. code-block:: bash
-
-  $ sudo cp -r $HOME/.ssh /var/lib/jenkins
-  $ sudo chown -R jenkins:jenkins /var/lib/jenkins/.ssh
-
-Google Driveの設定
-------------------
-
-ログをGoogle Driveへアップロードするために以下の設定を行って下さい。
-
-Google Drive APIのclient_idとclient_secretをまだ作成していない場合は、Google Developers Consoleへjenkinshrgでログインして「API Manager」の「認証情報」で作成しておきます。
-
-https://console.developers.google.com
-
-$HOME/.jenkinshrg/env.shを作成します。
-
-.. code-block:: bash
-
-  $ mkdir -p $HOME/.jenkinshrg
-  $ cat << EOL | tee $HOME/.jenkinshrg/env.sh
-  export CLIENT_ID=<client_id>
-  export CLIENT_SECRET=<client_secret>
-  EOL
-
-スクリプトをcloneしておきます。
-
-.. code-block:: bash
-
-  $ git clone https://github.com/jenkinshrg/drcutil.git
-  $ cd drcutil/.jenkins
-
-$HOME/.jenkinshrg/env.shを読み込んで適当なファイルを転送することで初回の認証を行います。
-
-.. code-block:: bash
-
-  $ source $HOME/.jenkinshrg/env.sh
-  $ python remoteBackup.py remoteBackup.py text/plain remoteBackup.py
-
-認証コードの入力が促されます。
-
-  $ Enter verification code:
-
-ブラウザが自動起動されますので「アクセスを許可」すると認証コードが表示されますので入力するとファイル転送が行われ、$HOME/.jenkinshrg/jsonCredential.txtに認証情報が保存されます。
-
-以降は認証なしでファイル転送が可能となります。
 
 メンテナンス
 ============
