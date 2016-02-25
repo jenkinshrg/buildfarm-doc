@@ -7,17 +7,17 @@
 現在運用中のジョブ構成は以下の通りです。
 
 .. csv-table::
-  :header: ジョブ名, 説明, 備考
+  :header: ジョブ名, 内容, 実行ノード, 備考
   :widths: 5, 5, 5
 
-  drcutil, リポジトリ変更監視, 毎時レポジトリ変更時に実行
-  drcutil-build-32, ビルド（32ビット環境）, drcutilが終了時に実行、dockerコンテナ環境で実行
-  drcutil-build-64, ビルド（64ビット環境）、単体テスト、静的解析, drcutilが終了時に実行、dockerコンテナ環境で実行
-  drcutil-task-balancebeam, タスクシーケンス（平均台歩行）, 毎時実行、実環境で実行
-  drcutil-task-terrain, タスクシーケンス（不整地歩行）, 毎時実行、実環境で実行
-  drcutil-task-valve, タスクシーケンス（バルブ回し）, 毎時実行、実環境で実行
-  drcutil-task-wall, タスクシーケンス（壁開け）, 毎時実行、実環境で実行
-  drcutil-upload, レポートアップロード, drcutil以外が終了時に実行
+  drcutil, リポジトリ変更監視, slave1, 毎時レポジトリ変更時に実行
+  drcutil-build-32, ビルド（32ビット環境）, slave1, drcutilが終了時に実行、dockerコンテナ環境で実行
+  drcutil-build-64, ビルド（64ビット環境）、単体テスト、静的解析, slave1, drcutilが終了時に実行、dockerコンテナ環境で実行
+  drcutil-task-balancebeam, タスクシーケンス（平均台歩行）, slave2, 毎時実行、実環境で実行
+  drcutil-task-terrain, タスクシーケンス（不整地歩行）, slave2, 毎時実行、実環境で実行
+  drcutil-task-valve, タスクシーケンス（バルブ回し）, slave2, 毎時実行、実環境で実行
+  drcutil-task-wall, タスクシーケンス（壁開け）, slave2, 毎時実行、実環境で実行
+  drcutil-upload, レポートアップロード, slave1, drcutil以外が終了時に実行
 
 .. note::
 
