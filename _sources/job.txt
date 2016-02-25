@@ -51,15 +51,18 @@ https://github.com/jenkinshrg/drcutil/tree/jenkins
 
   現状はタスク成功判定にdrcutil/.jenkins/getRobotPos.py（ロボット状態取得）、drcutil/.jenkins/getRobotPos.py（ターゲット状態取得）を行ったあと、drcutil/.jenkins/<taskname>-getRobotPos.py（ロボット状態判定）、drcutil/.jenkins/<taskname>-getRobotPos.py（ターゲット状態判定）を実行しているため、テストするタスクシーケンスを追加する場合はスクリプトを追加してからジョブを追加して下さい。
 
-ジョブの追加
-============
+ツールスクリプトの用意
+----------------------
 
-スクリプトをcloneしておきます。
+ジョブの追加、削除を行うツールスクリプトをcloneしておきます。
 
 .. code-block:: bash
 
   $ git clone https://github.com/jenkinshrg/buildfarm.git
   $ cd buildfarm
+
+ジョブの追加
+============
 
 マスターサーバーへジョブを登録します。
 
@@ -146,13 +149,6 @@ http://jenkinshrg.a01.aist.go.jp
 
 ジョブの削除
 ============
-
-スクリプトをcloneしておきます。
-
-.. code-block:: bash
-
-  $ git clone https://github.com/jenkinshrg/buildfarm.git
-  $ cd buildfarm
 
 マスターサーバーからジョブを削除します。
 

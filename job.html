@@ -87,14 +87,15 @@
 <li class="toctree-l2"><a class="reference internal" href="#id2">事前準備</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id3">テストサーバーの確認</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id4">テストスクリプトの作成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">ツールスクリプトの用意</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id5">ジョブの追加</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id6">ジョブの追加</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#os">ビルドOSバージョン追加時</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id6">タスクシーケンス追加時</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">タスクシーケンス追加時</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id7">ジョブの削除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">ジョブの削除</a></li>
 </ul>
 </li>
 </ul>
@@ -240,14 +241,17 @@
 <p class="last">現状はタスク成功判定にdrcutil/.jenkins/getRobotPos.py（ロボット状態取得）、drcutil/.jenkins/getRobotPos.py（ターゲット状態取得）を行ったあと、drcutil/.jenkins/&lt;taskname&gt;-getRobotPos.py（ロボット状態判定）、drcutil/.jenkins/&lt;taskname&gt;-getRobotPos.py（ターゲット状態判定）を実行しているため、テストするタスクシーケンスを追加する場合はスクリプトを追加してからジョブを追加して下さい。</p>
 </div>
 </div>
-</div>
 <div class="section" id="id5">
-<h2>ジョブの追加<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
-<p>スクリプトをcloneしておきます。</p>
+<h3>ツールスクリプトの用意<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>ジョブの追加、削除を行うツールスクリプトをcloneしておきます。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
 $ <span class="nb">cd</span> buildfarm
 </pre></div>
 </div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>ジョブの追加<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
 <p>マスターサーバーへジョブを登録します。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/createjob.sh &lt;jobname&gt; &lt;template&gt; &lt;nodename&gt; &lt;os&gt; &lt;distro&gt; &lt;arch&gt; &lt;script&gt; <span class="o">[</span>&lt;script_args&gt;<span class="o">]</span>
 </pre></div>
@@ -363,8 +367,8 @@ $ <span class="nb">cd</span> buildfarm
 </tbody>
 </table>
 </div>
-<div class="section" id="id6">
-<h3>タスクシーケンス追加時<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id7">
+<h3>タスクシーケンス追加時<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <p>実行するタスクシーケンスを追加したい場合は以下のように指定してジョブを追加して下さい。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/createjob.sh &lt;jobname&gt; periodic &lt;nodename&gt; none none none .jenkins.sh task &lt;robotname&gt; &lt;taskname&gt; &lt;autox&gt; &lt;autoy&gt; &lt;okx&gt; &lt;oky&gt; &lt;wait&gt; <span class="o">[</span>&lt;targetname&gt;<span class="o">]</span> <span class="o">[</span>&lt;targetport&gt;<span class="o">]</span>
 </pre></div>
@@ -459,13 +463,8 @@ $ <span class="nb">cd</span> buildfarm
 <p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
 </div>
 </div>
-<div class="section" id="id7">
-<h2>ジョブの削除<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
-<p>スクリプトをcloneしておきます。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
-$ <span class="nb">cd</span> buildfarm
-</pre></div>
-</div>
+<div class="section" id="id8">
+<h2>ジョブの削除<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
 <p>マスターサーバーからジョブを削除します。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/deletejob.sh &lt;jobname&gt;
 </pre></div>
