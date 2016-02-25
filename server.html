@@ -440,17 +440,13 @@ $ <span class="nb">cd</span> buildfarm
 </div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">他のアプリケーションがポート番号8080と9000を使用していないか事前に確認して下さい。</p>
+<p class="last">他のアプリケーションがポート番号8080と9000を使用していないか予め確認して下さい。</p>
 </div>
 </div>
 <div class="section" id="id7">
 <h3>リバースプロキシの設定<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <p>マスターサーバーへTCPポート80でアクセスできるように設定して下さい。（以下にnginxでリバースプロキシを設定する場合の例を示します）</p>
 <p>webサーバーをインストールします。</p>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">他のアプリケーションがポート番号80を使用していないか確認して下さい。</p>
-</div>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo apt-add-repository -y ppa:nginx/stable
 $ sudo apt-get update
 $ sudo apt-get -y install nginx
@@ -472,6 +468,10 @@ $ sudo service nginx restart
 </div>
 <p>以下のURLへブラウザで接続して正しく表示されることを確認して下さい。</p>
 <p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">他のアプリケーションがポート番号80を使用していないか予め確認して下さい。</p>
+</div>
 </div>
 </div>
 <div class="section" id="id8">
