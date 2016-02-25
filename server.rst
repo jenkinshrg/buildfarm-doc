@@ -415,9 +415,6 @@ unattended-upgradesにて自動アップデート、リブートを実施しま�
 
 一時的な確認用などでローカル環境でテストサーバーを起動したいは以下の手順で起動します。
 
-仮想マシンのインストール
-------------------------
-
 virtualboxがインストールされていない場合はインストールして下さい。
 
 .. code-block:: bash
@@ -448,11 +445,11 @@ vagrantがインストールされていない場合はインストールして�
 
   $ vagrant up master
 
-スレーブサーバーを起動します。（Ubuntu14.04LTS環境でslaveというノード名でvirtualboxのプライベートネットワークで接続）
+スレーブサーバーを起動します。（Ubuntu14.04LTS環境でslave1、slave2というノード名でvirtualboxのプライベートネットワークで接続）
 
 .. code-block:: bash
 
-  $ vagrant up slave
+  $ vagrant up slave1 slave2
 
 リモート環境へのスレーブサーバーの追加
 --------------------------------------
