@@ -191,17 +191,17 @@
 <tr class="row-even"><td>master</td>
 <td>テスト実行管理</td>
 <td>0</td>
-<td>ラック中段、core i5、mem 15GB、HDD 150GB+5TB、eth2（固定IP)</td>
+<td>ラック中段、固定IP</td>
 </tr>
 <tr class="row-odd"><td>slave1</td>
 <td>テスト実行環境（並列実行可能ジョブ用）</td>
 <td>4</td>
-<td>ラック上段、core i5、mem 15GB、HDD 150GB、eth2（dhcp）</td>
+<td>ラック上段、dhcp</td>
 </tr>
 <tr class="row-even"><td>slave2</td>
 <td>テスト実行環境（並列実行不可ジョブ用）</td>
 <td>1</td>
-<td>ラック下段、core i5、mem 15GB、HDD 150GB、eth2（dhcp）</td>
+<td>ラック下段、dhcp</td>
 </tr>
 </tbody>
 </table>
@@ -233,6 +233,38 @@
 <p>インターネット接続が可能なマシンを設置して下さい。</p>
 <p>マスターサーバーは特にハードウェア要件はありませんが、サイズの大きなログを長期間保存する場合は大きめのハードディスクを用意して下さい。</p>
 <p>スレーブサーバーはテストの実行に必要なハードウェア要件（GPUなど）にあったものを用意して下さい。</p>
+<p>現在運用中のマシンスペックは以下の通りです。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">項目</th>
+<th class="head">スペック</th>
+<th class="head">備考</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>CPU</td>
+<td>core i5</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>メモリ</td>
+<td>15GB</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>ハードディスク</td>
+<td>150GB SSD</td>
+<td>マスターサーバーのみUSB-HDD 5TBを/var/lib/jenkinsへマウント</td>
+</tr>
+<tr class="row-odd"><td>network</td>
+<td>ethernet×3</td>
+<td>eth2のみ使用</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="os">
 <h3>OSインストール<a class="headerlink" href="#os" title="Permalink to this headline">¶</a></h3>
