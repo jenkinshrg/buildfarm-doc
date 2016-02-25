@@ -14,7 +14,7 @@ CIサーバーをオンプレミスに構築するためプライベートなリ
    digraph {
       source1 [label="public repository"];
       source2 [label="private repository"];
-      build [label="jenkinshrg"];
+      build [label="buildfarm"];
       report1 [label="mail server"];
       report2 [label="cloud storage"];
       report3 [label="web page"];
@@ -22,7 +22,7 @@ CIサーバーをオンプレミスに構築するためプライベートなリ
       source2 -> build [label="checkout source"];
       build -> report1 [label="send messages"];
       build -> report2 [label="upload logs"];
-      build -> report3 [label="update reports"];
+      build -> report3 [label="upload reports"];
    }
    
 テストの実装
