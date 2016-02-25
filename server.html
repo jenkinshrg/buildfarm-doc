@@ -268,7 +268,7 @@
 <p>インストール終了後にセキュリティーアップデートを行って下さい。</p>
 <p>ネットワークは設置場所の環境に合わせて適切に設定して下さい。</p>
 <p>ミラーサーバーは設置場所の環境に合わせて最速なものに変更しておきます。</p>
-<p>NVIDIAのグラフィックボードなどプロプライエタリなドライバでないと正しく動作しない場合はドライバをインストールしてシステム設定にて変更しておきます。（以下にNVIDIAドライバのインストール例を示します）</p>
+<p>NVIDIAのグラフィックボードなどプロプライエタリなドライバでないと正しく動作しない場合はドライバをインストールして「システム設定」の「ソフトウェアとアップデート」の「追加のドライバ」で選択して変更の適用をしておきます。（以下にNVIDIAドライバのインストール例を示します）</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo add-apt-repository -y ppa:xorg-edgers/ppa
 $ sudo apt-get update
 $ sudo apt-get -y install nvidia-current nvidia-settings
@@ -292,7 +292,7 @@ $ sudo apt-get -y install nvidia-current nvidia-settings
 </div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">スレーブサーバーはchoreonoidによるGUIテスト自動化の妨げとなるため「システム設定」の「ユーザーアカウント」にてログインユーザーを自動ログインに設定、「画面の明るさとロック」にてスクリーンセーバー、画面ロックは解除しておく必要があります。</p>
+<p class="last">スレーブサーバーはchoreonoidによるGUIテスト自動化の妨げとなるため「システム設定」の「ユーザーアカウント」にてログインユーザーを自動ログインに設定、「画面の明るさとロック」にて画面オフしない、ロックしないに設定しておく必要があります。</p>
 </div>
 </div>
 <div class="section" id="id4">
