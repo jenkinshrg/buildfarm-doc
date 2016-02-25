@@ -145,6 +145,63 @@
 <h1>テストジョブの管理<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <p>テストジョブをテストサーバーで実行させる手順について説明します。</p>
 <p>現在運用中のジョブ構成は以下の通りです。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ジョブ名</th>
+<th class="head">内容</th>
+<th class="head">実行ノード</th>
+<th class="head">備考</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>drcutil</td>
+<td>リポジトリ変更監視</td>
+<td>slave1</td>
+<td>毎時レポジトリ変更時に実行</td>
+</tr>
+<tr class="row-odd"><td>drcutil-build-32</td>
+<td>ビルド（32ビット環境）</td>
+<td>slave1</td>
+<td>drcutilが終了時に実行、dockerコンテナ環境で実行</td>
+</tr>
+<tr class="row-even"><td>drcutil-build-64</td>
+<td>ビルド（64ビット環境）、単体テスト、静的解析</td>
+<td>slave1</td>
+<td>drcutilが終了時に実行、dockerコンテナ環境で実行</td>
+</tr>
+<tr class="row-odd"><td>drcutil-task-balancebeam</td>
+<td>タスクシーケンス（平均台歩行）</td>
+<td>slave2</td>
+<td>毎時実行、実環境で実行</td>
+</tr>
+<tr class="row-even"><td>drcutil-task-terrain</td>
+<td>タスクシーケンス（不整地歩行）</td>
+<td>slave2</td>
+<td>毎時実行、実環境で実行</td>
+</tr>
+<tr class="row-odd"><td>drcutil-task-valve</td>
+<td>タスクシーケンス（バルブ回し）</td>
+<td>slave2</td>
+<td>毎時実行、実環境で実行</td>
+</tr>
+<tr class="row-even"><td>drcutil-task-wall</td>
+<td>タスクシーケンス（壁開け）</td>
+<td>slave2</td>
+<td>毎時実行、実環境で実行</td>
+</tr>
+<tr class="row-odd"><td>drcutil-upload</td>
+<td>レポートアップロード</td>
+<td>slave1</td>
+<td>drcutil以外が終了時に実行</td>
+</tr>
+</tbody>
+</table>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">自動アップデート、リブートを実施するため5:00-8:00の時間帯は実行しない設定とします。</p>
