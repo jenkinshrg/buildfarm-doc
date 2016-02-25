@@ -20,7 +20,11 @@
 
 .. note::
 
-  自動アップデート、リブートを実施するため5:00-8:00の時間帯は実行しない設定とします。
+  パッケージのアップデート、リブートを自動で実施するため、5:00-8:00の時間帯はジョブを実行しない設定としています。
+
+.. warning::
+
+  タスクシーケンスの実行は仮想マシンやdockerコンテナでは実行できず、並列実行もできませんので要件にあったスレーブサーバーを選択して下さい。
 
 事前準備
 ========
@@ -38,6 +42,14 @@ http://jenkinshrg.a01.aist.go.jp
 以下のURLへ実行したいスクリプトを作成して配置して下さい。
 
 https://github.com/jenkinshrg/drcutil/tree/jenkins
+
+.. note::
+
+  ビルドするOSバージョンを追加する場合はジョブの追加のみで対応可能ですが、依存パッケージが変わってしまう場合があるためスクリプトの修正が必要になる場合があります。
+
+.. warning::
+
+  現状はタスク成功判定にdrcutil/.jenkins/getRobotPos.py（ロボット状態取得）、drcutil/.jenkins/getRobotPos.py（ターゲット状態取得）を行ったあと、drcutil/.jenkins/<taskname>-getRobotPos.py（ロボット状態判定）、drcutil/.jenkins/<taskname>-getRobotPos.py（ターゲット状態判定）を実行しているため、テストするタスクシーケンスを追加する場合はスクリプトを追加してからジョブを追加して下さい。
 
 ジョブの追加
 ============
@@ -98,14 +110,6 @@ https://github.com/jenkinshrg/drcutil/tree/jenkins
 
 タスクシーケンス追加時
 ----------------------
-
-.. note::
-
-  タスクシーケンスの実行は仮想マシンやdockerコンテナでは実行できず、並列実行もできませんので要件にあったスレーブサーバーを選択して下さい。
-
-.. warning::
-
-  現状はタスク成功判定にdrcutil/.jenkins/getRobotPos.py（ロボット状態取得）、drcutil/.jenkins/getRobotPos.py（ターゲット状態取得）を行ったあと、drcutil/.jenkins/<taskname>-getRobotPos.py（ロボット状態判定）、drcutil/.jenkins/<taskname>-getRobotPos.py（ターゲット状態判定）を実行しているため事前にスクリプトの登録が必要です。
 
 実行するタスクシーケンスを追加したい場合は以下のように指定してジョブを追加して下さい。
 

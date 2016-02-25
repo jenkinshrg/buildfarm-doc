@@ -214,7 +214,11 @@
 </table>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">自動アップデート、リブートを実施するため5:00-8:00の時間帯は実行しない設定とします。</p>
+<p class="last">パッケージのアップデート、リブートを自動で実施するため、5:00-8:00の時間帯はジョブを実行しない設定としています。</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">タスクシーケンスの実行は仮想マシンやdockerコンテナでは実行できず、並列実行もできませんので要件にあったスレーブサーバーを選択して下さい。</p>
 </div>
 <div class="section" id="id2">
 <h2>事前準備<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
@@ -227,6 +231,14 @@
 <h3>テストスクリプトの作成<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p>以下のURLへ実行したいスクリプトを作成して配置して下さい。</p>
 <p><a class="reference external" href="https://github.com/jenkinshrg/drcutil/tree/jenkins">https://github.com/jenkinshrg/drcutil/tree/jenkins</a></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">ビルドするOSバージョンを追加する場合はジョブの追加のみで対応可能ですが、依存パッケージが変わってしまう場合があるためスクリプトの修正が必要になる場合があります。</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">現状はタスク成功判定にdrcutil/.jenkins/getRobotPos.py（ロボット状態取得）、drcutil/.jenkins/getRobotPos.py（ターゲット状態取得）を行ったあと、drcutil/.jenkins/&lt;taskname&gt;-getRobotPos.py（ロボット状態判定）、drcutil/.jenkins/&lt;taskname&gt;-getRobotPos.py（ターゲット状態判定）を実行しているため、テストするタスクシーケンスを追加する場合はスクリプトを追加してからジョブを追加して下さい。</p>
+</div>
 </div>
 </div>
 <div class="section" id="id5">
@@ -353,14 +365,6 @@ $ <span class="nb">cd</span> buildfarm
 </div>
 <div class="section" id="id6">
 <h3>タスクシーケンス追加時<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">タスクシーケンスの実行は仮想マシンやdockerコンテナでは実行できず、並列実行もできませんので要件にあったスレーブサーバーを選択して下さい。</p>
-</div>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">現状はタスク成功判定にdrcutil/.jenkins/getRobotPos.py（ロボット状態取得）、drcutil/.jenkins/getRobotPos.py（ターゲット状態取得）を行ったあと、drcutil/.jenkins/&lt;taskname&gt;-getRobotPos.py（ロボット状態判定）、drcutil/.jenkins/&lt;taskname&gt;-getRobotPos.py（ターゲット状態判定）を実行しているため事前にスクリプトの登録が必要です。</p>
-</div>
 <p>実行するタスクシーケンスを追加したい場合は以下のように指定してジョブを追加して下さい。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/createjob.sh &lt;jobname&gt; periodic &lt;nodename&gt; none none none .jenkins.sh task &lt;robotname&gt; &lt;taskname&gt; &lt;autox&gt; &lt;autoy&gt; &lt;okx&gt; &lt;oky&gt; &lt;wait&gt; <span class="o">[</span>&lt;targetname&gt;<span class="o">]</span> <span class="o">[</span>&lt;targetport&gt;<span class="o">]</span>
 </pre></div>
