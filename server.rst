@@ -357,53 +357,6 @@ http://jenkinshrg.a01.aist.go.jp
 
 http://jenkinshrg.a01.aist.go.jp
 
-メンテナンス
-============
-
-アップデート
-------------
-
-unattended-upgradesにて自動でアップデート、リブートを実施するように設定しています。（cron.daily経由で6:25に起動され最大1800秒遅延して実行されます）
-
-シャットダウン
---------------
-
-テストジョブの実行が全て完了してから通常のシャットダウン手順を実行して下さい。（再起動時に自動的にサービスが再開されます）
-
-JENKINSの画面で「JENKINSの管理」→「シャットダウンの準備」を行うことで新規テストジョブの実行を停止することができます。
-
-サーバー移設
-------------
-
-サーバーの設置場所を移動するなどでMACアドレスやIPアドレスが変更になっても問題ありません。
-
-サーバー交換
-------------
-
-故障などでハードウェア交換を行う場合は上記のインストール手順を再度実施して下さい。
-
-JENKINSサーバーの各種設定と履歴データはマスターサーバー上の/var/lib/jenkinsにありますので、移行が必要な場合はマスターサーバーにて以下のバックアップ、リストア手順を実施して下さい。（スレーブサーバーのデータは消えてしまって問題ありません）
-
-* バックアップ手順
-
-.. code-block:: bash
-
-  $ sudo service jenkins stop
-  $ sudo tar zcvf jenkins.tar.gz -C /var/lib jenkins
-  $ sudo service jenkins start
-
-* リストア手順
-
-.. code-block:: bash
-
-  $ sudo service jenkins stop
-  $ sudo tar zxvf jenkins.tar.gz -C /var/lib
-  $ sudo service jenkins start
-
-.. note::
-
-  現在は上記のディレクトリ（/var/lib jenkins）を外付けHDDにマウントしていますので、旧マスターサーバーをシャットダウンして外付けHDDを外し、新マスターサーバーへ接続して/var/lib/jenkinsへの自動マウントを設定することでリストアが可能です。
-
 仮想マシンによるテストサーバーの構築（オプション）
 =================================================
 
@@ -500,3 +453,50 @@ Vagrantfileにスレーブの記述を追加します。（以下はUbuntu16.04L
 .. code-block:: bash
 
   $ vagrant up ubuntu-xenial-amd64
+
+メンテナンス
+============
+
+アップデート
+------------
+
+unattended-upgradesにて自動でアップデート、リブートを実施するように設定しています。（cron.daily経由で6:25に起動され最大1800秒遅延して実行されます）
+
+シャットダウン
+--------------
+
+テストジョブの実行が全て完了してから通常のシャットダウン手順を実行して下さい。（再起動時に自動的にサービスが再開されます）
+
+JENKINSの画面で「JENKINSの管理」→「シャットダウンの準備」を行うことで新規テストジョブの実行を停止することができます。
+
+サーバー移設
+------------
+
+サーバーの設置場所を移動するなどでMACアドレスやIPアドレスが変更になっても問題ありません。
+
+サーバー交換
+------------
+
+故障などでハードウェア交換を行う場合は上記のインストール手順を再度実施して下さい。
+
+JENKINSサーバーの各種設定と履歴データはマスターサーバー上の/var/lib/jenkinsにありますので、移行が必要な場合はマスターサーバーにて以下のバックアップ、リストア手順を実施して下さい。（スレーブサーバーのデータは消えてしまって問題ありません）
+
+* バックアップ手順
+
+.. code-block:: bash
+
+  $ sudo service jenkins stop
+  $ sudo tar zcvf jenkins.tar.gz -C /var/lib jenkins
+  $ sudo service jenkins start
+
+* リストア手順
+
+.. code-block:: bash
+
+  $ sudo service jenkins stop
+  $ sudo tar zxvf jenkins.tar.gz -C /var/lib
+  $ sudo service jenkins start
+
+.. note::
+
+  現在は上記のディレクトリ（/var/lib jenkins）を外付けHDDにマウントしていますので、旧マスターサーバーをシャットダウンして外付けHDDを外し、新マスターサーバーへ接続して/var/lib/jenkinsへの自動マウントを設定することでリストアが可能です。
