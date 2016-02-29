@@ -84,7 +84,7 @@
                 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="">概要</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id2">はじめに</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">テストの実装</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id3">テストの種類と実装方法</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id4">ビルド</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id5">単体テスト</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id6">コンポーネントテスト</a></li>
@@ -146,7 +146,7 @@
 <div class="section" id="id2">
 <h2>はじめに<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>buildfarmはhrpsys-base, choreonoid, OpenHRPなどのロボット関連ソフトウェアの各種テストの実行を自動化するための継続的インテグレーション（CI）環境です。</p>
-<p>CIサーバーをオンプレミスに構築するためプライベートなリポジトリやオンプレミスに存在するリポジトリを含むテストや特定のハードウェア（GPUなど）やソフトウェア（OSなど）に依存するテストの実行が可能です。</p>
+<p>JENKINSサーバーをオンプレミスに構築するためプライベートなリポジトリやオンプレミスに存在するリポジトリを含むテストや特定のハードウェア（GPUなど）やソフトウェア（OSなど）に依存するテストの実行が可能です。</p>
 <p class="graphviz">
 <img src="_images/graphviz-a0ddebd199a2683af01c82f02119f83f9faa5780.png" alt="digraph {
    source1 [label=&quot;public repository&quot;];
@@ -164,11 +164,11 @@
 </p>
 </div>
 <div class="section" id="id3">
-<h2>テストの実装<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<p>テストの実装方法について説明します。</p>
+<h2>テストの種類と実装方法<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>テストの種類と実装方法について説明します。</p>
 <div class="section" id="id4">
 <h3>ビルド<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
-<p>ソースコードが正常にビルドできる状態にあるかを確認します。</p>
+<p>ソースコードの変更に対して正常にビルド、インストールできる状態にあるかを確認します。</p>
 <p>必要であれば事前にソースコードの取得、依存パッケージのインストールなどを行い、cmakeなどのビルド手順(コンパイル、インストール)を実行します。</p>
 <ul class="simple">
 <li>テストプログラムの例</li>
