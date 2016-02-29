@@ -194,6 +194,12 @@ $HOME/.jenkinshrg/env.shを作成します。
   export CLIENT_SECRET=<client_secret>
   EOL
 
+作成した$HOME/.jenkinshrg/env.shを読み込んで環境変数を設定します。
+
+.. code-block:: bash
+
+  $ source $HOME/.jenkinshrg/env.sh
+
 スクリプトをcloneしておきます。
 
 .. code-block:: bash
@@ -201,11 +207,17 @@ $HOME/.jenkinshrg/env.shを作成します。
   $ git clone https://github.com/jenkinshrg/drcutil.git
   $ cd drcutil/.jenkins
 
-$HOME/.jenkinshrg/env.shを読み込んで適当なファイルを転送することで初回の認証を行います。
+pythonパッケージをインストールしておきます。
 
 .. code-block:: bash
 
-  $ source $HOME/.jenkinshrg/env.sh
+  $ sudo apt-get -y install python-pip
+  $ sudo pip install google-api-python-client
+
+適当なファイルを転送することで初回の認証を行います。
+
+.. code-block:: bash
+
   $ python remoteBackup.py remoteBackup.py text/plain remoteBackup.py
 
 認証コードの入力が促されます。
