@@ -30,10 +30,6 @@
 
   簡易レポートをGithub Pagesへ自動アップロードします。
 
-.. warning::
-
-  タスクシーケンスの実行は仮想マシンやdockerコンテナでは実行できず、並列実行もできませんので要件にあったスレーブサーバーを選択して下さい。
-
 事前準備
 ========
 
@@ -50,14 +46,6 @@ http://jenkinshrg.a01.aist.go.jp
 以下のURLへ実行したいスクリプトを作成して配置して下さい。
 
 https://github.com/jenkinshrg/drcutil/tree/jenkins
-
-.. note::
-
-  ビルドするOSバージョンを追加する場合はジョブの追加のみで対応可能ですが、依存パッケージが変わってしまう場合はスクリプトの修正が必要になる場合があります。
-
-.. warning::
-
-  現状はタスク成功判定にdrcutil/.jenkins/getRobotPos.py（ロボット状態取得）、drcutil/.jenkins/getRobotPos.py（ターゲット状態取得）を行ったあと、drcutil/.jenkins/<taskname>-getRobotPos.py（ロボット状態判定）、drcutil/.jenkins/<taskname>-getRobotPos.py（ターゲット状態判定）を実行しているため、テストするタスクシーケンスを追加する場合はスクリプトを追加してからジョブを追加して下さい。
 
 ツールスクリプトの用意
 ----------------------
@@ -95,10 +83,6 @@ https://github.com/jenkinshrg/drcutil/tree/jenkins
 ビルドOSバージョン追加時
 ------------------------
 
-.. note::
-
-  ビルドはdockerコンテナ上で実行しますので任意のスレーブサーバーを選択可能です。
-
 ビルドを実行するOSバージョンを追加したい場合は以下のように指定してジョブを追加して下さい。
 
 .. code-block:: bash
@@ -118,6 +102,14 @@ https://github.com/jenkinshrg/drcutil/tree/jenkins
   arch, アーキテクチャ, debootstrapで指定可能なものから選択
   script, 実行スクリプト, .jenkins.shを指定
   testname, テスト内容(build/task), buildを指定
+
+.. note::
+
+  ビルドはdockerコンテナ上で隔離して実行しますので任意のスレーブサーバーを選択可能です。
+
+.. warning::
+
+  ビルドするOSバージョンを追加する場合はジョブの追加のみで対応可能ですが、依存パッケージが変わってしまう場合はスクリプトの修正が必要になる場合があります。
 
 タスクシーケンス追加時
 ----------------------
@@ -155,10 +147,18 @@ https://github.com/jenkinshrg/drcutil/tree/jenkins
 
 http://jenkinshrg.a01.aist.go.jp
 
+.. warning::
+
+  タスクシーケンスの実行は仮想マシンやdockerコンテナでは実行できず、並列実行もできませんので要件にあったスレーブサーバーを選択して下さい。
+
+.. warning::
+
+  現状はタスク成功判定にdrcutil/.jenkins/getRobotPos.py（ロボット状態取得）、drcutil/.jenkins/getRobotPos.py（ターゲット状態取得）を行ったあと、drcutil/.jenkins/<taskname>-getRobotPos.py（ロボット状態判定）、drcutil/.jenkins/<taskname>-getRobotPos.py（ターゲット状態判定）を実行しているため、テストするタスクシーケンスを追加する場合はスクリプトを追加してからジョブを追加して下さい。
+
 ジョブの削除
 ============
 
-不要になったジョブをマスターサーバーから削除します。
+不要になったジョブの情報をマスターサーバーから削除します。
 
 .. code-block:: bash
 
