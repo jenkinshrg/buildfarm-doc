@@ -397,14 +397,22 @@ $ cat <span class="s">&lt;&lt; EOL | tee $HOME/.jenkinshrg/env.sh</span>
 <span class="s">EOL</span>
 </pre></div>
 </div>
+<p>作成した$HOME/.jenkinshrg/env.shを読み込んで環境変数を設定します。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">source</span> $HOME/.jenkinshrg/env.sh
+</pre></div>
+</div>
 <p>スクリプトをcloneしておきます。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/drcutil.git
 $ <span class="nb">cd</span> drcutil/.jenkins
 </pre></div>
 </div>
-<p>$HOME/.jenkinshrg/env.shを読み込んで適当なファイルを転送することで初回の認証を行います。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">source</span> $HOME/.jenkinshrg/env.sh
-$ python remoteBackup.py remoteBackup.py text/plain remoteBackup.py
+<p>pythonパッケージをインストールしておきます。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo apt-get -y install python-pip
+$ sudo pip install google-api-python-client
+</pre></div>
+</div>
+<p>適当なファイルを転送することで初回の認証を行います。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ python remoteBackup.py remoteBackup.py text/plain remoteBackup.py
 </pre></div>
 </div>
 <p>認証コードの入力が促されます。</p>
