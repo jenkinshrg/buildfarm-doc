@@ -181,19 +181,19 @@ $HOME/.jenkinshrg/env.shを作成します。
 
   $ source $HOME/.jenkinshrg/env.sh
 
-スクリプトをcloneしておきます。
-
-.. code-block:: bash
-
-  $ git clone https://github.com/jenkinshrg/drcutil.git
-  $ cd drcutil/.jenkins
-
 pythonパッケージをインストールしておきます。
 
 .. code-block:: bash
 
   $ sudo apt-get -y install python-pip
   $ sudo pip install google-api-python-client
+
+スクリプトをcloneしておきます。
+
+.. code-block:: bash
+
+  $ git clone https://github.com/jenkinshrg/drcutil.git
+  $ cd drcutil/.jenkins
 
 適当なファイルを転送することで初回の認証を行います。
 
