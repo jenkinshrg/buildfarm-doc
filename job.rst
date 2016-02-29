@@ -37,6 +37,8 @@
 事前準備
 ========
 
+テストジョブを追加、削除する場合は以下の準備を行って下さい。
+
 テストスクリプトの作成
 ----------------------
 
@@ -64,7 +66,7 @@ http://jenkinshrg.a01.aist.go.jp
 ジョブの追加
 ============
 
-マスターサーバーへジョブを登録します。
+マスターサーバーへジョブを登録する場合は以下のスクリプトを実行して下さい。
 
 .. code-block:: bash
 
@@ -81,13 +83,13 @@ http://jenkinshrg.a01.aist.go.jp
   os, 実行OS(none/ubuntu/debian), noneの場合はスレーブサーバーの実OSで実行、none以外の場合はdockerコンテナ上のOSで実行
   distro, ディストリビューション, osがnone以外の場合に有効、debootstrapで指定可能なものから選択
   arch, アーキテクチャ, osがnone以外の場合に有効、debootstrapで指定可能なものから選択
-  script, 実行スクリプト,  任意（現状は.jenkins.sh:ビルド／タスクシーケンステスト用、.report.sh:レポートアップロード用を格納）
+  script, 実行スクリプト,  任意（現状は.jenkins.sh:ビルド／タスクシーケンステスト用、.report.sh:レポートアップロード用を用意）
   script_args, スクリプト引数,  任意（.jenkins.shスクリプトを実行する場合は下記を参照）
 
 ビルドOSバージョン追加時
 ------------------------
 
-ビルドを実行するOSバージョンを追加したい場合は以下のように指定してジョブを追加して下さい。
+ビルドを実行するOSバージョンを追加したい場合は以下のように指定してスクリプトを実行して下さい。
 
 .. code-block:: bash
 
@@ -118,7 +120,7 @@ http://jenkinshrg.a01.aist.go.jp
 タスクシーケンス追加時
 ----------------------
 
-実行するタスクシーケンスを追加したい場合は以下のように指定してジョブを追加して下さい。
+実行するタスクシーケンスを追加したい場合は以下のように指定してスクリプトを実行して下さい。
 
 .. code-block:: bash
 
@@ -151,18 +153,22 @@ http://jenkinshrg.a01.aist.go.jp
 
 http://jenkinshrg.a01.aist.go.jp
 
+.. note::
+
+  タスクシーケンスの実行は仮想マシンやdockerコンテナでは実行できず、並列実行もできませんので要件にあったスレーブサーバー（slave2)を選択して下さい。
+
 .. warning::
 
-  タスクシーケンスの実行は仮想マシンやdockerコンテナでは実行できず、並列実行もできませんので要件にあったスレーブサーバーを選択して下さい。
+  現状はchoreonoid起動後に自動ボタン、OKボタンを押下するため、xautomationパッケージのxteコマンドで画面上の座標をクリックしていますので、該当ボタンの座標をxteコマンドで事前に確認して設定する必要があります。
 
 .. warning::
 
-  現状はタスク成功判定にdrcutil/.jenkins/getRobotPos.py（ロボット状態取得）、drcutil/.jenkins/getRobotPos.py（ターゲット状態取得）を行ったあと、drcutil/.jenkins/<taskname>-getRobotPos.py（ロボット状態判定）、drcutil/.jenkins/<taskname>-getRobotPos.py（ターゲット状態判定）を実行しているため、テストするタスクシーケンスを追加する場合はスクリプトを追加してからジョブを追加して下さい。
+  現状はwaitで指定した時間待ち合わせした後にdrcutil/.jenkins/getRobotPos.py（ロボット状態取得）、drcutil/.jenkins/getRobotPos.py（ターゲット状態取得）を実行して状態を取得し、drcutil/.jenkins/<taskname>-getRobotPos.py（ロボット状態判定）、drcutil/.jenkins/<taskname>-getRobotPos.py（ターゲット状態判定）を実行して成功判定を行っているため、テストするタスクシーケンスを追加する場合はスクリプトを追加してからジョブを追加する必要があります。
 
 ジョブの削除
 ============
 
-不要になったジョブの情報をマスターサーバーから削除します。
+不要になったジョブの情報をマスターサーバーから削除する場合は以下のスクリプトを実行して下さい。
 
 .. code-block:: bash
 
