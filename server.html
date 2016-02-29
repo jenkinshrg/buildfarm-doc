@@ -103,17 +103,17 @@
 <li class="toctree-l3"><a class="reference internal" href="#id11">スレーブサーバーの削除</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id12">メンテナンス</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id13">アップデート</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id14">シャットダウン</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id15">サーバー移設</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id16">サーバー交換</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id12">仮想マシンによるテストサーバーの構築（オプション）</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id13">仮想マシンのインストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">ローカル環境でのマスターサーバー、スレーブサーバーの起動</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id15">リモート環境へのスレーブサーバーの追加</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id17">仮想マシンによるテストサーバーの構築（オプション）</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id18">仮想マシンのインストール</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id19">ローカル環境でのマスターサーバー、スレーブサーバーの起動</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id20">リモート環境へのスレーブサーバーの追加</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id16">メンテナンス</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id17">アップデート</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id18">シャットダウン</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id19">サーバー移設</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id20">サーバー交換</a></li>
 </ul>
 </li>
 </ul>
@@ -575,51 +575,10 @@ $ sudo service nginx restart
 </div>
 </div>
 <div class="section" id="id12">
-<h2>メンテナンス<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id13">
-<h3>アップデート<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
-<p>unattended-upgradesにて自動でアップデート、リブートを実施するように設定しています。（cron.daily経由で6:25に起動され最大1800秒遅延して実行されます）</p>
-</div>
-<div class="section" id="id14">
-<h3>シャットダウン<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
-<p>テストジョブの実行が全て完了してから通常のシャットダウン手順を実行して下さい。（再起動時に自動的にサービスが再開されます）</p>
-<p>JENKINSの画面で「JENKINSの管理」→「シャットダウンの準備」を行うことで新規テストジョブの実行を停止することができます。</p>
-</div>
-<div class="section" id="id15">
-<h3>サーバー移設<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
-<p>サーバーの設置場所を移動するなどでMACアドレスやIPアドレスが変更になっても問題ありません。</p>
-</div>
-<div class="section" id="id16">
-<h3>サーバー交換<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
-<p>故障などでハードウェア交換を行う場合は上記のインストール手順を再度実施して下さい。</p>
-<p>JENKINSサーバーの各種設定と履歴データはマスターサーバー上の/var/lib/jenkinsにありますので、移行が必要な場合はマスターサーバーにて以下のバックアップ、リストア手順を実施して下さい。（スレーブサーバーのデータは消えてしまって問題ありません）</p>
-<ul class="simple">
-<li>バックアップ手順</li>
-</ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo service jenkins stop
-$ sudo tar zcvf jenkins.tar.gz -C /var/lib jenkins
-$ sudo service jenkins start
-</pre></div>
-</div>
-<ul class="simple">
-<li>リストア手順</li>
-</ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo service jenkins stop
-$ sudo tar zxvf jenkins.tar.gz -C /var/lib
-$ sudo service jenkins start
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">現在は上記のディレクトリ（/var/lib jenkins）を外付けHDDにマウントしていますので、旧マスターサーバーをシャットダウンして外付けHDDを外し、新マスターサーバーへ接続して/var/lib/jenkinsへの自動マウントを設定することでリストアが可能です。</p>
-</div>
-</div>
-</div>
-<div class="section" id="id17">
-<h2>仮想マシンによるテストサーバーの構築（オプション）<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h2>
+<h2>仮想マシンによるテストサーバーの構築（オプション）<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
 <p>仮想マシン上にマスターサーバー、スレーブサーバーを構築することも可能です。（テスト内容によっては正常動作しない場合があります）</p>
-<div class="section" id="id18">
-<h3>仮想マシンのインストール<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id13">
+<h3>仮想マシンのインストール<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
 <p>virtualboxがインストールされていない場合はインストールして下さい。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo sh -c <span class="s2">&quot;echo &#39;deb http://download.virtualbox.org/virtualbox/debian &#39;</span><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2">&#39; contrib&#39; &gt; /etc/apt/sources.list.d/virtualbox.list&quot;</span>
 $ wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- <span class="p">|</span> sudo apt-key add -
@@ -634,8 +593,8 @@ $ rm vagrant_1.8.1_x86_64.deb
 </pre></div>
 </div>
 </div>
-<div class="section" id="id19">
-<h3>ローカル環境でのマスターサーバー、スレーブサーバーの起動<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id14">
+<h3>ローカル環境でのマスターサーバー、スレーブサーバーの起動<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
 <p>ローカル環境でマスターサーバー、スレーブサーバーを起動したい場合は以下の手順で起動します。</p>
 <p>スクリプトをcloneしておきます。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
@@ -661,8 +620,8 @@ $ ./scripts/createnode.sh slave2 1
 </pre></div>
 </div>
 </div>
-<div class="section" id="id20">
-<h3>リモート環境へのスレーブサーバーの追加<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id15">
+<h3>リモート環境へのスレーブサーバーの追加<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
 <p>リモートのマスターサーバーへスレーブサーバーを追加したい場合は以下の手順で起動します。</p>
 <p>Vagrantfileにスレーブの記述を追加します。（以下はUbuntu16.04LTS環境でubuntu-xenial-amd64というノード名でhttp://jenkinshrg.a01.aist.go.jpへ接続する場合の例）</p>
 <div class="highlight-ruby"><div class="highlight"><pre><span></span><span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">define</span> <span class="s2">&quot;ubuntu-xenial-amd64&quot;</span><span class="p">,</span> <span class="ss">autostart</span><span class="p">:</span> <span class="kp">false</span> <span class="k">do</span> <span class="o">|</span><span class="n">server</span><span class="o">|</span>
@@ -684,6 +643,47 @@ $ <span class="nb">export</span> <span class="nv">REMOTE_FS</span><span class="o
 <p>スレーブサーバーを起動します。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ vagrant up ubuntu-xenial-amd64
 </pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id16">
+<h2>メンテナンス<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id17">
+<h3>アップデート<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<p>unattended-upgradesにて自動でアップデート、リブートを実施するように設定しています。（cron.daily経由で6:25に起動され最大1800秒遅延して実行されます）</p>
+</div>
+<div class="section" id="id18">
+<h3>シャットダウン<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<p>テストジョブの実行が全て完了してから通常のシャットダウン手順を実行して下さい。（再起動時に自動的にサービスが再開されます）</p>
+<p>JENKINSの画面で「JENKINSの管理」→「シャットダウンの準備」を行うことで新規テストジョブの実行を停止することができます。</p>
+</div>
+<div class="section" id="id19">
+<h3>サーバー移設<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
+<p>サーバーの設置場所を移動するなどでMACアドレスやIPアドレスが変更になっても問題ありません。</p>
+</div>
+<div class="section" id="id20">
+<h3>サーバー交換<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<p>故障などでハードウェア交換を行う場合は上記のインストール手順を再度実施して下さい。</p>
+<p>JENKINSサーバーの各種設定と履歴データはマスターサーバー上の/var/lib/jenkinsにありますので、移行が必要な場合はマスターサーバーにて以下のバックアップ、リストア手順を実施して下さい。（スレーブサーバーのデータは消えてしまって問題ありません）</p>
+<ul class="simple">
+<li>バックアップ手順</li>
+</ul>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo service jenkins stop
+$ sudo tar zcvf jenkins.tar.gz -C /var/lib jenkins
+$ sudo service jenkins start
+</pre></div>
+</div>
+<ul class="simple">
+<li>リストア手順</li>
+</ul>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo service jenkins stop
+$ sudo tar zxvf jenkins.tar.gz -C /var/lib
+$ sudo service jenkins start
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">現在は上記のディレクトリ（/var/lib jenkins）を外付けHDDにマウントしていますので、旧マスターサーバーをシャットダウンして外付けHDDを外し、新マスターサーバーへ接続して/var/lib/jenkinsへの自動マウントを設定することでリストアが可能です。</p>
 </div>
 </div>
 </div>
