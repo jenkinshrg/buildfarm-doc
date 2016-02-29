@@ -127,14 +127,13 @@ gitをインストールします。
 その他必要なソフトウェアがあればインストールを行って下さい。
 
 認証情報の設定
-==============
+--------------
 
 テストジョブでは対話形式のコマンドは実行できないため、認証情報が必要な外部サーバーへアクセスを行う場合は事前に以下の設定が必要となります。（セキュリティー面を考慮して認証情報を設定ファイルやスクリプトに保存しないで下さい）
 
 マスターサーバー、スレーブサーバー全てに対してそれぞれ設定を行って下さい。
 
-gitの設定(共通）
----------------
+* gitの設定(共通）
 
 gitのユーザー設定をしておきます。（$HOME/.gitconfigの作成）
 
@@ -145,8 +144,7 @@ gitのユーザー設定をしておきます。（$HOME/.gitconfigの作成）
   $ git config --global credential.helper store
   $ git config --global http.sslVerify false
 
-gitの設定(http経由）
---------------------
+* gitの設定(http経由）
 
 http経由でアクセスする場合は$HOME/.git-credentialsを作成します。
 
@@ -157,8 +155,7 @@ http経由でアクセスする場合は$HOME/.git-credentialsを作成します
   https://<username>:<password>@github.com
   EOL
 
-gitの設定(ssh経由）
--------------------
+* gitの設定(ssh経由）
 
 ssh経由でアクセスする場合は公開鍵を作成して登録します。
 
@@ -179,8 +176,7 @@ $HOME/.ssh/configを作成します。
   StrictHostKeyChecking no
   EOL
 
-Google Driveの設定
-------------------
+* Google Driveの設定
 
 ログをGoogle Driveへアップロードするために以下の設定を行って下さい。
 
