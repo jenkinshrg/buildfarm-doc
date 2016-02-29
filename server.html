@@ -104,7 +104,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#id12">仮想マシンによるテストサーバーの構築（オプション）</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id13">仮想マシンのインストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">事前準備</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id14">ローカル環境でのマスターサーバー、スレーブサーバーの起動</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id15">リモート環境へのスレーブサーバーの追加</a></li>
 </ul>
@@ -592,7 +592,8 @@ $ sudo service nginx restart
 <h2>仮想マシンによるテストサーバーの構築（オプション）<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
 <p>仮想マシン上にマスターサーバー、スレーブサーバーを構築することも可能です。（テスト内容によっては正常動作しない場合があります）</p>
 <div class="section" id="id13">
-<h3>仮想マシンのインストール<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<h3>事前準備<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<p>上記の事前準備を行っておいて下さい。</p>
 <p>virtualboxがインストールされていない場合はインストールして下さい。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo sh -c <span class="s2">&quot;echo &#39;deb http://download.virtualbox.org/virtualbox/debian &#39;</span><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2">&#39; contrib&#39; &gt; /etc/apt/sources.list.d/virtualbox.list&quot;</span>
 $ wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- <span class="p">|</span> sudo apt-key add -
@@ -610,11 +611,6 @@ $ rm vagrant_1.8.1_x86_64.deb
 <div class="section" id="id14">
 <h3>ローカル環境でのマスターサーバー、スレーブサーバーの起動<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
 <p>ローカル環境でマスターサーバー、スレーブサーバーを起動したい場合は以下の手順で起動します。</p>
-<p>スクリプトをcloneしておきます。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
-$ <span class="nb">cd</span> buildfarm
-</pre></div>
-</div>
 <p>マスターサーバーを起動します。（Ubuntu14.04LTS環境でmasterというノード名でvirtualboxのプライベートネットワークで接続）</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ vagrant up master
 </pre></div>
