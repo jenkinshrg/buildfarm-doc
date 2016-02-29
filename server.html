@@ -635,7 +635,7 @@ $ rm vagrant_1.8.1_x86_64.deb
 </div>
 <div class="section" id="id19">
 <h3>ローカル環境でのマスターサーバー、スレーブサーバーの起動<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
-<p>一時的な確認用などでローカル環境でテストサーバーを起動したいは以下の手順で起動します。</p>
+<p>ローカル環境でマスターサーバー、スレーブサーバーを起動したい場合は以下の手順で起動します。</p>
 <p>スクリプトをcloneしておきます。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
 $ <span class="nb">cd</span> buildfarm
@@ -662,7 +662,7 @@ $ ./scripts/createnode.sh slave2 1
 </div>
 <div class="section" id="id20">
 <h3>リモート環境へのスレーブサーバーの追加<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
-<p>一時的な確認用などでリモートのマスターサーバーへスレーブサーバーを追加したいは以下の手順で起動します。</p>
+<p>リモートのマスターサーバーへスレーブサーバーを追加したい場合は以下の手順で起動します。</p>
 <p>Vagrantfileにスレーブの記述を追加します。（以下はUbuntu16.04LTS環境でubuntu-xenial-amd64というノード名でhttp://jenkinshrg.a01.aist.go.jpへ接続する場合の例）</p>
 <div class="highlight-ruby"><div class="highlight"><pre><span></span><span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">define</span> <span class="s2">&quot;ubuntu-xenial-amd64&quot;</span><span class="p">,</span> <span class="ss">autostart</span><span class="p">:</span> <span class="kp">false</span> <span class="k">do</span> <span class="o">|</span><span class="n">server</span><span class="o">|</span>
   <span class="n">server</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">&quot;ubuntu/xenial64&quot;</span>
