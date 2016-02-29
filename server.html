@@ -536,8 +536,8 @@ $ sudo service nginx restart
 </table>
 <p>以下のURLへブラウザで接続してスレーブサーバーが接続されたことを確認して下さい。</p>
 <p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
 <p class="last">通常スレーブサーバーの起動はシステムのサービス（デーモン）としてinit.dスクリプトなどで自動起動させますが、デスクトップアプリケーションを実行可能とするためにユーザーのデスクトップログイン時に自動起動されるランチャーを$HOME/.config/autostartへ登録する形で実現しています。通常のサービスで良い場合はslave.shを実行して下さい。</p>
 </div>
 </div>
@@ -609,8 +609,8 @@ $ sudo tar zxvf jenkins.tar.gz -C /var/lib
 $ sudo service jenkins start
 </pre></div>
 </div>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
 <p class="last">現在は上記のディレクトリ（/var/lib jenkins）を外付けHDDにマウントしていますので、旧マスターサーバーをシャットダウンして外付けHDDを外し、新マスターサーバーへ接続して/var/lib/jenkinsへの自動マウントを設定することでリストアが可能です。</p>
 </div>
 </div>

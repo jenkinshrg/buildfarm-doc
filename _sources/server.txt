@@ -331,7 +331,7 @@ JENKINSのスレーブサービスを起動して下さい。（自動起動の�
 
 http://jenkinshrg.a01.aist.go.jp
 
-.. warning::
+.. note::
 
   通常スレーブサーバーの起動はシステムのサービス（デーモン）としてinit.dスクリプトなどで自動起動させますが、デスクトップアプリケーションを実行可能とするためにユーザーのデスクトップログイン時に自動起動されるランチャーを$HOME/.config/autostartへ登録する形で実現しています。通常のサービスで良い場合はslave.shを実行して下さい。
 
@@ -400,7 +400,7 @@ JENKINSサーバーの各種設定と履歴データはマスターサーバー�
   $ sudo tar zxvf jenkins.tar.gz -C /var/lib
   $ sudo service jenkins start
 
-.. warning::
+.. note::
 
   現在は上記のディレクトリ（/var/lib jenkins）を外付けHDDにマウントしていますので、旧マスターサーバーをシャットダウンして外付けHDDを外し、新マスターサーバーへ接続して/var/lib/jenkinsへの自動マウントを設定することでリストアが可能です。
 
