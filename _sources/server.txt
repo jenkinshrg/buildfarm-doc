@@ -410,10 +410,8 @@ unattended-upgradesにて自動アップデート、リブートを実施しま�
 
 仮想マシン上にマスターサーバー、スレーブサーバーを構築することも可能です。（テスト内容によっては正常動作しない場合があります）
 
-ローカル環境でのマスターサーバー、スレーブサーバーの起動
---------------------------------------------------------
-
-一時的な確認用などでローカル環境でテストサーバーを起動したいは以下の手順で起動します。
+仮想マシンのインストール
+------------------------
 
 virtualboxがインストールされていない場合はインストールして下さい。
 
@@ -432,6 +430,11 @@ vagrantがインストールされていない場合はインストールして�
   $ sudo dpkg -i vagrant_1.8.1_x86_64.deb
   $ rm vagrant_1.8.1_x86_64.deb
 
+ローカル環境でのマスターサーバー、スレーブサーバーの起動
+--------------------------------------------------------
+
+一時的な確認用などでローカル環境でテストサーバーを起動したいは以下の手順で起動します。
+
 スクリプトをcloneしておきます。
 
 .. code-block:: bash
@@ -445,12 +448,17 @@ vagrantがインストールされていない場合はインストールして�
 
   $ vagrant up master
 
-マスターサーバーへスレーブサーバーを登録します。
+環境変数をローカル環境用に設定します。
 
 .. code-block:: bash
 
   $ export JENKINS_URL=http://localhost:8080
-  $ export REMOTE_FS=/home/vagrant
+  $ export REMOTE_FS=/home/jenkins-slave
+
+マスターサーバーへスレーブサーバーを登録します。
+
+.. code-block:: bash
+
   $ ./scripts/createnode.sh slave1 4
   $ ./scripts/createnode.sh slave2 1
 
@@ -480,6 +488,13 @@ Vagrantfileにスレーブの記述を追加します。（以下はUbuntu16.04L
 .. code-block:: bash
 
   $ ./scripts/createnode.sh ubuntu-xenial-amd64 1
+
+環境変数をリモート環境用に設定します。
+
+.. code-block:: bash
+
+  $ export JENKINS_URL=http://jenkinshrg.a01.aist.go.jp
+  $ export REMOTE_FS=/home/jenkins-slave
 
 スレーブサーバーを起動します。
 

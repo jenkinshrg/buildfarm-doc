@@ -118,8 +118,9 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#id18">仮想マシンによるテストサーバーの構築（オプション）</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id19">ローカル環境でのマスターサーバー、スレーブサーバーの起動</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id20">リモート環境へのスレーブサーバーの追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id19">仮想マシンのインストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id20">ローカル環境でのマスターサーバー、スレーブサーバーの起動</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">リモート環境へのスレーブサーバーの追加</a></li>
 </ul>
 </li>
 </ul>
@@ -619,8 +620,7 @@ $ sudo service jenkins start
 <h2>仮想マシンによるテストサーバーの構築（オプション）<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h2>
 <p>仮想マシン上にマスターサーバー、スレーブサーバーを構築することも可能です。（テスト内容によっては正常動作しない場合があります）</p>
 <div class="section" id="id19">
-<h3>ローカル環境でのマスターサーバー、スレーブサーバーの起動<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
-<p>一時的な確認用などでローカル環境でテストサーバーを起動したいは以下の手順で起動します。</p>
+<h3>仮想マシンのインストール<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
 <p>virtualboxがインストールされていない場合はインストールして下さい。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo sh -c <span class="s2">&quot;echo &#39;deb http://download.virtualbox.org/virtualbox/debian &#39;</span><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2">&#39; contrib&#39; &gt; /etc/apt/sources.list.d/virtualbox.list&quot;</span>
 $ wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- <span class="p">|</span> sudo apt-key add -
@@ -634,6 +634,10 @@ $ sudo dpkg -i vagrant_1.8.1_x86_64.deb
 $ rm vagrant_1.8.1_x86_64.deb
 </pre></div>
 </div>
+</div>
+<div class="section" id="id20">
+<h3>ローカル環境でのマスターサーバー、スレーブサーバーの起動<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<p>一時的な確認用などでローカル環境でテストサーバーを起動したいは以下の手順で起動します。</p>
 <p>スクリプトをcloneしておきます。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
 $ <span class="nb">cd</span> buildfarm
@@ -643,10 +647,13 @@ $ <span class="nb">cd</span> buildfarm
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ vagrant up master
 </pre></div>
 </div>
-<p>マスターサーバーへスレーブサーバーを登録します。</p>
+<p>環境変数をローカル環境用に設定します。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">JENKINS_URL</span><span class="o">=</span>http://localhost:8080
-$ <span class="nb">export</span> <span class="nv">REMOTE_FS</span><span class="o">=</span>/home/vagrant
-$ ./scripts/createnode.sh slave1 4
+$ <span class="nb">export</span> <span class="nv">REMOTE_FS</span><span class="o">=</span>/home/jenkins-slave
+</pre></div>
+</div>
+<p>マスターサーバーへスレーブサーバーを登録します。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/createnode.sh slave1 4
 $ ./scripts/createnode.sh slave2 1
 </pre></div>
 </div>
@@ -655,8 +662,8 @@ $ ./scripts/createnode.sh slave2 1
 </pre></div>
 </div>
 </div>
-<div class="section" id="id20">
-<h3>リモート環境へのスレーブサーバーの追加<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id21">
+<h3>リモート環境へのスレーブサーバーの追加<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
 <p>一時的な確認用などでリモートのマスターサーバーへスレーブサーバーを追加したいは以下の手順で起動します。</p>
 <p>Vagrantfileにスレーブの記述を追加します。（以下はUbuntu16.04LTS環境でubuntu-xenial-amd64というノード名でhttp://jenkinshrg.a01.aist.go.jpへ接続する場合の例）</p>
 <div class="highlight-ruby"><div class="highlight"><pre><span></span><span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">define</span> <span class="s2">&quot;ubuntu-xenial-amd64&quot;</span><span class="p">,</span> <span class="ss">autostart</span><span class="p">:</span> <span class="kp">false</span> <span class="k">do</span> <span class="o">|</span><span class="n">server</span><span class="o">|</span>
@@ -668,6 +675,11 @@ $ ./scripts/createnode.sh slave2 1
 </div>
 <p>マスターサーバーへスレーブサーバーを登録します。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/createnode.sh ubuntu-xenial-amd64 1
+</pre></div>
+</div>
+<p>環境変数をリモート環境用に設定します。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">JENKINS_URL</span><span class="o">=</span>http://jenkinshrg.a01.aist.go.jp
+$ <span class="nb">export</span> <span class="nv">REMOTE_FS</span><span class="o">=</span>/home/jenkins-slave
 </pre></div>
 </div>
 <p>スレーブサーバーを起動します。</p>
