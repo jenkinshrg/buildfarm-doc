@@ -89,13 +89,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#os">OSインストール</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id4">ツールスクリプトの用意</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id5">共通パッケージのインストール</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id6">認証情報の設定</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#git">gitの設定(共通）</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#git-http">gitの設定(http経由）</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#git-ssh">gitの設定(ssh経由）</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#google-drive">Google Driveの設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">認証情報の設定</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#id7">マスターサーバーの構築</a><ul>
@@ -348,13 +342,13 @@ $ <span class="nb">cd</span> buildfarm
 </div>
 <p>その他必要なソフトウェアがあればインストールを行って下さい。</p>
 </div>
-</div>
 <div class="section" id="id6">
-<h2>認証情報の設定<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<h3>認証情報の設定<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <p>テストジョブでは対話形式のコマンドは実行できないため、認証情報が必要な外部サーバーへアクセスを行う場合は事前に以下の設定が必要となります。（セキュリティー面を考慮して認証情報を設定ファイルやスクリプトに保存しないで下さい）</p>
 <p>マスターサーバー、スレーブサーバー全てに対してそれぞれ設定を行って下さい。</p>
-<div class="section" id="git">
-<h3>gitの設定(共通）<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>gitの設定(共通）</li>
+</ul>
 <p>gitのユーザー設定をしておきます。（$HOME/.gitconfigの作成）</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git config --global user.email <span class="s2">&quot;jenkinshrg@gmail.com&quot;</span>
 $ git config --global user.name <span class="s2">&quot;jenkinshrg&quot;</span>
@@ -362,9 +356,9 @@ $ git config --global credential.helper store
 $ git config --global http.sslVerify <span class="nb">false</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="git-http">
-<h3>gitの設定(http経由）<a class="headerlink" href="#git-http" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>gitの設定(http経由）</li>
+</ul>
 <p>http経由でアクセスする場合は$HOME/.git-credentialsを作成します。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ cat <span class="s">&lt;&lt; EOL | tee $HOME/.git-credentials</span>
 <span class="s">https://&lt;username&gt;:&lt;password&gt;@choreonoid.org</span>
@@ -372,9 +366,9 @@ $ git config --global http.sslVerify <span class="nb">false</span>
 <span class="s">EOL</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="git-ssh">
-<h3>gitの設定(ssh経由）<a class="headerlink" href="#git-ssh" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>gitの設定(ssh経由）</li>
+</ul>
 <p>ssh経由でアクセスする場合は公開鍵を作成して登録します。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ ssh-keygen -N <span class="s2">&quot;&quot;</span> -f <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.ssh/id_rsa
 $ ssh-copy-id &lt;username&gt;@atom.a01.aist.go.jp
@@ -390,9 +384,9 @@ $ ssh-copy-id &lt;username&gt;@atom.a01.aist.go.jp
 <span class="s">EOL</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="google-drive">
-<h3>Google Driveの設定<a class="headerlink" href="#google-drive" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Google Driveの設定</li>
+</ul>
 <p>ログをGoogle Driveへアップロードするために以下の設定を行って下さい。</p>
 <p>Google Drive APIのclient_idとclient_secretをまだ作成していない場合は、Google Developers Consoleへjenkinshrgでログインして「API Manager」の「認証情報」で作成しておきます。</p>
 <p><a class="reference external" href="https://console.developers.google.com">https://console.developers.google.com</a></p>
