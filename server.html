@@ -141,7 +141,7 @@
         <div class="rst-content">
           
 
-
+ 
 
 
 
@@ -377,7 +377,7 @@ $ ssh-copy-id &lt;username&gt;@atom.a01.aist.go.jp
 <p>Google Drive APIのclient_idとclient_secretをまだ作成していない場合は、Google Developers Consoleへjenkinshrgでログインして「API Manager」の「認証情報」で作成しておきます。</p>
 <p><a class="reference external" href="https://console.developers.google.com">https://console.developers.google.com</a></p>
 <p>$HOME/.jenkinshrg/env.shを作成します。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mkdir -p $HOME/.jenkinshrg
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mkdir -p <span class="nv">$HOME</span>/.jenkinshrg
 $ cat <span class="s">&lt;&lt; EOL | tee $HOME/.jenkinshrg/env.sh</span>
 <span class="s">export CLIENT_ID=&lt;client_id&gt;</span>
 <span class="s">export CLIENT_SECRET=&lt;client_secret&gt;</span>
@@ -385,7 +385,7 @@ $ cat <span class="s">&lt;&lt; EOL | tee $HOME/.jenkinshrg/env.sh</span>
 </pre></div>
 </div>
 <p>作成した$HOME/.jenkinshrg/env.shを読み込んで環境変数を設定します。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">source</span> $HOME/.jenkinshrg/env.sh
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">source</span> <span class="nv">$HOME</span>/.jenkinshrg/env.sh
 </pre></div>
 </div>
 <p>pythonパッケージをインストールしておきます。</p>
@@ -395,7 +395,9 @@ $ sudo pip install google-api-python-client
 </div>
 <p>スクリプトをcloneしておきます。</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/drcutil.git
-$ <span class="nb">cd</span> drcutil/.jenkins
+$ <span class="nb">cd</span> drcutil
+$ git checkout jenkins
+$ <span class="nb">cd</span> .jenkins
 </pre></div>
 </div>
 <p>適当なファイルを転送することで初回の認証を行います。</p>
