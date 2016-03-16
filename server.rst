@@ -193,7 +193,9 @@ pythonパッケージをインストールしておきます。
 .. code-block:: bash
 
   $ git clone https://github.com/jenkinshrg/drcutil.git
-  $ cd drcutil/.jenkins
+  $ cd drcutil
+  $ git checkout jenkins
+  $ cd .jenkins
 
 適当なファイルを転送することで初回の認証を行います。
 
