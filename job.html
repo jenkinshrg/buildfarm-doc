@@ -83,7 +83,7 @@
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="overview.html">概要</a></li>
 <li class="toctree-l1"><a class="reference internal" href="server.html">テストサーバーの管理</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">テストジョブの管理</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">テストジョブの管理</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id2">事前準備</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id3">テストスクリプトの作成</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id4">テストサーバーの確認</a></li>
@@ -173,40 +173,76 @@
 <td>slave1</td>
 <td>&nbsp;</td>
 </tr>
-<tr class="row-odd"><td>drcutil-build-32</td>
+<tr class="row-odd"><td>build-debian7-32</td>
 <td>ビルド（32ビット環境）</td>
 <td>drcutilが終了時に実行</td>
 <td>slave1</td>
 <td>dockerコンテナ環境でクリーンビルドを実行</td>
 </tr>
-<tr class="row-even"><td>drcutil-build-64</td>
+<tr class="row-even"><td>build-ubuntu1404-64</td>
 <td>ビルド（64ビット環境）、単体テスト、静的解析</td>
 <td>drcutilが終了時に実行</td>
 <td>slave1</td>
 <td>dockerコンテナ環境でクリーンビルドを実行</td>
 </tr>
-<tr class="row-odd"><td>drcutil-task-balancebeam</td>
+<tr class="row-odd"><td>build-ubuntu1604-64</td>
+<td>ビルド（64ビット環境）、単体テスト、静的解析</td>
+<td>drcutilが終了時に実行</td>
+<td>slave1</td>
+<td>dockerコンテナ環境でクリーンビルドを実行</td>
+</tr>
+<tr class="row-even"><td>task-hrp2kai-balancebeam</td>
 <td>タスクシーケンス（平均台歩行）</td>
 <td>毎時実行</td>
-<td>slave2</td>
+<td>masterとslave1以外</td>
 <td>実環境でGUIテストを実行</td>
 </tr>
-<tr class="row-even"><td>drcutil-task-terrain</td>
+<tr class="row-odd"><td>task-hrp2kai-button</td>
+<td>タスクシーケンス（ボタン押し）</td>
+<td>毎時実行</td>
+<td>masterとslave1以外</td>
+<td>実環境でGUIテストを実行</td>
+</tr>
+<tr class="row-even"><td>task-hrp2kai-terrain</td>
 <td>タスクシーケンス（不整地歩行）</td>
 <td>毎時実行</td>
-<td>slave2</td>
+<td>masterとslave1以外</td>
 <td>実環境でGUIテストを実行</td>
 </tr>
-<tr class="row-odd"><td>drcutil-task-valve</td>
+<tr class="row-odd"><td>task-hrp2kai-valve</td>
 <td>タスクシーケンス（バルブ回し）</td>
 <td>毎時実行</td>
-<td>slave2</td>
+<td>masterとslave1以外</td>
 <td>実環境でGUIテストを実行</td>
 </tr>
-<tr class="row-even"><td>drcutil-task-wall</td>
+<tr class="row-even"><td>task-hrp2kai-wall</td>
 <td>タスクシーケンス（壁開け）</td>
 <td>毎時実行</td>
-<td>slave2</td>
+<td>masterとslave1以外</td>
+<td>実環境でGUIテストを実行</td>
+</tr>
+<tr class="row-odd"><td>task-hrp5p-balancebeam</td>
+<td>タスクシーケンス（平均台歩行）</td>
+<td>毎時実行</td>
+<td>masterとslave1以外</td>
+<td>実環境でGUIテストを実行</td>
+</tr>
+<tr class="row-even"><td>task-hrp5p-terrain</td>
+<td>タスクシーケンス（不整地歩行）</td>
+<td>毎時実行</td>
+<td>masterとslave1以外</td>
+<td>実環境でGUIテストを実行</td>
+</tr>
+<tr class="row-odd"><td>task-hrp5p-valve</td>
+<td>タスクシーケンス（バルブ回し）</td>
+<td>毎時実行</td>
+<td>masterとslave1以外</td>
+<td>実環境でGUIテストを実行</td>
+</tr>
+<tr class="row-even"><td>task-hrp5p-wall</td>
+<td>タスクシーケンス（壁開け）</td>
+<td>毎時実行</td>
+<td>masterとslave1以外</td>
 <td>実環境でGUIテストを実行</td>
 </tr>
 <tr class="row-odd"><td>drcutil-upload</td>
