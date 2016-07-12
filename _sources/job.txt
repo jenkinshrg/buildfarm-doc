@@ -130,7 +130,7 @@ http://jenkinshrg.a01.aist.go.jp
 
 .. code-block:: bash
 
-  $ ./scripts/createtask.sh <jobname> <nodename> <robotname> <taskname> <autox> <autoy> <okx> <oky> <wait> [<targetname>] [<targetport>]
+  $ ./scripts/createtask.sh <jobname> <robotname> <taskname> <autox> <autoy> <okx> <oky> <wait> [<targetname>] [<targetport>]
 
 * パラメータの説明
 
@@ -138,7 +138,6 @@ http://jenkinshrg.a01.aist.go.jp
   :header: パラメータ名, 説明, 備考
 
   jobname, ジョブ名, 任意
-  node, 実行ノード名, 稼働中のスレーブを指定
   robotname, ロボット名, share/hrpsys/samples配下のディレクトリ名を指定
   taskname, タスク名, share/hrpsys/samples/<robotname>配下のcnoidファイルを拡張子なしで指定
   autox, 「自動」ボタンX座標, タスクパネルの「自動」ボタンの画面上のX座標を指定 

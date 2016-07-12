@@ -415,7 +415,7 @@ $ <span class="nb">cd</span> buildfarm
 <div class="section" id="id7">
 <h3>タスクシーケンス追加時<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <p>実行するタスクシーケンスを追加したい場合は以下のように指定してスクリプトを実行して下さい。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/createtask.sh &lt;jobname&gt; &lt;nodename&gt; &lt;robotname&gt; &lt;taskname&gt; &lt;autox&gt; &lt;autoy&gt; &lt;okx&gt; &lt;oky&gt; &lt;wait&gt; <span class="o">[</span>&lt;targetname&gt;<span class="o">]</span> <span class="o">[</span>&lt;targetport&gt;<span class="o">]</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/createtask.sh &lt;jobname&gt; &lt;robotname&gt; &lt;taskname&gt; &lt;autox&gt; &lt;autoy&gt; &lt;okx&gt; &lt;oky&gt; &lt;wait&gt; <span class="o">[</span>&lt;targetname&gt;<span class="o">]</span> <span class="o">[</span>&lt;targetport&gt;<span class="o">]</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -438,43 +438,39 @@ $ <span class="nb">cd</span> buildfarm
 <td>ジョブ名</td>
 <td>任意</td>
 </tr>
-<tr class="row-odd"><td>node</td>
-<td>実行ノード名</td>
-<td>稼働中のスレーブを指定</td>
-</tr>
-<tr class="row-even"><td>robotname</td>
+<tr class="row-odd"><td>robotname</td>
 <td>ロボット名</td>
 <td>share/hrpsys/samples配下のディレクトリ名を指定</td>
 </tr>
-<tr class="row-odd"><td>taskname</td>
+<tr class="row-even"><td>taskname</td>
 <td>タスク名</td>
 <td>share/hrpsys/samples/&lt;robotname&gt;配下のcnoidファイルを拡張子なしで指定</td>
 </tr>
-<tr class="row-even"><td>autox</td>
+<tr class="row-odd"><td>autox</td>
 <td>「自動」ボタンX座標</td>
 <td>タスクパネルの「自動」ボタンの画面上のX座標を指定</td>
 </tr>
-<tr class="row-odd"><td>autoy</td>
+<tr class="row-even"><td>autoy</td>
 <td>「自動」ボタンY座標</td>
 <td>タスクパネルの「自動」ボタンの画面上のY座標を指定</td>
 </tr>
-<tr class="row-even"><td>okx</td>
+<tr class="row-odd"><td>okx</td>
 <td>「OK」ボタンX座標</td>
 <td>タスクパネルの「OK」ボタンの画面上のX座標を指定</td>
 </tr>
-<tr class="row-odd"><td>oky</td>
+<tr class="row-even"><td>oky</td>
 <td>「OK」ボタンY座標</td>
 <td>タスクパネルの「OK」ボタンの画面上のY座標を指定</td>
 </tr>
-<tr class="row-even"><td>wait</td>
+<tr class="row-odd"><td>wait</td>
 <td>終了待ち時間（秒）</td>
 <td>タスクシーケンスが終了する予測時間を指定</td>
 </tr>
-<tr class="row-odd"><td>targetname</td>
+<tr class="row-even"><td>targetname</td>
 <td>成功確認用ターゲット名</td>
 <td>省略可、現状はvalveタスクのバルブ回転確認で使用(valve_leftを指定)</td>
 </tr>
-<tr class="row-even"><td>targetport</td>
+<tr class="row-odd"><td>targetport</td>
 <td>成功確認用ターゲットポート名</td>
 <td>省略可、現状はvalveタスクのバルブ回転確認で使用(qを指定)</td>
 </tr>
