@@ -415,7 +415,7 @@ $ <span class="nb">cd</span> buildfarm
 <div class="section" id="id7">
 <h3>タスクシーケンス追加時<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <p>実行するタスクシーケンスを追加したい場合は以下のように指定してスクリプトを実行して下さい。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/createjob.sh &lt;jobname&gt; periodic &lt;nodename&gt; none none none .jenkins.sh task &lt;robotname&gt; &lt;taskname&gt; &lt;autox&gt; &lt;autoy&gt; &lt;okx&gt; &lt;oky&gt; &lt;wait&gt; <span class="o">[</span>&lt;targetname&gt;<span class="o">]</span> <span class="o">[</span>&lt;targetport&gt;<span class="o">]</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/createtask.sh &lt;jobname&gt; &lt;nodename&gt; &lt;robotname&gt; &lt;taskname&gt; &lt;autox&gt; &lt;autoy&gt; &lt;okx&gt; &lt;oky&gt; &lt;wait&gt; <span class="o">[</span>&lt;targetname&gt;<span class="o">]</span> <span class="o">[</span>&lt;targetport&gt;<span class="o">]</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -438,33 +438,9 @@ $ <span class="nb">cd</span> buildfarm
 <td>ジョブ名</td>
 <td>任意</td>
 </tr>
-<tr class="row-odd"><td>template</td>
-<td>ジョブ設定テンプレート(none/scm/upstream/periodic)</td>
-<td>periodicを指定</td>
-</tr>
-<tr class="row-even"><td>node</td>
+<tr class="row-odd"><td>node</td>
 <td>実行ノード名</td>
 <td>稼働中のスレーブを指定</td>
-</tr>
-<tr class="row-odd"><td>os</td>
-<td>実行OS(none/ubuntu/debian)</td>
-<td>noneを指定</td>
-</tr>
-<tr class="row-even"><td>distro</td>
-<td>ディストリビューション</td>
-<td>noneを指定</td>
-</tr>
-<tr class="row-odd"><td>arch</td>
-<td>アーキテクチャ</td>
-<td>noneを指定</td>
-</tr>
-<tr class="row-even"><td>script</td>
-<td>実行スクリプト</td>
-<td>.jenkins.shを指定</td>
-</tr>
-<tr class="row-odd"><td>testname</td>
-<td>テスト内容(build/task)</td>
-<td>taskを指定</td>
 </tr>
 <tr class="row-even"><td>robotname</td>
 <td>ロボット名</td>
