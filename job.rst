@@ -99,7 +99,7 @@ http://jenkinshrg.a01.aist.go.jp
 
 .. code-block:: bash
 
-  $ ./scripts/createjob.sh <jobname> upstream <nodename> ubuntu xenial amd64 .jenkins.sh build
+  $ ./scripts/createbuild.sh <jobname> ubuntu xenial amd64
 
 * パラメータの説明
 
@@ -107,13 +107,9 @@ http://jenkinshrg.a01.aist.go.jp
   :header: パラメータ名, 説明, 備考
 
   jobname, ジョブ名, 任意
-  template, ジョブ設定テンプレート(none/scm/upstream/periodic), upstreamを指定
-  node, 実行ノード名, 稼働中のスレーブを指定
   os, 実行OS(none/ubuntu/debian), debianもしくはubuntuを指定
   distro, ディストリビューション, debootstrapで指定可能なものから選択
   arch, アーキテクチャ, debootstrapで指定可能なものから選択
-  script, 実行スクリプト, .jenkins.shを指定
-  testname, テスト内容(build/task), buildを指定
 
 .. note::
 
