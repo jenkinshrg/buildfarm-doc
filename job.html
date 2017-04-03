@@ -13,6 +13,8 @@
 
   
   
+  
+  
 
   
 
@@ -30,6 +32,9 @@
   
 
   
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="buildfarm 0.1 documentation" href="index.html"/>
         <link rel="prev" title="テストサーバーの管理" href="server.html"/> 
 
@@ -40,6 +45,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -80,7 +86,10 @@
           
             
             
-                <ul class="current">
+              
+            
+            
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="overview.html">概要</a></li>
 <li class="toctree-l1"><a class="reference internal" href="server.html">テストサーバーの管理</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">テストジョブの管理</a><ul>
@@ -114,8 +123,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">buildfarm</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">buildfarm</a>
+        
       </nav>
 
 
@@ -124,23 +135,40 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-      
-    <li>テストジョブの管理</li>
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>テストジョブの管理</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
-            <a href="_sources/job.txt" rel="nofollow"> View page source</a>
+            
+            <a href="_sources/job.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -171,7 +199,7 @@
 <td>リポジトリ変更監視</td>
 <td>毎時レポジトリ変更時</td>
 <td>slave1</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>build-debian7-32</td>
 <td>ビルド（32ビット環境）</td>
@@ -249,7 +277,7 @@
 <td>レポートアップロード</td>
 <td>drcutil以外が終了時に実行</td>
 <td>slave1</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 </tbody>
 </table>
@@ -350,7 +378,7 @@ $ <span class="nb">cd</span> buildfarm
 <div class="section" id="os">
 <h3>ビルドOSバージョン追加時<a class="headerlink" href="#os" title="Permalink to this headline">¶</a></h3>
 <p>ビルドを実行するOSバージョンを追加したい場合は以下のように指定してスクリプトを実行して下さい。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/createjob.sh &lt;jobname&gt; upstream &lt;nodename&gt; ubuntu xenial amd64 .jenkins.sh build
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/createbuild.sh &lt;jobname&gt; ubuntu xenial amd64
 </pre></div>
 </div>
 <ul class="simple">
@@ -373,14 +401,6 @@ $ <span class="nb">cd</span> buildfarm
 <td>ジョブ名</td>
 <td>任意</td>
 </tr>
-<tr class="row-odd"><td>template</td>
-<td>ジョブ設定テンプレート(none/scm/upstream/periodic)</td>
-<td>upstreamを指定</td>
-</tr>
-<tr class="row-even"><td>node</td>
-<td>実行ノード名</td>
-<td>稼働中のスレーブを指定</td>
-</tr>
 <tr class="row-odd"><td>os</td>
 <td>実行OS(none/ubuntu/debian)</td>
 <td>debianもしくはubuntuを指定</td>
@@ -392,14 +412,6 @@ $ <span class="nb">cd</span> buildfarm
 <tr class="row-odd"><td>arch</td>
 <td>アーキテクチャ</td>
 <td>debootstrapで指定可能なものから選択</td>
-</tr>
-<tr class="row-even"><td>script</td>
-<td>実行スクリプト</td>
-<td>.jenkins.shを指定</td>
-</tr>
-<tr class="row-odd"><td>testname</td>
-<td>テスト内容(build/task)</td>
-<td>buildを指定</td>
 </tr>
 </tbody>
 </table>
@@ -516,7 +528,7 @@ $ <span class="nb">cd</span> buildfarm
 <tbody valign="top">
 <tr class="row-even"><td>jobname</td>
 <td>ジョブ名</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 </tbody>
 </table>
@@ -535,13 +547,16 @@ $ <span class="nb">cd</span> buildfarm
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href="server.html" class="btn btn-neutral" title="テストサーバーの管理" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="server.html" class="btn btn-neutral" title="テストサーバーの管理" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -575,7 +590,8 @@ $ <span class="nb">cd</span> buildfarm
             VERSION:'0.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="_static/jquery.js"></script>
