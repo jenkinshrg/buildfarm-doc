@@ -188,16 +188,14 @@ pythonパッケージをインストールしておきます。
 .. code-block:: bash
 
   $ sudo apt-get -y install python-pip
-  $ sudo pip install google-api-python-client
+  $ sudo pip install google-api-python-client oauth2client
 
 スクリプトをcloneしておきます。
 
 .. code-block:: bash
 
-  $ git clone https://github.com/jenkinshrg/drcutil.git
-  $ cd drcutil
-  $ git checkout jenkins
-  $ cd .jenkins
+  $ git clone -b jenkins https://github.com/jenkinshrg/drcutil.git
+  $ cd drcutil/.jenkins
 
 適当なファイルを転送することで初回の認証を行います。
 
