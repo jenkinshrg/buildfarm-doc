@@ -17,42 +17,37 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="buildfarm 0.1 documentation" href="index.html"/>
-        <link rel="next" title="テストサーバーの管理" href="server.html"/>
-        <link rel="prev" title="Welcome to buildfarm’s documentation!" href="index.html"/> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="テストサーバーの管理" href="server.html" />
+    <link rel="prev" title="Welcome to buildfarm’s documentation!" href="index.html" /> 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -117,7 +112,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">buildfarm</a>
@@ -125,9 +120,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -175,7 +171,7 @@
 <h2>はじめに<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>buildfarmはhrpsys-base, choreonoid, OpenHRPなどのロボット関連ソフトウェアの各種テストの実行を自動化するための継続的インテグレーション（CI）環境です。</p>
 <p>JENKINSサーバーをオンプレミスに構築するためプライベートなリポジトリやオンプレミスに存在するリポジトリを含むテストや特定のハードウェア（GPUなど）やソフトウェア（OSなど）に依存するテストの実行が可能です。</p>
-<img src="_images/graphviz-76caf4db14a5ce7e85d659178e935847e59abeaa.png" alt="digraph {
+<div class="graphviz"><img src="_images/graphviz-feb42ed597a709e1ccd94eb028e97ae2936ccf9c.png" alt="digraph {
    source1 [label=&quot;public repository&quot;];
    source2 [label=&quot;private repository&quot;];
    build [label=&quot;buildfarm&quot;];
@@ -187,7 +183,7 @@
    build -&gt; report1 [label=&quot;send messages&quot;];
    build -&gt; report2 [label=&quot;upload logs&quot;];
    build -&gt; report3 [label=&quot;upload reports&quot;];
-}" />
+}" class="graphviz" /></div>
 </div>
 <div class="section" id="id3">
 <h2>テストの種類と実装方法<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
@@ -199,7 +195,7 @@
 <ul class="simple">
 <li>テストプログラムの例</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cmake .
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cmake .
 $ make install
 </pre></div>
 </div>
@@ -212,11 +208,11 @@ $ make install
 <li>テストプログラムの例</li>
 </ul>
 <p>gtestをインストールしておきます。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo apt-get install libgtest-dev
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install libgtest-dev
 </pre></div>
 </div>
 <p>テストプログラムを作成します。</p>
-<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;gtest/gtest.h&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;gtest/gtest.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&quot;Eigen3d.h&quot;</span><span class="cp"></span>
 
 <span class="k">using</span> <span class="k">namespace</span> <span class="n">hrp</span><span class="p">;</span>
@@ -238,7 +234,7 @@ $ make install
 </pre></div>
 </div>
 <p>CMakeLists.txtに以下の記述を追加します。</p>
-<div class="highlight-cmake"><div class="highlight"><pre><span></span><span class="nb">enable_testing</span><span class="p">()</span>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">enable_testing</span><span class="p">()</span>
 <span class="nb">add_subdirectory</span><span class="p">(</span><span class="s">/usr/src/gtest</span> <span class="o">${</span><span class="nv">CMAKE_CURRENT_BINARY_DIR</span><span class="o">}</span><span class="s">/gtest</span><span class="p">)</span>
 
 <span class="nb">add_executable</span><span class="p">(</span><span class="s">testEigen3d</span> <span class="s">testEigen3d.cpp</span> <span class="s">Eigen3d.cpp</span><span class="p">)</span>
@@ -248,7 +244,7 @@ $ make install
 </pre></div>
 </div>
 <p>cmakeでビルドした後にctestでテストプログラムを実行します。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ctest --verbose --test-action Test
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ctest --verbose --test-action Test
 </pre></div>
 </div>
 <p>出力されるレポートを確認します。</p>
@@ -266,7 +262,7 @@ $ make install
 <ul class="simple">
 <li>テストプログラムの例</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ choreonoid testbed-terrain.cnoid --start-simulation
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ choreonoid testbed-terrain.cnoid --start-simulation
 </pre></div>
 </div>
 <p>GUI操作の自動化が必要な場合はxautomation等を利用します。</p>
@@ -279,7 +275,7 @@ $ make install
 <ul class="simple">
 <li>テストプログラムの例</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ valgrind --verbose --tool<span class="o">=</span>memcheck --leak-check<span class="o">=</span>full --show-reachable<span class="o">=</span>no --undef-value-errors<span class="o">=</span>no --track-origins<span class="o">=</span>no --child-silent-after-fork<span class="o">=</span>no --trace-children<span class="o">=</span>no --gen-suppressions<span class="o">=</span>no --xml<span class="o">=</span>yes --xml-file<span class="o">=</span>valgrind.xml testEigen3d
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ valgrind --verbose --tool<span class="o">=</span>memcheck --leak-check<span class="o">=</span>full --show-reachable<span class="o">=</span>no --undef-value-errors<span class="o">=</span>no --track-origins<span class="o">=</span>no --child-silent-after-fork<span class="o">=</span>no --trace-children<span class="o">=</span>no --gen-suppressions<span class="o">=</span>no --xml<span class="o">=</span>yes --xml-file<span class="o">=</span>valgrind.xml testEigen3d
 </pre></div>
 </div>
 </div>
@@ -290,7 +286,7 @@ $ make install
 <ul class="simple">
 <li>テストプログラムの例</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cppcheck --enable<span class="o">=</span>all --inconclusive --xml --xml-version<span class="o">=</span><span class="m">2</span> --force src <span class="m">2</span>&gt; cppcheck.xml
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cppcheck --enable<span class="o">=</span>all --inconclusive --xml --xml-version<span class="o">=</span><span class="m">2</span> --force src <span class="m">2</span>&gt; cppcheck.xml
 </pre></div>
 </div>
 </div>
@@ -299,9 +295,7 @@ $ make install
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -310,7 +304,7 @@ $ make install
         <a href="server.html" class="btn btn-neutral float-right" title="テストサーバーの管理" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="Welcome to buildfarm’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to buildfarm’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -319,11 +313,11 @@ $ make install
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2016, AIST.
+        &copy; Copyright 2016, AIST
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -336,37 +330,15 @@ $ make install
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'0.1',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
+
+  
+  
+    
    
 
 </body>

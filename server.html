@@ -17,42 +17,37 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="buildfarm 0.1 documentation" href="index.html"/>
-        <link rel="next" title="テストジョブの管理" href="job.html"/>
-        <link rel="prev" title="概要" href="overview.html"/> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="テストジョブの管理" href="job.html" />
+    <link rel="prev" title="概要" href="overview.html" /> 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -104,25 +99,29 @@
 <li class="toctree-l2"><a class="reference internal" href="#id7">マスターサーバーの構築</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#jenkins">JENKINSのインストール</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id8">リバースプロキシの設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">グローバルセキュリティの設定</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id9">スレーブサーバーの構築</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id10">スレーブサーバーの登録</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id10">スレーブサーバーの構築</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id11">スレーブサーバーの登録</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#jnlp">JNLPスレーブの起動</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id11">スレーブサーバーの削除</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">スレーブサーバーの削除</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id12">仮想マシンによるテストサーバーの構築（オプション）</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id13">事前準備</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id14">ローカル環境でのマスターサーバー、スレーブサーバーの起動</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id15">リモート環境へのスレーブサーバーの追加</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id13">仮想マシンによるテストサーバーの構築（オプション）</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id14">事前準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id15">ローカル環境でのマスターサーバー、スレーブサーバーの起動</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id16">リモート環境へのスレーブサーバーの追加</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id16">メンテナンス</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id17">セキュリティーアップデートの実施</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id18">シャットダウンの実施</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id19">サーバーの移設</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id20">サーバーの交換</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id17">メンテナンス</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id18">セキュリティーアップデートの実施</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id19">シャットダウンの実施</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id20">JENKINSの手動起動と停止</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">Jenkinsのバージョンアップ手順</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plugin">Pluginのアップロード手順</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id22">サーバーの移設</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id23">サーバーの交換</a></li>
 </ul>
 </li>
 </ul>
@@ -139,7 +138,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">buildfarm</a>
@@ -147,9 +146,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -262,7 +262,7 @@
 <p>マスターサーバーとスレーブサーバー共通で実施するインストール手順を説明します。</p>
 <div class="section" id="id3">
 <h3>マシンの設置<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
-<p>インターネット接続が可能なマシンを設置して下さい。</p>
+<p>インターネット接続が可能なマシンを設置して下さい。（マスターサーバもインストールが終了するまではdhcpを使用してインターネットに接続できるようにします。）</p>
 <p>マスターサーバーは特にハードウェア要件はありませんが、サイズの大きなログを長期間保存する場合は大きめのハードディスクを用意して下さい。</p>
 <p>スレーブサーバーはテストの実行に必要なハードウェア要件（GPUなど）にあったものを用意して下さい。</p>
 <p>現在運用中のマシンスペックは以下の通りです。</p>
@@ -347,7 +347,7 @@
 </div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">マスターサーバーは固定IPアドレスでjenkinshrg.a01.aist.go.jpでアクセスできるようにDNSに登録されている必要があります。</p>
+<p class="last">マスターサーバーは、インストール終了後には固定IPアドレスでjenkinshrg.a01.aist.go.jpでアクセスできるようにDNSに登録されている必要があります。</p>
 </div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
@@ -366,14 +366,14 @@
 <ul class="simple">
 <li>gitをインストール</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo apt-get install git
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install git
 </pre></div>
 </div>
 <ul class="simple">
 <li>gitの設定(共通）</li>
 </ul>
 <p>gitのユーザー設定をしておきます。（$HOME/.gitconfigの作成）</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git config --global user.email <span class="s2">&quot;jenkinshrg@gmail.com&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git config --global user.email <span class="s2">&quot;jenkinshrg@gmail.com&quot;</span>
 $ git config --global user.name <span class="s2">&quot;jenkinshrg&quot;</span>
 $ git config --global credential.helper store
 $ git config --global http.sslVerify <span class="nb">false</span>
@@ -383,7 +383,7 @@ $ git config --global http.sslVerify <span class="nb">false</span>
 <li>gitの設定(http経由）</li>
 </ul>
 <p>http経由でアクセスする場合は$HOME/.git-credentialsを作成します。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cat <span class="s">&lt;&lt; EOL | tee $HOME/.git-credentials</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cat <span class="s">&lt;&lt; EOL | tee $HOME/.git-credentials</span>
 <span class="s">https://&lt;username&gt;:&lt;password&gt;@choreonoid.org</span>
 <span class="s">https://&lt;username&gt;:&lt;password&gt;@github.com</span>
 <span class="s">EOL</span>
@@ -393,12 +393,12 @@ $ git config --global http.sslVerify <span class="nb">false</span>
 <li>gitの設定(ssh経由）</li>
 </ul>
 <p>ssh経由でアクセスする場合は公開鍵を作成して登録します。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ssh-keygen -N <span class="s2">&quot;&quot;</span> -f <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.ssh/id_rsa
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ssh-keygen -N <span class="s2">&quot;&quot;</span> -f <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.ssh/id_rsa
 $ ssh-copy-id &lt;username&gt;@atom.a01.aist.go.jp
 </pre></div>
 </div>
 <p>$HOME/.ssh/configを作成します。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cat <span class="s">&lt;&lt; EOL | tee $HOME/.ssh/config</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cat <span class="s">&lt;&lt; EOL | tee $HOME/.ssh/config</span>
 <span class="s">Host atom.a01.aist.go.jp</span>
 <span class="s">HostName atom.a01.aist.go.jp</span>
 <span class="s">User &lt;username&gt;</span>
@@ -415,7 +415,7 @@ $ ssh-copy-id &lt;username&gt;@atom.a01.aist.go.jp
 <p>Google Drive APIのclient_idとclient_secretをまだ作成していない場合は、Google Developers Consoleへjenkinshrgでログインして「API Manager」の「認証情報」で作成しておきます。</p>
 <p><a class="reference external" href="https://console.developers.google.com">https://console.developers.google.com</a></p>
 <p>$HOME/.jenkinshrg/env.shを作成します。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mkdir -p <span class="nv">$HOME</span>/.jenkinshrg
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkdir -p <span class="nv">$HOME</span>/.jenkinshrg
 $ cat <span class="s">&lt;&lt; EOL | tee $HOME/.jenkinshrg/env.sh</span>
 <span class="s">export CLIENT_ID=&lt;client_id&gt;</span>
 <span class="s">export CLIENT_SECRET=&lt;client_secret&gt;</span>
@@ -423,23 +423,21 @@ $ cat <span class="s">&lt;&lt; EOL | tee $HOME/.jenkinshrg/env.sh</span>
 </pre></div>
 </div>
 <p>作成した$HOME/.jenkinshrg/env.shを読み込んで環境変数を設定します。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">source</span> <span class="nv">$HOME</span>/.jenkinshrg/env.sh
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">source</span> <span class="nv">$HOME</span>/.jenkinshrg/env.sh
 </pre></div>
 </div>
 <p>pythonパッケージをインストールしておきます。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo apt-get -y install python-pip
-$ sudo pip install google-api-python-client
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get -y install python-pip
+$ sudo pip install google-api-python-client oauth2client
 </pre></div>
 </div>
 <p>スクリプトをcloneしておきます。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/drcutil.git
-$ <span class="nb">cd</span> drcutil
-$ git checkout jenkins
-$ <span class="nb">cd</span> .jenkins
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git clone -b jenkins https://github.com/jenkinshrg/drcutil.git
+$ <span class="nb">cd</span> drcutil/.jenkins
 </pre></div>
 </div>
 <p>適当なファイルを転送することで初回の認証を行います。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ python remoteBackup.py remoteBackup.py text/plain remoteBackup.py
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python remoteBackup.py remoteBackup.py text/plain remoteBackup.py
 </pre></div>
 </div>
 <p>認証コードの入力が促されます。</p>
@@ -451,7 +449,7 @@ $ <span class="nb">cd</span> .jenkins
 <div class="section" id="id5">
 <h3>ツールスクリプトの用意<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <p>サーバーの構築を行うツールスクリプトをcloneしておきます。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/jenkinshrg/buildfarm.git
 $ <span class="nb">cd</span> buildfarm
 </pre></div>
 </div>
@@ -459,7 +457,7 @@ $ <span class="nb">cd</span> buildfarm
 <div class="section" id="id6">
 <h3>共通パッケージのインストール<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <p>マスターサーバーとスレーブサーバーで共通で必要なパッケージをインストールして下さい。(設定のカスタマイズを含みます)</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./setup/common.sh
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./setup/common.sh
 </pre></div>
 </div>
 </div>
@@ -471,7 +469,7 @@ $ <span class="nb">cd</span> buildfarm
 <h3>JENKINSのインストール<a class="headerlink" href="#jenkins" title="Permalink to this headline">¶</a></h3>
 <p>JENKINSをインストールして下さい。</p>
 <p>マスターサーバーをインストールします。(必要なプラグインのインストール、設定のカスタマイズを含みます)</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./setup/master.sh
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./setup/master.sh
 </pre></div>
 </div>
 <p>以下のURLへブラウザで接続して正しく表示されることを確認して下さい。</p>
@@ -493,20 +491,26 @@ $ <span class="nb">cd</span> buildfarm
 <h3>リバースプロキシの設定<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <p>マスターサーバーへTCPポート80でアクセスできるように設定して下さい。（以下にnginxでリバースプロキシを設定する場合の例を示します）</p>
 <p>webサーバーをインストールします。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo apt-add-repository -y ppa:nginx/stable
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo apt-add-repository -y ppa:nginx/stable
 $ sudo apt-get update
 $ sudo apt-get -y install nginx
 </pre></div>
 </div>
 <p>リバースプロキシ設定を行います。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ cat <span class="s">&lt;&lt; \EOL | sudo tee /etc/nginx/sites-available/default</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cat <span class="s">&lt;&lt; \EOL | sudo tee /etc/nginx/sites-available/default</span>
 <span class="s">server {</span>
-<span class="s">        listen 80;</span>
-<span class="s">        server_name localhost;</span>
-<span class="s">        location / {</span>
-<span class="s">                proxy_set_header Host $http_host;</span>
-<span class="s">                proxy_pass http://localhost:8080;</span>
-<span class="s">        }</span>
+<span class="s">      listen 80;</span>
+<span class="s">      server_name localhost;</span>
+<span class="s">      location / {</span>
+<span class="s">          proxy_set_header Host $http_host;</span>
+<span class="s">          proxy_pass http://localhost:8080;</span>
+
+<span class="s">          # Required for new HTTP-based CLI</span>
+<span class="s">          proxy_http_version 1.1;</span>
+<span class="s">          proxy_request_buffering off;</span>
+<span class="s">          # workaround for https://issues.jenkins-ci.org/browse/JENKINS-45651</span>
+<span class="s">          add_header &#39;X-SSH-Endpoint&#39; &#39;localhost:50022&#39; always;</span>
+<span class="s">       }</span>
 <span class="s">}</span>
 <span class="s">EOL</span>
 $ sudo service nginx restart
@@ -519,15 +523,54 @@ $ sudo service nginx restart
 <p class="last">他のアプリケーションがポート番号80を使用していないか予め確認して下さい。</p>
 </div>
 </div>
-</div>
 <div class="section" id="id9">
-<h2>スレーブサーバーの構築<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
-<p>スレーブサーバーで実施するインストール手順を説明します。</p>
+<h3>グローバルセキュリティの設定<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<p>ブラウザ上にjenkinsの画面が表示されたら、ユーザ名とパスワードを入力してサインインします。</p>
+<p>Jenkinsの管理-グローバルセキュリティの設定　に移動します。</p>
+<div class="figure">
+<img alt="_images/enableSecurity.png" src="_images/enableSecurity.png" />
+</div>
+<p>セキュリティを有効化にチェックを入れます。</p>
+<div class="figure">
+<img alt="_images/enableCLI.png" src="_images/enableCLI.png" />
+</div>
+<p>Enable CLI over Remoting　と　Enable API Token usage statistics　にもチェックをいれます。</p>
+<div class="figure">
+<img alt="_images/userconfig.png" src="_images/userconfig.png" />
+</div>
+<p>右上のユーザ名、設定の順にクリックして設定の画面に移動します。</p>
+<div class="figure">
+<img alt="_images/APIToken.png" src="_images/APIToken.png" />
+</div>
+<p>APIトークンの <strong>Add new Token</strong> をクリックしてトークンを生成し名前を付けます。この時表示される文字列をコピーします。後で表示させることはできないので、管理者は記録しておく必要があります。</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>この設定以降は、jenkins-cliを使用したリモートアクセスにはこのAPI Tokenが必要になります。
+コマンドの中に</p>
+<blockquote>
+<div><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">java</span> <span class="o">-</span><span class="n">jar</span> <span class="n">jenkins</span><span class="o">-</span><span class="n">cli</span><span class="o">.</span><span class="na">jar</span> <span class="o">-</span><span class="n">s</span> <span class="n">http</span><span class="o">:</span><span class="c1">//jenkinshrg.a01.aist.go.jp/ -auth &lt;user name&gt;:&lt;API Token&gt; &lt;command&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>のように記述することができます。また次のように予め環境変数に設定しておくこともできます。</p>
+<blockquote class="last">
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">JENKINS_USER_ID</span><span class="o">=</span>&lt;user name&gt;
+<span class="nb">export</span> <span class="nv">JENKINS_API_TOKEN</span><span class="o">=</span>&lt;API Token&gt;
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+</div>
+</div>
 <div class="section" id="id10">
-<h3>スレーブサーバーの登録<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<h2>スレーブサーバーの構築<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<p>スレーブサーバーで実施するインストール手順を説明します。</p>
+<div class="section" id="id11">
+<h3>スレーブサーバーの登録<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
 <p>スレーブサーバーの情報をマスターサーバーへ登録します。</p>
-<p>マスターサーバーへスレーブサーバーを登録します。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/createnode.sh &lt;nodename&gt; &lt;numexecutors&gt;
+<p>以下で使用するスクリプトの中でjenkins-cliによるリモートアクセスを使用しているので、環境変数JENKINS_USER_IDとJENKINS_API_TOKENを設定しておきます。</p>
+<p>そして、マスターサーバーへスレーブサーバーを登録するスクリプトを実行します。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./scripts/createnode.sh &lt;nodename&gt; &lt;numexecutors&gt;
 </pre></div>
 </div>
 <ul class="simple">
@@ -563,7 +606,7 @@ $ sudo service nginx restart
 <h3>JNLPスレーブの起動<a class="headerlink" href="#jnlp" title="Permalink to this headline">¶</a></h3>
 <p>JENKINSのスレーブサービスを起動して下さい。（自動起動の設定を含みます）</p>
 <p>スレーブサーバーをインストールします。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./setup/slave_desktop.sh &lt;nodename&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./setup/slave_desktop.sh &lt;nodename&gt;
 </pre></div>
 </div>
 <ul class="simple">
@@ -595,11 +638,11 @@ $ sudo service nginx restart
 <p class="last">通常スレーブサーバーの起動はシステムのサービス（デーモン）としてinit.dスクリプトなどで自動起動させますが、デスクトップアプリケーションを実行可能とするためにユーザーのデスクトップログイン時に自動起動されるランチャーを$HOME/.config/autostartへ登録する形で実現しています。通常のサービスで良い場合はslave.shを実行して下さい。</p>
 </div>
 </div>
-<div class="section" id="id11">
-<h3>スレーブサーバーの削除<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id12">
+<h3>スレーブサーバーの削除<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
 <p>不要になったスレーブサーバーの情報をマスターサーバーから削除します。</p>
 <p>マスターサーバーからスレーブサーバーを削除します。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/deletenode.sh &lt;nodename&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./scripts/deletenode.sh &lt;nodename&gt;
 </pre></div>
 </div>
 <ul class="simple">
@@ -628,53 +671,53 @@ $ sudo service nginx restart
 <p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
 </div>
 </div>
-<div class="section" id="id12">
-<h2>仮想マシンによるテストサーバーの構築（オプション）<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
-<p>仮想マシン上にマスターサーバー、スレーブサーバーを構築することも可能です。（テスト内容によっては正常動作しない場合があります）</p>
 <div class="section" id="id13">
-<h3>事前準備<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<h2>仮想マシンによるテストサーバーの構築（オプション）<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<p>仮想マシン上にマスターサーバー、スレーブサーバーを構築することも可能です。（テスト内容によっては正常動作しない場合があります）</p>
+<div class="section" id="id14">
+<h3>事前準備<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
 <p>上記の事前準備を行っておいて下さい。</p>
 <p>virtualboxがインストールされていない場合はインストールして下さい。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo sh -c <span class="s2">&quot;echo &#39;deb http://download.virtualbox.org/virtualbox/debian &#39;</span><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2">&#39; contrib&#39; &gt; /etc/apt/sources.list.d/virtualbox.list&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo sh -c <span class="s2">&quot;echo &#39;deb http://download.virtualbox.org/virtualbox/debian &#39;</span><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2">&#39; contrib&#39; &gt; /etc/apt/sources.list.d/virtualbox.list&quot;</span>
 $ wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- <span class="p">|</span> sudo apt-key add -
 $ sudo apt-get update
 $ sudo apt-get -y install virtualbox-5.0
 </pre></div>
 </div>
 <p>vagrantがインストールされていない場合はインストールして下さい。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ wget -q https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1_x86_64.deb
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ wget -q https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1_x86_64.deb
 $ sudo dpkg -i vagrant_1.8.1_x86_64.deb
 $ rm vagrant_1.8.1_x86_64.deb
 </pre></div>
 </div>
 </div>
-<div class="section" id="id14">
-<h3>ローカル環境でのマスターサーバー、スレーブサーバーの起動<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id15">
+<h3>ローカル環境でのマスターサーバー、スレーブサーバーの起動<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
 <p>ローカル環境でマスターサーバー、スレーブサーバーを起動したい場合は以下の手順で起動します。</p>
 <p>マスターサーバーを起動します。（Ubuntu14.04LTS環境でmasterというノード名でvirtualboxのプライベートネットワークで接続）</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ vagrant up master
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ vagrant up master
 </pre></div>
 </div>
 <p>環境変数をローカル環境用に設定します。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">JENKINS_URL</span><span class="o">=</span>http://localhost:8080
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">JENKINS_URL</span><span class="o">=</span>http://localhost:8080
 $ <span class="nb">export</span> <span class="nv">REMOTE_FS</span><span class="o">=</span>/home/jenkins-slave
 </pre></div>
 </div>
 <p>マスターサーバーへスレーブサーバーを登録します。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/createnode.sh slave1 <span class="m">4</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./scripts/createnode.sh slave1 <span class="m">4</span>
 $ ./scripts/createnode.sh slave2 <span class="m">1</span>
 </pre></div>
 </div>
 <p>スレーブサーバーを起動します。（Ubuntu14.04LTS環境でslave1、slave2というノード名でvirtualboxのプライベートネットワークで接続）</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ vagrant up slave1 slave2
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ vagrant up slave1 slave2
 </pre></div>
 </div>
 </div>
-<div class="section" id="id15">
-<h3>リモート環境へのスレーブサーバーの追加<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id16">
+<h3>リモート環境へのスレーブサーバーの追加<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
 <p>リモートのマスターサーバーへスレーブサーバーを追加したい場合は以下の手順で起動します。</p>
 <p>Vagrantfileにスレーブの記述を追加します。（以下はUbuntu16.04LTS環境でubuntu-xenial-amd64というノード名でhttp://jenkinshrg.a01.aist.go.jpへ接続する場合の例）</p>
-<div class="highlight-ruby"><div class="highlight"><pre><span></span><span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">define</span> <span class="s2">&quot;ubuntu-xenial-amd64&quot;</span><span class="p">,</span> <span class="ss">autostart</span><span class="p">:</span> <span class="kp">false</span> <span class="k">do</span> <span class="o">|</span><span class="n">server</span><span class="o">|</span>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">define</span> <span class="s2">&quot;ubuntu-xenial-amd64&quot;</span><span class="p">,</span> <span class="ss">autostart</span><span class="p">:</span> <span class="kp">false</span> <span class="k">do</span> <span class="o">|</span><span class="n">server</span><span class="o">|</span>
   <span class="n">server</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">&quot;ubuntu/xenial64&quot;</span>
   <span class="n">server</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provision</span> <span class="s2">&quot;shell&quot;</span><span class="p">,</span> <span class="ss">path</span><span class="p">:</span> <span class="s2">&quot;scripts/createnode.sh&quot;</span><span class="p">,</span> <span class="ss">args</span><span class="p">:</span> <span class="s2">&quot;ubuntu-xenial-amd64 /home/vagrant http://jenkinshrg.a01.aist.go.jp&quot;</span><span class="p">,</span> <span class="ss">privileged</span><span class="p">:</span> <span class="kp">false</span>
   <span class="n">server</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provision</span> <span class="s2">&quot;shell&quot;</span><span class="p">,</span> <span class="ss">path</span><span class="p">:</span> <span class="s2">&quot;setup/slave.sh&quot;</span><span class="p">,</span> <span class="ss">args</span><span class="p">:</span> <span class="s2">&quot;ubuntu-xenial-amd64 http://jenkinshrg.a01.aist.go.jp&quot;</span><span class="p">,</span> <span class="ss">privileged</span><span class="p">:</span> <span class="kp">false</span>
@@ -682,43 +725,86 @@ $ ./scripts/createnode.sh slave2 <span class="m">1</span>
 </pre></div>
 </div>
 <p>マスターサーバーへスレーブサーバーを登録します。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ./scripts/createnode.sh ubuntu-xenial-amd64 <span class="m">1</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./scripts/createnode.sh ubuntu-xenial-amd64 <span class="m">1</span>
 </pre></div>
 </div>
 <p>環境変数をリモート環境用に設定します。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">JENKINS_URL</span><span class="o">=</span>http://jenkinshrg.a01.aist.go.jp
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">JENKINS_URL</span><span class="o">=</span>http://jenkinshrg.a01.aist.go.jp
 $ <span class="nb">export</span> <span class="nv">REMOTE_FS</span><span class="o">=</span>/home/jenkins-slave
 </pre></div>
 </div>
 <p>スレーブサーバーを起動します。</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ vagrant up ubuntu-xenial-amd64
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ vagrant up ubuntu-xenial-amd64
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="id16">
-<h2>メンテナンス<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id17">
-<h3>セキュリティーアップデートの実施<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<h2>メンテナンス<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id18">
+<h3>セキュリティーアップデートの実施<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
 <p>unattended-upgradesにて自動でセキュリティーアップデート、リブートを実施するように設定しています。（cron.daily経由で6:25に起動され最大1800秒遅延して実行されます）</p>
 </div>
-<div class="section" id="id18">
-<h3>シャットダウンの実施<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id19">
+<h3>シャットダウンの実施<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
 <p>JENKINSの画面で「JENKINSの管理」→「シャットダウンの準備」を行うことで新規テストジョブの実行を停止することができますので、テストジョブの実行が全て完了してから通常のシャットダウン手順を実行して下さい。（再起動時に自動的にサービスが再開されます）</p>
 </div>
-<div class="section" id="id19">
-<h3>サーバーの移設<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id20">
+<h3>JENKINSの手動起動と停止<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<p>JENKINSの停止</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ service jenkins stop
+</pre></div>
+</div>
+<p>JENKINSの起動</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ service jenkins start
+</pre></div>
+</div>
+</div>
+<div class="section" id="id21">
+<h3>Jenkinsのバージョンアップ手順<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>JENKINSを停止します。</li>
+<li>インターネットに接続していない状態で行う場合、他のマシーンで最新バージョンのjenkins.warをダウンロードします。</li>
+<li>マスターサーバーの /usr/share/jenkins/jenkins.war をダウンロードしたファイルで置き換えます。ここの場所は、/etc/default/jenkins の中に　<strong>JENKINS_WAR=</strong> として記述されています。</li>
+<li>JENKINSを起動します。</li>
+</ol>
+</div>
+<div class="section" id="plugin">
+<h3>Pluginのアップロード手順<a class="headerlink" href="#plugin" title="Permalink to this headline">¶</a></h3>
+<p>インターネットに接続していない状態で、アップロードするのは少々手間がかかります。Pluginには依存関係があり、依存しているすべてのPluginをアップロードする必要があるからです。</p>
+<ol class="arabic simple">
+<li>インターネットに接続しているマシーンで、JENKINSホームページからPluginsのページに移動します。</li>
+<li>アップロードしたいPluginを検索して、そのページに移動します。</li>
+<li><strong>Dependencies</strong> が依存関係にあるPluginです。この依存関係にあるプラグインを溯り、全てアップロードする必要があります。</li>
+<li>プラグインのページから <strong>Archives</strong> を選択し,バージョンを選んでダウンロードします。</li>
+<li>ブラウザを使用して <a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a> のページを開きます。</li>
+</ol>
+<div class="figure">
+<img alt="_images/pluginSetting.png" src="_images/pluginSetting.png" />
+</div>
+<ol class="arabic simple" start="6">
+<li><strong>Jenkinsの管理</strong> - <strong>プラグインの管理</strong> と移動して、高度な設定のタグを選択します。</li>
+</ol>
+<div class="figure">
+<img alt="_images/pluginUpload.png" src="_images/pluginUpload.png" />
+</div>
+<ol class="arabic simple" start="7">
+<li>プラグインのアップロードで、ダウンロードしたファイルを選択し、アップロードをクリックします。</li>
+</ol>
+</div>
+<div class="section" id="id22">
+<h3>サーバーの移設<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
 <p>サーバーの設置場所を移動するなどでIPアドレスが変更になっても問題ありません。</p>
 </div>
-<div class="section" id="id20">
-<h3>サーバーの交換<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id23">
+<h3>サーバーの交換<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
 <p>故障などでハードウェア交換を行う場合は上記のインストール手順を再度実施して下さい。</p>
 <p>JENKINSサーバーの各種設定と履歴データはマスターサーバー上の/var/lib/jenkinsにあります。</p>
 <p>移行が必要な場合はマスターサーバーにて以下のバックアップ、リストア手順を実施して下さい。（スレーブサーバーのデータは消えてしまって問題ありません）</p>
 <ul class="simple">
 <li>バックアップ手順</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo service jenkins stop
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo service jenkins stop
 $ sudo tar zcvf jenkins.tar.gz -C /var/lib jenkins
 $ sudo service jenkins start
 </pre></div>
@@ -726,7 +812,7 @@ $ sudo service jenkins start
 <ul class="simple">
 <li>リストア手順</li>
 </ul>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo service jenkins stop
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo service jenkins stop
 $ sudo tar zxvf jenkins.tar.gz -C /var/lib
 $ sudo service jenkins start
 </pre></div>
@@ -741,9 +827,7 @@ $ sudo service jenkins start
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -752,7 +836,7 @@ $ sudo service jenkins start
         <a href="job.html" class="btn btn-neutral float-right" title="テストジョブの管理" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="overview.html" class="btn btn-neutral" title="概要" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="overview.html" class="btn btn-neutral float-left" title="概要" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -761,11 +845,11 @@ $ sudo service jenkins start
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2016, AIST.
+        &copy; Copyright 2016, AIST
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -778,37 +862,15 @@ $ sudo service jenkins start
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'0.1',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
+
+  
+  
+    
    
 
 </body>
