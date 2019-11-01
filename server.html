@@ -103,25 +103,27 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#id10">スレーブサーバーの構築</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#qt">Qtのインストール</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id11">スレーブサーバーの登録</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#jnlp">JNLPスレーブの起動</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id12">スレーブサーバーの削除</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">リブートの設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">スレーブサーバーの削除</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id13">仮想マシンによるテストサーバーの構築（オプション）</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id14">事前準備</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id15">ローカル環境でのマスターサーバー、スレーブサーバーの起動</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id16">リモート環境へのスレーブサーバーの追加</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id14">仮想マシンによるテストサーバーの構築（オプション）</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id15">事前準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id16">ローカル環境でのマスターサーバー、スレーブサーバーの起動</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id17">リモート環境へのスレーブサーバーの追加</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id17">メンテナンス</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id18">セキュリティーアップデートの実施</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id19">シャットダウンの実施</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id20">JENKINSの手動起動と停止</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id21">Jenkinsのバージョンアップ手順</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id18">メンテナンス</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id19">セキュリティーアップデートの実施</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id20">シャットダウンの実施</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">JENKINSの手動起動と停止</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id22">Jenkinsのバージョンアップ手順</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#plugin">Pluginのアップロード手順</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id22">サーバーの移設</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id23">サーバーの交換</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id23">サーバーの移設</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id24">サーバーの交換</a></li>
 </ul>
 </li>
 </ul>
@@ -338,6 +340,7 @@
 </tbody>
 </table>
 <p>インストール終了後にセキュリティーアップデートを行って下さい。</p>
+<p>「システム設定」の「ソフトウェアとアップデート」の「アップデート」で、”アップデートの自動確認”を”毎日”、”セキュリティアップデートがある時”を”ダウンロードとインストールを自動的に行う”、”Ubuntuの新バージョンの通知”を”なし”に設定しておきます。</p>
 <p>ネットワークは設置場所の環境に合わせて適切に設定して下さい。</p>
 <p>ミラーサーバーは設置場所の環境に合わせて最速なものに変更しておきます。</p>
 <p>NVIDIAのグラフィックボードなどプロプライエタリなドライバでないと正しく動作しない場合はドライバをインストールして「システム設定」の「ソフトウェアとアップデート」の「追加のドライバ」で選択して変更の適用をしておきます。</p>
@@ -384,8 +387,8 @@ $ git config --global http.sslVerify <span class="nb">false</span>
 </ul>
 <p>http経由でアクセスする場合は$HOME/.git-credentialsを作成します。</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cat <span class="s">&lt;&lt; EOL | tee $HOME/.git-credentials</span>
-<span class="s">https://&lt;username&gt;:&lt;password&gt;@choreonoid.org</span>
 <span class="s">https://&lt;username&gt;:&lt;password&gt;@github.com</span>
+<span class="s">https://&lt;username&gt;:&lt;password&gt;@bitbucket.org</span>
 <span class="s">EOL</span>
 </pre></div>
 </div>
@@ -419,6 +422,8 @@ $ ssh-copy-id &lt;username&gt;@atom.a01.aist.go.jp
 $ cat <span class="s">&lt;&lt; EOL | tee $HOME/.jenkinshrg/env.sh</span>
 <span class="s">export CLIENT_ID=&lt;client_id&gt;</span>
 <span class="s">export CLIENT_SECRET=&lt;client_secret&gt;</span>
+<span class="s">export JENKINS_USER=&lt;jenkins user name&gt;</span>
+<span class="s">export JENKINS_PASSWD=&lt;jenkins password&gt;</span>
 <span class="s">EOL</span>
 </pre></div>
 </div>
@@ -565,6 +570,25 @@ $ sudo service nginx restart
 <div class="section" id="id10">
 <h2>スレーブサーバーの構築<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
 <p>スレーブサーバーで実施するインストール手順を説明します。</p>
+<div class="section" id="qt">
+<h3>Qtのインストール<a class="headerlink" href="#qt" title="Permalink to this headline">¶</a></h3>
+<p>choreonoidの画面表示スタイルを合わせるためにQtのインストールが必要です。これを行わないと、画面表示がずれるため、マウスクリック操作に失敗します。</p>
+<p>他のサーバのホームディレクトリで、以下のようにして、qt-5.5.1-nogtk.tgzをコピーします。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp qt-5.5.1-nogtk.tgz &lt;user name&gt;@&lt;slave server address&gt;:~
+</pre></div>
+</div>
+<p>スレーブサーバーのホームディレクトリで以下のようにして、/usr/localに展開します。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo tar -xzvf qt-5.5.1-nogtk.tgz -C /usr/local
+</pre></div>
+</div>
+<p>.jenkinshrg/env.txtに環境変数を設定します。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">QT_DIR</span><span class="o">=</span>/usr/local/Qt-5.5.1
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$QT_DIR</span>/bin:<span class="nv">$PATH</span>
+<span class="nb">export</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$QT_DIR</span>/lib:<span class="nv">$LD_LIBRARY_PATH</span>
+<span class="nb">export</span> <span class="nv">PKG_CONFIG_PATH</span><span class="o">=</span><span class="nv">$QT_DIR</span>/lib/pkgconfig:<span class="nv">$PKG_CONFIG_PATH</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="id11">
 <h3>スレーブサーバーの登録<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
 <p>スレーブサーバーの情報をマスターサーバーへ登録します。</p>
@@ -635,11 +659,32 @@ $ sudo service nginx restart
 <p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
+<p class="last">このスクリプト内では、自動起動の設定を行うと同時に、JNLPスレーブを起動します。設定だけを行いたい場合は、スクリプト内のjava..から始まる行をコメントアウトして実行してください。次にスレーブマシーンを再起動すると、JNLPスレーブが起動します。</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
 <p class="last">通常スレーブサーバーの起動はシステムのサービス（デーモン）としてinit.dスクリプトなどで自動起動させますが、デスクトップアプリケーションを実行可能とするためにユーザーのデスクトップログイン時に自動起動されるランチャーを$HOME/.config/autostartへ登録する形で実現しています。通常のサービスで良い場合はslave.shを実行して下さい。</p>
 </div>
+<p>　　Jenkinsのホームページからビルド実行状態を確認し、エラーが起きていたら修正します。ソースコードの取得ができていない場合は、認証情報に誤りがないか確認します。また、srcディレクトリを削除し、クリアな状態に戻します。choreonoidの表示画面を確認し、タスクが実行されているかどうかも確認します。</p>
 </div>
 <div class="section" id="id12">
-<h3>スレーブサーバーの削除<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<h3>リブートの設定<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<p>一日に一度8時30分にリブートする設定をします。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo crontab -e
+</pre></div>
+</div>
+<p>と実行します。最初に実行すると、エディタを選択するメッセージが表示されるので、好きなものを選択します。エディタが開いたら、</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">30</span> <span class="m">8</span> * * * /sbin/shutdown -r now
+</pre></div>
+</div>
+<p>を、最後の行に追加して保存します。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo crontab -ｌ
+</pre></div>
+</div>
+<p>とすると、現在の設定を見ることができます。</p>
+</div>
+<div class="section" id="id13">
+<h3>スレーブサーバーの削除<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
 <p>不要になったスレーブサーバーの情報をマスターサーバーから削除します。</p>
 <p>マスターサーバーからスレーブサーバーを削除します。</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./scripts/deletenode.sh &lt;nodename&gt;
@@ -671,11 +716,11 @@ $ sudo service nginx restart
 <p><a class="reference external" href="http://jenkinshrg.a01.aist.go.jp">http://jenkinshrg.a01.aist.go.jp</a></p>
 </div>
 </div>
-<div class="section" id="id13">
-<h2>仮想マシンによるテストサーバーの構築（オプション）<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
-<p>仮想マシン上にマスターサーバー、スレーブサーバーを構築することも可能です。（テスト内容によっては正常動作しない場合があります）</p>
 <div class="section" id="id14">
-<h3>事前準備<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<h2>仮想マシンによるテストサーバーの構築（オプション）<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
+<p>仮想マシン上にマスターサーバー、スレーブサーバーを構築することも可能です。（テスト内容によっては正常動作しない場合があります）</p>
+<div class="section" id="id15">
+<h3>事前準備<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
 <p>上記の事前準備を行っておいて下さい。</p>
 <p>virtualboxがインストールされていない場合はインストールして下さい。</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo sh -c <span class="s2">&quot;echo &#39;deb http://download.virtualbox.org/virtualbox/debian &#39;</span><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2">&#39; contrib&#39; &gt; /etc/apt/sources.list.d/virtualbox.list&quot;</span>
@@ -691,8 +736,8 @@ $ rm vagrant_1.8.1_x86_64.deb
 </pre></div>
 </div>
 </div>
-<div class="section" id="id15">
-<h3>ローカル環境でのマスターサーバー、スレーブサーバーの起動<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id16">
+<h3>ローカル環境でのマスターサーバー、スレーブサーバーの起動<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
 <p>ローカル環境でマスターサーバー、スレーブサーバーを起動したい場合は以下の手順で起動します。</p>
 <p>マスターサーバーを起動します。（Ubuntu14.04LTS環境でmasterというノード名でvirtualboxのプライベートネットワークで接続）</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ vagrant up master
@@ -713,8 +758,8 @@ $ ./scripts/createnode.sh slave2 <span class="m">1</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id16">
-<h3>リモート環境へのスレーブサーバーの追加<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id17">
+<h3>リモート環境へのスレーブサーバーの追加<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
 <p>リモートのマスターサーバーへスレーブサーバーを追加したい場合は以下の手順で起動します。</p>
 <p>Vagrantfileにスレーブの記述を追加します。（以下はUbuntu16.04LTS環境でubuntu-xenial-amd64というノード名でhttp://jenkinshrg.a01.aist.go.jpへ接続する場合の例）</p>
 <div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">define</span> <span class="s2">&quot;ubuntu-xenial-amd64&quot;</span><span class="p">,</span> <span class="ss">autostart</span><span class="p">:</span> <span class="kp">false</span> <span class="k">do</span> <span class="o">|</span><span class="n">server</span><span class="o">|</span>
@@ -739,18 +784,18 @@ $ <span class="nb">export</span> <span class="nv">REMOTE_FS</span><span class="o
 </div>
 </div>
 </div>
-<div class="section" id="id17">
-<h2>メンテナンス<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id18">
-<h3>セキュリティーアップデートの実施<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<h2>メンテナンス<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id19">
+<h3>セキュリティーアップデートの実施<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
 <p>unattended-upgradesにて自動でセキュリティーアップデート、リブートを実施するように設定しています。（cron.daily経由で6:25に起動され最大1800秒遅延して実行されます）</p>
 </div>
-<div class="section" id="id19">
-<h3>シャットダウンの実施<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id20">
+<h3>シャットダウンの実施<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
 <p>JENKINSの画面で「JENKINSの管理」→「シャットダウンの準備」を行うことで新規テストジョブの実行を停止することができますので、テストジョブの実行が全て完了してから通常のシャットダウン手順を実行して下さい。（再起動時に自動的にサービスが再開されます）</p>
 </div>
-<div class="section" id="id20">
-<h3>JENKINSの手動起動と停止<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id21">
+<h3>JENKINSの手動起動と停止<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
 <p>JENKINSの停止</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ service jenkins stop
 </pre></div>
@@ -760,8 +805,8 @@ $ <span class="nb">export</span> <span class="nv">REMOTE_FS</span><span class="o
 </pre></div>
 </div>
 </div>
-<div class="section" id="id21">
-<h3>Jenkinsのバージョンアップ手順<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id22">
+<h3>Jenkinsのバージョンアップ手順<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li>JENKINSを停止します。</li>
 <li>インターネットに接続していない状態で行う場合、他のマシーンで最新バージョンのjenkins.warをダウンロードします。</li>
@@ -792,12 +837,12 @@ $ <span class="nb">export</span> <span class="nv">REMOTE_FS</span><span class="o
 <li>プラグインのアップロードで、ダウンロードしたファイルを選択し、アップロードをクリックします。</li>
 </ol>
 </div>
-<div class="section" id="id22">
-<h3>サーバーの移設<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id23">
+<h3>サーバーの移設<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
 <p>サーバーの設置場所を移動するなどでIPアドレスが変更になっても問題ありません。</p>
 </div>
-<div class="section" id="id23">
-<h3>サーバーの交換<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id24">
+<h3>サーバーの交換<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h3>
 <p>故障などでハードウェア交換を行う場合は上記のインストール手順を再度実施して下さい。</p>
 <p>JENKINSサーバーの各種設定と履歴データはマスターサーバー上の/var/lib/jenkinsにあります。</p>
 <p>移行が必要な場合はマスターサーバーにて以下のバックアップ、リストア手順を実施して下さい。（スレーブサーバーのデータは消えてしまって問題ありません）</p>
