@@ -196,7 +196,7 @@
   <div class="section" id="id1">
 <h1>テストサーバーの管理<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <p>テストサーバーを構築、運用するための手順について説明します。</p>
-<p>現在運用中のサーバー構成は以下の通りです。</p>
+<p>2019/12/20時点で運用中のサーバー構成は以下の通りです。</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="25%" />
@@ -212,30 +212,50 @@
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>master</td>
+<tr class="row-even"><td>slave1</td>
+<td>テスト実行環境（並列実行不可ジョブ用）</td>
+<td>1</td>
+<td>ラック1段目、dhcp</td>
+</tr>
+<tr class="row-odd"><td>master</td>
 <td>テスト実行管理</td>
 <td>0</td>
-<td>ラック中段、固定IP</td>
-</tr>
-<tr class="row-odd"><td>slave1</td>
-<td>テスト実行環境（並列実行可能ジョブ用）</td>
-<td>4</td>
-<td>ラック上段、dhcp</td>
+<td>ラック2段目、固定IP</td>
 </tr>
 <tr class="row-even"><td>slave2</td>
 <td>テスト実行環境（並列実行不可ジョブ用）</td>
 <td>1</td>
-<td>ラック下段、dhcp</td>
+<td>ラック3段目、dhcp</td>
 </tr>
 <tr class="row-odd"><td>slave3</td>
 <td>テスト実行環境（並列実行不可ジョブ用）</td>
 <td>1</td>
-<td>ラック下、dhcp</td>
+<td>ノートPC、dhcp</td>
 </tr>
 <tr class="row-even"><td>slave4</td>
+<td>テスト実行環境（並列実行可能ジョブ用）</td>
+<td>4</td>
+<td>GTune、dhcp</td>
+</tr>
+<tr class="row-odd"><td>slave5</td>
 <td>テスト実行環境（並列実行不可ジョブ用）</td>
 <td>1</td>
-<td>ラック下、dhcp</td>
+<td>ガレリア、dhcp</td>
+</tr>
+<tr class="row-even"><td>slave6</td>
+<td>テスト実行環境（並列実行不可ジョブ用）</td>
+<td>1</td>
+<td>ラック4段目、dhcp</td>
+</tr>
+<tr class="row-odd"><td>slave7</td>
+<td>テスト実行環境（並列実行不可ジョブ用）</td>
+<td>1</td>
+<td>ラック5段目、dhcp</td>
+</tr>
+<tr class="row-even"><td>slave8</td>
+<td>テスト実行環境（並列実行不可ジョブ用）</td>
+<td>1</td>
+<td>ラック6段目、dhcp</td>
 </tr>
 </tbody>
 </table>
@@ -331,7 +351,7 @@
 </tr>
 <tr class="row-odd"><td>ホスト名</td>
 <td>任意</td>
-<td>master、slave1、slave2、slave3、slave4を設定</td>
+<td>master、slave1等を設定</td>
 </tr>
 <tr class="row-even"><td>ユーザー名</td>
 <td>任意</td>
@@ -346,7 +366,7 @@
 <p>NVIDIAのグラフィックボードなどプロプライエタリなドライバでないと正しく動作しない場合はドライバをインストールして「システム設定」の「ソフトウェアとアップデート」の「追加のドライバ」で選択して変更の適用をしておきます。</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">本手順はUbuntu 14.04 LTS Desktopで動作確認しています。</p>
+<p class="last">本手順はUbuntu 16.04 LTS Desktopで動作確認しています。</p>
 </div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
@@ -393,7 +413,7 @@ $ git config --global http.sslVerify <span class="nb">false</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li>gitの設定(ssh経由）</li>
+<li>gitの設定(ssh経由）(2019/12/20時点では不要)</li>
 </ul>
 <p>ssh経由でアクセスする場合は公開鍵を作成して登録します。</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ssh-keygen -N <span class="s2">&quot;&quot;</span> -f <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.ssh/id_rsa
@@ -412,7 +432,7 @@ $ ssh-copy-id &lt;username&gt;@atom.a01.aist.go.jp
 </div>
 <p>一度atomへログインし、パスワードなしでログインできることを確認しておきます。</p>
 <ul class="simple">
-<li>Google Driveの設定</li>
+<li>Google Driveの設定(2019/12/20時点では不要)</li>
 </ul>
 <p>ログをGoogle Driveへアップロードするために以下の設定を行って下さい。</p>
 <p>Google Drive APIのclient_idとclient_secretをまだ作成していない場合は、Google Developers Consoleへjenkinshrgでログインして「API Manager」の「認証情報」で作成しておきます。</p>
@@ -553,7 +573,7 @@ $ sudo service nginx restart
 <p>この設定以降は、jenkins-cliを使用したリモートアクセスにはこのAPI Tokenが必要になります。
 コマンドの中に</p>
 <blockquote>
-<div><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">java</span> <span class="o">-</span><span class="n">jar</span> <span class="n">jenkins</span><span class="o">-</span><span class="n">cli</span><span class="o">.</span><span class="na">jar</span> <span class="o">-</span><span class="n">s</span> <span class="n">http</span><span class="o">:</span><span class="c1">//jenkinshrg.a01.aist.go.jp/ -auth &lt;user name&gt;:&lt;API Token&gt; &lt;command&gt;</span>
+<div><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">java</span> <span class="o">-</span><span class="n">jar</span> <span class="n">jenkins</span><span class="o">-</span><span class="n">cli</span><span class="p">.</span><span class="na">jar</span> <span class="o">-</span><span class="n">s</span> <span class="n">http</span><span class="p">:</span><span class="c1">//jenkinshrg.a01.aist.go.jp/ -auth &lt;user name&gt;:&lt;API Token&gt; &lt;command&gt;</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -574,14 +594,14 @@ $ sudo service nginx restart
 <h3>Qtのインストール<a class="headerlink" href="#qt" title="Permalink to this headline">¶</a></h3>
 <p>choreonoidの画面表示スタイルを合わせるためにQtのインストールが必要です。これを行わないと、画面表示がずれるため、マウスクリック操作に失敗します。</p>
 <p>他のサーバのホームディレクトリで、以下のようにして、qt-5.5.1-nogtk.tgzをコピーします。</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp qt-5.5.1-nogtk.tgz &lt;user name&gt;@&lt;slave server address&gt;:~
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ scp qt-5.5.1-nogtk.tgz &lt;user name&gt;@&lt;slave server address&gt;:~
 </pre></div>
 </div>
 <p>スレーブサーバーのホームディレクトリで以下のようにして、/usr/localに展開します。</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo tar -xzvf qt-5.5.1-nogtk.tgz -C /usr/local
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo tar -xzvf qt-5.5.1-nogtk.tgz -C /usr/local
 </pre></div>
 </div>
-<p>.jenkinshrg/env.txtに環境変数を設定します。</p>
+<p>.jenkinshrg/env.shに環境変数を設定します。</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">QT_DIR</span><span class="o">=</span>/usr/local/Qt-5.5.1
 <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$QT_DIR</span>/bin:<span class="nv">$PATH</span>
 <span class="nb">export</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$QT_DIR</span>/lib:<span class="nv">$LD_LIBRARY_PATH</span>

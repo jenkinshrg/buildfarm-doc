@@ -4,16 +4,20 @@
 
 テストサーバーを構築、運用するための手順について説明します。
 
-現在運用中のサーバー構成は以下の通りです。
+2019/12/20時点で運用中のサーバー構成は以下の通りです。
 
 .. csv-table::
   :header: ノード名, 用途, ジョブ同時実行数, 備考
 
-  master, テスト実行管理, 0, ラック中段、固定IP
-  slave1, テスト実行環境（並列実行可能ジョブ用）, 4, ラック上段、dhcp
-  slave2, テスト実行環境（並列実行不可ジョブ用）, 1, ラック下段、dhcp
-  slave3, テスト実行環境（並列実行不可ジョブ用）, 1, ラック下、dhcp
-  slave4, テスト実行環境（並列実行不可ジョブ用）, 1, ラック下、dhcp
+  slave1, テスト実行環境（並列実行不可ジョブ用）, 1, ラック1段目、dhcp
+  master, テスト実行管理, 0, ラック2段目、固定IP
+  slave2, テスト実行環境（並列実行不可ジョブ用）, 1, ラック3段目、dhcp
+  slave3, テスト実行環境（並列実行不可ジョブ用）, 1, ノートPC、dhcp
+  slave4, テスト実行環境（並列実行可能ジョブ用）, 4, GTune、dhcp
+  slave5, テスト実行環境（並列実行不可ジョブ用）, 1, ガレリア、dhcp
+  slave6, テスト実行環境（並列実行不可ジョブ用）, 1, ラック4段目、dhcp
+  slave7, テスト実行環境（並列実行不可ジョブ用）, 1, ラック5段目、dhcp
+  slave8, テスト実行環境（並列実行不可ジョブ用）, 1, ラック6段目、dhcp
 
 .. note::
 
@@ -72,7 +76,7 @@ OSインストール
   パーティション, 任意, LVMを設定
   タイムゾーン, 任意, Asia/Tokyoを設定
   言語, 任意, 日本語を設定
-  ホスト名, 任意, master、slave1、slave2、slave3、slave4を設定 
+  ホスト名, 任意, master、slave1等を設定 
   ユーザー名, 任意, jenkinshrgを設定
 
 インストール終了後にセキュリティーアップデートを行って下さい。
@@ -87,7 +91,7 @@ NVIDIAのグラフィックボードなどプロプライエタリなドライ�
 
 .. note::
 
-  本手順はUbuntu 14.04 LTS Desktopで動作確認しています。
+  本手順はUbuntu 16.04 LTS Desktopで動作確認しています。
 
 .. warning::
 
@@ -138,7 +142,7 @@ http経由でアクセスする場合は$HOME/.git-credentialsを作成します
   https://<username>:<password>@bitbucket.org
   EOL
 
-* gitの設定(ssh経由）
+* gitの設定(ssh経由）(2019/12/20時点では不要)
 
 ssh経由でアクセスする場合は公開鍵を作成して登録します。
 
@@ -161,7 +165,7 @@ $HOME/.ssh/configを作成します。
 
 一度atomへログインし、パスワードなしでログインできることを確認しておきます。
 
-* Google Driveの設定
+* Google Driveの設定(2019/12/20時点では不要)
 
 ログをGoogle Driveへアップロードするために以下の設定を行って下さい。
 
@@ -363,15 +367,15 @@ choreonoidの画面表示スタイルを合わせるためにQtのインスト�
 
 .. code-block:: bash
 　　
-  scp qt-5.5.1-nogtk.tgz <user name>@<slave server address>:~
+  $ scp qt-5.5.1-nogtk.tgz <user name>@<slave server address>:~
 
 スレーブサーバーのホームディレクトリで以下のようにして、/usr/localに展開します。
 
 .. code-block:: bash
 
-  sudo tar -xzvf qt-5.5.1-nogtk.tgz -C /usr/local
+  $ sudo tar -xzvf qt-5.5.1-nogtk.tgz -C /usr/local
 
-.jenkinshrg/env.txtに環境変数を設定します。
+.jenkinshrg/env.shに環境変数を設定します。
 
 .. code-block:: bash
 
